@@ -1,31 +1,22 @@
 import { useLingui } from "@lingui/react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "../../lib/cn";
+import { TAB_PAGES, type Locale } from "../../lib/routeTable";
 import { lookupMessage } from "../../messages";
-
-const tabs = [
-  { to: "/felia-ta", labelId: "nav.citizenSlice" },
-  { to: "/bilantul-national", labelId: "nav.nationalBalance" },
-  { to: "/companii-de-stat", labelId: "nav.companies" },
-  { to: "/economie", labelId: "nav.economy" },
-  { to: "/societate", labelId: "nav.society" },
-  { to: "/energie", labelId: "nav.energy" },
-  { to: "/piata-muncii", labelId: "nav.labour" },
-  { to: "/justitie", labelId: "nav.justice" },
-] as const;
 
 export function TabNavigation() {
   const { i18n } = useLingui();
+  const locale = i18n.locale as Locale;
 
   return (
     <nav
       aria-label={i18n._(lookupMessage("nav.label"))}
       className="mx-auto flex max-w-6xl gap-1 px-4"
     >
-      {tabs.map((tab) => (
+      {TAB_PAGES.map((tab) => (
         <Link
-          key={tab.to}
-          to={tab.to}
+          key={tab.key}
+          to={tab[locale]}
           className="text-sm font-medium"
           activeProps={{
             className: "text-sm font-medium",
@@ -44,7 +35,7 @@ export function TabNavigation() {
                   : "border-transparent text-slate-500 hover:text-slate-800"
               )}
             >
-              {i18n._(lookupMessage(tab.labelId))}
+              {i18n._(lookupMessage(`nav.${tab.key}`))}
             </span>
           )}
         </Link>
