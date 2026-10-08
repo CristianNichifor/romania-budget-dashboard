@@ -119,14 +119,15 @@ CI: `.github/workflows/ci.yml` rulează `pnpm check` + build pe fiecare PR și p
 ## Cloudflare (deploy principal, gratis)
 
 Site static pe Workers Static Assets (`wrangler.toml`, fallback SPA), live la
-**https://buget.cristian-nichifor.com**.
+**https://budget.cristian-nichifor.com** (contul Cloudflare CN Webify Customers;
+Terraform leagă hostname-ul, `wrangler.toml` nu are `routes`).
 
 ```bash
-VITE_API_BASE_URL=https://api.buget.cristian-nichifor.com pnpm build
+VITE_API_BASE_URL=https://budget.cristian-nichifor.com pnpm build
 pnpm exec wrangler deploy
 ```
 
-API-ul e Worker-ul din repo-ul BFF (CORS `*`, date live transparenta.eu). CI: `.github/workflows/deploy-cloudflare.yml` — build + deploy la push pe `main` (necesită secretele `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`; variabila `VITE_API_BASE_URL` e fallback-ul default). Cost: 0 — static unlimited, apeluri Worker în free tier.
+API-ul e Worker-ul din repo-ul BFF, pe aceeași origine (`https://budget.cristian-nichifor.com/api/*`, rută Workers; date live transparenta.eu). CI: `.github/workflows/deploy-cloudflare.yml` — build + deploy la push pe `main` (necesită secretele `CLOUDFLARE_API_TOKEN` (token de cont Customers, _Workers Scripts Write_) + `CLOUDFLARE_ACCOUNT_ID`; variabila `VITE_API_BASE_URL` e fallback-ul default). Cost: 0 — static unlimited, apeluri Worker în free tier.
 
 ## Git workflow
 

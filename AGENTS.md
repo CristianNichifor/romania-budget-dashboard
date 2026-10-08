@@ -10,7 +10,7 @@ Convenții de lucru pentru `romania-budget-dashboard` (aliniate cu hack-for-fact
 - `pnpm build` — tsc -b && vite build
 - `pnpm i18n:extract` — regenerează cataloagele `.po` după modificarea `src/locales/*/messages.ts`
 - Deploy: imaginea se construiește cu `docker build --build-arg VITE_API_BASE_URL=... .`; stack-ul complet pornește cu `docker compose` din repo-ul BFF. CI publică imaginea pe GHCR la push pe `main`/tag-uri `v*` (variabila de repo `VITE_API_BASE_URL`).
-- **Deploy Cloudflare (principal, gratis)**: `pnpm build` apoi `pnpm exec wrangler deploy` — site static pe Workers Static Assets (`wrangler.toml`, SPA fallback), publicat la https://buget.cristian-nichifor.com. API-ul bazează pe `VITE_API_BASE_URL` (default local: `http://localhost:3000`). CI: `deploy-cloudflare.yml` (push pe `main` + manual, rulează doar dacă secretul `CLOUDFLARE_API_TOKEN` e setat).
+- **Deploy Cloudflare (principal, gratis)**: `pnpm build` apoi `pnpm exec wrangler deploy` — site static pe Workers Static Assets (`wrangler.toml`, SPA fallback), publicat la https://budget.cristian-nichifor.com. API-ul bazează pe `VITE_API_BASE_URL` (default local: `http://localhost:3000`). CI: `deploy-cloudflare.yml` (push pe `main` + manual, rulează doar dacă secretul `CLOUDFLARE_API_TOKEN` e setat).
 
 ## Reguli de cod
 
