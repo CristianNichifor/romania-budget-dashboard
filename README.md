@@ -8,16 +8,18 @@ Tablou de bord cetățenesc pentru bugetul consolidat al României (central, soc
 
 ## Tab-uri
 
-| Tab                                          | Vizualizări                                                                                                                               | Date                                                         |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Feliuța ta** (`/felia-ta`)                 | Waterfall salariu, indice salariu real vs. nominal, context salarial (LCI + ancore SES)                                                   | Rate fiscale 2026 (static), Eurostat                         |
-| **Bilanțul național** (`/bilantul-national`) | KPI venituri/cheltuieli/deficit, adoptat vs. execuție, Sankey flux bugetar, Treemap destinații, gauge deficit % PIB                       | Open Budget 2026 (static), MFP data.gov.ro + transparenta.eu |
-| **Companii de stat** (`/companii-de-stat`)   | KPI, scatter salariu × marjă, trend sectoare, hartă județe, subvenții locale, listate BVB                                                 | companiidestat.ro (API public)                               |
-| **Economie** (`/economie`)                   | Inflația anuală vs. ținta BNR, șomaj, curs EUR/RON, deficit trimestrial vs. Maastricht, ocupare, cont curent, dobânda BCE, PIB pe regiuni | Eurostat, BCE, BNR                                           |
-| **Societate** (`/societate`)                 | Populație, cheltuieli publice sănătate/educație (% PIB), educație, sănătate, demografie, indicatori sociali                               | Eurostat, INS                                                |
-| **Energie** (`/energie`)                     | Preț electricitate gospodării, energie regenerabilă, dependență de import                                                                 | Eurostat                                                     |
-| **Piața muncii** (`/piata-muncii`)           | Rata NEET (15–29), șomajul tinerilor, rata locurilor de muncă vacante                                                                     | Eurostat                                                     |
-| **Justiție** (`/justitie`)                   | Omucideri intenționate, populație carcerală, efectivul de polițiști                                                                       | Eurostat                                                     |
+Engleza la rădăcină, româna sub `/ro/` cu slug-uri traduse (`src/lib/routeTable.ts`); limba vine din cale.
+
+| Tab                                                                       | Vizualizări                                                                                                                               | Date                                                         |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Feliuța ta** (`/your-share/`, `/ro/felia-ta/`)                          | Waterfall salariu, indice salariu real vs. nominal, context salarial (LCI + ancore SES)                                                   | Rate fiscale 2026 (static), Eurostat                         |
+| **Bilanțul național** (`/national-balance/`, `/ro/bilantul-national/`)    | KPI venituri/cheltuieli/deficit, adoptat vs. execuție, Sankey flux bugetar, Treemap destinații, gauge deficit % PIB                       | Open Budget 2026 (static), MFP data.gov.ro + transparenta.eu |
+| **Companii de stat** (`/state-owned-companies/`, `/ro/companii-de-stat/`) | KPI, scatter salariu × marjă, trend sectoare, hartă județe, subvenții locale, listate BVB                                                 | companiidestat.ro (API public)                               |
+| **Economie** (`/economy/`, `/ro/economie/`)                               | Inflația anuală vs. ținta BNR, șomaj, curs EUR/RON, deficit trimestrial vs. Maastricht, ocupare, cont curent, dobânda BCE, PIB pe regiuni | Eurostat, BCE, BNR                                           |
+| **Societate** (`/society/`, `/ro/societate/`)                             | Populație, cheltuieli publice sănătate/educație (% PIB), educație, sănătate, demografie, indicatori sociali                               | Eurostat, INS                                                |
+| **Energie** (`/energy/`, `/ro/energie/`)                                  | Preț electricitate gospodării, energie regenerabilă, dependență de import                                                                 | Eurostat                                                     |
+| **Piața muncii** (`/labor-market/`, `/ro/piata-muncii/`)                  | Rata NEET (15–29), șomajul tinerilor, rata locurilor de muncă vacante                                                                     | Eurostat                                                     |
+| **Justiție** (`/justice/`, `/ro/justitie/`)                               | Omucideri intenționate, populație carcerală, efectivul de polițiști                                                                       | Eurostat                                                     |
 
 ## Tech stack
 
