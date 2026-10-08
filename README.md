@@ -1,10 +1,10 @@
-# ro-budget-dashboard
+# romania-budget-dashboard
 
 Contributor setup and checks: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Tablou de bord cetățenesc pentru bugetul consolidat al României (central, social, sănătate), pe modelul [Open Budget 2026](https://openbudget.ro/buget/2026/), cu context INS/Eurostat (salarii, statistici, inflație, datorie).
 
-> **Status: P36.** Frontend-ul apelează `ro-budget-dashboard-bff` (date live Eurostat/BCE/MFP) și cade pe datele locale demo când BFF-ul nu răspunde. Opt tab-uri: Feliuța ta, Bilanțul național, Companii de stat, Economie, Societate, Energie, Piața muncii, Justiție.
+> **Status: P36.** Frontend-ul apelează `romania-budget-dashboard-bff` (date live Eurostat/BCE/MFP) și cade pe datele locale demo când BFF-ul nu răspunde. Opt tab-uri: Feliuța ta, Bilanțul național, Companii de stat, Economie, Societate, Energie, Piața muncii, Justiție.
 
 ## Tab-uri
 
@@ -63,41 +63,41 @@ Regula din celelalte repo-uri: **nucleul funcțional nu face I/O și nu aruncă*
 
 ## Roadmap
 
-| Fază | Deliverable                                                                                                       | Status |
-| ---- | ----------------------------------------------------------------------------------------------------------------- | ------ |
-| P0   | Waterfall salariu cu rate 2026 hardcodate                                                                         | ✓      |
-| P1   | Sankey + treemap cu date buget static                                                                             | ✓      |
-| P2   | Integrare BFF: `fetch*` din `src/api/client.ts` → `ro-budget-dashboard-bff` (`VITE_API_BASE_URL`), fallback local | ✓      |
-| P3   | Trenduri INS (endpoint `/api/ins/metrics`, secțiunea „Context din statisticile INS”)                              | ✓      |
-| P4   | Context BNR: seed JSON + script trimestrial (`pnpm bnr:update`) în repo-ul BFF                                    | ✓      |
-| P5   | Drill-down instituțional (modal + breadcrumb)                                                                     | ✓      |
-| P6   | Harta investițiilor (county heatmap — API există deja în eb-server)                                               | ✓      |
-| P7   | Indicator INS selectabil în secțiunea de context (`/api/ins/catalog`)                                             | ✓      |
-| P9   | Buget adoptat vs. execuție (MFP via data.gov.ro, CKAN + anexa XML) în Bilanțul național                           | ✓      |
-| P11  | Deficitul trimestrial % PIB (Eurostat GFS) cu pragul Maastricht −3%                                               | ✓      |
-| P12  | Economie extinsă: ocupare, cont curent, dobânda BCE                                                               | ✓      |
-| P13  | Context salarial (LCI trimestrial + ancore SES la 4 ani) în Feliuța ta                                            | ✓      |
-| P14  | Tab „Societate”: populație, cheltuieli publice sănătate/educație, indicatori INS                                  | ✓      |
-| P16  | Salariul mediu brut lunar (estimare SES+LCI) în Feliuța ta — `/api/wages/monthly`                                 | ✓      |
-| P17  | Indicatori sociali live din Eurostat (mortalitate infantilă, speranța de viață, paturi)                           | ✓      |
-| P18  | Reîmprospătare BNR automatizată (GitHub Action lunar, memento issue)                                              | ✓      |
-| P19  | Societate → educație (părăsire timpurie, studii terțiare)                                                         | ✓      |
-| P20  | Societate → sănătate (medici la 100.000 locuitori)                                                                | ✓      |
-| P21  | Societate → demografie (vârsta mediană, migrație netă)                                                            | ✓      |
-| P22  | PIB pe locuitor pe regiunile de dezvoltare (NUTS2)                                                                | ✓      |
-| P23  | Tab nou „Energie” (preț electricitate, regenerabile, dependență de import)                                        | ✓      |
-| P24  | E2E smoke (Playwright) în CI                                                                                      | ✓      |
-| P25  | Prospețimea datelor (sourceUpdated pe răspunsuri Eurostat + afișat în UI)                                         | ✓      |
-| P26  | A11y (skip link, nav label) + SEO (og tags)                                                                       | ✓      |
-| P27  | Landing tablou: cardurile Societate / Energie / Feliuța ta + lista de endpoint-uri                                | ✓      |
-| P28  | Salariu real live (câștigul estimat deflatat cu HICP) în Feliuța ta                                               | ✓      |
-| P29  | Trend sănătate live (COFOG) + eliminarea contextului monetar static                                               | ✓      |
-| P30  | Investiții pe județe marcate onest ca estimare                                                                    | ✓      |
-| P31  | Beneficiari de pensii (Eurostat `spr_pns_ben`); „pensia medie” eliminată                                          | ✓      |
-| P32  | „Față de salariul mediu” derivat din date live (SES + curs ECB)                                                   | ✓      |
-| P33  | sourceUpdated pe macro / wages / context + afișat în UI                                                           | ✓      |
-| P34  | Tab nou „Piața muncii” (NEET, șomaj tineri, locuri vacante)                                                       | ✓      |
-| P35  | Tab nou „Justiție” (omucideri, penitenciar, polițiști)                                                            | ✓      |
+| Fază | Deliverable                                                                                                            | Status |
+| ---- | ---------------------------------------------------------------------------------------------------------------------- | ------ |
+| P0   | Waterfall salariu cu rate 2026 hardcodate                                                                              | ✓      |
+| P1   | Sankey + treemap cu date buget static                                                                                  | ✓      |
+| P2   | Integrare BFF: `fetch*` din `src/api/client.ts` → `romania-budget-dashboard-bff` (`VITE_API_BASE_URL`), fallback local | ✓      |
+| P3   | Trenduri INS (endpoint `/api/ins/metrics`, secțiunea „Context din statisticile INS”)                                   | ✓      |
+| P4   | Context BNR: seed JSON + script trimestrial (`pnpm bnr:update`) în repo-ul BFF                                         | ✓      |
+| P5   | Drill-down instituțional (modal + breadcrumb)                                                                          | ✓      |
+| P6   | Harta investițiilor (county heatmap — API există deja în eb-server)                                                    | ✓      |
+| P7   | Indicator INS selectabil în secțiunea de context (`/api/ins/catalog`)                                                  | ✓      |
+| P9   | Buget adoptat vs. execuție (MFP via data.gov.ro, CKAN + anexa XML) în Bilanțul național                                | ✓      |
+| P11  | Deficitul trimestrial % PIB (Eurostat GFS) cu pragul Maastricht −3%                                                    | ✓      |
+| P12  | Economie extinsă: ocupare, cont curent, dobânda BCE                                                                    | ✓      |
+| P13  | Context salarial (LCI trimestrial + ancore SES la 4 ani) în Feliuța ta                                                 | ✓      |
+| P14  | Tab „Societate”: populație, cheltuieli publice sănătate/educație, indicatori INS                                       | ✓      |
+| P16  | Salariul mediu brut lunar (estimare SES+LCI) în Feliuța ta — `/api/wages/monthly`                                      | ✓      |
+| P17  | Indicatori sociali live din Eurostat (mortalitate infantilă, speranța de viață, paturi)                                | ✓      |
+| P18  | Reîmprospătare BNR automatizată (GitHub Action lunar, memento issue)                                                   | ✓      |
+| P19  | Societate → educație (părăsire timpurie, studii terțiare)                                                              | ✓      |
+| P20  | Societate → sănătate (medici la 100.000 locuitori)                                                                     | ✓      |
+| P21  | Societate → demografie (vârsta mediană, migrație netă)                                                                 | ✓      |
+| P22  | PIB pe locuitor pe regiunile de dezvoltare (NUTS2)                                                                     | ✓      |
+| P23  | Tab nou „Energie” (preț electricitate, regenerabile, dependență de import)                                             | ✓      |
+| P24  | E2E smoke (Playwright) în CI                                                                                           | ✓      |
+| P25  | Prospețimea datelor (sourceUpdated pe răspunsuri Eurostat + afișat în UI)                                              | ✓      |
+| P26  | A11y (skip link, nav label) + SEO (og tags)                                                                            | ✓      |
+| P27  | Landing tablou: cardurile Societate / Energie / Feliuța ta + lista de endpoint-uri                                     | ✓      |
+| P28  | Salariu real live (câștigul estimat deflatat cu HICP) în Feliuța ta                                                    | ✓      |
+| P29  | Trend sănătate live (COFOG) + eliminarea contextului monetar static                                                    | ✓      |
+| P30  | Investiții pe județe marcate onest ca estimare                                                                         | ✓      |
+| P31  | Beneficiari de pensii (Eurostat `spr_pns_ben`); „pensia medie” eliminată                                               | ✓      |
+| P32  | „Față de salariul mediu” derivat din date live (SES + curs ECB)                                                        | ✓      |
+| P33  | sourceUpdated pe macro / wages / context + afișat în UI                                                                | ✓      |
+| P34  | Tab nou „Piața muncii” (NEET, șomaj tineri, locuri vacante)                                                            | ✓      |
+| P35  | Tab nou „Justiție” (omucideri, penitenciar, polițiști)                                                                 | ✓      |
 
 ## Note demo
 
@@ -108,8 +108,8 @@ Regula din celelalte repo-uri: **nucleul funcțional nu face I/O și nu aruncă*
 ## Docker
 
 ```bash
-docker build -t ro-budget-dashboard --build-arg VITE_API_BASE_URL=http://localhost:3000 .
-docker run -p 8080:80 ro-budget-dashboard
+docker build -t romania-budget-dashboard --build-arg VITE_API_BASE_URL=http://localhost:3000 .
+docker run -p 8080:80 romania-budget-dashboard
 ```
 
 `VITE_API_BASE_URL` este încorporat la build (Vite); nginx servește bundle-ul cu fallback SPA. Stack-ul complet (frontend + BFF) se pornește cu `docker compose` din repo-ul BFF — vezi `docker-compose.yml` acolo.

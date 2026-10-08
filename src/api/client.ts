@@ -13,7 +13,7 @@ import { calculateSalaryBreakdown, type SalaryBreakdown } from "../lib/salary";
 
 /**
  * Typed API client.
- * P2: calls the BFF (ro-budget-dashboard-bff); falls back to local demo
+ * P2: calls the BFF (romania-budget-dashboard-bff); falls back to local demo
  * data when the BFF is unreachable, so the demo always renders.
  * Monetary amounts cross this boundary as STRINGS, per the no-floats rule.
  */

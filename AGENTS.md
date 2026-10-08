@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Convenții de lucru pentru `ro-budget-dashboard` (aliniate cu hack-for-facts-eb-client / transparenta-eu-ins-loader).
+Convenții de lucru pentru `romania-budget-dashboard` (aliniate cu hack-for-facts-eb-client / transparenta-eu-ins-loader).
 
 ## Comenzi
 
