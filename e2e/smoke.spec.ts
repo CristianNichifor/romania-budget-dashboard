@@ -59,3 +59,19 @@ test("the root serves English and /ro/ serves Romanian", async ({ page }) => {
   await expect(page).toHaveURL(/\/ro\/felia-ta\/$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "ro");
 });
+
+test("each route links its canonical and hreflang pair", async ({ page }) => {
+  const origin = "https://budget.cristian-nichifor.com";
+  await page.goto("/ro/energie/");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    `${origin}/ro/energie/`
+  );
+  await expect(
+    page.locator('link[rel="alternate"][hreflang="en"]')
+  ).toHaveAttribute("href", `${origin}/energy/`);
+  await expect(
+    page.locator('link[rel="alternate"][hreflang="x-default"]')
+  ).toHaveAttribute("href", `${origin}/energy/`);
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+});
