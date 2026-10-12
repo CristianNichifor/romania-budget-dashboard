@@ -26,6 +26,7 @@ export default defineConfig({
   webServer: {
     command: `pnpm dev --port ${PORT} --strictPort --host 127.0.0.1`,
     url: BASE_URL,
+    env: { VITE_DATA_MODE: "static" },
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

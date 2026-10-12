@@ -4,124 +4,78 @@ import {
   createRouter,
   lazyRouteComponent,
   redirect,
+  type RouteComponent,
 } from "@tanstack/react-router";
+import { activateLocale } from "./i18n-core";
+import {
+  homeTarget,
+  localeFromPath,
+  PAGES,
+  type Locale,
+  type TabPage,
+} from "./lib/routeTable";
 import { DefaultError } from "./routes/DefaultError";
 import { RootLayout } from "./routes/RootLayout";
 import { RoutePending } from "./routes/RoutePending";
 
-const CitizenSlice = lazyRouteComponent(
-  () => import("./routes/CitizenSlice"),
-  "CitizenSlice"
-);
-
-const NationalBalance = lazyRouteComponent(
-  () => import("./routes/NationalBalance"),
-  "NationalBalance"
-);
-
-const CompaniiDeStat = lazyRouteComponent(
-  () => import("./routes/CompaniiDeStat"),
-  "CompaniiDeStat"
-);
-
-const Economie = lazyRouteComponent(
-  () => import("./routes/Economie"),
-  "Economie"
-);
-
-const Societate = lazyRouteComponent(
-  () => import("./routes/Societate"),
-  "Societate"
-);
-
-const Energie = lazyRouteComponent(() => import("./routes/Energie"), "Energie");
-
-const PiataMuncii = lazyRouteComponent(
-  () => import("./routes/PiataMuncii"),
-  "PiataMuncii"
-);
-
-const Justitie = lazyRouteComponent(
-  () => import("./routes/Justitie"),
-  "Justitie"
-);
+const COMPONENTS: Record<TabPage["key"], RouteComponent> = {
+  citizenSlice: lazyRouteComponent(
+    () => import("./routes/CitizenSlice"),
+    "CitizenSlice"
+  ),
+  nationalBalance: lazyRouteComponent(
+    () => import("./routes/NationalBalance"),
+    "NationalBalance"
+  ),
+  companies: lazyRouteComponent(
+    () => import("./routes/CompaniiDeStat"),
+    "CompaniiDeStat"
+  ),
+  economy: lazyRouteComponent(() => import("./routes/Economie"), "Economie"),
+  society: lazyRouteComponent(() => import("./routes/Societate"), "Societate"),
+  energy: lazyRouteComponent(() => import("./routes/Energie"), "Energie"),
+  labour: lazyRouteComponent(
+    () => import("./routes/PiataMuncii"),
+    "PiataMuncii"
+  ),
+  justice: lazyRouteComponent(() => import("./routes/Justitie"), "Justitie"),
+};
 
 const rootRoute = createRootRoute({
   component: RootLayout,
   errorComponent: DefaultError,
   notFoundComponent: DefaultError,
-});
-
-const indexRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/",
-  beforeLoad: () => {
-    throw redirect({ to: "/felia-ta" });
+  beforeLoad: ({ location }) => {
+    activateLocale(localeFromPath(location.pathname));
   },
 });
 
-const citizenSliceRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/felia-ta",
-  component: CitizenSlice,
-});
-
-const nationalBalanceRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/bilantul-national",
-  component: NationalBalance,
-});
-
-const companiesRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/companii-de-stat",
-  component: CompaniiDeStat,
-});
-
-const economyRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/economie",
-  component: Economie,
-});
-
-const societyRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/societate",
-  component: Societate,
-});
-
-const energyRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/energie",
-  component: Energie,
-});
-
-const labourRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/piata-muncii",
-  component: PiataMuncii,
-});
-
-const justiceRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/justitie",
-  component: Justitie,
-});
+function pageRoutes(locale: Locale) {
+  return PAGES.map((page) =>
+    page.key === "home"
+      ? createRoute({
+          getParentRoute: () => rootRoute,
+          path: page[locale],
+          beforeLoad: () => {
+            throw redirect({ to: homeTarget(locale) });
+          },
+        })
+      : createRoute({
+          getParentRoute: () => rootRoute,
+          path: page[locale],
+          component: COMPONENTS[page.key],
+        })
+  );
+}
 
 const routeTree = rootRoute.addChildren([
-  indexRoute,
-  citizenSliceRoute,
-  nationalBalanceRoute,
-  companiesRoute,
-  economyRoute,
-  societyRoute,
-  energyRoute,
-  labourRoute,
-  justiceRoute,
+  ...pageRoutes("en"),
+  ...pageRoutes("ro"),
 ]);
 
 export const router = createRouter({
   routeTree,
+  trailingSlash: "always",
   defaultPendingComponent: RoutePending,
   defaultPendingMs: 150,
 });

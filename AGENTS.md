@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Convenții de lucru pentru `ro-budget-dashboard` (aliniate cu hack-for-facts-eb-client / transparenta-eu-ins-loader).
+Convenții de lucru pentru `romania-budget-dashboard` (aliniate cu hack-for-facts-eb-client / transparenta-eu-ins-loader).
 
 ## Comenzi
 
@@ -8,9 +8,9 @@ Convenții de lucru pentru `ro-budget-dashboard` (aliniate cu hack-for-facts-eb-
 - `pnpm check` — typecheck + lint + test + format:check (rulează întotdeauna înainte de commit)
 - `pnpm test` — vitest run
 - `pnpm build` — tsc -b && vite build
-- `pnpm i18n:extract` — regenerează cataloagele `.po` după modificarea `src/messages.ts`
+- `pnpm i18n:extract` — regenerează cataloagele `.po` după modificarea `src/locales/*/messages.ts`
 - Deploy: imaginea se construiește cu `docker build --build-arg VITE_API_BASE_URL=... .`; stack-ul complet pornește cu `docker compose` din repo-ul BFF. CI publică imaginea pe GHCR la push pe `main`/tag-uri `v*` (variabila de repo `VITE_API_BASE_URL`).
-- **Deploy Cloudflare (principal, gratis)**: `pnpm build` apoi `pnpm exec wrangler deploy` — site static pe Workers Static Assets (`wrangler.toml`, SPA fallback), publicat la https://buget.cristian-nichifor.com. API-ul bazează pe `VITE_API_BASE_URL` (default: worker-ul BFF pe `api.buget.cristian-nichifor.com`). CI: `deploy-cloudflare.yml` (push pe `main` + manual, rulează doar dacă secretul `CLOUDFLARE_API_TOKEN` e setat).
+- **Deploy Cloudflare (principal, gratis)**: `pnpm build` apoi `pnpm exec wrangler deploy` — site static pe Workers Static Assets (`wrangler.toml`, SPA fallback), publicat la https://budget.cristian-nichifor.com. API-ul bazează pe `VITE_API_BASE_URL` (default local: `http://localhost:3000`). CI: `deploy-cloudflare.yml` (push pe `main` + manual; token Cloudflare de o oră de la brokerul CN Webify prin OIDC, fără secrete în repo).
 
 ## Reguli de cod
 
@@ -22,5 +22,20 @@ Convenții de lucru pentru `ro-budget-dashboard` (aliniate cu hack-for-facts-eb-
 
 ## Unde stă ce
 
-- Contract API: `src/api/client.ts` (scheme zod). P0 rezolvă local; P2 înlocuiește corpurile cu `fetch` către BFF — schemele nu se schimbă.
+- Contract API: `src/api/client.ts` (Zod, HTTP + fallback); `VITE_DATA_MODE=static` folosește numai seed-uri demo.
 - Date: `src/data/` (seed-uri). Componente vizuale: `src/components/charts/`. Tab-uri: `src/routes/`.
+
+## Contribution workflow
+
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) for credential-free setup and exact checks.
+- Target `dev`. Agents must never merge any PR (including `dev`) or deploy,
+  even when their credentials could bypass GitHub rules. Maintainers review releases.
+- CI exposes `verify`, requiring every correctness job to succeed. Publishing and
+  deployment are separate; this document does not configure GitHub branch rules.
+- Personal worktrees: `wt new <name> origin/dev`, under `<repo>/.worktrees/<name>`.
+  Outside contributors without `wt` can use a separate clone and a feature branch.
+- Keep Conventional Commits concise, imperative and lower case; do not bypass hooks.
+- Preserve decimal strings at the HTTP boundary. Coordinate fixture changes with
+  the companion repo; never refresh fixtures from production data.
+- Edit source and checked-in fixtures; do not commit `dist/`, `coverage/`,
+  `node_modules/`, `.env`, Playwright reports or Wrangler output.

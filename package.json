@@ -1,5 +1,5 @@
 {
-  "name": "ro-budget-dashboard",
+  "name": "romania-budget-dashboard",
   "version": "0.1.0",
   "description": "Tablou de bord cetățenesc pentru bugetul consolidat al României — demo cu date statice (Open Budget 2026, INS, BNR)",
   "private": true,
@@ -79,7 +79,7 @@
     "typescript-eslint": "^8.70.0",
     "vite": "^8.3.0",
     "vitest": "^5.0.0",
-    "wrangler": "^4.130.0"
+    "wrangler": "^4.144.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

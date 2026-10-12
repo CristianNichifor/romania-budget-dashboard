@@ -13,7 +13,7 @@ import { calculateSalaryBreakdown, type SalaryBreakdown } from "../lib/salary";
 
 /**
  * Typed API client.
- * P2: calls the BFF (ro-budget-dashboard-bff); falls back to local demo
+ * P2: calls the BFF (romania-budget-dashboard-bff); falls back to local demo
  * data when the BFF is unreachable, so the demo always renders.
  * Monetary amounts cross this boundary as STRINGS, per the no-floats rule.
  */
@@ -27,6 +27,10 @@ async function request<T>(
   schema: z.ZodType<T>,
   timeoutMs: number = REQUEST_TIMEOUT_MS
 ): Promise<T | null> {
+  if (import.meta.env.VITE_DATA_MODE === "static") {
+    useDataModeStore.getState().reportRequest(false);
+    return null;
+  }
   try {
     const response = await fetch(`${API_BASE_URL}${path}`, {
       signal: AbortSignal.timeout(timeoutMs),
@@ -34,8 +38,9 @@ async function request<T>(
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
+    const result = schema.parse(await response.json());
     useDataModeStore.getState().reportRequest(true);
-    return schema.parse(await response.json());
+    return result;
   } catch (error) {
     console.warn(`[api] BFF unreachable for ${path}, using local data`, error);
     useDataModeStore.getState().reportRequest(false);
