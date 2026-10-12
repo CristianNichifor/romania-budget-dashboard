@@ -129,7 +129,7 @@ VITE_API_BASE_URL=https://budget.cristian-nichifor.com pnpm build
 pnpm exec wrangler deploy
 ```
 
-API-ul e Worker-ul din repo-ul BFF, pe aceeași origine (`https://budget.cristian-nichifor.com/api/*`, rută Workers; date live transparenta.eu). CI: `.github/workflows/deploy-cloudflare.yml` — build + deploy la push pe `main` (necesită secretele `CLOUDFLARE_API_TOKEN` (token de cont Customers, _Workers Scripts Write_) + `CLOUDFLARE_ACCOUNT_ID`; variabila `VITE_API_BASE_URL` e fallback-ul default). Cost: 0 — static unlimited, apeluri Worker în free tier.
+API-ul e Worker-ul din repo-ul BFF, pe aceeași origine (`https://budget.cristian-nichifor.com/api/*`, rută Workers; date live transparenta.eu). CI: `.github/workflows/deploy-cloudflare.yml` — build (`VITE_API_BASE_URL=https://budget.cristian-nichifor.com`) + deploy la push pe `main` sau manual. Fără secrete în repo: job-ul primește un token Cloudflare de o oră de la brokerul CN Webify (`tokens.cnwebify.com`), pe baza token-ului OIDC GitHub. Cost: 0 — static unlimited, apeluri Worker în free tier.
 
 ## Git workflow
 
