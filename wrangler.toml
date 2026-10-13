@@ -7,3 +7,11 @@ account_id = "5d5a0c8a05e5d8292065cd0c0cf60291"
 [assets]
 directory = "./dist/"
 not_found_handling = "single-page-application"
+
+# Protected preview of the dev branch (`wrangler deploy --env dev`). Only the CN Webify preview
+# gate reaches it, through a service binding after sign-in, at budget-dev.cristian-nichifor.com;
+# it has no workers.dev or preview URL of its own.
+[env.dev]
+name = "romania-budget-dashboard-dev"
+workers_dev = false
+preview_urls = false
