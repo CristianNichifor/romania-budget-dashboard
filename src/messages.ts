@@ -1083,7 +1083,12 @@ export const m = {
   "section.demo": msg({ id: "section.demo", message: "date demo" }),
   "section.emptyYear": msg({
     id: "section.emptyYear",
-    message: "Nu există date demo pentru anul {year}.",
+    message:
+      "Nu există date demo pentru anul {year}. Datele demo acoperă doar anul {seedYear}.",
+  }),
+  "section.emptyYear.action": msg({
+    id: "section.emptyYear.action",
+    message: "Vezi anul {year}",
   }),
   "balance.kpi.partialYear": msg({
     id: "balance.kpi.partialYear",

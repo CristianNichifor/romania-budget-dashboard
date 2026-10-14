@@ -254,3 +254,14 @@ unless noted.
   swap. Ties keep the source order.
 - Tests: `tests/destinationList.test.ts` (ranking with `Decimal`, ties),
   `tests/DestinationTreemap.test.tsx` (toggle, list content, drill-down).
+
+
+### F2.8 · Empty years point to the year with data (part) · `done`
+
+- Given Bilanțul național on demo data and a year without a seed, then each
+  empty section says that demo data exists only for 2026 and offers one
+  44 px button, "Vezi anul 2026", that selects that year. Error sections
+  already render `role="alert"` with one retry (`SectionError`); staged
+  loading is E7.
+- Tests: `tests/EmptyState.test.tsx` (message, action button, no button
+  without an action).
