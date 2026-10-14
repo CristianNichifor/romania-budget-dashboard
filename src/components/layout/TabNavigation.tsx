@@ -28,6 +28,7 @@ export function TabNavigation() {
         <Link
           key={tab.key}
           to={tab[locale]}
+          search={true}
           className="shrink-0 text-sm font-medium whitespace-nowrap"
           activeProps={{ "aria-current": "page" }}
           inactiveProps={{ className: "text-slate-500" }}

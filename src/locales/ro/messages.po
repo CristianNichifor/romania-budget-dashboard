@@ -235,8 +235,8 @@ msgstr "Cheltuieli publice: sănătate vs. educație"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:778
-msgid "context.budgetLegend"
-msgstr "Buget sănătate (mld. lei)"
+msgid "context.budgetLabel"
+msgstr "Cheltuieli cu sănătatea"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:96
@@ -1547,3 +1547,15 @@ msgstr "Venituri"
 #: src/messages.ts:658
 msgid "balance.title"
 msgstr "Venituri și cheltuieli"
+
+#. js-lingui-explicit-id
+msgid "context.budgetUnit"
+msgstr "miliarde EUR"
+
+#. js-lingui-explicit-id
+msgid "currency.label"
+msgstr "Monedă"
+
+#. js-lingui-explicit-id
+msgid "currency.rateNote"
+msgstr "Sume convertite la cursul mediu BCE din {year}: 1 € = {rate} lei."

@@ -1,6 +1,7 @@
 import { useLingui } from "@lingui/react";
 import { Database } from "lucide-react";
 import { m } from "../../messages";
+import { CurrencyToggle } from "./CurrencyToggle";
 import { DataModeBadge } from "./DataModeBadge";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
@@ -24,6 +25,7 @@ export function Header() {
           </div>
         </div>
         <div className="ml-auto flex items-center gap-2">
+          <CurrencyToggle />
           <LocaleSwitcher />
           <DataModeBadge />
         </div>
