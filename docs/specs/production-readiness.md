@@ -231,3 +231,35 @@ unless noted.
   run); the Romanian copy is agent-written: **needs human review**.
 - Implementation items F2.1–F2.12 are listed in the README with the test each
   one should get; they are `todo` for implementation sessions.
+
+### F2.1 · Family bar back link to the hub (UXG-B1, part) · `done`
+
+- Given any route, then the first link inside the `banner` landmark is
+  "← Proiecte civice" / "← Civic projects" pointing at the hub root
+  `https://projects.cristian-nichifor.com/` (civic-ui naming registry), and the
+  banner text includes "Bugetul României". The link is a 44 px target.
+- Tests: `tests/HubLink.test.tsx` (href, label per locale, target height);
+  `e2e/smoke.spec.ts` (first banner link on every tab).
+- Left for UXG-B1: adopting civic-ui `SiteShell` / `FamilyBar` / `SiteFooter`
+  instead of the app's own header and footer.
+
+### F2.6 · Treemap list view and keyboard drill-down (U6) · `done`
+
+- Given the destinations treemap, then a "Hartă" / "Tabel" toggle
+  (`aria-pressed`, 44 px) swaps it for an ordered list that names every
+  destination, largest first, with its amount and share of the total; each
+  item is a button that opens the same drill-down as clicking a tile, so the
+  breakdown is reachable by keyboard. Focus stays on the toggle when views
+  swap. Ties keep the source order.
+- Tests: `tests/destinationList.test.ts` (ranking with `Decimal`, ties),
+  `tests/DestinationTreemap.test.tsx` (toggle, list content, drill-down).
+
+### F2.8 · Empty years point to the year with data (part) · `done`
+
+- Given Bilanțul național on demo data and a year without a seed, then each
+  empty section says that demo data exists only for 2026 and offers one
+  44 px button, "Vezi anul 2026", that selects that year. Error sections
+  already render `role="alert"` with one retry (`SectionError`); staged
+  loading is E7.
+- Tests: `tests/EmptyState.test.tsx` (message, action button, no button
+  without an action).

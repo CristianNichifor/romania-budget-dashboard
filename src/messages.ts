@@ -7,6 +7,7 @@ import { msg } from "@lingui/core/macro";
  */
 export const m = {
   "app.title": msg({ id: "app.title", message: "Bugetul României" }),
+  "hub.back": msg({ id: "hub.back", message: "Proiecte civice" }),
   "app.subtitle": msg({
     id: "app.subtitle",
     message: "Tablou de bord cetățenesc — buget consolidat",
@@ -66,6 +67,10 @@ export const m = {
   "chart.downloadCsv": msg({
     id: "chart.downloadCsv",
     message: "Descarcă CSV",
+  }),
+  "chart.showTable": msg({
+    id: "chart.showTable",
+    message: "Afișează ca tabel",
   }),
   "chart.csv.period": msg({ id: "chart.csv.period", message: "Perioadă" }),
   "chart.csv.value": msg({ id: "chart.csv.value", message: "Valoare" }),
@@ -775,6 +780,10 @@ export const m = {
     id: "sankey.node.rest",
     message: "Alte destinații",
   }),
+  "sankey.mobileList": msg({
+    id: "sankey.mobileList",
+    message: "Fluxul banilor publici, ca listă",
+  }),
   "sankey.rest.summary": msg({
     id: "sankey.rest.summary",
     message: "Ce intră în „Alte destinații”: {count} destinații mai mici",
@@ -787,6 +796,16 @@ export const m = {
     id: "treemap.description",
     message:
       "Suprafața fiecărui dreptunghi este proporțională cu suma alocată.",
+  }),
+  "treemap.view.label": msg({
+    id: "treemap.view.label",
+    message: "Mod de afișare",
+  }),
+  "treemap.view.map": msg({ id: "treemap.view.map", message: "Hartă" }),
+  "treemap.view.table": msg({ id: "treemap.view.table", message: "Tabel" }),
+  "treemap.list.label": msg({
+    id: "treemap.list.label",
+    message: "Destinații, de la cea mai mare",
   }),
   "context.title": msg({
     id: "context.title",
@@ -1064,7 +1083,12 @@ export const m = {
   "section.demo": msg({ id: "section.demo", message: "date demo" }),
   "section.emptyYear": msg({
     id: "section.emptyYear",
-    message: "Nu există date demo pentru anul {year}.",
+    message:
+      "Nu există date demo pentru anul {year}. Datele demo acoperă doar anul {seedYear}.",
+  }),
+  "section.emptyYear.action": msg({
+    id: "section.emptyYear.action",
+    message: "Vezi anul {year}",
   }),
   "balance.kpi.partialYear": msg({
     id: "balance.kpi.partialYear",
@@ -1087,6 +1111,35 @@ export const m = {
   "about.contactLink": msg({
     id: "about.contactLink",
     message: "deschide un issue pe GitHub",
+  }),
+  "about.contents": msg({ id: "about.contents", message: "Cuprins" }),
+  "about.method.title": msg({ id: "about.method.title", message: "Metodă" }),
+  "about.method.salary": msg({
+    id: "about.method.salary",
+    message:
+      "Calculul salarial urmează modelul Open Budget 2026: CAS 25% și CASS 10% din brut, impozit pe venit 10% din (brut − CAS − CASS), contribuția angajatorului (CAM) 2,25% din brut și o estimare a TVA plătite din consum (21% aplicat la 75% din venitul net).",
+  }),
+  "about.method.estimate": msg({
+    id: "about.method.estimate",
+    message:
+      "Regula „estimare”: orice valoare care nu vine direct dintr-o sursă, ci dintr-o formulă sau o presupunere (cota de consum, cursul valutar), este marcată „estimare” acolo unde apare.",
+  }),
+  "about.method.money": msg({
+    id: "about.method.money",
+    message:
+      "Sumele sunt calculate fără virgulă mobilă (decimal.js) și rotunjite doar la afișare.",
+  }),
+  "about.sources.col.source": msg({
+    id: "about.sources.col.source",
+    message: "Sursă",
+  }),
+  "about.sources.col.use": msg({
+    id: "about.sources.col.use",
+    message: "Folosită pentru",
+  }),
+  "about.sources.col.licence": msg({
+    id: "about.sources.col.licence",
+    message: "Licență",
   }),
   "about.sources.title": msg({
     id: "about.sources.title",
