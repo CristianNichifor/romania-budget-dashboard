@@ -2,11 +2,13 @@ import { afterEach, describe, expect, it } from "vitest";
 import { activateLocale } from "../src/i18n-core";
 import {
   activeLocale,
+  MISSING,
   formatEur,
   formatLei,
   formatMilliarde,
   formatMilliardeLei,
   formatNumber,
+  formatOrMissing,
   formatPercent,
   formatSignedPercent,
 } from "../src/lib/format";
@@ -96,5 +98,26 @@ describe("default locale follows the active Lingui locale", () => {
     expect(formatMilliardeLei("217814450000")).toBe("217.8 bn lei");
     expect(formatLei("9427")).toBe("9,427 lei");
     expect(formatPercent("7.1")).toBe("7.1%");
+  });
+});
+
+describe("MISSING / formatOrMissing", () => {
+  it("renders an em dash, never 0, for values the UI does not have", () => {
+    expect(MISSING).toBe("—");
+    expect(formatOrMissing(null, formatLei)).toBe("—");
+    expect(formatOrMissing(undefined, formatLei)).toBe("—");
+    expect(formatOrMissing(Number.NaN, (v: number) => formatNumber(v))).toBe(
+      "—"
+    );
+    expect(
+      formatOrMissing(Number.POSITIVE_INFINITY, (v: number) => formatNumber(v))
+    ).toBe("—");
+    expect(formatOrMissing("", formatLei)).toBe("—");
+  });
+
+  it("formats values it does have, including zero", () => {
+    expect(formatOrMissing(0, (v: number) => formatNumber(v))).toBe("0");
+    expect(formatOrMissing("9427", formatLei)).toBe("9.427 lei");
+    expect(formatOrMissing(1.5, formatMilliarde)).toBe("1,5 mld. lei");
   });
 });
