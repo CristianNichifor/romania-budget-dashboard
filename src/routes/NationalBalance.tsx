@@ -15,8 +15,8 @@ import { AdoptedExecutionChart } from "../components/charts/AdoptedExecutionChar
 import { BudgetSankey } from "../components/charts/BudgetSankey";
 import { DebtGauge } from "../components/charts/DebtGauge";
 import { DestinationTreemap } from "../components/charts/DestinationTreemap";
-import { DualAxisTrend } from "../components/charts/DualAxisTrend";
 import { InvestmentCartogram } from "../components/charts/InvestmentCartogram";
+import { SocialContextMultiples } from "../components/charts/SocialContextMultiples";
 import { DrilldownModal } from "../components/shared/DrilldownModal";
 import { InsMetricSelect } from "../components/shared/InsMetricSelect";
 import { KpiCard } from "../components/shared/KpiCard";
@@ -381,10 +381,12 @@ export function NationalBalance() {
         )}
         {trendData !== null && insMetric !== undefined && (
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <DualAxisTrend
+            <SocialContextMultiples
               data={trendData}
-              leftLabel={i18n._(m["context.budgetLegend"])}
-              rightLabel={insMetric.label}
+              budgetLabel={i18n._(m["context.budgetLabel"])}
+              budgetUnit={i18n._(m["context.budgetUnit"])}
+              insLabel={insMetric.label}
+              insUnit={insMetric.unit}
             />
             {trendInsight !== null && (
               <p className="mt-3 text-sm text-slate-600">
