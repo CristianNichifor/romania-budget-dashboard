@@ -16,7 +16,7 @@ import { KpiCard } from "../components/shared/KpiCard";
 import { LeuBridge } from "../components/shared/LeuBridge";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
-import { formatEur, formatLei, formatPercent } from "../lib/format";
+import { MISSING, formatEur, formatLei, formatPercent } from "../lib/format";
 import { estimateAverageNetSalary } from "../lib/averageSalary";
 import { buildSalaryWaterfallRows } from "../lib/waterfall";
 import { useCurrency } from "../store/useCurrency";
@@ -142,7 +142,7 @@ export function CitizenSlice() {
                 label={i18n._(m["salary.vsAverage"])}
                 value={
                   vsAverage === null
-                    ? "—"
+                    ? MISSING
                     : Math.abs(vsAverage) < 0.5
                       ? "0%"
                       : vsAverage > 0

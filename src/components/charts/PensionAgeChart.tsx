@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatMilliarde, formatNumber } from "../../lib/format";
+import { MISSING, formatMilliarde, formatNumber } from "../../lib/format";
 import type { PensionAgePoint } from "../../lib/macro";
 
 interface PensionAgeChartProps {
@@ -48,13 +48,13 @@ function PensionAgeTooltip({
           <p className="tabular-nums text-slate-600">
             {pensionsLabel}:{" "}
             {datum.pensiiMilliarde === null
-              ? "—"
+              ? MISSING
               : formatMilliarde(datum.pensiiMilliarde)}
           </p>
           <p className="tabular-nums text-slate-600">
             {dependencyLabel}:{" "}
             {datum.oldAgeDependency === null
-              ? "—"
+              ? MISSING
               : formatNumber(datum.oldAgeDependency, {
                   maximumFractionDigits: 1,
                 })}

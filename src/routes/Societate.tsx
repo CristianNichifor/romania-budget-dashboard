@@ -19,7 +19,7 @@ import { SourceBadge } from "../components/shared/SourceBadge";
 import { joinPhysicianDensity, joinSpending } from "../lib/society";
 import { DemoBadge } from "../components/shared/DemoBadge";
 import { QueryError } from "../components/shared/SectionError";
-import { formatNumber } from "../lib/format";
+import { MISSING, formatNumber } from "../lib/format";
 import { m } from "../messages";
 
 const DEFAULT_SOCIETY_METRIC = "infant-mortality";
@@ -139,7 +139,7 @@ export function Societate() {
               label={i18n._(m["society.kpi.population"])}
               value={
                 latestPopulation === undefined
-                  ? "—"
+                  ? MISSING
                   : formatNumber(latestPopulation.population)
               }
               sub={`${latestPopulation?.year ?? ""} · Eurostat`}
@@ -149,7 +149,7 @@ export function Societate() {
               label={i18n._(m["society.kpi.populationChange"])}
               value={
                 populationChange === null
-                  ? "—"
+                  ? MISSING
                   : populationChange > 0
                     ? `+${formatNumber(populationChange)}`
                     : formatNumber(populationChange)
@@ -228,7 +228,7 @@ export function Societate() {
               label={i18n._(m["society.education.earlyLeavers"])}
               value={
                 latestEarlyLeavers === undefined
-                  ? "—"
+                  ? MISSING
                   : `${latestEarlyLeavers.pct.toFixed(1)}%`
               }
               sub={`${latestEarlyLeavers?.year ?? ""} · Eurostat`}
@@ -238,7 +238,7 @@ export function Societate() {
               label={i18n._(m["society.education.tertiary"])}
               value={
                 latestTertiary === undefined
-                  ? "—"
+                  ? MISSING
                   : `${latestTertiary.pct.toFixed(1)}%`
               }
               sub={`${latestTertiary?.year ?? ""} · Eurostat`}
@@ -293,7 +293,7 @@ export function Societate() {
               label={i18n._(m["society.health.physicians"])}
               value={
                 latestPhysicianDensity === undefined
-                  ? "—"
+                  ? MISSING
                   : formatNumber(latestPhysicianDensity.per100k, {
                       maximumFractionDigits: 1,
                     })
@@ -338,7 +338,7 @@ export function Societate() {
               label={i18n._(m["society.demographics.medianAge"])}
               value={
                 latestMedianAge === undefined
-                  ? "—"
+                  ? MISSING
                   : `${latestMedianAge.age.toFixed(1)} ani`
               }
               sub={`${latestMedianAge?.year ?? ""} · Eurostat`}
