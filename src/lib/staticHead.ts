@@ -6,14 +6,14 @@
  * client-side navigation.
  */
 import {
+  CONTENT_PAGES,
   PAGES,
   SITE_URL,
-  TAB_PAGES,
   absoluteUrl,
   counterpartPath,
   localeFromPath,
+  type ContentPage,
   type Locale,
-  type TabPage,
 } from "./routeTable";
 
 export const OG_IMAGE = {
@@ -27,7 +27,7 @@ const SITE_NAME: Record<Locale, string> = {
   ro: "Bugetul României",
 };
 
-type PageKey = TabPage["key"];
+type PageKey = ContentPage["key"];
 
 /** Page title and description per language. English copy: needs human review. */
 const PAGE_META: Record<
@@ -130,6 +130,18 @@ const PAGE_META: Record<
         "Homicides, prison population and police officers in Romania, from Eurostat.",
     },
   },
+  about: {
+    ro: {
+      title: "Despre",
+      description:
+        "Cine face tabloul de bord, de unde provin datele, sub ce licențe și ce date personale nu colectăm: fără cookie-uri și fără analytics.",
+    },
+    en: {
+      title: "About",
+      description:
+        "Who runs the dashboard, where the data comes from, under which licences, and what we do not collect: no cookies and no analytics.",
+    },
+  },
 };
 
 export interface PageHead {
@@ -147,7 +159,7 @@ export function headFor(pathname: string): PageHead {
   const en = counterpartPath(pathname, "en");
   const ro = counterpartPath(pathname, "ro");
   const own = lang === "ro" ? ro : en;
-  const key = TAB_PAGES.find((entry) => entry[lang] === own)?.key;
+  const key = CONTENT_PAGES.find((entry) => entry[lang] === own)?.key;
   const meta = PAGE_META[key ?? "citizenSlice"][lang];
   return {
     path: pathname,
@@ -230,7 +242,7 @@ export function robotsTxt(): string {
 }
 
 export function sitemapXml(): string {
-  const urls = TAB_PAGES.flatMap((page) =>
+  const urls = CONTENT_PAGES.flatMap((page) =>
     [page.en, page.ro].map((path) =>
       [
         "  <url>",

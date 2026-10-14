@@ -43,7 +43,7 @@ describe("routeTable", () => {
   it("has an about page in both languages that is not a tab", () => {
     const about = CONTENT_PAGES.find((page) => page.key === "about");
     expect(about).toEqual({ key: "about", en: "/about/", ro: "/ro/despre/" });
-    expect(TAB_PAGES.some((page) => page.key === "about")).toBe(false);
+    expect(TAB_PAGES.map((page) => page.key as string)).not.toContain("about");
     expect(counterpartPath("/about/", "ro")).toBe("/ro/despre/");
     expect(counterpartPath("/ro/despre/", "en")).toBe("/about/");
   });

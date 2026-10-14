@@ -119,6 +119,11 @@ msgid "comparison.scopeNote"
 msgstr "The adopted budget covers the state budget and the BASS, BSAN, BSOM funds (MFP, data.gov.ro); execution covers the same principal credit authorizing officers (transparenta.eu). Both include intra-budgetary transfers."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1079
+msgid "about.source.mfp"
+msgstr "The adopted budget and the adopted-versus-executed comparison"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:662
 msgid "balance.description"
 msgstr "Consolidated budget by year: revenue, expenditure and deficit, following the Open Budget model."
@@ -127,6 +132,11 @@ msgstr "Consolidated budget by year: revenue, expenditure and deficit, following
 #: src/messages.ts:9
 msgid "app.title"
 msgstr "Romania's Budget"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1051
+msgid "about.intro"
+msgstr "Romania's Budget is a citizen dashboard, an independent educational project that shows the consolidated budget and economic and social indicators from official public sources."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:555
@@ -224,6 +234,16 @@ msgid "soe.company.ca"
 msgstr "Turnover"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1123
+msgid "about.code.title"
+msgstr "Source code"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1127
+msgid "about.code.description"
+msgstr "The code is open source under the MIT licence:"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:431
 msgid "economy.trade.title"
 msgstr "International trade"
@@ -249,6 +269,11 @@ msgid "soe.source"
 msgstr "companiidestat.ro"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1083
+msgid "about.source.soe"
+msgstr "State-owned companies"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:873
 msgid "soe.title"
 msgstr "Romania's state-owned companies"
@@ -272,6 +297,11 @@ msgstr "The adopted vs. execution comparison is unavailable — the data source 
 #: src/messages.ts:994
 msgid "soe.company.management"
 msgstr "Management"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1111
+msgid "about.privacy.title"
+msgstr "Privacy"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:508
@@ -324,6 +354,11 @@ msgid "economy.fx.title"
 msgstr "EUR/RON exchange rate"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1075
+msgid "about.source.ecb"
+msgstr "The EUR/RON rate and the deposit facility rate"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:898
 msgid "soe.kpi.updated"
 msgstr "{year} data · updated {date} · {companies} companies with data"
@@ -347,6 +382,11 @@ msgstr "Live data — public API"
 #: src/messages.ts:22
 msgid "dataMode.partial"
 msgstr "Partially demo data"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1095
+msgid "about.source.openBudget"
+msgstr "The 2026 demo data, used only when the site runs without the API"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1033
@@ -469,6 +509,21 @@ msgid "soe.scatter.open"
 msgstr "Open {company}"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1059
+msgid "about.contactLink"
+msgstr "open an issue on GitHub"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1047
+msgid "about.title"
+msgstr "About"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1131
+msgid "footer.about"
+msgstr "About"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:760
 msgid "treemap.title"
 msgstr "Spending destinations"
@@ -569,6 +624,11 @@ msgid "economy.kpi.fx"
 msgstr "EUR/RON"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1091
+msgid "about.source.transparenta"
+msgstr "Budget execution"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:721
 msgid "comparison.legend.executed"
 msgstr "Execution"
@@ -612,6 +672,11 @@ msgstr "vs. average net salary (estimated)"
 #: src/messages.ts:49
 msgid "nav.citizenSlice"
 msgstr "Your slice"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1067
+msgid "about.sources.description"
+msgstr "Every chart shows its source on its card. The project's API takes the data from the sources below, under the terms each source sets."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:906
@@ -704,6 +769,11 @@ msgid "economy.description"
 msgstr "Inflation, unemployment and the exchange rate — monthly indicators from official European sources."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1071
+msgid "about.source.eurostat"
+msgstr "Inflation, unemployment, GDP, debt, wages, society, energy, labour market, justice"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:285
 msgid "justice.homicides.description"
 msgstr "Recorded intentional homicide offences (ICCS 0101), annual count (Eurostat)."
@@ -747,6 +817,11 @@ msgstr "Justice"
 #: src/messages.ts:365
 msgid "economy.lei"
 msgstr "RON"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1099
+msgid "about.licence"
+msgstr "Licence"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:26
@@ -862,6 +937,11 @@ msgstr "Intentional homicides, prison population and police headcount (Eurostat)
 #: src/messages.ts:971
 msgid "soe.listed.description"
 msgstr "Majority state stakes on the Bucharest Stock Exchange, with the share price evolution."
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1119
+msgid "about.privacy.hosting"
+msgstr "The pages and the API are hosted on Cloudflare Workers. Like any hosting provider, Cloudflare receives your requests, including your IP address, to deliver the pages."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:118
@@ -1064,6 +1144,11 @@ msgid "app.footer"
 msgstr "Educational project — data comes from official public sources; each chart's source is shown on its card."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1055
+msgid "about.operator"
+msgstr "The project is run by Cristian Nichifor. For questions, corrections or wrong data:"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:339
 msgid "economy.inflation.description"
 msgstr "Harmonised annual inflation (Eurostat), with the NBR target marked."
@@ -1189,6 +1274,11 @@ msgid "wageContext.estimatedNote"
 msgstr "Estimated series — not the official average wage published by INS."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1115
+msgid "about.privacy.tracking"
+msgstr "The site does not use cookies, runs no analytics and does not track visitors. It stores nothing in your browser and loads nothing from third parties."
+
+#. js-lingui-explicit-id
 #: src/messages.ts:544
 msgid "salary.title"
 msgstr "Your fiscal situation"
@@ -1274,6 +1364,11 @@ msgid "soe.unavailable"
 msgstr "Data source is temporarily unavailable."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1103
+msgid "about.licence.none"
+msgstr "the source states no licence"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:535
 msgid "source.ecb"
 msgstr "Source: ECB"
@@ -1309,9 +1404,19 @@ msgid "source.transparenta"
 msgstr "Source: transparenta.eu"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1063
+msgid "about.sources.title"
+msgstr "Data sources and licences"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:10
 msgid "app.subtitle"
 msgstr "Citizen dashboard — consolidated budget"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1107
+msgid "about.licence.terms"
+msgstr "the source's terms"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:233
@@ -1332,6 +1437,11 @@ msgstr "NBR target"
 #: src/messages.ts:344
 msgid "economy.inflation.targetLine"
 msgstr "NBR target"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1087
+msgid "about.source.bnr"
+msgstr "The inflation target"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:824

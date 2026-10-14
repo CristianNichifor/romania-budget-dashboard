@@ -1044,6 +1044,101 @@ export const m = {
     id: "balance.kpi.partialYear",
     message: "An parțial — execuție până la zi",
   }),
+  "about.title": msg({
+    id: "about.title",
+    message: "Despre",
+  }),
+  "about.intro": msg({
+    id: "about.intro",
+    message:
+      "Bugetul României este un tablou de bord cetățenesc, un proiect educațional independent care arată bugetul consolidat și indicatori economici și sociali din surse publice oficiale.",
+  }),
+  "about.operator": msg({
+    id: "about.operator",
+    message:
+      "Proiectul este realizat de Cristian Nichifor. Pentru întrebări, corecturi sau date greșite:",
+  }),
+  "about.contactLink": msg({
+    id: "about.contactLink",
+    message: "deschide un issue pe GitHub",
+  }),
+  "about.sources.title": msg({
+    id: "about.sources.title",
+    message: "Surse de date și licențe",
+  }),
+  "about.sources.description": msg({
+    id: "about.sources.description",
+    message:
+      "Fiecare grafic își arată sursa pe card. Datele sunt preluate prin API-ul proiectului din sursele de mai jos, în condițiile stabilite de fiecare sursă.",
+  }),
+  "about.source.eurostat": msg({
+    id: "about.source.eurostat",
+    message:
+      "Inflație, șomaj, PIB, datorie, salarii, societate, energie, piața muncii, justiție",
+  }),
+  "about.source.ecb": msg({
+    id: "about.source.ecb",
+    message: "Cursul EUR/RON și dobânda la facilitatea de depozit",
+  }),
+  "about.source.mfp": msg({
+    id: "about.source.mfp",
+    message: "Bugetul adoptat și comparația adoptat–executat",
+  }),
+  "about.source.soe": msg({
+    id: "about.source.soe",
+    message: "Companiile de stat",
+  }),
+  "about.source.bnr": msg({
+    id: "about.source.bnr",
+    message: "Ținta de inflație",
+  }),
+  "about.source.transparenta": msg({
+    id: "about.source.transparenta",
+    message: "Execuția bugetară",
+  }),
+  "about.source.openBudget": msg({
+    id: "about.source.openBudget",
+    message:
+      "Datele demo pentru 2026, folosite doar când site-ul rulează fără API",
+  }),
+  "about.licence": msg({
+    id: "about.licence",
+    message: "Licență",
+  }),
+  "about.licence.none": msg({
+    id: "about.licence.none",
+    message: "sursa nu declară o licență",
+  }),
+  "about.licence.terms": msg({
+    id: "about.licence.terms",
+    message: "termenii sursei",
+  }),
+  "about.privacy.title": msg({
+    id: "about.privacy.title",
+    message: "Confidențialitate",
+  }),
+  "about.privacy.tracking": msg({
+    id: "about.privacy.tracking",
+    message:
+      "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți.",
+  }),
+  "about.privacy.hosting": msg({
+    id: "about.privacy.hosting",
+    message:
+      "Paginile și API-ul sunt găzduite pe Cloudflare Workers. Ca orice furnizor de găzduire, Cloudflare primește cererile tale, inclusiv adresa IP, ca să livreze paginile.",
+  }),
+  "about.code.title": msg({
+    id: "about.code.title",
+    message: "Cod sursă",
+  }),
+  "about.code.description": msg({
+    id: "about.code.description",
+    message: "Codul este deschis, sub licența MIT:",
+  }),
+  "footer.about": msg({
+    id: "footer.about",
+    message: "Despre",
+  }),
 } satisfies Record<string, MessageDescriptor>;
 
 export type MessageId = keyof typeof m;

@@ -119,6 +119,11 @@ msgid "comparison.scopeNote"
 msgstr "Bugetul adoptat acoperă bugetul de stat și fondurile BASS, BSAN, BSOM (MFP, data.gov.ro); execuția acoperă aceiași ordonatori principali (transparenta.eu). Ambele includ transferurile intra-bugetare."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1079
+msgid "about.source.mfp"
+msgstr "Bugetul adoptat și comparația adoptat–executat"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:662
 msgid "balance.description"
 msgstr "Bugetul consolidat pe ani: venituri, cheltuieli și deficit, pe modelul Open Budget."
@@ -127,6 +132,11 @@ msgstr "Bugetul consolidat pe ani: venituri, cheltuieli și deficit, pe modelul 
 #: src/messages.ts:9
 msgid "app.title"
 msgstr "Bugetul României"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1051
+msgid "about.intro"
+msgstr "Bugetul României este un tablou de bord cetățenesc, un proiect educațional independent care arată bugetul consolidat și indicatori economici și sociali din surse publice oficiale."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:555
@@ -224,6 +234,16 @@ msgid "soe.company.ca"
 msgstr "Cifra de afaceri"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1123
+msgid "about.code.title"
+msgstr "Cod sursă"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1127
+msgid "about.code.description"
+msgstr "Codul este deschis, sub licența MIT:"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:431
 msgid "economy.trade.title"
 msgstr "Comerțul internațional"
@@ -249,6 +269,11 @@ msgid "soe.source"
 msgstr "companiidestat.ro"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1083
+msgid "about.source.soe"
+msgstr "Companiile de stat"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:873
 msgid "soe.title"
 msgstr "Companiile de stat ale României"
@@ -272,6 +297,11 @@ msgstr "Comparația adoptat vs. execuție este indisponibilă — sursa de date 
 #: src/messages.ts:994
 msgid "soe.company.management"
 msgstr "Conducere"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1111
+msgid "about.privacy.title"
+msgstr "Confidențialitate"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:508
@@ -324,6 +354,11 @@ msgid "economy.fx.title"
 msgstr "Cursul EUR/RON"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1075
+msgid "about.source.ecb"
+msgstr "Cursul EUR/RON și dobânda la facilitatea de depozit"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:898
 msgid "soe.kpi.updated"
 msgstr "Date {year} · actualizat {date} · {companies} companii cu date"
@@ -347,6 +382,11 @@ msgstr "Date live — API public"
 #: src/messages.ts:22
 msgid "dataMode.partial"
 msgstr "Date parțial demo"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1095
+msgid "about.source.openBudget"
+msgstr "Datele demo pentru 2026, folosite doar când site-ul rulează fără API"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1033
@@ -469,6 +509,21 @@ msgid "soe.scatter.open"
 msgstr "Deschide fișa {company}"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1059
+msgid "about.contactLink"
+msgstr "deschide un issue pe GitHub"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1047
+msgid "about.title"
+msgstr "Despre"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1131
+msgid "footer.about"
+msgstr "Despre"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:760
 msgid "treemap.title"
 msgstr "Destinația cheltuielilor"
@@ -569,6 +624,11 @@ msgid "economy.kpi.fx"
 msgstr "EUR/RON"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1091
+msgid "about.source.transparenta"
+msgstr "Execuția bugetară"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:721
 msgid "comparison.legend.executed"
 msgstr "Execuție"
@@ -612,6 +672,11 @@ msgstr "față de salariul mediu net (INS)"
 #: src/messages.ts:49
 msgid "nav.citizenSlice"
 msgstr "Feliuța ta"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1067
+msgid "about.sources.description"
+msgstr "Fiecare grafic își arată sursa pe card. Datele sunt preluate prin API-ul proiectului din sursele de mai jos, în condițiile stabilite de fiecare sursă."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:906
@@ -704,6 +769,11 @@ msgid "economy.description"
 msgstr "Inflație, șomaj și cursul de schimb — indicatori lunari din surse europene oficiale."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1071
+msgid "about.source.eurostat"
+msgstr "Inflație, șomaj, PIB, datorie, salarii, societate, energie, piața muncii, justiție"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:285
 msgid "justice.homicides.description"
 msgstr "Infracțiuni de omucidere intenționată înregistrate (ICCS 0101), număr anual (Eurostat)."
@@ -747,6 +817,11 @@ msgstr "Justiție"
 #: src/messages.ts:365
 msgid "economy.lei"
 msgstr "lei"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1099
+msgid "about.licence"
+msgstr "Licență"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:26
@@ -862,6 +937,11 @@ msgstr "Omuciderile intenționate, populația carcerală și efectivul de poliț
 #: src/messages.ts:971
 msgid "soe.listed.description"
 msgstr "Pachetele majoritare ale statului la Bursa de Valori București, cu evoluția prețului acțiunii."
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1119
+msgid "about.privacy.hosting"
+msgstr "Paginile și API-ul sunt găzduite pe Cloudflare Workers. Ca orice furnizor de găzduire, Cloudflare primește cererile tale, inclusiv adresa IP, ca să livreze paginile."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:118
@@ -1064,6 +1144,11 @@ msgid "app.footer"
 msgstr "Proiect educațional — datele provin din surse publice oficiale; sursa fiecărui grafic este afișată pe card."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1055
+msgid "about.operator"
+msgstr "Proiectul este realizat de Cristian Nichifor. Pentru întrebări, corecturi sau date greșite:"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:339
 msgid "economy.inflation.description"
 msgstr "Rata anuală a inflației armonizate (Eurostat), cu ținta BNR marcată."
@@ -1189,6 +1274,11 @@ msgid "wageContext.estimatedNote"
 msgstr "Serie estimată — nu este salariul mediu oficial publicat de INS."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1115
+msgid "about.privacy.tracking"
+msgstr "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți."
+
+#. js-lingui-explicit-id
 #: src/messages.ts:544
 msgid "salary.title"
 msgstr "Situația ta fiscală"
@@ -1274,6 +1364,11 @@ msgid "soe.unavailable"
 msgstr "Sursa de date e indisponibilă momentan."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1103
+msgid "about.licence.none"
+msgstr "sursa nu declară o licență"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:535
 msgid "source.ecb"
 msgstr "Sursă: BCE"
@@ -1309,9 +1404,19 @@ msgid "source.transparenta"
 msgstr "Sursă: transparenta.eu"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1063
+msgid "about.sources.title"
+msgstr "Surse de date și licențe"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:10
 msgid "app.subtitle"
 msgstr "Tablou de bord cetățenesc — buget consolidat"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1107
+msgid "about.licence.terms"
+msgstr "termenii sursei"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:233
@@ -1332,6 +1437,11 @@ msgstr "Ținta BNR"
 #: src/messages.ts:344
 msgid "economy.inflation.targetLine"
 msgstr "Ținta BNR"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1087
+msgid "about.source.bnr"
+msgstr "Ținta de inflație"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:824

@@ -29,6 +29,7 @@ export const PAGES = [
   { key: "energy", en: "/energy/", ro: "/ro/energie/" },
   { key: "labour", en: "/labor-market/", ro: "/ro/piata-muncii/" },
   { key: "justice", en: "/justice/", ro: "/ro/justitie/" },
+  { key: "about", en: "/about/", ro: "/ro/despre/" },
 ] as const;
 
 export type Page = (typeof PAGES)[number];
@@ -42,9 +43,15 @@ export function localeFromPath(pathname: string): Locale {
   return withTrailingSlash(pathname).startsWith("/ro/") ? "ro" : "en";
 }
 
-/** The pages behind the tabs; the home path redirects to the first one. */
-export const TAB_PAGES = PAGES.filter(
+/** Pages with their own content: everything but the home redirect. */
+export const CONTENT_PAGES = PAGES.filter(
   (page): page is Exclude<Page, { key: "home" }> => page.key !== "home"
+);
+export type ContentPage = (typeof CONTENT_PAGES)[number];
+
+/** The pages behind the tabs; the home path redirects to the first one. */
+export const TAB_PAGES = CONTENT_PAGES.filter(
+  (page): page is Exclude<ContentPage, { key: "about" }> => page.key !== "about"
 );
 export type TabPage = (typeof TAB_PAGES)[number];
 
@@ -57,11 +64,11 @@ export function findPage(pathname: string): Page | undefined {
   return PAGES.find((page) => page.en === path || page.ro === path);
 }
 
-/** The same tab in the other language; the first tab when unknown. */
+/** The same page in the other language; the first tab when unknown. */
 export function counterpartPath(
   pathname: string,
   locale: Locale
-): TabPage[Locale] {
+): ContentPage[Locale] {
   const page = findPage(pathname);
   return page === undefined || page.key === "home"
     ? homeTarget(locale)
