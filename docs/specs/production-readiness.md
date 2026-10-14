@@ -222,3 +222,14 @@ unless noted.
   run); the Romanian copy is agent-written: **needs human review**.
 - Implementation items F2.1–F2.12 are listed in the README with the test each
   one should get; they are `todo` for implementation sessions.
+
+### F2.6 · Treemap list view and keyboard drill-down (U6) · `done`
+
+- Given the destinations treemap, then a "Hartă" / "Tabel" toggle
+  (`aria-pressed`, 44 px) swaps it for an ordered list that names every
+  destination, largest first, with its amount and share of the total; each
+  item is a button that opens the same drill-down as clicking a tile, so the
+  breakdown is reachable by keyboard. Focus stays on the toggle when views
+  swap. Ties keep the source order.
+- Tests: `tests/destinationList.test.ts` (ranking with `Decimal`, ties),
+  `tests/DestinationTreemap.test.tsx` (toggle, list content, drill-down).
