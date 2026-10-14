@@ -73,24 +73,31 @@ marked "needs human review".
 
 ## Theme C — content
 
-### D8 · About page · `todo`
+### D8 · About page · `done`
 
 - Given `/about/` and `/ro/despre/`, then the page lists data sources and their
   licences and states that the site sets no cookies and runs no analytics; every
   page's footer links to it.
-- Tests: `tests/routeTable.test.ts`, `e2e/smoke.spec.ts`. Copy needs human
-  review.
+- Licences are the ones the BFF verified from each publisher's terms
+  (Eurostat CC BY 4.0, ECB usage policy, MFP OGL-ROU-1.0, companiidestat.ro
+  CC BY 4.0); BNR links to its terms without a claim; transparenta.eu and Open
+  Budget state none.
+- Tests: `tests/routeTable.test.ts`, `tests/staticHead.test.ts`,
+  `e2e/smoke.spec.ts`. Copy (ro and en) needs human review.
 
-### D9 · README accuracy · `todo`
+### D9 · README accuracy · `done`
 
 - README no longer advertises P18 or `pnpm bnr:update` as implemented,
   documents the dev preview, and `.nvmrc` / CONTRIBUTING name the Node version
   CI uses (22).
+- AGENTS.md still names `buget.cristian-nichifor.com` and
+  `api.buget.cristian-nichifor.com`; left for the maintainer (see D11).
 - Test: review.
 
 ## Maintainer-only
 
-- D10 · Gate deploy on CI — `needs-human` (workflow change; diff in PR body).
+- D10 · Gate deploy on CI — `needs-human`: a `verify` job inside
+  `deploy-cloudflare.yml` that `deploy` needs (diff in the theme C PR body).
 - D11 · Stale repository variables `VITE_API_BASE_URL` (dead host) and
   `CLOUDFLARE_ACCOUNT_ID` — `needs-human`.
 - D12 · Analytics / uptime choice — `needs-human`.
