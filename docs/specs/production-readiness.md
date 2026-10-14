@@ -180,6 +180,16 @@ unless noted.
   `e2e/sankey.spec.ts` (drill-down renders on `/ro/bilantul-national/`).
   Romanian/English summary copy needs human review.
 
+### E6 · Treemap and cartogram label legibility · `done`
+
+- Given a treemap or cartogram tile, then its label wraps on spaces onto up
+  to two lines when the tile is tall enough, is cut with an ellipsis only
+  when words remain, and is dropped (tooltip keeps the name) when fewer than
+  four characters would fit, so no "Pe…" stubs appear. The amount line shows
+  whenever it fits under the label, on county tiles too.
+- Tests: `tests/tileLabel.test.ts` (`wrapLabel`, `tileLayout`); `e2e/smoke.spec.ts`
+  still renders both charts.
+
 ## Theme F — UX guidelines (fleet round 2, uxg-c)
 
 ### F1 · Written UX/UI guideline · `done`
