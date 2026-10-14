@@ -534,6 +534,14 @@ export const m = {
     message: "trimestrial",
   }),
   "source.eurostat": msg({ id: "source.eurostat", message: "Sursă: Eurostat" }),
+  "provenance.line": msg({
+    id: "provenance.line",
+    message: "Date: {source}, {year}",
+  }),
+  "provenance.budget": msg({
+    id: "provenance.budget",
+    message: "Buget consolidat (Open Budget)",
+  }),
   "source.updatedAt": msg({
     id: "source.updatedAt",
     message: "Sursă actualizată la {date}",

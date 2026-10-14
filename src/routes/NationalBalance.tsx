@@ -21,6 +21,7 @@ import { DrilldownModal } from "../components/shared/DrilldownModal";
 import { InsMetricSelect } from "../components/shared/InsMetricSelect";
 import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
+import { ProvenanceLine } from "../components/shared/ProvenanceLine";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { YearSelector } from "../components/shared/YearSelector";
 import {
@@ -168,6 +169,7 @@ export function NationalBalance() {
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="text-xl font-bold">{i18n._(m["balance.title"])}</h2>
+            <ProvenanceLine source="provenance.budget" year={year} />
             <p className="text-sm text-slate-500">
               {i18n._(m["balance.description"])}
             </p>
