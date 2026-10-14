@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { PAGES, SITE_URL, TAB_PAGES } from "../src/lib/routeTable";
+import { CONTENT_PAGES, PAGES, SITE_URL } from "../src/lib/routeTable";
 import {
   OG_IMAGE,
   headFor,
@@ -34,12 +34,12 @@ describe("static head per route", () => {
     );
   });
 
-  it.each(TAB_PAGES.flatMap((page) => [page.en, page.ro]))(
+  it.each(CONTENT_PAGES.flatMap((page) => [page.en, page.ro]))(
     "writes lang, canonical, alternates and meta for %s",
     (path) => {
       const head = headFor(path);
       const html = pageHtml(fileNameFor(path));
-      const page = TAB_PAGES.find((p) => p.en === path || p.ro === path);
+      const page = CONTENT_PAGES.find((p) => p.en === path || p.ro === path);
 
       expect(html).toContain(`<html lang="${head.lang}">`);
       expect(html).toContain(
@@ -79,6 +79,12 @@ describe("static head per route", () => {
     }
   );
 
+  it("writes the about page head in both languages", () => {
+    expect(headFor("/about/").title).toBe("About — Romania's Budget");
+    expect(headFor("/ro/despre/").title).toBe("Despre — Bugetul României");
+    expect(pageHtml("ro/despre/index.html")).toContain('<html lang="ro">');
+  });
+
   it("gives each language its own lang, title and description", () => {
     const en = headFor("/energy/");
     const ro = headFor("/ro/energie/");
@@ -96,7 +102,7 @@ describe("static head per route", () => {
   });
 
   it("escapes markup in meta content", () => {
-    for (const path of TAB_PAGES.flatMap((page) => [page.en, page.ro])) {
+    for (const path of CONTENT_PAGES.flatMap((page) => [page.en, page.ro])) {
       const head = headFor(path);
       expect(head.title).not.toMatch(/[<>"]/);
       expect(head.description).not.toMatch(/[<>"]/);
@@ -125,7 +131,7 @@ describe("robots.txt and sitemap.xml", () => {
       true
     );
     expect(sitemap).toContain('xmlns:xhtml="http://www.w3.org/1999/xhtml"');
-    for (const page of TAB_PAGES) {
+    for (const page of CONTENT_PAGES) {
       for (const path of [page.en, page.ro]) {
         expect(sitemap).toContain(`<loc>${SITE_URL}${path}</loc>`);
       }
@@ -136,6 +142,6 @@ describe("robots.txt and sitemap.xml", () => {
         `<xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}${page.en}" />`
       );
     }
-    expect(sitemap.match(/<url>/g)).toHaveLength(TAB_PAGES.length * 2);
+    expect(sitemap.match(/<url>/g)).toHaveLength(CONTENT_PAGES.length * 2);
   });
 });

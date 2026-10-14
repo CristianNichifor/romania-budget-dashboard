@@ -85,3 +85,43 @@ test("sections built from the bundled seed are labelled demo data", async ({
   ).toBeVisible();
   await expect(page.getByRole("alert")).toHaveCount(0);
 });
+
+test("every page links to the about page from its footer", async ({ page }) => {
+  for (const path of TABS) {
+    await page.goto(path);
+    await expect(
+      page.getByRole("contentinfo").getByRole("link", { name: "Despre" })
+    ).toHaveAttribute("href", "/ro/despre/");
+  }
+  await page.goto("/energy/");
+  await page
+    .getByRole("contentinfo")
+    .getByRole("link", { name: "About" })
+    .click();
+  await expect(page).toHaveURL(/\/about\/$/);
+});
+
+test("the about page names sources, licences and the no-tracking policy", async ({
+  page,
+}) => {
+  await page.goto("/ro/despre/");
+  await expect(page.locator("html")).toHaveAttribute("lang", "ro");
+  await expect(
+    page.getByRole("heading", { level: 2, name: "Despre" })
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Eurostat" })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "CC BY 4.0" }).first()
+  ).toBeVisible();
+  await expect(page.getByText("nu folosește cookie-uri")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /GitHub/ }).first()
+  ).toHaveAttribute(
+    "href",
+    "https://github.com/CristianNichifor/romania-budget-dashboard/issues"
+  );
+
+  await page.goto("/about/");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByText("does not use cookies")).toBeVisible();
+});
