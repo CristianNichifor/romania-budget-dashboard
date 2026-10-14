@@ -5,6 +5,7 @@ import { Tooltip, Treemap, ResponsiveContainer } from "recharts";
 import type { SoeByCounty } from "../../api/client";
 import { formatMilliardeLei, formatPercent } from "../../lib/format";
 import { pickIntensityColor } from "../../lib/investmentColor";
+import { fitLabel, tileTextColors } from "../../lib/tileLabel";
 import { m } from "../../messages";
 
 interface SoeCountyMapProps {
@@ -69,12 +70,10 @@ function CountyCell(props: CellProps) {
           x={x + 6}
           y={y + 16}
           fontSize={11}
-          fill={
-            fill === "#2563eb" || fill === "#60a5fa" ? "#ffffff" : "#1e3a5f"
-          }
+          fill={tileTextColors(fill).label}
           fontWeight={600}
         >
-          {name ?? ""}
+          {fitLabel(name ?? "", width, 11)}
         </text>
       )}
       {width > 58 && height > 52 && (
@@ -82,9 +81,7 @@ function CountyCell(props: CellProps) {
           x={x + 6}
           y={y + 32}
           fontSize={10}
-          fill={
-            fill === "#2563eb" || fill === "#60a5fa" ? "#dbeafe" : "#1d4ed8"
-          }
+          fill={tileTextColors(fill).amount}
         >
           {i18n._({
             ...m["soe.county.lossShare"],
