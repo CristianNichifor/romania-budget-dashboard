@@ -47,26 +47,29 @@ marked "needs human review".
 
 ## Theme B — mobile and document head
 
-### D3 · Mobile tab navigation · `todo`
+### D3 · Mobile tab navigation · `done`
 
 - Given a 375 px viewport, then the tab bar scrolls horizontally inside itself,
   the active tab is scrolled into view, and the body has no horizontal scroll.
 - Test: `e2e/mobile.spec.ts` on the `mobile` Playwright project
   (`devices["Pixel 7"]`).
 
-### D4 · Static head per route · `todo`
+### D4 · Static head per route · `done`
 
 - Given `pnpm build`, then every route in `routeTable.ts` has
   `dist/<path>/index.html` with the route's `lang`, canonical, hreflang
   alternates, title and description, plus `og:image` (1200×630) and
   `twitter:card`.
-- Tests: `tests/staticHead.test.ts`, `e2e/head.spec.ts`.
+- The dev server applies the same head per request, and `DocumentLinks`
+  keeps title, description, canonical and alternates current after
+  client-side navigation. English titles and descriptions need human review.
+- Tests: `tests/staticHead.test.ts`, `e2e/head.spec.ts` (JavaScript off).
 
-### D5 · Real robots.txt and sitemap.xml · `todo`
+### D5 · Real robots.txt and sitemap.xml · `done`
 
 - Given the built site, then `/robots.txt` is plain text with a `Sitemap:` line
   and `/sitemap.xml` lists every route with en/ro `xhtml:link` alternates.
-- Tests: `tests/staticHead.test.ts`.
+- Tests: `tests/staticHead.test.ts`, `e2e/head.spec.ts`.
 
 ## Theme C — content
 
