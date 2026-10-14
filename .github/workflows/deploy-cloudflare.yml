@@ -1,8 +1,10 @@
 name: Deploy (Cloudflare)
 
+# main is the public dashboard; dev is its protected preview (budget-dev.cristian-nichifor.com,
+# behind the CN Webify preview gate). The broker accepts this file on both branches.
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:
@@ -10,7 +12,24 @@ permissions:
   id-token: write # the broker reads this job's GitHub OIDC token
 
 jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+        env:
+          HUSKY: 0
+      - run: pnpm check
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm e2e
+
   deploy:
+    needs: verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +41,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Build
         env:
-          VITE_API_BASE_URL: https://budget.cristian-nichifor.com
+          VITE_API_BASE_URL: ${{ github.ref_name == 'dev' && 'https://budget-dev.cristian-nichifor.com' || 'https://budget.cristian-nichifor.com' }}
         run: pnpm build
       - name: Cloudflare token from the CN Webify broker
         run: |
@@ -34,4 +53,4 @@ jobs:
           echo "CLOUDFLARE_API_TOKEN=$token" >> "$GITHUB_ENV"
           echo "CLOUDFLARE_ACCOUNT_ID=5d5a0c8a05e5d8292065cd0c0cf60291" >> "$GITHUB_ENV"
       - name: Deploy to Cloudflare Workers (Static Assets)
-        run: pnpm exec wrangler deploy
+        run: pnpm exec wrangler deploy ${{ github.ref_name == 'dev' && '--env dev' || '' }}

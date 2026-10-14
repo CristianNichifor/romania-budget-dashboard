@@ -95,7 +95,7 @@ export function DrilldownModal({
             <Dialog.Close asChild>
               <button
                 type="button"
-                className="rounded-md border border-slate-200 px-2 py-1 text-slate-500 hover:bg-slate-50"
+                className="inline-flex min-h-6 min-w-6 items-center justify-center rounded-md border border-slate-200 px-2 py-1 text-slate-500 hover:bg-slate-50"
                 aria-label={i18n._(m["drilldown.close"])}
               >
                 ✕
@@ -163,7 +163,7 @@ export function DrilldownModal({
 
           {data !== undefined && data.institutions.length > 0 && (
             <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
-              <SourceBadge source="source.budget" />
+              <SourceBadge source="source.budgetYear" values={{ year }} />
               <p className="text-sm text-slate-500">
                 {i18n._(m["drilldown.total"])}:{" "}
                 <span className="font-semibold tabular-nums text-slate-700">

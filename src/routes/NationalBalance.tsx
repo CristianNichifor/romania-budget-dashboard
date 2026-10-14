@@ -15,18 +15,35 @@ import { AdoptedExecutionChart } from "../components/charts/AdoptedExecutionChar
 import { BudgetSankey } from "../components/charts/BudgetSankey";
 import { DebtGauge } from "../components/charts/DebtGauge";
 import { DestinationTreemap } from "../components/charts/DestinationTreemap";
-import { DualAxisTrend } from "../components/charts/DualAxisTrend";
 import { InvestmentCartogram } from "../components/charts/InvestmentCartogram";
+import { SocialContextMultiples } from "../components/charts/SocialContextMultiples";
 import { DrilldownModal } from "../components/shared/DrilldownModal";
 import { InsMetricSelect } from "../components/shared/InsMetricSelect";
 import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
+import { ProvenanceLine } from "../components/shared/ProvenanceLine";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { YearSelector } from "../components/shared/YearSelector";
-import { formatMilliardeLei, formatSignedPercent } from "../lib/format";
-import { findComparisonPoint, toDeficitSeries } from "../lib/adoptedComparison";
+import {
+  MISSING,
+  formatMilliardeLei,
+  formatPercent,
+  formatSignedPercent,
+} from "../lib/format";
+import {
+  deficitMagnitude,
+  deficitOverrun,
+  findComparisonPoint,
+  toDeficitSeries,
+} from "../lib/adoptedComparison";
 import { computeTrendInsight, joinBudgetWithIns } from "../lib/trendJoin";
 import { useBudgetYearStore } from "../store/useBudgetYearStore";
+import { DemoBadge } from "../components/shared/DemoBadge";
+import { EmptyState } from "../components/shared/EmptyState";
+import { BUDGET_YEAR } from "../data/budget2026";
+import { QueryError, SectionError } from "../components/shared/SectionError";
+import { expandRest } from "../lib/expandRest";
+import { isPartialYear } from "../lib/partialYear";
 import { m } from "../messages";
 
 const DEFAULT_CONTEXT_METRIC = "infant-mortality";
@@ -39,44 +56,53 @@ export function NationalBalance() {
   >(null);
   const [contextMetric, setContextMetric] = useState(DEFAULT_CONTEXT_METRIC);
   const year = useBudgetYearStore((state) => state.year);
+  const setYear = useBudgetYearStore((state) => state.setYear);
   const currentYear = new Date().getFullYear();
 
-  const { data: summary } = useQuery({
+  const summaryQuery = useQuery({
     queryKey: ["budget-summary", year],
     queryFn: () => fetchBudgetSummary(String(year)),
     enabled: year !== null,
   });
+  const { data: summary } = summaryQuery;
 
-  const { data: destinations } = useQuery({
+  const destinationsQuery = useQuery({
     queryKey: ["destinations", year],
     queryFn: () => fetchDestinations(String(year)),
+    select: expandRest,
     enabled: year !== null,
   });
+  const { data: destinations } = destinationsQuery;
 
-  const { data: budgetTrend } = useQuery({
+  const budgetTrendQuery = useQuery({
     queryKey: ["budget-trend", CONTEXT_BUDGET_METRIC],
     queryFn: () => fetchBudgetTrend(CONTEXT_BUDGET_METRIC),
   });
+  const { data: budgetTrend } = budgetTrendQuery;
 
-  const { data: insCatalog } = useQuery({
+  const insCatalogQuery = useQuery({
     queryKey: ["ins-catalog"],
     queryFn: fetchInsCatalog,
   });
+  const { data: insCatalog } = insCatalogQuery;
 
-  const { data: insMetric } = useQuery({
+  const insMetricQuery = useQuery({
     queryKey: ["ins-metric", contextMetric],
     queryFn: () => fetchInsMetric(contextMetric),
   });
+  const { data: insMetric } = insMetricQuery;
 
-  const { data: investments } = useQuery({
+  const investmentsQuery = useQuery({
     queryKey: ["investments-by-county"],
     queryFn: fetchCountyInvestments,
   });
+  const { data: investments } = investmentsQuery;
 
-  const { data: comparison } = useQuery({
+  const comparisonQuery = useQuery({
     queryKey: ["budget-comparison"],
     queryFn: fetchBudgetComparison,
   });
+  const { data: comparison } = comparisonQuery;
 
   const comparisonSeries = useMemo(
     () => toDeficitSeries(comparison?.points ?? []),
@@ -90,6 +116,9 @@ export function NationalBalance() {
         : null,
     [comparison, year]
   );
+
+  const comparisonOverrun =
+    comparisonForYear === null ? null : deficitOverrun(comparisonForYear);
 
   const trendData = useMemo(() => {
     if (budgetTrend === undefined || insMetric === undefined) {
@@ -106,9 +135,38 @@ export function NationalBalance() {
   }, [budgetTrend, insMetric]);
 
   const deficitPercent =
-    summary !== undefined
+    summary !== undefined && summary !== null
       ? new Decimal(summary.deficitPercentGdp).toNumber()
       : 0;
+
+  const partialYear =
+    summary !== undefined && summary !== null
+      ? isPartialYear(summary, currentYear)
+      : year === currentYear;
+  const partialMarker = partialYear
+    ? i18n._(m["balance.kpi.partialYear"])
+    : undefined;
+  // Demo data exists only for the seed year, so that is the nearest year with data.
+  const emptyYear = (
+    <EmptyState
+      action={
+        year === BUDGET_YEAR
+          ? undefined
+          : {
+              label: i18n._({
+                ...m["section.emptyYear.action"],
+                values: { year: String(BUDGET_YEAR) },
+              }),
+              onClick: () => setYear(BUDGET_YEAR),
+            }
+      }
+    >
+      {i18n._({
+        ...m["section.emptyYear"],
+        values: { year: String(year), seedYear: String(BUDGET_YEAR) },
+      })}
+    </EmptyState>
+  );
 
   const destinationIds = useMemo(
     () => new Set(destinations?.map((destination) => destination.id) ?? []),
@@ -130,57 +188,67 @@ export function NationalBalance() {
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="text-xl font-bold">{i18n._(m["balance.title"])}</h2>
+            <ProvenanceLine source="provenance.budget" year={year} />
             <p className="text-sm text-slate-500">
               {i18n._(m["balance.description"])}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <YearSelector />
-            <SourceBadge source="source.budget" />
+            <SourceBadge
+              source="source.budgetYear"
+              values={{ year: year ?? "" }}
+            />
+            <DemoBadge />
           </div>
         </div>
 
-        {year === currentYear && (
+        {partialYear && (
           <p className="text-xs text-amber-700">
             {i18n._(m["year.inProgressCaption"])}
           </p>
         )}
 
-        {summary !== undefined && (
+        {summary !== undefined && summary !== null && (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <KpiCard
               accent="blue"
               label={i18n._(m["balance.kpi.revenue"])}
               value={formatMilliardeLei(summary.revenue)}
+              sub={partialMarker}
             />
             <KpiCard
               accent="slate"
               label={i18n._(m["balance.kpi.expenditure"])}
               value={formatMilliardeLei(summary.expenditure)}
+              sub={partialMarker}
             />
             <KpiCard
               accent="red"
               label={i18n._(m["balance.kpi.deficit"])}
               value={formatMilliardeLei(summary.deficit)}
+              sub={partialMarker}
             />
             <div className="rounded-xl border border-red-200 bg-red-50 p-4 shadow-sm">
-              <p className="text-sm font-medium text-slate-500">
+              <p className="text-sm font-medium text-slate-600">
                 {i18n._(m["balance.kpi.deficitGdp"])}
               </p>
               <DebtGauge valuePercent={deficitPercent} />
-              <p className="mt-1 text-center text-xs text-slate-500">
+              <p className="mt-1 text-center text-xs text-slate-600">
                 {i18n._(m["balance.debtGauge.reference"])}
               </p>
             </div>
           </div>
         )}
-        {summary === undefined && (
+        {summary === null && emptyYear}
+        {summaryQuery.isPending && (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[0, 1, 2, 3].map((index) => (
               <SkeletonCard key={index} className="h-32" />
             ))}
           </div>
         )}
+        <QueryError query={summaryQuery} />
       </section>
 
       <section className="space-y-4">
@@ -204,24 +272,28 @@ export function NationalBalance() {
             <KpiCard
               accent="slate"
               label={i18n._(m["comparison.kpi.adoptedDeficit"])}
-              value={formatMilliardeLei(comparisonForYear.adopted.deficit)}
+              value={formatMilliardeLei(
+                deficitMagnitude(comparisonForYear.adopted.deficit)
+              )}
             />
             <KpiCard
               accent="red"
               label={i18n._(m["comparison.kpi.executedDeficit"])}
               value={
                 comparisonForYear.executed === null
-                  ? "—"
-                  : formatMilliardeLei(comparisonForYear.executed.deficit)
+                  ? MISSING
+                  : formatMilliardeLei(
+                      deficitMagnitude(comparisonForYear.executed.deficit)
+                    )
               }
             />
             <KpiCard
               accent="amber"
               label={i18n._(m["comparison.kpi.delta"])}
               value={
-                comparisonForYear.deficitDelta === null
-                  ? "—"
-                  : formatMilliardeLei(comparisonForYear.deficitDelta)
+                comparisonOverrun === null
+                  ? MISSING
+                  : formatMilliardeLei(comparisonOverrun)
               }
             />
             <KpiCard
@@ -229,8 +301,8 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.executedGdp"])}
               value={
                 comparisonForYear.executed === null
-                  ? "—"
-                  : `${comparisonForYear.executed.deficitPercentGdp}%`
+                  ? MISSING
+                  : formatPercent(comparisonForYear.executed.deficitPercentGdp)
               }
             />
           </div>
@@ -250,7 +322,8 @@ export function NationalBalance() {
             {i18n._(m["comparison.unavailable"])}
           </p>
         )}
-        {comparison === undefined && <SkeletonCard className="h-80" />}
+        {comparisonQuery.isPending && <SkeletonCard className="h-80" />}
+        <QueryError query={comparisonQuery} />
       </section>
 
       <section className="space-y-4">
@@ -259,8 +332,9 @@ export function NationalBalance() {
           <p className="text-sm text-slate-500">
             {i18n._(m["sankey.description"])}
           </p>
+          <DemoBadge />
         </div>
-        {summary !== undefined && destinations !== undefined && (
+        {summary != null && destinations !== undefined && (
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
             <BudgetSankey
               summary={summary}
@@ -270,9 +344,11 @@ export function NationalBalance() {
             />
           </div>
         )}
-        {(summary === undefined || destinations === undefined) && (
+        {(summary === null || destinations?.length === 0) && emptyYear}
+        {(summaryQuery.isPending || destinationsQuery.isPending) && (
           <SkeletonCard className="h-[420px]" />
         )}
+        <QueryError query={destinationsQuery} />
       </section>
 
       <section className="space-y-4">
@@ -281,8 +357,9 @@ export function NationalBalance() {
           <p className="text-sm text-slate-500">
             {i18n._(m["treemap.description"])}
           </p>
+          <DemoBadge />
         </div>
-        {destinations !== undefined && (
+        {destinations !== undefined && destinations.length > 0 && (
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
             <DestinationTreemap
               destinations={destinations}
@@ -290,7 +367,9 @@ export function NationalBalance() {
             />
           </div>
         )}
-        {destinations === undefined && <SkeletonCard className="h-80" />}
+        {destinations?.length === 0 && emptyYear}
+        {destinationsQuery.isPending && <SkeletonCard className="h-80" />}
+        <QueryError query={destinationsQuery} />
       </section>
 
       <section className="space-y-4">
@@ -303,6 +382,7 @@ export function NationalBalance() {
           </div>
           <div className="flex gap-2">
             <SourceBadge source="source.eurostat" />
+            <DemoBadge />
           </div>
         </div>
         {budgetTrend !== undefined && budgetTrend.sourceUpdated.length > 0 && (
@@ -322,10 +402,12 @@ export function NationalBalance() {
         )}
         {trendData !== null && insMetric !== undefined && (
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <DualAxisTrend
+            <SocialContextMultiples
               data={trendData}
-              leftLabel={i18n._(m["context.budgetLegend"])}
-              rightLabel={insMetric.label}
+              budgetLabel={i18n._(m["context.budgetLabel"])}
+              budgetUnit={i18n._(m["context.budgetUnit"])}
+              insLabel={insMetric.label}
+              insUnit={insMetric.unit}
             />
             {trendInsight !== null && (
               <p className="mt-3 text-sm text-slate-600">
@@ -345,7 +427,17 @@ export function NationalBalance() {
             )}
           </div>
         )}
-        {trendData === null && <SkeletonCard className="h-80" />}
+        {(budgetTrendQuery.isPending || insMetricQuery.isPending) && (
+          <SkeletonCard className="h-80" />
+        )}
+        {(budgetTrendQuery.isError || insMetricQuery.isError) && (
+          <SectionError
+            onRetry={() => {
+              if (budgetTrendQuery.isError) void budgetTrendQuery.refetch();
+              if (insMetricQuery.isError) void insMetricQuery.refetch();
+            }}
+          />
+        )}
       </section>
 
       <section className="space-y-4">
@@ -387,7 +479,8 @@ export function NationalBalance() {
             </div>
           </div>
         )}
-        {investments === undefined && <SkeletonCard className="h-96" />}
+        {investmentsQuery.isPending && <SkeletonCard className="h-96" />}
+        <QueryError query={investmentsQuery} />
       </section>
 
       {selectedDestination !== null && year !== null && (

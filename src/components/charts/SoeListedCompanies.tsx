@@ -1,7 +1,12 @@
 import { useLingui } from "@lingui/react";
 import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 import type { SoeListed } from "../../api/client";
-import { formatLei, formatPercent } from "../../lib/format";
+import {
+  MISSING,
+  formatLei,
+  formatMilliarde,
+  formatPercent,
+} from "../../lib/format";
 import { m } from "../../messages";
 
 interface SoeListedCompaniesProps {
@@ -42,7 +47,7 @@ function PriceSparkline({
         </ResponsiveContainer>
       </div>
       <span className="tabular-nums text-sm font-semibold">
-        {last !== undefined ? formatLei(last.priceLei) : "—"}
+        {last !== undefined ? formatLei(last.priceLei) : MISSING}
       </span>
     </div>
   );
@@ -81,8 +86,8 @@ export function SoeListedCompanies({ listed }: SoeListedCompaniesProps) {
               {i18n._(m["soe.listed.profit"])}:{" "}
               <span className="tabular-nums font-medium text-slate-700">
                 {lastProfit !== undefined
-                  ? `${lastProfit.profitMldLei.toLocaleString("ro-RO")} mld. lei (${lastProfit.year})`
-                  : "—"}
+                  ? `${formatMilliarde(lastProfit.profitMldLei)} (${lastProfit.year})`
+                  : MISSING}
               </span>
             </p>
           </li>

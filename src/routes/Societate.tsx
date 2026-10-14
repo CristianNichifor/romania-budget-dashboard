@@ -17,6 +17,9 @@ import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { joinPhysicianDensity, joinSpending } from "../lib/society";
+import { DemoBadge } from "../components/shared/DemoBadge";
+import { QueryError } from "../components/shared/SectionError";
+import { MISSING, formatNumber } from "../lib/format";
 import { m } from "../messages";
 
 const DEFAULT_SOCIETY_METRIC = "infant-mortality";
@@ -25,40 +28,47 @@ export function Societate() {
   const { i18n } = useLingui();
   const [societyMetric, setSocietyMetric] = useState(DEFAULT_SOCIETY_METRIC);
 
-  const { data: population } = useQuery({
+  const populationQuery = useQuery({
     queryKey: ["society-population"],
     queryFn: fetchSocietyPopulation,
   });
+  const { data: population } = populationQuery;
 
-  const { data: spending } = useQuery({
+  const spendingQuery = useQuery({
     queryKey: ["society-spending"],
     queryFn: fetchSocietySpending,
   });
+  const { data: spending } = spendingQuery;
 
-  const { data: education } = useQuery({
+  const educationQuery = useQuery({
     queryKey: ["society-education"],
     queryFn: fetchSocietyEducation,
   });
+  const { data: education } = educationQuery;
 
-  const { data: health } = useQuery({
+  const healthQuery = useQuery({
     queryKey: ["society-health"],
     queryFn: fetchSocietyHealth,
   });
+  const { data: health } = healthQuery;
 
-  const { data: demographics } = useQuery({
+  const demographicsQuery = useQuery({
     queryKey: ["society-demographics"],
     queryFn: fetchSocietyDemographics,
   });
+  const { data: demographics } = demographicsQuery;
 
-  const { data: insCatalog } = useQuery({
+  const insCatalogQuery = useQuery({
     queryKey: ["ins-catalog"],
     queryFn: fetchInsCatalog,
   });
+  const { data: insCatalog } = insCatalogQuery;
 
-  const { data: insMetric } = useQuery({
+  const insMetricQuery = useQuery({
     queryKey: ["ins-metric", societyMetric],
     queryFn: () => fetchInsMetric(societyMetric),
   });
+  const { data: insMetric } = insMetricQuery;
 
   const spendingData = useMemo(
     () => joinSpending(spending ?? { health: [], education: [] }),
@@ -128,7 +138,9 @@ export function Societate() {
               accent="slate"
               label={i18n._(m["society.kpi.population"])}
               value={
-                latestPopulation?.population.toLocaleString("ro-RO") ?? "—"
+                latestPopulation === undefined
+                  ? MISSING
+                  : formatNumber(latestPopulation.population)
               }
               sub={`${latestPopulation?.year ?? ""} · Eurostat`}
             />
@@ -137,10 +149,10 @@ export function Societate() {
               label={i18n._(m["society.kpi.populationChange"])}
               value={
                 populationChange === null
-                  ? "—"
+                  ? MISSING
                   : populationChange > 0
-                    ? `+${populationChange.toLocaleString("ro-RO")}`
-                    : populationChange.toLocaleString("ro-RO")
+                    ? `+${formatNumber(populationChange)}`
+                    : formatNumber(populationChange)
               }
               sub={i18n._(m["society.kpi.populationChangeSub"])}
             />
@@ -170,6 +182,10 @@ export function Societate() {
           </div>
         </section>
       )}
+      <QueryError
+        query={populationQuery}
+        title={i18n._(m["society.population.title"])}
+      />
 
       {spending !== null && spending !== undefined && (
         <section className="space-y-4">
@@ -191,6 +207,10 @@ export function Societate() {
           </div>
         </section>
       )}
+      <QueryError
+        query={spendingQuery}
+        title={i18n._(m["society.spending.title"])}
+      />
 
       {education !== null && education !== undefined && (
         <section className="space-y-4">
@@ -208,7 +228,7 @@ export function Societate() {
               label={i18n._(m["society.education.earlyLeavers"])}
               value={
                 latestEarlyLeavers === undefined
-                  ? "—"
+                  ? MISSING
                   : `${latestEarlyLeavers.pct.toFixed(1)}%`
               }
               sub={`${latestEarlyLeavers?.year ?? ""} · Eurostat`}
@@ -218,7 +238,7 @@ export function Societate() {
               label={i18n._(m["society.education.tertiary"])}
               value={
                 latestTertiary === undefined
-                  ? "—"
+                  ? MISSING
                   : `${latestTertiary.pct.toFixed(1)}%`
               }
               sub={`${latestTertiary?.year ?? ""} · Eurostat`}
@@ -252,6 +272,10 @@ export function Societate() {
           </div>
         </section>
       )}
+      <QueryError
+        query={educationQuery}
+        title={i18n._(m["society.education.title"])}
+      />
 
       {health !== null && health !== undefined && (
         <section className="space-y-4">
@@ -269,8 +293,10 @@ export function Societate() {
               label={i18n._(m["society.health.physicians"])}
               value={
                 latestPhysicianDensity === undefined
-                  ? "—"
-                  : latestPhysicianDensity.per100k.toLocaleString("ro-RO")
+                  ? MISSING
+                  : formatNumber(latestPhysicianDensity.per100k, {
+                      maximumFractionDigits: 1,
+                    })
               }
               sub={`${latestPhysicianDensity?.year ?? ""} · la 100.000 locuitori`}
             />
@@ -283,12 +309,18 @@ export function Societate() {
               }))}
               color="#0d9488"
               ariaLabel={i18n._(m["society.health.physicians"])}
-              valueFormatter={(value) => value.toLocaleString("ro-RO")}
+              valueFormatter={(value) =>
+                formatNumber(value, { maximumFractionDigits: 1 })
+              }
               heightClass="h-56"
             />
           </div>
         </section>
       )}
+      <QueryError
+        query={healthQuery}
+        title={i18n._(m["society.health.title"])}
+      />
 
       {demographics !== null && demographics !== undefined && (
         <section className="space-y-4">
@@ -306,7 +338,7 @@ export function Societate() {
               label={i18n._(m["society.demographics.medianAge"])}
               value={
                 latestMedianAge === undefined
-                  ? "—"
+                  ? MISSING
                   : `${latestMedianAge.age.toFixed(1)} ani`
               }
               sub={`${latestMedianAge?.year ?? ""} · Eurostat`}
@@ -341,6 +373,10 @@ export function Societate() {
           </div>
         </section>
       )}
+      <QueryError
+        query={demographicsQuery}
+        title={i18n._(m["society.demographics.title"])}
+      />
 
       <section className="space-y-4">
         <div>
@@ -350,6 +386,7 @@ export function Societate() {
           <p className="text-sm text-slate-500">
             {i18n._(m["society.ins.description"])}
           </p>
+          <DemoBadge />
         </div>
         {insCatalog !== undefined && insCatalog.length > 0 && (
           <InsMetricSelect
@@ -368,9 +405,10 @@ export function Societate() {
             />
           </div>
         )}
+        <QueryError query={insMetricQuery} />
       </section>
 
-      {(population === undefined || spending === undefined) && (
+      {(populationQuery.isPending || spendingQuery.isPending) && (
         <SkeletonCard className="h-72" />
       )}
     </div>

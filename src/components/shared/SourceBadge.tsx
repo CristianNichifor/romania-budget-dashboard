@@ -5,12 +5,14 @@ import { lookupMessage } from "../../messages";
 interface SourceBadgeProps {
   /** i18n message id (e.g. "source.ins") or raw text. */
   source: string;
+  /** Placeholder values for the message, e.g. `{ year }`. */
+  values?: Record<string, string | number>;
   className?: string;
 }
 
-export function SourceBadge({ source, className }: SourceBadgeProps) {
+export function SourceBadge({ source, values, className }: SourceBadgeProps) {
   const { i18n } = useLingui();
-  const label = i18n._(lookupMessage(source));
+  const label = i18n._({ ...lookupMessage(source), values });
 
   return (
     <span

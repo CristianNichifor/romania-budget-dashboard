@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  deficitMagnitude,
+  deficitOverrun,
   findComparisonPoint,
   toDeficitSeries,
 } from "../src/lib/adoptedComparison";
@@ -58,5 +60,31 @@ describe("findComparisonPoint", () => {
 
   it("returns undefined for unknown years", () => {
     expect(findComparisonPoint(points, 2020)).toBeUndefined();
+  });
+});
+
+describe("deficit overrun", () => {
+  it("compares magnitudes even though the sources use opposite signs", () => {
+    // Adopted: revenue − expenditure (negative). Executed: expenditure −
+    // revenue (positive). Live 2023: −76,1 vs 109,9 → gap 33,8, not 186.
+    const [withExecution] = points;
+    expect(deficitOverrun(withExecution!)?.toFixed(0)).toBe("34000000000");
+  });
+
+  it("is null without execution data", () => {
+    expect(deficitOverrun(points[1]!)).toBeNull();
+  });
+
+  it("is negative when execution beat the plan", () => {
+    const point: BudgetComparisonPoint = {
+      ...points[0]!,
+      executed: { ...points[0]!.executed!, deficit: "-50000000000" },
+    };
+    expect(deficitOverrun(point)?.toFixed(0)).toBe("-26000000000");
+  });
+
+  it("exposes both deficits as positive magnitudes", () => {
+    expect(deficitMagnitude("-76000000000").toFixed(0)).toBe("76000000000");
+    expect(deficitMagnitude("110000000000").toFixed(0)).toBe("110000000000");
   });
 });

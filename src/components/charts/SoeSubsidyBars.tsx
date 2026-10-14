@@ -1,7 +1,7 @@
 import { useLingui } from "@lingui/react";
 import { Decimal } from "decimal.js";
 import type { SoeSubsidies } from "../../api/client";
-import { formatLei } from "../../lib/format";
+import { formatLei, formatMilliardeLei } from "../../lib/format";
 import { m } from "../../messages";
 
 interface SoeSubsidyBarsProps {
@@ -29,7 +29,7 @@ export function SoeSubsidyBars({ subsidies, limit = 12 }: SoeSubsidyBarsProps) {
           ...m["soe.subsidies.total"],
           values: {
             year: subsidies.year,
-            total: formatLei(subsidies.total),
+            total: formatMilliardeLei(subsidies.total),
           },
         })}
       </p>

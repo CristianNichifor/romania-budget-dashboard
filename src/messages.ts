@@ -7,6 +7,7 @@ import { msg } from "@lingui/core/macro";
  */
 export const m = {
   "app.title": msg({ id: "app.title", message: "Bugetul României" }),
+  "hub.back": msg({ id: "hub.back", message: "Proiecte civice" }),
   "app.subtitle": msg({
     id: "app.subtitle",
     message: "Tablou de bord cetățenesc — buget consolidat",
@@ -24,6 +25,12 @@ export const m = {
     message: "Date parțial demo",
   }),
   "lang.label": msg({ id: "lang.label", message: "Limbă" }),
+  "currency.label": msg({ id: "currency.label", message: "Monedă" }),
+  "currency.rateNote": msg({
+    id: "currency.rateNote",
+    message:
+      "Sume convertite la cursul mediu BCE din {year}: 1 € = {rate} lei.",
+  }),
   "a11y.skipToContent": msg({
     id: "a11y.skipToContent",
     message: "Sari la conținut",
@@ -46,6 +53,10 @@ export const m = {
       "Proiect educațional — datele provin din surse publice oficiale; sursa fiecărui grafic este afișată pe card.",
   }),
   "app.loading": msg({ id: "app.loading", message: "Se încarcă…" }),
+  "app.loadingSlow": msg({
+    id: "app.loadingSlow",
+    message: "Serverul răspunde greu — mai așteptăm câteva secunde.",
+  }),
   "nav.citizenSlice": msg({ id: "nav.citizenSlice", message: "Feliuța ta" }),
   "nav.label": msg({ id: "nav.label", message: "Navigare principală" }),
   "nav.economy": msg({ id: "nav.economy", message: "Economie" }),
@@ -56,6 +67,10 @@ export const m = {
   "chart.downloadCsv": msg({
     id: "chart.downloadCsv",
     message: "Descarcă CSV",
+  }),
+  "chart.showTable": msg({
+    id: "chart.showTable",
+    message: "Afișează ca tabel",
   }),
   "chart.csv.period": msg({ id: "chart.csv.period", message: "Perioadă" }),
   "chart.csv.value": msg({ id: "chart.csv.value", message: "Valoare" }),
@@ -528,6 +543,14 @@ export const m = {
     message: "trimestrial",
   }),
   "source.eurostat": msg({ id: "source.eurostat", message: "Sursă: Eurostat" }),
+  "provenance.line": msg({
+    id: "provenance.line",
+    message: "Date: {source}, {year}",
+  }),
+  "provenance.budget": msg({
+    id: "provenance.budget",
+    message: "Buget consolidat (Open Budget)",
+  }),
   "source.updatedAt": msg({
     id: "source.updatedAt",
     message: "Sursă actualizată la {date}",
@@ -757,6 +780,14 @@ export const m = {
     id: "sankey.node.rest",
     message: "Alte destinații",
   }),
+  "sankey.mobileList": msg({
+    id: "sankey.mobileList",
+    message: "Fluxul banilor publici, ca listă",
+  }),
+  "sankey.rest.summary": msg({
+    id: "sankey.rest.summary",
+    message: "Ce intră în „Alte destinații”: {count} destinații mai mici",
+  }),
   "treemap.title": msg({
     id: "treemap.title",
     message: "Destinația cheltuielilor",
@@ -765,6 +796,16 @@ export const m = {
     id: "treemap.description",
     message:
       "Suprafața fiecărui dreptunghi este proporțională cu suma alocată.",
+  }),
+  "treemap.view.label": msg({
+    id: "treemap.view.label",
+    message: "Mod de afișare",
+  }),
+  "treemap.view.map": msg({ id: "treemap.view.map", message: "Hartă" }),
+  "treemap.view.table": msg({ id: "treemap.view.table", message: "Tabel" }),
+  "treemap.list.label": msg({
+    id: "treemap.list.label",
+    message: "Destinații, de la cea mai mare",
   }),
   "context.title": msg({
     id: "context.title",
@@ -775,9 +816,13 @@ export const m = {
     message:
       "Cheltuielile publice pentru sănătate (bare, mld. EUR, Eurostat COFOG) alături de un indicator social (linie) — banii alocați vs. rezultatul măsurabil.",
   }),
-  "context.budgetLegend": msg({
-    id: "context.budgetLegend",
-    message: "Cheltuieli sănătate (mld. EUR)",
+  "context.budgetLabel": msg({
+    id: "context.budgetLabel",
+    message: "Cheltuieli cu sănătatea",
+  }),
+  "context.budgetUnit": msg({
+    id: "context.budgetUnit",
+    message: "miliarde EUR",
   }),
   "context.metricLabel": msg({
     id: "context.metricLabel",
@@ -867,7 +912,7 @@ export const m = {
   }),
   "source.budget": msg({
     id: "source.budget",
-    message: "Sursă: Buget consolidat 2026",
+    message: "Sursă: Buget consolidat",
   }),
   // ── Companii de stat ──────────────────────────────────────────────────
   "soe.title": msg({
@@ -962,7 +1007,7 @@ export const m = {
   }),
   "soe.subsidies.total": msg({
     id: "soe.subsidies.total",
-    message: "Total {year}: {total} lei",
+    message: "Total {year}: {total}",
   }),
   "soe.listed.title": msg({
     id: "soe.listed.title",
@@ -1030,6 +1075,203 @@ export const m = {
     message: "Sursa de date e indisponibilă momentan.",
   }),
   "soe.source": msg({ id: "soe.source", message: "companiidestat.ro" }),
+  "section.error": msg({
+    id: "section.error",
+    message: "Datele nu au putut fi încărcate.",
+  }),
+  "section.retry": msg({ id: "section.retry", message: "Reîncearcă" }),
+  "section.demo": msg({ id: "section.demo", message: "date demo" }),
+  "section.emptyYear": msg({
+    id: "section.emptyYear",
+    message:
+      "Nu există date demo pentru anul {year}. Datele demo acoperă doar anul {seedYear}.",
+  }),
+  "section.emptyYear.action": msg({
+    id: "section.emptyYear.action",
+    message: "Vezi anul {year}",
+  }),
+  "balance.kpi.partialYear": msg({
+    id: "balance.kpi.partialYear",
+    message: "An parțial — execuție până la zi",
+  }),
+  "about.title": msg({
+    id: "about.title",
+    message: "Despre",
+  }),
+  "about.intro": msg({
+    id: "about.intro",
+    message:
+      "Bugetul României este un tablou de bord cetățenesc, un proiect educațional independent care arată bugetul consolidat și indicatori economici și sociali din surse publice oficiale.",
+  }),
+  "about.operator": msg({
+    id: "about.operator",
+    message:
+      "Proiectul este realizat de Cristian Nichifor. Pentru întrebări, corecturi sau date greșite:",
+  }),
+  "about.contactLink": msg({
+    id: "about.contactLink",
+    message: "deschide un issue pe GitHub",
+  }),
+  "about.contents": msg({ id: "about.contents", message: "Cuprins" }),
+  "about.method.title": msg({ id: "about.method.title", message: "Metodă" }),
+  "about.method.salary": msg({
+    id: "about.method.salary",
+    message:
+      "Calculul salarial urmează modelul Open Budget 2026: CAS 25% și CASS 10% din brut, impozit pe venit 10% din (brut − CAS − CASS), contribuția angajatorului (CAM) 2,25% din brut și o estimare a TVA plătite din consum (21% aplicat la 75% din venitul net).",
+  }),
+  "about.method.estimate": msg({
+    id: "about.method.estimate",
+    message:
+      "Regula „estimare”: orice valoare care nu vine direct dintr-o sursă, ci dintr-o formulă sau o presupunere (cota de consum, cursul valutar), este marcată „estimare” acolo unde apare.",
+  }),
+  "about.method.money": msg({
+    id: "about.method.money",
+    message:
+      "Sumele sunt calculate fără virgulă mobilă (decimal.js) și rotunjite doar la afișare.",
+  }),
+  "about.sources.col.source": msg({
+    id: "about.sources.col.source",
+    message: "Sursă",
+  }),
+  "about.sources.col.use": msg({
+    id: "about.sources.col.use",
+    message: "Folosită pentru",
+  }),
+  "about.sources.col.licence": msg({
+    id: "about.sources.col.licence",
+    message: "Licență",
+  }),
+  "about.sources.title": msg({
+    id: "about.sources.title",
+    message: "Surse de date și licențe",
+  }),
+  "about.sources.description": msg({
+    id: "about.sources.description",
+    message:
+      "Fiecare grafic își arată sursa pe card. Datele sunt preluate prin API-ul proiectului din sursele de mai jos, în condițiile stabilite de fiecare sursă.",
+  }),
+  "about.source.eurostat": msg({
+    id: "about.source.eurostat",
+    message:
+      "Inflație, șomaj, PIB, datorie, salarii, societate, energie, piața muncii, justiție",
+  }),
+  "about.source.ecb": msg({
+    id: "about.source.ecb",
+    message: "Cursul EUR/RON și dobânda la facilitatea de depozit",
+  }),
+  "about.source.mfp": msg({
+    id: "about.source.mfp",
+    message: "Bugetul adoptat și comparația adoptat–executat",
+  }),
+  "about.source.soe": msg({
+    id: "about.source.soe",
+    message: "Companiile de stat",
+  }),
+  "about.source.bnr": msg({
+    id: "about.source.bnr",
+    message: "Ținta de inflație",
+  }),
+  "about.source.transparenta": msg({
+    id: "about.source.transparenta",
+    message: "Execuția bugetară",
+  }),
+  "about.source.openBudget": msg({
+    id: "about.source.openBudget",
+    message:
+      "Datele demo pentru 2026, folosite doar când site-ul rulează fără API",
+  }),
+  "about.licence": msg({
+    id: "about.licence",
+    message: "Licență",
+  }),
+  "about.licence.none": msg({
+    id: "about.licence.none",
+    message: "sursa nu declară o licență",
+  }),
+  "about.licence.terms": msg({
+    id: "about.licence.terms",
+    message: "termenii sursei",
+  }),
+  "about.privacy.title": msg({
+    id: "about.privacy.title",
+    message: "Confidențialitate",
+  }),
+  "about.privacy.tracking": msg({
+    id: "about.privacy.tracking",
+    message:
+      "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți.",
+  }),
+  "about.privacy.hosting": msg({
+    id: "about.privacy.hosting",
+    message:
+      "Paginile și API-ul sunt găzduite pe Cloudflare Workers. Ca orice furnizor de găzduire, Cloudflare primește cererile tale, inclusiv adresa IP, ca să livreze paginile.",
+  }),
+  "about.code.title": msg({
+    id: "about.code.title",
+    message: "Cod sursă",
+  }),
+  "about.code.description": msg({
+    id: "about.code.description",
+    message: "Codul este deschis, sub licența MIT:",
+  }),
+  "footer.about": msg({
+    id: "footer.about",
+    message: "Despre",
+  }),
+  "soe.kpi.centralLocal": msg({
+    id: "soe.kpi.centralLocal",
+    message: "{central} centrale · {local} locale",
+  }),
+  "soe.onLoss": msg({
+    id: "soe.onLoss",
+    message: "{count} pe pierdere",
+  }),
+  "soe.county.summary": msg({
+    id: "soe.county.summary",
+    message: "{companies} companii · {onLoss} pe pierdere ({lossPercent})",
+  }),
+  "soe.county.lossShare": msg({
+    id: "soe.county.lossShare",
+    message: "{lossPercent} pe pierdere",
+  }),
+  "economy.percentGdp": msg({
+    id: "economy.percentGdp",
+    message: "% PIB",
+  }),
+  "source.budgetYear": msg({
+    id: "source.budgetYear",
+    message: "Sursă: Buget consolidat {year}",
+  }),
+  "soe.scatter.offScale": msg({
+    id: "soe.scatter.offScale",
+    message:
+      "▲ {count} companii cu marja în afara intervalului ±100% sunt fixate pe margine; valoarea reală apare la hover.",
+  }),
+  "leuBridge.title": msg({
+    id: "leuBridge.title",
+    message: "Ce cumpără 1 leu din taxele tale",
+  }),
+  "leuBridge.description": msg({
+    id: "leuBridge.description",
+    message:
+      "Cei {amount} pe lună care ajung la stat, împărțiți după destinațiile bugetului.",
+  }),
+  "leuBridge.estimate": msg({ id: "leuBridge.estimate", message: "Estimare" }),
+  "leuBridge.destination": msg({
+    id: "leuBridge.destination",
+    message: "Destinație",
+  }),
+  "leuBridge.perLeu": msg({ id: "leuBridge.perLeu", message: "Din 1 leu" }),
+  "leuBridge.perMonth": msg({
+    id: "leuBridge.perMonth",
+    message: "Din contribuția ta lunară",
+  }),
+  "leuBridge.bani": msg({ id: "leuBridge.bani", message: "bani" }),
+  "leuBridge.note": msg({
+    id: "leuBridge.note",
+    message:
+      "Estimare: taxele nu sunt alocate pe destinații. Contribuția este împărțită proporțional cu cheltuielile bugetului consolidat, deci arată unde merge un leu mediu, nu leul tău anume.",
+  }),
 } satisfies Record<string, MessageDescriptor>;
 
 export type MessageId = keyof typeof m;

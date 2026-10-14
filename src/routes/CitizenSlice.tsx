@@ -13,43 +13,53 @@ import { MacroTrendChart } from "../components/charts/MacroTrendChart";
 import { RealWageLine } from "../components/charts/RealWageLine";
 import { SalaryWaterfall } from "../components/charts/SalaryWaterfall";
 import { KpiCard } from "../components/shared/KpiCard";
+import { LeuBridge } from "../components/shared/LeuBridge";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
-import { formatLei, formatPercent } from "../lib/format";
+import { MISSING, formatEur, formatLei, formatPercent } from "../lib/format";
 import { estimateAverageNetSalary } from "../lib/averageSalary";
 import { buildSalaryWaterfallRows } from "../lib/waterfall";
+import { useCurrency } from "../store/useCurrency";
+import { RateNote } from "../components/shared/RateNote";
 import { useSalaryStore } from "../store/useSalaryStore";
+import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 export function CitizenSlice() {
+  const [currency] = useCurrency();
   const { i18n } = useLingui();
   const gross = useSalaryStore((state) => state.gross);
   const setGross = useSalaryStore((state) => state.setGross);
 
-  const { data: breakdown } = useQuery({
+  const breakdownQuery = useQuery({
     queryKey: ["salary", gross],
     queryFn: () => fetchSalaryBreakdown(gross),
   });
+  const { data: breakdown } = breakdownQuery;
 
-  const { data: realWage } = useQuery({
+  const realWageQuery = useQuery({
     queryKey: ["real-wage"],
     queryFn: fetchRealWage,
   });
+  const { data: realWage } = realWageQuery;
 
-  const { data: wageContext } = useQuery({
+  const wageContextQuery = useQuery({
     queryKey: ["wage-context"],
     queryFn: fetchWageContext,
   });
+  const { data: wageContext } = wageContextQuery;
 
-  const { data: wageMonthly } = useQuery({
+  const wageMonthlyQuery = useQuery({
     queryKey: ["wage-monthly"],
     queryFn: fetchWageMonthly,
   });
+  const { data: wageMonthly } = wageMonthlyQuery;
 
-  const { data: fx } = useQuery({
+  const fxQuery = useQuery({
     queryKey: ["fx"],
     queryFn: fetchFx,
   });
+  const { data: fx } = fxQuery;
 
   const estimatedAverageNet = estimateAverageNetSalary(
     wageContext?.sesAnchors ?? [],
@@ -74,7 +84,7 @@ export function CitizenSlice() {
             </p>
           </div>
           <div className="flex gap-2">
-            <SourceBadge source="source.budget" />
+            <SourceBadge source="source.budgetYear" values={{ year: 2026 }} />
             <SourceBadge source="source.ins" />
             <SourceBadge source="source.bnr" />
           </div>
@@ -105,7 +115,7 @@ export function CitizenSlice() {
               <Slider.Track className="relative h-1.5 grow rounded-full bg-slate-200">
                 <Slider.Range className="absolute h-full rounded-full bg-budget-blue" />
               </Slider.Track>
-              <Slider.Thumb className="block size-5 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
+              <Slider.Thumb className="block size-6 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
             </Slider.Root>
             <span className="w-28 text-right text-lg font-bold tabular-nums">
               {formatLei(gross)}
@@ -116,12 +126,10 @@ export function CitizenSlice() {
         {breakdown !== null && breakdown !== undefined && (
           <>
             <div className="grid gap-4 sm:grid-cols-3">
-              {" "}
               <KpiCard
                 accent="blue"
                 label={i18n._(m["salary.netStat"])}
-                value={formatLei(breakdown.net)}
-                sub={`${formatLei(breakdown.net)} ${i18n._(m["salary.perMonth"])}`}
+                value={`${formatLei(breakdown.net)} ${i18n._(m["salary.perMonth"])}`}
               />
               <KpiCard
                 accent="red"
@@ -134,7 +142,7 @@ export function CitizenSlice() {
                 label={i18n._(m["salary.vsAverage"])}
                 value={
                   vsAverage === null
-                    ? "—"
+                    ? MISSING
                     : Math.abs(vsAverage) < 0.5
                       ? "0%"
                       : vsAverage > 0
@@ -150,10 +158,18 @@ export function CitizenSlice() {
             </div>
 
             <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-              <SalaryWaterfall rows={buildSalaryWaterfallRows(breakdown)} />
+              <SalaryWaterfall
+                rows={buildSalaryWaterfallRows(breakdown)}
+                currency={currency}
+              />
+              {currency === "eur" && <RateNote />}
             </div>
           </>
         )}
+        {breakdown !== null && breakdown !== undefined && (
+          <LeuBridge contribution={breakdown.stateShare} />
+        )}
+        <QueryError query={breakdownQuery} />
         {(breakdown === null || breakdown === undefined) && (
           <>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -192,7 +208,8 @@ export function CitizenSlice() {
 
         {realWage !== null && realWage !== undefined && (
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <RealWageLine series={realWage.series} />
+            <RealWageLine series={realWage.series} currency={currency} />
+            {currency === "lei" && <RateNote />}
             {realWage.estimated && (
               <p className="mt-2 text-xs text-slate-400">
                 {i18n._(m["wageContext.estimatedNote"])}
@@ -200,6 +217,7 @@ export function CitizenSlice() {
             )}
           </div>
         )}
+        <QueryError query={realWageQuery} />
         {(realWage === null || realWage === undefined) && (
           <SkeletonCard className="h-64" />
         )}
@@ -230,7 +248,7 @@ export function CitizenSlice() {
                   ...m["wageContext.anchor"],
                   values: { year: anchor.year },
                 })}
-                value={`${anchor.meanGrossEur.toLocaleString("ro-RO")} €`}
+                value={formatEur(anchor.meanGrossEur)}
                 sub={i18n._(m["wageContext.anchorSub"])}
               />
             ))}
@@ -270,7 +288,7 @@ export function CitizenSlice() {
                 }))}
                 color="#7c3aed"
                 ariaLabel={i18n._(m["wageContext.monthlyTitle"])}
-                valueFormatter={(value) => `${value.toLocaleString("ro-RO")} €`}
+                valueFormatter={(value) => formatEur(value)}
                 heightClass="h-56"
               />
               {wageMonthly.estimated && (
@@ -282,6 +300,10 @@ export function CitizenSlice() {
           )}
         </section>
       )}
+      <QueryError
+        query={wageContextQuery}
+        title={i18n._(m["wageContext.title"])}
+      />
 
       <section className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
         <Wallet className="size-5 shrink-0" aria-hidden="true" />

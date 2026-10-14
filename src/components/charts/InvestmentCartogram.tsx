@@ -5,6 +5,7 @@ import { Tooltip, Treemap, ResponsiveContainer } from "recharts";
 import type { CountyInvestment } from "../../api/client";
 import { formatMilliardeLei, formatPercent } from "../../lib/format";
 import { pickIntensityColor } from "../../lib/investmentColor";
+import { tileLayout, tileTextColors, wrapLabel } from "../../lib/tileLabel";
 import { m } from "../../messages";
 
 interface InvestmentCartogramProps {
@@ -17,6 +18,8 @@ interface InvestmentCartogramProps {
  * so amounts become JS numbers at the chart boundary only.
  */
 type TreemapDatum = Omit<CountyInvestment, "amount"> & { amount: number };
+
+const LABEL_SIZE = 11;
 
 interface CartogramCellProps {
   x?: number;
@@ -42,23 +45,41 @@ function CartogramCell(props: CartogramCellProps) {
   } = props;
   const fill =
     amount !== undefined ? pickIntensityColor(amount, min, max) : "#dbeafe";
+  const colors = tileTextColors(fill);
+  const layout = tileLayout(width, height, LABEL_SIZE);
+  const lines = wrapLabel(county ?? "", width, LABEL_SIZE, layout.lines);
+  const lineHeight = LABEL_SIZE * 1.3;
 
   return (
     <g>
       <rect x={x} y={y} width={width} height={height} fill={fill} rx={4}>
         <title>{`${county ?? ""} — ${amount !== undefined ? formatMilliardeLei(amount) : ""}`}</title>
       </rect>
-      {width > 58 && height > 32 && (
+      {lines.length > 0 && (
         <text
-          x={x + 6}
-          y={y + 16}
-          fontSize={11}
-          fill={
-            fill === "#2563eb" || fill === "#60a5fa" ? "#ffffff" : "#1e3a5f"
-          }
+          stroke="none"
+          x={x + 8}
+          y={y + 8 + LABEL_SIZE}
+          fontSize={LABEL_SIZE}
+          fill={colors.label}
           fontWeight={600}
         >
-          {county ?? ""}
+          {lines.map((line, index) => (
+            <tspan key={index} x={x + 8} dy={index === 0 ? 0 : lineHeight}>
+              {line}
+            </tspan>
+          ))}
+        </text>
+      )}
+      {lines.length > 0 && layout.showAmount && amount !== undefined && (
+        <text
+          stroke="none"
+          x={x + 8}
+          y={y + 8 + LABEL_SIZE + lines.length * lineHeight}
+          fontSize={LABEL_SIZE - 2}
+          fill={colors.amount}
+        >
+          {formatMilliardeLei(amount)}
         </text>
       )}
     </g>

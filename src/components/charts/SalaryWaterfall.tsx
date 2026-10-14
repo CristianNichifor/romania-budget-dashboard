@@ -3,13 +3,15 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  LabelList,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
   type BarShapeProps,
 } from "recharts";
-import { formatLei } from "../../lib/format";
+import { convertAmount, type Currency } from "../../lib/currency";
+import { formatEur, formatLei } from "../../lib/format";
 import type { WaterfallRow } from "../../lib/waterfall";
 import { lookupMessage } from "../../messages";
 
@@ -22,21 +24,39 @@ interface WaterfallChartDatum {
 
 interface SalaryWaterfallProps {
   rows: WaterfallRow[];
+  currency?: Currency;
 }
 
-function toChartData(rows: WaterfallRow[]): WaterfallChartDatum[] {
+/** Waterfall rows are lei; € values are converted at the display boundary. */
+function toChartData(
+  rows: WaterfallRow[],
+  currency: Currency
+): WaterfallChartDatum[] {
+  const shown = (lei: number) =>
+    convertAmount(lei, "lei", currency).toDecimalPlaces(0).toNumber();
   return rows.map((row) => ({
     name: row.labelKey,
-    base: Math.min(row.start, row.end),
-    value: Math.abs(row.amount),
+    base: shown(Math.min(row.start, row.end)),
+    value: shown(Math.abs(row.amount)),
     kind: row.kind,
   }));
 }
 
+function formatMoney(value: number, currency: Currency): string {
+  return currency === "eur" ? formatEur(value) : formatLei(value);
+}
+
+/** Opening total blue, deductions red, the closing net green (design 01, F2.5). */
+const BAR_FILL: Record<WaterfallRow["kind"], string> = {
+  total: "#2563eb",
+  decrease: "#dc2626",
+  net: "#15803d",
+};
+
 function WaterfallBar(props: BarShapeProps) {
   const { x, y, width, height, payload } = props;
   const kind = (payload as WaterfallChartDatum | undefined)?.kind;
-  const fill = kind === "total" ? "#2563eb" : "#dc2626";
+  const fill = kind === undefined ? "#dc2626" : BAR_FILL[kind];
 
   return (
     <rect
@@ -55,10 +75,12 @@ function WaterfallTooltip({
   active,
   payload,
   labelId,
+  currency,
 }: {
   active?: boolean;
   payload?: ReadonlyArray<{ payload?: WaterfallChartDatum }>;
   labelId: (id: string) => string;
+  currency: Currency;
 }) {
   if (active !== true || payload === undefined || payload.length === 0) {
     return null;
@@ -72,7 +94,9 @@ function WaterfallTooltip({
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
       <p className="font-semibold">{labelId(datum.name)}</p>
-      <p className="tabular-nums text-slate-600">{formatLei(datum.value)}</p>
+      <p className="tabular-nums text-slate-600">
+        {formatMoney(datum.value, currency)}
+      </p>
     </div>
   );
 }
@@ -83,17 +107,35 @@ function WaterfallTooltip({
  * transparent base series (same composition technique as the official
  * candlestick example). Blue = totals, red = deductions.
  */
-export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
-  const data = toChartData(rows);
+export function SalaryWaterfall({
+  rows,
+  currency = "lei",
+}: SalaryWaterfallProps) {
+  const data = toChartData(rows, currency);
 
   return (
-    <div className="h-72 w-full">
+    <div
+      className="h-96 w-full"
+      data-testid="salary-waterfall"
+      data-currency={currency}
+    >
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 8, right: 8, left: 8, bottom: 0 }}>
+        <BarChart
+          data={data}
+          margin={{ top: 24, right: 8, left: 32, bottom: 0 }}
+        >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" tick={false} />
+          <XAxis
+            dataKey="name"
+            interval={0}
+            angle={-30}
+            textAnchor="end"
+            height={110}
+            tick={{ fontSize: 11, fill: "#475569" }}
+            tickFormatter={(id: string) => i18n._(lookupMessage(id))}
+          />
           <YAxis
-            tickFormatter={(value: number) => formatLei(value)}
+            tickFormatter={(value: number) => formatMoney(value, currency)}
             width={90}
           />
           <Tooltip
@@ -101,6 +143,7 @@ export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
               <WaterfallTooltip
                 {...props}
                 labelId={(id) => i18n._(lookupMessage(id))}
+                currency={currency}
               />
             )}
             cursor={{ fill: "#f1f5f9" }}
@@ -116,7 +159,17 @@ export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
             stackId="waterfall"
             shape={(props) => <WaterfallBar {...props} />}
             isAnimationActive={false}
-          />
+          >
+            <LabelList
+              dataKey="value"
+              position="top"
+              fontSize={11}
+              fill="#334155"
+              formatter={(value: unknown) =>
+                typeof value === "number" ? formatMoney(value, currency) : ""
+              }
+            />
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

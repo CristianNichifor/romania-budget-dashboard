@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bilanțul național — Bugetul României</title>
+    <style>
+      /* Token values copied from civic-ui src/foundations.css (light theme), 2026-10-14 */
+      :root {
+        --civic-bg: #f4f6f6;
+        --civic-surface: #ffffff;
+        --civic-text: #142323;
+        --civic-muted: #475d60;
+        --civic-border: #718588;
+        --civic-line: #d5dddc;
+        --civic-accent: #006b60;
+        --civic-success: #146c2e;
+        --civic-warning: #f2b300;
+        --civic-danger: #b3261e;
+        --civic-viz-1: #2a78d6;
+        --civic-viz-2: #eb6834;
+        --civic-viz-3: #1baf7a;
+        --civic-viz-4: #eda100;
+        --civic-viz-5: #e87ba4;
+        --civic-viz-6: #008300;
+        --civic-viz-7: #4a3aa7;
+        --civic-viz-8: #e34948;
+        --civic-viz-seq-1: #cde2fb;
+        --civic-viz-seq-7: #184f95;
+        --civic-space-1: 0.25rem;
+        --civic-space-2: 0.5rem;
+        --civic-space-3: 0.75rem;
+        --civic-space-4: 1rem;
+        --civic-space-6: 1.5rem;
+        --civic-space-8: 2rem;
+        --civic-radius: 6px;
+        --civic-control-height: 44px;
+        --civic-font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font-family: var(--civic-font-sans);
+        color: var(--civic-text);
+        background: var(--civic-bg);
+        font-size: 16px;
+        line-height: 1.45;
+      }
+      body {
+        margin: 0;
+      }
+      a {
+        color: var(--civic-accent);
+      }
+      h1 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin: 0 0 var(--civic-space-2);
+      }
+      h2 {
+        font-size: 1.25rem;
+        margin: 0 0 var(--civic-space-1);
+      }
+      h3 {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .fam {
+        background: var(--civic-text);
+        color: #fff;
+        display: flex;
+        gap: var(--civic-space-4);
+        align-items: center;
+        padding: 0 var(--civic-space-4);
+        min-height: var(--civic-control-height);
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .fam a {
+        color: #fff;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+      }
+      .fam .tool {
+        font-weight: 600;
+      }
+      .fam .sp {
+        flex: 1;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        border-radius: 999px;
+        padding: 0.15em 0.7em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+      }
+      .b-live {
+        background: #e3f3e8;
+        color: var(--civic-success);
+        border-color: var(--civic-success);
+      }
+      .b-demo {
+        background: #fff4cc;
+        color: #5a4300;
+        border-color: var(--civic-warning);
+      }
+      .tabs {
+        display: flex;
+        gap: var(--civic-space-1);
+        overflow-x: auto;
+        background: var(--civic-surface);
+        border-bottom: 1px solid var(--civic-line);
+        padding: 0 var(--civic-space-4);
+        scrollbar-width: thin;
+      }
+      .tabs a {
+        white-space: nowrap;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+        padding: 0 var(--civic-space-3);
+        color: var(--civic-text);
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+      }
+      .tabs a[aria-current] {
+        border-color: var(--civic-accent);
+        font-weight: 600;
+        color: var(--civic-accent);
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--civic-space-6) var(--civic-space-4) var(--civic-space-8);
+      }
+      .lead {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-2);
+        font-size: 1.05rem;
+      }
+      .prov {
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-6);
+      }
+      .prov b {
+        color: var(--civic-text);
+        font-weight: 600;
+      }
+      .grid {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: var(--civic-space-6);
+      }
+      .tile {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+      }
+      .tile .l {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .tile .v {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
+      }
+      .tile .d {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .d.bad {
+        color: var(--civic-danger);
+      }
+      .d.good {
+        color: var(--civic-success);
+      }
+      .frame {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-6);
+      }
+      .frame .q {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-3);
+        font-size: 0.95rem;
+      }
+      .frame .src {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+        margin-top: var(--civic-space-3);
+        display: flex;
+        gap: var(--civic-space-4);
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .frame .hd {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--civic-space-3);
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: var(--civic-control-height);
+        min-width: var(--civic-control-height);
+        padding: 0 var(--civic-space-4);
+        border: 1px solid var(--civic-border);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+        color: var(--civic-text);
+        font: inherit;
+        cursor: pointer;
+      }
+      .btn.p {
+        background: var(--civic-accent);
+        border-color: var(--civic-accent);
+        color: #fff;
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--civic-viz-1);
+        outline-offset: 2px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9rem;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.45em 0.6em;
+        border-bottom: 1px solid var(--civic-line);
+      }
+      td.n,
+      th.n {
+        text-align: right;
+      }
+      caption {
+        text-align: left;
+        font-weight: 600;
+        padding: 0.4em 0;
+      }
+      details > summary {
+        cursor: pointer;
+        min-height: var(--civic-control-height);
+        display: flex;
+        align-items: center;
+        color: var(--civic-accent);
+        font-weight: 600;
+      }
+      .two {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: 1fr 1fr;
+      }
+      .multi {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .state {
+        border: 1px dashed var(--civic-border);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-4);
+      }
+      .skel {
+        background: linear-gradient(90deg, #e6ebea, #f4f6f6, #e6ebea);
+        height: 1em;
+        border-radius: 4px;
+        margin: 0.4em 0;
+      }
+      .skel.h {
+        height: 180px;
+      }
+      .msg {
+        display: flex;
+        gap: var(--civic-space-3);
+        align-items: center;
+        flex-wrap: wrap;
+        border-left: 4px solid;
+        padding: var(--civic-space-3);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+      }
+      .msg.err {
+        border-color: var(--civic-danger);
+      }
+      .msg.info {
+        border-color: var(--civic-viz-1);
+      }
+      .msg.warn {
+        border-color: var(--civic-warning);
+      }
+      .bar {
+        height: 10px;
+        background: var(--civic-line);
+        border-radius: 5px;
+        overflow: hidden;
+        width: 220px;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        background: var(--civic-viz-1);
+        width: 40%;
+      }
+      footer {
+        border-top: 1px solid var(--civic-line);
+        background: var(--civic-surface);
+        padding: var(--civic-space-6) var(--civic-space-4);
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+      }
+      footer nav {
+        display: flex;
+        gap: var(--civic-space-6);
+        flex-wrap: wrap;
+      }
+      footer a {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .dev {
+        background: #fff;
+        border: 2px solid var(--civic-viz-7);
+        color: var(--civic-viz-7);
+        font-size: 0.8rem;
+        padding: 0.3em 0.6em;
+        margin: 0;
+        position: sticky;
+        top: 0;
+        z-index: 9;
+      }
+      svg text {
+        font-family: var(--civic-font-sans);
+      }
+      @media (max-width: 640px) {
+        .grid,
+        .two,
+        .multi {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 1.4rem;
+        }
+        main {
+          padding: var(--civic-space-4) var(--civic-space-4)
+            var(--civic-space-8);
+        }
+        .fam .lang {
+          order: 3;
+        }
+        .hide-m {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .skel {
+          animation: sh 1.4s linear infinite;
+          background-size: 200% 100%;
+        }
+        @keyframes sh {
+          to {
+            background-position: -200% 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="dev">
+      Machetă țintă (docs/design) · desktop 1440 și mobil 390 prin media query ·
+      texte în română scrise de agent: needs human review
+    </p>
+    <a href="#continut" class="btn" style="position: absolute; left: -999px"
+      >Sari la conținut</a
+    >
+    <header class="fam" role="banner">
+      <a href="https://projects.cristian-nichifor.com/">← Proiecte civice</a
+      ><span class="tool">Bugetul României</span
+      ><span class="badge b-demo">Date demo</span><span class="sp"></span>
+      <nav class="lang" aria-label="Limbă">
+        <a href="/ro/" aria-current="true"><b>RO</b></a
+        >&nbsp;·&nbsp;<a href="/">EN</a>
+      </nav>
+    </header>
+    <nav class="tabs" aria-label="Secțiuni">
+      <a href="/ro/felia-ta/">Felia ta</a
+      ><a href="/ro/bilantul-national/" aria-current="page">Bilanțul național</a
+      ><a href="/ro/unde-se-duc/">Unde se duc banii</a
+      ><a href="/ro/companii-de-stat/">Companii de stat</a
+      ><a href="/ro/economie/">Economie</a><a href="/ro/societate/">Societate</a
+      ><a href="/ro/energie/">Energie</a
+      ><a href="/ro/piata-muncii/">Piața muncii</a
+      ><a href="/ro/justitie/">Justiție</a>
+    </nav>
+    <main id="continut">
+      <h1>Bilanțul național</h1>
+      <p class="lead">
+        Cât de mare este bugetul, cât de mare este deficitul, pentru ce an și
+        după cine.
+      </p>
+      <p class="prov">
+        <b>Date:</b> Open Budget 2026 (openbudget.ro), buget adoptat 2026 · PIB:
+        INS · <a href="/ro/despre/">metodă</a>
+      </p>
+      <div
+        style="
+          display: flex;
+          gap: var(--civic-space-3);
+          align-items: center;
+          margin-bottom: var(--civic-space-4);
+          flex-wrap: wrap;
+        "
+      >
+        <label for="an" style="font-weight: 600">Anul</label
+        ><select
+          id="an"
+          style="
+            min-height: var(--civic-control-height);
+            font: inherit;
+            padding: 0 0.6em;
+            border: 1px solid var(--civic-border);
+            border-radius: var(--civic-radius);
+          "
+        >
+          <option>2026 (buget adoptat)</option>
+          <option>2025</option>
+          <option>2024</option></select
+        ><span class="badge b-demo">Date demo</span>
+      </div>
+
+      <div class="grid">
+        <div class="tile">
+          <div class="l">Venituri 2026</div>
+          <div class="v">729,0 mld. lei</div>
+          <div class="d">buget adoptat</div>
+        </div>
+        <div class="tile">
+          <div class="l">Cheltuieli 2026</div>
+          <div class="v">864,7 mld. lei</div>
+          <div class="d">buget adoptat</div>
+        </div>
+        <div class="tile">
+          <div class="l">Deficit 2026</div>
+          <div class="v">−135,7 mld. lei</div>
+          <div class="d bad">cheltuieli peste venituri</div>
+        </div>
+        <div class="tile">
+          <div class="l">Deficit, % din PIB</div>
+          <div class="v">7,1 %</div>
+          <div class="d bad">referință UE: 3 %</div>
+        </div>
+      </div>
+
+      <section class="frame" aria-labelledby="h-vc">
+        <div class="hd">
+          <div>
+            <h2 id="h-vc">Venituri și cheltuieli pe ani</h2>
+            <p class="q">
+              Bugetul consolidat pe ani: venituri, cheltuieli și deficit, pe
+              modelul Open Budget. O singură axă, în mld. lei; deficitul este
+              diferența, scrisă pe fiecare an.
+            </p>
+          </div>
+          <button class="btn">Descarcă CSV</button>
+        </div>
+        <svg
+          viewBox="0 0 960 300"
+          role="img"
+          aria-label="Bare grupate venituri și cheltuieli pe ani, 2026: venituri 729,0 și cheltuieli 864,7 mld. lei; anii anteriori: date indisponibile"
+          style="width: 100%; height: auto"
+        >
+          <line x1="60" y1="250" x2="940" y2="250" stroke="#718588" />
+          <text x="12" y="30" font-size="12" fill="#475d60">mld. lei</text>
+          <g font-size="12" text-anchor="middle" fill="#475d60">
+            <text x="200" y="275">2023</text>
+            <text x="200" y="150">—</text>
+            <text x="430" y="275">2024</text>
+            <text x="430" y="150">—</text>
+            <text x="660" y="275">2025</text>
+            <text x="660" y="150">—</text>
+          </g>
+          <rect x="820" y="68" width="50" height="182" fill="#2a78d6" />
+          <text
+            x="845"
+            y="60"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            729,0
+          </text>
+          <rect x="876" y="34" width="50" height="216" fill="#eb6834" />
+          <text
+            x="901"
+            y="26"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            864,7
+          </text>
+          <text x="873" y="275" text-anchor="middle" font-size="12">
+            2026 · deficit 135,7
+          </text>
+          <g font-size="12">
+            <rect x="60" y="20" width="12" height="12" fill="#2a78d6" />
+            <text x="78" y="31">Venituri</text>
+            <rect x="150" y="20" width="12" height="12" fill="#eb6834" />
+            <text x="168" y="31">Cheltuieli</text>
+          </g>
+          <text
+            x="430"
+            y="200"
+            text-anchor="middle"
+            font-size="12"
+            fill="#475d60"
+          >
+            Anii fără date de execuție afișează „—”, nu zero
+          </text>
+        </svg>
+        <details>
+          <summary>Afișează ca tabel</summary>
+          <table>
+            <caption>
+              Buget consolidat pe ani, mld. lei
+            </caption>
+            <thead>
+              <tr>
+                <th>An</th>
+                <th class="n">Venituri</th>
+                <th class="n">Cheltuieli</th>
+                <th class="n">Deficit</th>
+                <th class="n">% PIB</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2023</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+              </tr>
+              <tr>
+                <td>2024</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+              </tr>
+              <tr>
+                <td>2025</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+              </tr>
+              <tr>
+                <td>2026 (adoptat)</td>
+                <td class="n">729,0</td>
+                <td class="n">864,7</td>
+                <td class="n">−135,7</td>
+                <td class="n">7,1</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+        <div class="src">
+          Date: Open Budget 2026 · <span class="badge b-demo">Date demo</span>
+        </div>
+      </section>
+
+      <section class="frame" aria-labelledby="h-ctx">
+        <div class="hd">
+          <div>
+            <h2 id="h-ctx">Bugetul în context</h2>
+            <p class="q">
+              Înlocuiește graficul cu două axe: trei grafice mici, fiecare cu o
+              singură axă și eticheta la capătul seriei.
+            </p>
+          </div>
+          <button class="btn">Descarcă CSV</button>
+        </div>
+        <div class="multi">
+          <div>
+            <h3>Cheltuieli publice cu sănătatea</h3>
+            <p class="q">mil. EUR · Eurostat COFOG GF07</p>
+            <svg
+              viewBox="0 0 300 150"
+              role="img"
+              aria-label="Linie 2019–2024: de la 11.171 la 18.320 mil. EUR"
+              style="width: 100%; height: auto"
+            >
+              <polyline
+                fill="none"
+                stroke="#2a78d6"
+                stroke-width="3"
+                points="20,120 60,112 100,102 140,96 180,84 220,58"
+              />
+              <text
+                x="226"
+                y="60"
+                font-size="12"
+                font-weight="600"
+                fill="#142323"
+              >
+                18.320
+              </text>
+              <text x="20" y="138" font-size="11" fill="#475d60">2019</text>
+              <text x="205" y="138" font-size="11" fill="#475d60">2024</text>
+              <text x="20" y="112" font-size="11" fill="#475d60">11.171</text>
+            </svg>
+          </div>
+          <div>
+            <h3>Beneficiari de pensii</h3>
+            <p class="q">persoane · INS</p>
+            <svg
+              viewBox="0 0 300 150"
+              role="img"
+              aria-label="Linie 2019–2023: de la 5.140.756 la 4.983.074 persoane"
+              style="width: 100%; height: auto"
+            >
+              <polyline
+                fill="none"
+                stroke="#eb6834"
+                stroke-width="3"
+                points="20,40 70,44 120,62 170,74 220,76"
+              />
+              <text
+                x="226"
+                y="80"
+                font-size="12"
+                font-weight="600"
+                fill="#142323"
+              >
+                4,98 mil.
+              </text>
+              <text x="20" y="138" font-size="11" fill="#475d60">2019</text>
+              <text x="205" y="138" font-size="11" fill="#475d60">2023</text>
+              <text x="20" y="32" font-size="11" fill="#475d60">5,14 mil.</text>
+            </svg>
+          </div>
+          <div>
+            <h3>Paturi de spital</h3>
+            <p class="q">mii paturi · INS</p>
+            <svg
+              viewBox="0 0 300 150"
+              role="img"
+              aria-label="Linie 2021–2025: de la 133,2 la 127,2 mii paturi"
+              style="width: 100%; height: auto"
+            >
+              <polyline
+                fill="none"
+                stroke="#4a3aa7"
+                stroke-width="3"
+                points="20,40 70,52 120,62 170,74 220,80"
+              />
+              <text
+                x="226"
+                y="84"
+                font-size="12"
+                font-weight="600"
+                fill="#142323"
+              >
+                127,2
+              </text>
+              <text x="20" y="138" font-size="11" fill="#475d60">2021</text>
+              <text x="205" y="138" font-size="11" fill="#475d60">2025</text>
+              <text x="20" y="32" font-size="11" fill="#475d60">133,2</text>
+            </svg>
+          </div>
+        </div>
+        <details>
+          <summary>Afișează ca tabel</summary>
+          <table>
+            <caption>
+              Indicatori de context, pe ani
+            </caption>
+            <thead>
+              <tr>
+                <th>An</th>
+                <th class="n">Sănătate, mil. EUR</th>
+                <th class="n">Pensionari</th>
+                <th class="n">Paturi, mii</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2019</td>
+                <td class="n">11.171,0</td>
+                <td class="n">5.140.756</td>
+                <td class="n">—</td>
+              </tr>
+              <tr>
+                <td>2020</td>
+                <td class="n">12.064,4</td>
+                <td class="n">5.122.122</td>
+                <td class="n">—</td>
+              </tr>
+              <tr>
+                <td>2021</td>
+                <td class="n">13.232,4</td>
+                <td class="n">5.043.972</td>
+                <td class="n">133,2</td>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td class="n">13.920,9</td>
+                <td class="n">4.993.076</td>
+                <td class="n">131,4</td>
+              </tr>
+              <tr>
+                <td>2023</td>
+                <td class="n">15.277,8</td>
+                <td class="n">4.983.074</td>
+                <td class="n">129,8</td>
+              </tr>
+              <tr>
+                <td>2024</td>
+                <td class="n">18.319,5</td>
+                <td class="n">—</td>
+                <td class="n">128,1</td>
+              </tr>
+              <tr>
+                <td>2025</td>
+                <td class="n">—</td>
+                <td class="n">—</td>
+                <td class="n">127,2</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+        <div class="src">
+          Date: Eurostat gov_10a_exp; INS ·
+          <span class="badge b-demo">Date demo</span> · 2026 în seriile INS este
+          estimare și nu se afișează
+        </div>
+      </section>
+
+      <h2>Stări</h2>
+      <div class="state">
+        <h3>Se încarcă, peste 2 s</h3>
+        <div class="msg info" role="status">
+          <span>Se încarcă execuția bugetară de la MFP…</span
+          ><span class="bar"><i></i></span>
+        </div>
+        <div class="grid" style="margin: var(--civic-space-3) 0 0">
+          <div class="tile">
+            <div class="skel" style="width: 40%"></div>
+            <div class="skel" style="height: 1.8em"></div>
+          </div>
+          <div class="tile">
+            <div class="skel" style="width: 40%"></div>
+            <div class="skel" style="height: 1.8em"></div>
+          </div>
+          <div class="tile hide-m">
+            <div class="skel" style="width: 40%"></div>
+            <div class="skel" style="height: 1.8em"></div>
+          </div>
+          <div class="tile hide-m">
+            <div class="skel" style="width: 40%"></div>
+            <div class="skel" style="height: 1.8em"></div>
+          </div>
+        </div>
+      </div>
+      <div class="state">
+        <h3>Gol (an fără date)</h3>
+        <div class="msg info">
+          <span
+            >Nu există date pentru 2024. Ultimul an cu date: 2026 (buget
+            adoptat).</span
+          ><button class="btn">Vezi 2026</button>
+        </div>
+      </div>
+      <div class="state">
+        <h3>Eroare pe o secțiune</h3>
+        <div class="msg err" role="alert">
+          <span
+            >Indicatorii de context nu au putut fi încărcați. Bilanțul de mai
+            sus rămâne afișat.</span
+          ><button class="btn p">Reîncercați</button>
+        </div>
+      </div>
+      <div class="state">
+        <h3>An parțial</h3>
+        <p style="margin: 0">
+          Pentru anul în curs, KPI-urile poartă mențiunea „execuție la 30
+          septembrie 2026” în loc de „buget adoptat”, iar bara anului are hașură
+          și eticheta „parțial”.
+        </p>
+      </div>
+    </main>
+    <footer role="contentinfo">
+      <nav aria-label="Subsol">
+        <a href="/ro/despre/">Metodologie și surse</a
+        ><a href="/ro/despre/#confidentialitate"
+          >Confidențialitate: fără cookie-uri, fără analytics</a
+        ><a href="https://data.gov.ro">Sursa datelor</a
+        ><a
+          href="https://github.com/CristianNichifor/romania-budget-dashboard/issues"
+          >Contact</a
+        >
+      </nav>
+      <p>
+        Proiect educațional independent. Cifrele estimate sunt marcate
+        „estimare” și nu sunt cifre oficiale.
+      </p>
+    </footer>
+  </body>
+</html>

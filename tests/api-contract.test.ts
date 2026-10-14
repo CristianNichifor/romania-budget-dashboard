@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Decimal } from "decimal.js";
 import {
+  ApiError,
   fetchBudgetSummary,
   fetchDestinations,
   fetchInstitutions,
@@ -88,10 +89,16 @@ describe("BFF wire contract consumed by the real client", () => {
     );
   });
 
+  it("passes the additive partial-year flag through when present", async () => {
+    const wire = { ...fixtures[summaryPath], partial: true };
+    fetchSpy.mockResolvedValue(new Response(JSON.stringify(wire)));
+    expect((await fetchBudgetSummary("2026"))?.partial).toBe(true);
+  });
+
   it("preserves decimal strings beyond JavaScript integer precision", async () => {
     const wire = { ...fixtures[summaryPath], revenue: "9007199254740993.01" };
     fetchSpy.mockResolvedValue(new Response(JSON.stringify(wire)));
-    expect((await fetchBudgetSummary("2026")).revenue).toBe(wire.revenue);
+    expect((await fetchBudgetSummary("2026"))?.revenue).toBe(wire.revenue);
   });
 
   it.each([
@@ -114,9 +121,9 @@ describe("BFF wire contract consumed by the real client", () => {
       "timeout",
       () => Promise.reject(new DOMException("Timed out", "TimeoutError")),
     ],
-  ])("falls back once for %s", async (_name, response) => {
+  ])("rejects once for %s", async (_name, response) => {
     fetchSpy.mockImplementation(response);
-    expect(await fetchBudgetSummary("2026")).toEqual(BUDGET_SUMMARY);
+    await expect(fetchBudgetSummary("2026")).rejects.toBeInstanceOf(ApiError);
     expect(useDataModeStore.getState()).toMatchObject({
       mode: "fallback",
       successes: 0,

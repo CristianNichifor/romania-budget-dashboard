@@ -29,6 +29,7 @@ import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { formatPercent, formatSignedPercent } from "../lib/format";
 import { joinPensionAge, toBalanceMld } from "../lib/macro";
+import { QueryError, SectionError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 const PENSION_YEARS_START = 2020;
@@ -36,70 +37,87 @@ const PENSION_YEARS_START = 2020;
 export function Economie() {
   const { i18n } = useLingui();
 
-  const { data: inflation, isPending: inflationPending } = useQuery({
+  const inflationQuery = useQuery({
     queryKey: ["macro-inflation"],
     queryFn: fetchInflation,
   });
+  const { data: inflation, isPending: inflationPending } = inflationQuery;
 
-  const { data: unemployment, isPending: unemploymentPending } = useQuery({
+  const unemploymentQuery = useQuery({
     queryKey: ["macro-unemployment"],
     queryFn: fetchUnemployment,
   });
+  const { data: unemployment, isPending: unemploymentPending } =
+    unemploymentQuery;
 
-  const { data: fx, isPending: fxPending } = useQuery({
+  const fxQuery = useQuery({
     queryKey: ["macro-fx"],
     queryFn: fetchFx,
   });
+  const { data: fx, isPending: fxPending } = fxQuery;
 
-  const { data: gdpGrowth, isPending: gdpGrowthPending } = useQuery({
+  const gdpGrowthQuery = useQuery({
     queryKey: ["macro-gdp-growth"],
     queryFn: fetchGdpGrowth,
   });
+  const { data: gdpGrowth, isPending: gdpGrowthPending } = gdpGrowthQuery;
 
-  const { data: gdpPerCapita, isPending: gdpPerCapitaPending } = useQuery({
+  const gdpPerCapitaQuery = useQuery({
     queryKey: ["macro-gdp-per-capita"],
     queryFn: fetchGdpPerCapita,
   });
+  const { data: gdpPerCapita, isPending: gdpPerCapitaPending } =
+    gdpPerCapitaQuery;
 
-  const { data: gdpRegions, isPending: gdpRegionsPending } = useQuery({
+  const gdpRegionsQuery = useQuery({
     queryKey: ["macro-gdp-regions"],
     queryFn: fetchGdpRegions,
   });
+  const { data: gdpRegions, isPending: gdpRegionsPending } = gdpRegionsQuery;
 
-  const { data: debt, isPending: debtPending } = useQuery({
+  const debtQuery = useQuery({
     queryKey: ["macro-debt"],
     queryFn: fetchDebt,
   });
+  const { data: debt, isPending: debtPending } = debtQuery;
 
-  const { data: trade, isPending: tradePending } = useQuery({
+  const tradeQuery = useQuery({
     queryKey: ["macro-trade"],
     queryFn: fetchTrade,
   });
+  const { data: trade, isPending: tradePending } = tradeQuery;
 
-  const { data: demographics, isPending: demographicsPending } = useQuery({
+  const demographicsQuery = useQuery({
     queryKey: ["macro-demographics"],
     queryFn: fetchDemographics,
   });
+  const { data: demographics, isPending: demographicsPending } =
+    demographicsQuery;
 
-  const { data: deficit, isPending: deficitPending } = useQuery({
+  const deficitQuery = useQuery({
     queryKey: ["macro-deficit"],
     queryFn: fetchDeficit,
   });
+  const { data: deficit, isPending: deficitPending } = deficitQuery;
 
-  const { data: employment, isPending: employmentPending } = useQuery({
+  const employmentQuery = useQuery({
     queryKey: ["macro-employment"],
     queryFn: fetchEmployment,
   });
+  const { data: employment, isPending: employmentPending } = employmentQuery;
 
-  const { data: currentAccount, isPending: currentAccountPending } = useQuery({
+  const currentAccountQuery = useQuery({
     queryKey: ["macro-current-account"],
     queryFn: fetchCurrentAccount,
   });
+  const { data: currentAccount, isPending: currentAccountPending } =
+    currentAccountQuery;
 
-  const { data: rates, isPending: ratesPending } = useQuery({
+  const ratesQuery = useQuery({
     queryKey: ["macro-rates"],
     queryFn: fetchRates,
   });
+  const { data: rates, isPending: ratesPending } = ratesQuery;
 
   const currentYear = new Date().getFullYear();
   const pensionYears = useMemo(() => {
@@ -110,10 +128,11 @@ export function Economie() {
     return years;
   }, [currentYear]);
 
-  const { data: pensionTrend, isPending: pensionPending } = useQuery({
+  const pensionTrendQuery = useQuery({
     queryKey: ["pension-trend", currentYear],
     queryFn: () => fetchPensionTrend(pensionYears),
   });
+  const { data: pensionTrend, isPending: pensionPending } = pensionTrendQuery;
 
   const latestInflation = inflation?.monthly.at(-1);
   const latestUnemployment = unemployment?.monthly.at(-1);
@@ -290,19 +309,19 @@ export function Economie() {
                 accent="red"
                 label={i18n._(m["economy.kpi.debt"])}
                 value={formatPercent(latestDebt.percentGdp)}
-                sub={`% PIB · ${latestDebt.year}`}
+                sub={`${i18n._(m["economy.percentGdp"])} · ${latestDebt.year}`}
               />
               <KpiCard
                 accent="amber"
                 label={i18n._(m["economy.kpi.trade"])}
                 value={formatSignedPercent(latestTrade.balancePctGdp)}
-                sub={`% PIB · ${latestTrade.year}`}
+                sub={`${i18n._(m["economy.percentGdp"])} · ${latestTrade.year}`}
               />
               <KpiCard
                 accent="red"
                 label={i18n._(m["economy.kpi.deficit"])}
                 value={formatSignedPercent(latestDeficit.percentGdp)}
-                sub={`% PIB · ${latestDeficit.quarter}`}
+                sub={`${i18n._(m["economy.percentGdp"])} · ${latestDeficit.quarter}`}
               />
               <KpiCard
                 accent="blue"
@@ -359,6 +378,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={inflationQuery}
+          title={i18n._(m["economy.inflation.title"])}
+        />
 
         {unemployment !== null && unemployment !== undefined && (
           <section className="space-y-4">
@@ -380,6 +403,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={unemploymentQuery}
+          title={i18n._(m["economy.unemployment.title"])}
+        />
 
         {fx !== null && fx !== undefined && (
           <section className="space-y-4">
@@ -401,6 +428,7 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError query={fxQuery} title={i18n._(m["economy.fx.title"])} />
 
         {gdpGrowth !== null && gdpGrowth !== undefined && (
           <section className="space-y-4">
@@ -420,6 +448,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={gdpGrowthQuery}
+          title={i18n._(m["economy.growth.title"])}
+        />
 
         {gdpPerCapita !== null && gdpPerCapita !== undefined && (
           <section className="space-y-4">
@@ -441,6 +473,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={gdpPerCapitaQuery}
+          title={i18n._(m["economy.gdpPerCapita.title"])}
+        />
 
         {gdpRegions !== null && gdpRegions !== undefined && (
           <section className="space-y-4">
@@ -460,6 +496,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={gdpRegionsQuery}
+          title={i18n._(m["economy.gdpRegions.title"])}
+        />
         {gdpRegionsPending && <SkeletonCard className="h-80" />}
 
         {debt !== null && debt !== undefined && (
@@ -486,6 +526,7 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError query={debtQuery} title={i18n._(m["economy.debt.title"])} />
 
         {trade !== null && trade !== undefined && (
           <section className="space-y-4">
@@ -508,6 +549,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={tradeQuery}
+          title={i18n._(m["economy.trade.title"])}
+        />
 
         {deficit !== null && deficit !== undefined && (
           <section className="space-y-4">
@@ -533,6 +578,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={deficitQuery}
+          title={i18n._(m["economy.deficit.title"])}
+        />
 
         {employment !== null && employment !== undefined && (
           <section className="space-y-4">
@@ -554,6 +603,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={employmentQuery}
+          title={i18n._(m["economy.employment.title"])}
+        />
 
         {currentAccount !== null && currentAccount !== undefined && (
           <section className="space-y-4">
@@ -573,6 +626,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={currentAccountQuery}
+          title={i18n._(m["economy.currentAccount.title"])}
+        />
 
         {rates !== null && rates !== undefined && (
           <section className="space-y-4">
@@ -594,6 +651,10 @@ export function Economie() {
             </div>
           </section>
         )}
+        <QueryError
+          query={ratesQuery}
+          title={i18n._(m["economy.rates.title"])}
+        />
       </div>
 
       {!pensionPending &&
@@ -623,6 +684,15 @@ export function Economie() {
 
       {(pensionPending || demographicsPending) && (
         <SkeletonCard className="h-96" />
+      )}
+      {(pensionTrendQuery.isError || demographicsQuery.isError) && (
+        <SectionError
+          title={i18n._(m["economy.pensions.title"])}
+          onRetry={() => {
+            if (pensionTrendQuery.isError) void pensionTrendQuery.refetch();
+            if (demographicsQuery.isError) void demographicsQuery.refetch();
+          }}
+        />
       )}
     </div>
   );

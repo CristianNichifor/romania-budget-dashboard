@@ -1,10 +1,18 @@
+import { useLingui } from "@lingui/react";
+import { useState } from "react";
 import { Tooltip, Treemap, ResponsiveContainer } from "recharts";
 import type { BudgetDestination } from "../../data/budget2026";
-import { formatMilliardeLei } from "../../lib/format";
+import { cn } from "../../lib/cn";
+import { rankDestinations } from "../../lib/destinationList";
+import { formatMilliardeLei, formatPercent } from "../../lib/format";
 import {
   INTENSITY_COLORS,
   pickIntensityIndex,
 } from "../../lib/investmentColor";
+import { tileLayout, tileTextColors, wrapLabel } from "../../lib/tileLabel";
+import { m } from "../../messages";
+
+type TreemapView = "map" | "table";
 
 interface DestinationTreemapProps {
   destinations: BudgetDestination[];
@@ -18,6 +26,8 @@ interface DestinationTreemapProps {
  */
 type TreemapDatum = Omit<BudgetDestination, "amount"> & { amount: number };
 
+const LABEL_SIZE = 12;
+
 interface TreemapCellProps {
   x?: number;
   y?: number;
@@ -30,9 +40,6 @@ interface TreemapCellProps {
   maxAmount: number;
   onSelect?: (destinationId: string) => void;
 }
-
-const DARK_TEXT = "#1e3a5f";
-const LIGHT_TEXT = "#ffffff";
 
 function TreemapCell(props: TreemapCellProps) {
   const {
@@ -50,9 +57,10 @@ function TreemapCell(props: TreemapCellProps) {
 
   const index = pickIntensityIndex(amount, minAmount, maxAmount);
   const fill = INTENSITY_COLORS[index] ?? INTENSITY_COLORS[0];
-  // Light cells need dark text; dark cells need light text.
-  const labelFill = index <= 2 ? DARK_TEXT : LIGHT_TEXT;
-  const amountFill = index <= 2 ? "#1d4ed8" : "#dbeafe";
+  const { label: labelFill, amount: amountFill } = tileTextColors(fill);
+  const layout = tileLayout(width, height, LABEL_SIZE);
+  const lines = wrapLabel(name ?? "", width, LABEL_SIZE, layout.lines);
+  const lineHeight = LABEL_SIZE * 1.3;
 
   return (
     <g>
@@ -76,21 +84,32 @@ function TreemapCell(props: TreemapCellProps) {
       >
         <title>{`${name ?? ""} — ${amount !== undefined ? formatMilliardeLei(amount) : ""}`}</title>
       </rect>
-      {width > 70 && height > 40 && (
-        <>
-          <text
-            x={x + 8}
-            y={y + 18}
-            fontSize={12}
-            fill={labelFill}
-            fontWeight={600}
-          >
-            {name ?? ""}
-          </text>
-          <text x={x + 8} y={y + 34} fontSize={10} fill={amountFill}>
-            {amount !== undefined ? formatMilliardeLei(amount) : ""}
-          </text>
-        </>
+      {lines.length > 0 && (
+        <text
+          stroke="none"
+          x={x + 8}
+          y={y + 8 + LABEL_SIZE}
+          fontSize={LABEL_SIZE}
+          fill={labelFill}
+          fontWeight={600}
+        >
+          {lines.map((line, index) => (
+            <tspan key={index} x={x + 8} dy={index === 0 ? 0 : lineHeight}>
+              {line}
+            </tspan>
+          ))}
+        </text>
+      )}
+      {lines.length > 0 && layout.showAmount && (
+        <text
+          stroke="none"
+          x={x + 8}
+          y={y + 8 + LABEL_SIZE + lines.length * lineHeight}
+          fontSize={LABEL_SIZE - 2}
+          fill={amountFill}
+        >
+          {formatMilliardeLei(amount)}
+        </text>
       )}
     </g>
   );
@@ -122,10 +141,55 @@ function TreemapTooltip({
   );
 }
 
-export function DestinationTreemap({
-  destinations,
-  onSelect,
-}: DestinationTreemapProps) {
+/** Ordered list alternative to the treemap; items open the drill-down. */
+function DestinationList({ destinations, onSelect }: DestinationTreemapProps) {
+  const { i18n } = useLingui();
+
+  return (
+    <ol
+      aria-label={i18n._(m["treemap.list.label"])}
+      className="divide-y divide-slate-100 text-sm"
+    >
+      {rankDestinations(destinations).map((destination) => {
+        const content = (
+          <>
+            <span className="font-medium">{destination.name}</span>
+            <span className="ml-auto text-right tabular-nums text-slate-600">
+              {formatMilliardeLei(destination.amount)}
+              <span className="block text-xs">
+                {i18n._({
+                  ...m["drilldown.share"],
+                  values: {
+                    sharePercent: formatPercent(destination.percentOfTotal),
+                  },
+                })}
+              </span>
+            </span>
+          </>
+        );
+        return (
+          <li key={destination.id}>
+            {onSelect !== undefined ? (
+              <button
+                type="button"
+                onClick={() => onSelect(destination.id)}
+                className="flex min-h-11 w-full items-center gap-3 px-2 py-2 text-left hover:bg-slate-50"
+              >
+                {content}
+              </button>
+            ) : (
+              <div className="flex min-h-11 items-center gap-3 px-2 py-2">
+                {content}
+              </div>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+function TreemapMap({ destinations, onSelect }: DestinationTreemapProps) {
   const data: TreemapDatum[] = destinations.map((destination) => ({
     ...destination,
     amount: Number(destination.amount),
@@ -156,6 +220,51 @@ export function DestinationTreemap({
           <Tooltip content={(props) => <TreemapTooltip {...props} />} />
         </Treemap>
       </ResponsiveContainer>
+    </div>
+  );
+}
+
+/** Treemap with a Hartă / Tabel toggle; the table view is keyboard-usable. */
+export function DestinationTreemap({
+  destinations,
+  onSelect,
+}: DestinationTreemapProps) {
+  const { i18n } = useLingui();
+  const [view, setView] = useState<TreemapView>("map");
+  const options: Array<{ value: TreemapView; label: string }> = [
+    { value: "map", label: i18n._(m["treemap.view.map"]) },
+    { value: "table", label: i18n._(m["treemap.view.table"]) },
+  ];
+
+  return (
+    <div className="space-y-3">
+      <div
+        role="group"
+        aria-label={i18n._(m["treemap.view.label"])}
+        className="flex w-fit overflow-hidden rounded-md border border-slate-200"
+      >
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={view === option.value}
+            onClick={() => setView(option.value)}
+            className={cn(
+              "inline-flex min-h-11 min-w-11 items-center justify-center px-3 text-xs font-medium",
+              view === option.value
+                ? "bg-budget-blue text-white"
+                : "bg-white text-slate-600 hover:bg-slate-50"
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+      {view === "map" ? (
+        <TreemapMap destinations={destinations} onSelect={onSelect} />
+      ) : (
+        <DestinationList destinations={destinations} onSelect={onSelect} />
+      )}
     </div>
   );
 }

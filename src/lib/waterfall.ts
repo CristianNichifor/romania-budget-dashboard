@@ -1,7 +1,8 @@
 import { Decimal } from "decimal.js";
 import type { SalaryBreakdown } from "./salary";
 
-export type WaterfallKind = "total" | "decrease";
+/** `total` opens the waterfall, `decrease` steps take from it, `net` closes it. */
+export type WaterfallKind = "total" | "decrease" | "net";
 
 export interface WaterfallRow {
   /** i18n message id for the label. */
@@ -18,7 +19,8 @@ export interface WaterfallRow {
 /**
  * Turns a salary breakdown into waterfall rows: the first row is the total
  * employer cost, each subsequent row applies a deduction, the last row is
- * the net salary. Pure function — display values are numbers at the boundary.
+ * the net salary (its own kind, so the chart colours it apart from the
+ * opening total). Pure function — display values are numbers at the boundary.
  */
 export function buildSalaryWaterfallRows(
   breakdown: SalaryBreakdown
@@ -36,7 +38,7 @@ export function buildSalaryWaterfallRows(
         start: 0,
         end: entry.amount.toNumber(),
         amount: entry.amount.toNumber(),
-        kind: "total",
+        kind: "net",
       });
     } else if (index === 0) {
       cumulative = entry.amount;
