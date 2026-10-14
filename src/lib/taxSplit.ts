@@ -45,7 +45,10 @@ export function splitContribution(
     return [];
   }
 
-  const total = usable.reduce((sum, entry) => sum.plus(entry.value), new Decimal(0));
+  const total = usable.reduce(
+    (sum, entry) => sum.plus(entry.value),
+    new Decimal(0)
+  );
   let allocated = new Decimal(0);
   return usable.map((entry, index) => {
     const perLeu = entry.value.div(total);
