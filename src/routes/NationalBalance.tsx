@@ -39,6 +39,7 @@ import { computeTrendInsight, joinBudgetWithIns } from "../lib/trendJoin";
 import { useBudgetYearStore } from "../store/useBudgetYearStore";
 import { DemoBadge } from "../components/shared/DemoBadge";
 import { EmptyState } from "../components/shared/EmptyState";
+import { BUDGET_YEAR } from "../data/budget2026";
 import { QueryError, SectionError } from "../components/shared/SectionError";
 import { expandRest } from "../lib/expandRest";
 import { isPartialYear } from "../lib/partialYear";
@@ -54,6 +55,7 @@ export function NationalBalance() {
   >(null);
   const [contextMetric, setContextMetric] = useState(DEFAULT_CONTEXT_METRIC);
   const year = useBudgetYearStore((state) => state.year);
+  const setYear = useBudgetYearStore((state) => state.setYear);
   const currentYear = new Date().getFullYear();
 
   const summaryQuery = useQuery({
@@ -143,9 +145,25 @@ export function NationalBalance() {
   const partialMarker = partialYear
     ? i18n._(m["balance.kpi.partialYear"])
     : undefined;
+  // Demo data exists only for the seed year, so that is the nearest year with data.
   const emptyYear = (
-    <EmptyState>
-      {i18n._({ ...m["section.emptyYear"], values: { year: String(year) } })}
+    <EmptyState
+      action={
+        year === BUDGET_YEAR
+          ? undefined
+          : {
+              label: i18n._({
+                ...m["section.emptyYear.action"],
+                values: { year: String(BUDGET_YEAR) },
+              }),
+              onClick: () => setYear(BUDGET_YEAR),
+            }
+      }
+    >
+      {i18n._({
+        ...m["section.emptyYear"],
+        values: { year: String(year), seedYear: String(BUDGET_YEAR) },
+      })}
     </EmptyState>
   );
 
