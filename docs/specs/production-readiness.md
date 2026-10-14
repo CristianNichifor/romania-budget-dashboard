@@ -94,6 +94,33 @@ marked "needs human review".
   `api.buget.cristian-nichifor.com`; left for the maintainer (see D11).
 - Test: review.
 
+## Theme D — UX review fixes
+
+Items from the coordinator's review of the live dashboard. Status `done`
+unless noted.
+
+- U1 · Adopted-vs-executed overrun compares deficit magnitudes. Given adopted
+  −141,9 and executed 168,4 mld. lei, then the overrun is 26,5, not 310,3.
+  Test: `tests/adoptedComparison.test.ts`.
+- U2 · Salary waterfall bars carry category labels and values; the net KPI
+  shows its amount once. Test: `e2e/smoke.spec.ts`.
+- U3 · SOE counts, county tiles and "% PIB" go through i18n; the subsidy total
+  is abbreviated (mld. lei) without a doubled unit; the executed % of GDP uses
+  the ro decimal comma. Locale-aware number formatting on EN pages (e.g.
+  "mld. lei") is `todo`, as are unaccented category names, which come from the
+  BFF data.
+- U4 · SOE scatter x-axis clipped to ±100% margin; outliers pinned to the edge
+  as red triangles with a note. Test: `tests/soeScatter.test.ts`.
+- U5 · The BFF's "other destinations" bucket is split into its five largest
+  items; the sankey keeps a single rest node. Tests: `tests/expandRest.test.ts`,
+  `tests/sankey.test.ts`.
+- U6 · Tile labels pick dark or light text by WCAG contrast and are cut to the
+  tile width. Test: `tests/tileLabel.test.ts`.
+- U7 · The root `/` and `x-default` default to Romanian. Tests:
+  `tests/routeTable.test.ts`, `tests/staticHead.test.ts`, `e2e/smoke.spec.ts`.
+- U8 · The budget source badge names the selected year. Test:
+  `tests/SourceBadge.test.tsx`.
+
 ## Maintainer-only
 
 - D10 · Gate deploy on CI — `needs-human`: a `verify` job inside
