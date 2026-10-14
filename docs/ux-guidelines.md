@@ -22,7 +22,8 @@ any chart.
 
 Every tab (`src/lib/routeTable.ts`) follows the same order:
 
-1. Family bar (civic-ui `FamilyBar`, link back to the hub) — _not yet adopted_.
+1. Family bar (civic-ui `FamilyBar`, link back to the hub) — hub link in the
+   app header (F2.1); civic-ui `FamilyBar` _not yet adopted_.
 2. Header: app title "Bugetul României", one-line purpose, locale switcher,
    data-mode badge (`Header`, `DataModeBadge`).
 3. Tab navigation (`TabNavigation`); horizontally scrollable on mobile.
@@ -122,8 +123,8 @@ Use exactly: **Date live** / Live data, **Date demo** / Demo data,
 From the 2026-10-14 live review and a code audit. Items in files the `bui`
 session is changing are recorded here, not fixed in this PR.
 
-- UXG-B1 · No civic-ui family bar or shared footer; the app does not link
-  back to the hub. Adopt `SiteShell`/`FamilyBar`/`SiteFooter`.
+- UXG-B1 · No civic-ui family bar or shared footer (the header links back to
+  the hub since F2.1). Adopt `SiteShell`/`FamilyBar`/`SiteFooter`.
 - UXG-B2 · ~~No axe check in e2e~~ — `e2e/a11y.spec.ts` runs axe (WCAG 2.1
   A/AA) on every route, both locales, at 1440 and 390 px.
 - UXG-B3 · `DualAxisTrend` on Bilanțul național uses two Y axes (rule 4);
