@@ -13,6 +13,7 @@ import { MacroTrendChart } from "../components/charts/MacroTrendChart";
 import { RealWageLine } from "../components/charts/RealWageLine";
 import { SalaryWaterfall } from "../components/charts/SalaryWaterfall";
 import { KpiCard } from "../components/shared/KpiCard";
+import { LeuBridge } from "../components/shared/LeuBridge";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { formatEur, formatLei, formatPercent } from "../lib/format";
@@ -157,6 +158,9 @@ export function CitizenSlice() {
               <SalaryWaterfall rows={buildSalaryWaterfallRows(breakdown)} />
             </div>
           </>
+        )}
+        {breakdown !== null && breakdown !== undefined && (
+          <LeuBridge contribution={breakdown.stateShare} />
         )}
         <QueryError query={breakdownQuery} />
         {(breakdown === null || breakdown === undefined) && (
