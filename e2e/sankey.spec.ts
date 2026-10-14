@@ -16,15 +16,12 @@ test("the sankey draws at most eight destination flows and groups the rest", asy
   expect(count).toBeLessThanOrEqual(9); // eight destinations + the rest node
 
   // The drill-down exists exactly when flows were grouped (live data has a
-  // rest bucket; the bundled seed lists six destinations and none).
+  // rest bucket with many items; the bundled seed lists six destinations, so
+  // its rest node is only the uncovered remainder and has nothing to list).
   const details = page.getByTestId("sankey-rest-details");
   if ((await details.count()) > 0) {
     await expect(details.locator("summary")).toContainText("Alte destinații");
     await details.locator("summary").click();
     await expect(details.locator("li").first()).toContainText(/mld\. lei/);
-  } else {
-    await expect(
-      sankey.locator("text", { hasText: "Alte destinații" })
-    ).toHaveCount(0);
   }
 });
