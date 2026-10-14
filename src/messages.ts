@@ -52,6 +52,10 @@ export const m = {
       "Proiect educațional — datele provin din surse publice oficiale; sursa fiecărui grafic este afișată pe card.",
   }),
   "app.loading": msg({ id: "app.loading", message: "Se încarcă…" }),
+  "app.loadingSlow": msg({
+    id: "app.loadingSlow",
+    message: "Serverul răspunde greu — mai așteptăm câteva secunde.",
+  }),
   "nav.citizenSlice": msg({ id: "nav.citizenSlice", message: "Feliuța ta" }),
   "nav.label": msg({ id: "nav.label", message: "Navigare principală" }),
   "nav.economy": msg({ id: "nav.economy", message: "Economie" }),

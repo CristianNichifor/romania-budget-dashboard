@@ -46,10 +46,17 @@ function formatMoney(value: number, currency: Currency): string {
   return currency === "eur" ? formatEur(value) : formatLei(value);
 }
 
+/** Opening total blue, deductions red, the closing net green (design 01, F2.5). */
+const BAR_FILL: Record<WaterfallRow["kind"], string> = {
+  total: "#2563eb",
+  decrease: "#dc2626",
+  net: "#15803d",
+};
+
 function WaterfallBar(props: BarShapeProps) {
   const { x, y, width, height, payload } = props;
   const kind = (payload as WaterfallChartDatum | undefined)?.kind;
-  const fill = kind === "total" ? "#2563eb" : "#dc2626";
+  const fill = kind === undefined ? "#dc2626" : BAR_FILL[kind];
 
   return (
     <rect

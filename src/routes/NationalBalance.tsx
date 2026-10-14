@@ -228,11 +228,11 @@ export function NationalBalance() {
               sub={partialMarker}
             />
             <div className="rounded-xl border border-red-200 bg-red-50 p-4 shadow-sm">
-              <p className="text-sm font-medium text-slate-500">
+              <p className="text-sm font-medium text-slate-600">
                 {i18n._(m["balance.kpi.deficitGdp"])}
               </p>
               <DebtGauge valuePercent={deficitPercent} />
-              <p className="mt-1 text-center text-xs text-slate-500">
+              <p className="mt-1 text-center text-xs text-slate-600">
                 {i18n._(m["balance.debtGauge.reference"])}
               </p>
             </div>
