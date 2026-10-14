@@ -5,6 +5,7 @@ import {
   REQUEST_TIMEOUT_MS,
   fetchBudgetComparison,
   fetchBudgetSummary,
+  fetchBudgetYears,
   fetchDestinations,
   fetchInflation,
   fetchInstitutions,
@@ -140,6 +141,10 @@ describe("static mode", () => {
     ).toBeGreaterThan(0);
     expect(await fetchInflation()).toBeNull();
     expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("offers only the seed year in the year selector", async () => {
+    expect(await fetchBudgetYears()).toEqual([BUDGET_YEAR]);
   });
 
   it("returns empty results for any other seed year", async () => {
