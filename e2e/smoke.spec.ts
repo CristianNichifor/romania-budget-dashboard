@@ -75,3 +75,13 @@ test("each route links its canonical and hreflang pair", async ({ page }) => {
   ).toHaveAttribute("href", `${origin}/energy/`);
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
 });
+
+test("sections built from the bundled seed are labelled demo data", async ({
+  page,
+}) => {
+  await page.goto("/ro/bilantul-national/");
+  await expect(
+    page.getByText("date demo", { exact: true }).first()
+  ).toBeVisible();
+  await expect(page.getByRole("alert")).toHaveCount(0);
+});
