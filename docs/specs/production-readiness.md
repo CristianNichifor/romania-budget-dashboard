@@ -150,13 +150,16 @@ unless noted.
 - Tests: unit tests for the conversion and URL helpers; e2e toggles on
   Your-share, navigates to Labour market, asserts the param and unit persist.
 
-### E4 · "What 1 leu of your tax buys" · `todo`
+### E4 · "What 1 leu of your tax buys" · `done`
 
 - Given the user's monthly state contribution on Your-share, then a section
   splits it pro rata by the latest budget year's destination shares (existing
   data), labelled an estimate; the rows sum exactly to the contribution
   (Decimal, last row absorbs rounding). Romanian copy needs human review.
 - Tests: unit test for the pure split; e2e checks the section and its label.
+- Done: `src/lib/taxSplit.ts`, `LeuBridge` on Your-share; `tests/taxSplit.test.ts`,
+  `e2e/leu-bridge.spec.ts`. Romanian copy (`leuBridge.*`) and the English
+  translation are agent-written: **needs human review**.
 
 ## Theme F — UX guidelines (fleet round 2, uxg-c)
 

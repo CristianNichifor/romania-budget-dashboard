@@ -119,6 +119,11 @@ msgid "economy.currentAccount.description"
 msgstr "Current account balance with the rest of the world, quarterly, in billions of euro (Eurostat, BPM6). Red bars = external deficit."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1190
+msgid "leuBridge.bani"
+msgstr "bani"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:998
 msgid "soe.company.mfin"
 msgstr "Ministry of Finance balance sheet 2024"
@@ -217,6 +222,16 @@ msgstr "The deficit the budget law promised (MFP) versus what was actually execu
 #: src/messages.ts:545
 msgid "salary.description"
 msgstr "How much of your labour cost goes to the state and how much you keep."
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1171
+msgid "leuBridge.title"
+msgstr "What 1 leu of your taxes buys"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1175
+msgid "leuBridge.description"
+msgstr "The {amount} a month that reaches the state, split by where the budget goes."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:853
@@ -559,6 +574,11 @@ msgid "treemap.title"
 msgstr "Spending destinations"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1181
+msgid "leuBridge.destination"
+msgstr "Destination"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:795
 msgid "drilldown.breadcrumb.destinations"
 msgstr "Destinations"
@@ -569,6 +589,11 @@ msgid "soe.counties.description"
 msgstr "Square size = turnover; shade = share of loss-making companies."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1185
+msgid "leuBridge.perLeu"
+msgstr "Out of 1 leu"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:181
 msgid "energy.importLegend"
 msgstr "of consumption"
@@ -577,6 +602,11 @@ msgstr "of consumption"
 #: src/messages.ts:177
 msgid "energy.renewablesLegend"
 msgstr "of gross final consumption"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1186
+msgid "leuBridge.perMonth"
+msgstr "Out of your monthly contribution"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:374
@@ -634,6 +664,11 @@ msgid "energy.kpi.renewables"
 msgstr "Renewable energy"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1180
+msgid "leuBridge.estimate"
+msgstr "Estimate"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:573
 msgid "salary.estimateLoading"
 msgstr "Estimating average salary…"
@@ -647,6 +682,11 @@ msgstr "Estimate: the mean gross annual earnings (Structure of Earnings Survey, 
 #: src/messages.ts:847
 msgid "investments.estimatedNote"
 msgstr "Estimate: the 2026 public investment programme has no structured public county-level source; amounts are approximate."
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1191
+msgid "leuBridge.note"
+msgstr "Estimate: taxes are not earmarked. Your contribution is split in proportion to consolidated budget spending, so this shows where an average leu goes, not your leu in particular."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:334

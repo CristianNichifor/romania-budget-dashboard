@@ -1168,6 +1168,31 @@ export const m = {
     message:
       "▲ {count} companii cu marja în afara intervalului ±100% sunt fixate pe margine; valoarea reală apare la hover.",
   }),
+  "leuBridge.title": msg({
+    id: "leuBridge.title",
+    message: "Ce cumpără 1 leu din taxele tale",
+  }),
+  "leuBridge.description": msg({
+    id: "leuBridge.description",
+    message:
+      "Cei {amount} pe lună care ajung la stat, împărțiți după destinațiile bugetului.",
+  }),
+  "leuBridge.estimate": msg({ id: "leuBridge.estimate", message: "Estimare" }),
+  "leuBridge.destination": msg({
+    id: "leuBridge.destination",
+    message: "Destinație",
+  }),
+  "leuBridge.perLeu": msg({ id: "leuBridge.perLeu", message: "Din 1 leu" }),
+  "leuBridge.perMonth": msg({
+    id: "leuBridge.perMonth",
+    message: "Din contribuția ta lunară",
+  }),
+  "leuBridge.bani": msg({ id: "leuBridge.bani", message: "bani" }),
+  "leuBridge.note": msg({
+    id: "leuBridge.note",
+    message:
+      "Estimare: taxele nu sunt alocate pe destinații. Contribuția este împărțită proporțional cu cheltuielile bugetului consolidat, deci arată unde merge un leu mediu, nu leul tău anume.",
+  }),
 } satisfies Record<string, MessageDescriptor>;
 
 export type MessageId = keyof typeof m;
