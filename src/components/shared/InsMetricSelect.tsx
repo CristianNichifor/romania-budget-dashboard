@@ -25,7 +25,7 @@ export function InsMetricSelect({
       </label>
       <select
         id="ins-metric"
-        className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm shadow-sm focus-visible:outline-2 focus-visible:outline-budget-blue"
+        className="min-h-11 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm shadow-sm focus-visible:outline-2 focus-visible:outline-budget-blue"
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >

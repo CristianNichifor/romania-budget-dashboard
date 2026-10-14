@@ -124,8 +124,8 @@ session is changing are recorded here, not fixed in this PR.
 
 - UXG-B1 · No civic-ui family bar or shared footer; the app does not link
   back to the hub. Adopt `SiteShell`/`FamilyBar`/`SiteFooter`.
-- UXG-B2 · No axe check in e2e; add `@axe-core/playwright` on every route at
-  1440 and 390 px.
+- UXG-B2 · ~~No axe check in e2e~~ — `e2e/a11y.spec.ts` runs axe (WCAG 2.1
+  A/AA) on every route, both locales, at 1440 and 390 px.
 - UXG-B3 · `DualAxisTrend` on Bilanțul național uses two Y axes (rule 4);
   replace with small multiples like E2.
 - UXG-B4 · Sankey readability and treemap labels on small tiles (review

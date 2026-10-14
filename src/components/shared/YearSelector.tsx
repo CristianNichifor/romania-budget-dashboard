@@ -63,8 +63,8 @@ export function YearSelector() {
                 <span
                   className={
                     selected
-                      ? "ml-1.5 text-xs font-normal text-white/80"
-                      : "ml-1.5 text-xs font-normal text-amber-600"
+                      ? "ml-1.5 text-xs font-normal text-white"
+                      : "ml-1.5 text-xs font-normal text-amber-800"
                   }
                 >
                   {i18n._(m["year.inProgress"])}

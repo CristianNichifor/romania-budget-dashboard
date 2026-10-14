@@ -16,7 +16,7 @@ import { KpiCard } from "../components/shared/KpiCard";
 import { LeuBridge } from "../components/shared/LeuBridge";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
-import { formatEur, formatLei, formatPercent } from "../lib/format";
+import { MISSING, formatEur, formatLei, formatPercent } from "../lib/format";
 import { estimateAverageNetSalary } from "../lib/averageSalary";
 import { buildSalaryWaterfallRows } from "../lib/waterfall";
 import { useCurrency } from "../store/useCurrency";
@@ -115,7 +115,7 @@ export function CitizenSlice() {
               <Slider.Track className="relative h-1.5 grow rounded-full bg-slate-200">
                 <Slider.Range className="absolute h-full rounded-full bg-budget-blue" />
               </Slider.Track>
-              <Slider.Thumb className="block size-5 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
+              <Slider.Thumb className="block size-6 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
             </Slider.Root>
             <span className="w-28 text-right text-lg font-bold tabular-nums">
               {formatLei(gross)}
@@ -142,7 +142,7 @@ export function CitizenSlice() {
                 label={i18n._(m["salary.vsAverage"])}
                 value={
                   vsAverage === null
-                    ? "—"
+                    ? MISSING
                     : Math.abs(vsAverage) < 0.5
                       ? "0%"
                       : vsAverage > 0

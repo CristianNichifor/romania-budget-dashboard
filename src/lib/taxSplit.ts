@@ -65,3 +65,27 @@ export function splitContribution(
     };
   });
 }
+
+/**
+ * Whole bani out of 1 leu per row, summing to exactly 100 (largest remainder):
+ * what the bridge band writes on its segments. Same order as `rows`.
+ */
+export function baniOutOfLeu(rows: ContributionShare[]): number[] {
+  if (rows.length === 0) {
+    return [];
+  }
+  const exact = rows.map((row) => row.perLeu.mul(100));
+  const floors = exact.map((value) => value.floor().toNumber());
+  let missing = 100 - floors.reduce((sum, value) => sum + value, 0);
+  const byRemainder = exact
+    .map((value, index) => ({ index, rest: value.minus(value.floor()) }))
+    .sort((a, b) => b.rest.comparedTo(a.rest) || a.index - b.index);
+  for (const { index } of byRemainder) {
+    if (missing <= 0) {
+      break;
+    }
+    floors[index] = (floors[index] ?? 0) + 1;
+    missing -= 1;
+  }
+  return floors;
+}
