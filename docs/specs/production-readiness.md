@@ -136,19 +136,27 @@ unless noted.
   `activateLocale`), `e2e/locale-format.spec.ts` (`bn lei` on
   `/national-balance/`, `mld. lei` on `/ro/bilantul-national/`).
 
-### E2 · Social spending as small multiples · `todo`
+### E2 · Social context as small multiples · `todo`
 
-- Given the Society tab, then the spending section renders two charts, one per
-  series, each with its own labelled Y axis naming the unit; no dual axis.
-- Tests: component test (two surfaces, two axis labels), `e2e/smoke.spec.ts`.
+- Given the National balance tab, then the "Context social" section (health
+  spending against the chosen INS indicator) renders two charts, one per series,
+  each titled and with its own Y axis labelled with its unit; no dual axis.
+  (The Society tab's spending chart already shares one % of GDP axis.)
+- Tests: component test (two panels, two axis labels), e2e on the tab.
 
 ### E3 · lei/€ toggle shared across tabs · `todo`
 
-- Given `?currency=eur` in the URL, then wage charts on Your-share and Labour
-  market show €, converted with the bundled BNR annual average rate and
-  labelled as such; the toggle keeps path and other params; default is lei.
+- Given `?currency=eur` in the URL, then the wage charts on Your-share (salary
+  waterfall, real wage) show €; with lei (the default, no param) they show lei.
+  Conversions use the bundled ECB 2025 annual average EUR/RON rate, 5.0424
+  (ECB data API `EXR/A.RON.EUR.SP00.A`, checked 2026-10-14; the BNR annual file
+  could not be fetched), and the chart says so.
+- Given the toggle in the header, then switching keeps the path and other
+  params, and tab and language links carry the param to every tab.
+- Labour market has no wage chart today; the param survives a visit there.
+- Romanian copy for the toggle and the rate note: **needs human review**.
 - Tests: unit tests for the conversion and URL helpers; e2e toggles on
-  Your-share, navigates to Labour market, asserts the param and unit persist.
+  Your-share, navigates to Labour market and back, asserts the param and unit.
 
 ### E4 · "What 1 leu of your tax buys" · `todo`
 
