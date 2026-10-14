@@ -77,6 +77,14 @@ const SOURCES: Source[] = [
 const linkClass =
   "font-medium text-budget-blue underline underline-offset-2 hover:text-blue-800";
 
+/** In-page contents (design 05): section ids and their heading messages. */
+const CONTENTS = [
+  { id: "metoda", title: m["about.method.title"] },
+  { id: "surse", title: m["about.sources.title"] },
+  { id: "confidentialitate", title: m["about.privacy.title"] },
+  { id: "cod", title: m["about.code.title"] },
+] as const;
+
 export function About() {
   const { i18n } = useLingui();
 
@@ -93,36 +101,81 @@ export function About() {
         </p>
       </section>
 
-      <section className="space-y-3">
+      <nav aria-label={i18n._(m["about.contents"])} className="text-sm">
+        <ul className="flex flex-wrap gap-x-4 gap-y-1">
+          {CONTENTS.map((entry) => (
+            <li key={entry.id}>
+              <a href={`#${entry.id}`} className={linkClass}>
+                {i18n._(entry.title)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <section id="metoda" className="space-y-3">
+        <h3 className="text-lg font-semibold">
+          {i18n._(m["about.method.title"])}
+        </h3>
+        <p className="text-slate-700">{i18n._(m["about.method.salary"])}</p>
+        <p className="text-slate-700">{i18n._(m["about.method.estimate"])}</p>
+        <p className="text-slate-700">{i18n._(m["about.method.money"])}</p>
+      </section>
+
+      <section id="surse" className="space-y-3">
         <h3 className="text-lg font-semibold">
           {i18n._(m["about.sources.title"])}
         </h3>
         <p className="text-sm text-slate-600">
           {i18n._(m["about.sources.description"])}
         </p>
-        <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
-          {SOURCES.map((source) => (
-            <li key={source.name} className="space-y-1 p-4 text-sm">
-              <a href={source.url} className={linkClass}>
-                {source.name}
-              </a>
-              <p className="text-slate-600">{i18n._(source.use)}</p>
-              <p className="text-slate-500">
-                {i18n._(m["about.licence"])}:{" "}
-                {source.licence === null ? (
-                  i18n._(m["about.licence.none"])
-                ) : (
-                  <a href={source.licence.url} className={linkClass}>
-                    {source.licence.label ?? i18n._(m["about.licence.terms"])}
-                  </a>
-                )}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+          <table className="w-full text-left text-sm">
+            <caption className="sr-only">
+              {i18n._(m["about.sources.title"])}
+            </caption>
+            <thead className="bg-slate-50 text-xs text-slate-600">
+              <tr>
+                <th scope="col" className="px-4 py-2 font-medium">
+                  {i18n._(m["about.sources.col.source"])}
+                </th>
+                <th scope="col" className="px-4 py-2 font-medium">
+                  {i18n._(m["about.sources.col.use"])}
+                </th>
+                <th scope="col" className="px-4 py-2 font-medium">
+                  {i18n._(m["about.sources.col.licence"])}
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200">
+              {SOURCES.map((source) => (
+                <tr key={source.name}>
+                  <th scope="row" className="px-4 py-3 font-normal">
+                    <a href={source.url} className={linkClass}>
+                      {source.name}
+                    </a>
+                  </th>
+                  <td className="px-4 py-3 text-slate-600">
+                    {i18n._(source.use)}
+                  </td>
+                  <td className="px-4 py-3 text-slate-500">
+                    {source.licence === null ? (
+                      i18n._(m["about.licence.none"])
+                    ) : (
+                      <a href={source.licence.url} className={linkClass}>
+                        {source.licence.label ??
+                          i18n._(m["about.licence.terms"])}
+                      </a>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
-      <section className="space-y-3">
+      <section id="confidentialitate" className="space-y-3">
         <h3 className="text-lg font-semibold">
           {i18n._(m["about.privacy.title"])}
         </h3>
@@ -130,7 +183,7 @@ export function About() {
         <p className="text-slate-700">{i18n._(m["about.privacy.hosting"])}</p>
       </section>
 
-      <section className="space-y-3">
+      <section id="cod" className="space-y-3">
         <h3 className="text-lg font-semibold">
           {i18n._(m["about.code.title"])}
         </h3>
