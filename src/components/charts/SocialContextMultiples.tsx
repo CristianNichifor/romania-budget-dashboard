@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatNumber } from "../../lib/format";
+import { MISSING, formatNumber } from "../../lib/format";
 import type { DualTrendPoint } from "../../lib/trendJoin";
 
 interface SocialContextMultiplesProps {
@@ -51,7 +51,7 @@ const tooltipValue =
   (value: unknown): string =>
     typeof value === "number"
       ? `${formatNumber(value, { maximumFractionDigits: 1 })} ${unit}`
-      : "—";
+      : MISSING;
 
 /**
  * Health spending and the chosen INS indicator as two small multiples on a

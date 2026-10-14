@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Felia ta — Bugetul României</title>
+    <style>
+      /* Token values copied from civic-ui src/foundations.css (light theme), 2026-10-14 */
+      :root {
+        --civic-bg: #f4f6f6;
+        --civic-surface: #ffffff;
+        --civic-text: #142323;
+        --civic-muted: #475d60;
+        --civic-border: #718588;
+        --civic-line: #d5dddc;
+        --civic-accent: #006b60;
+        --civic-success: #146c2e;
+        --civic-warning: #f2b300;
+        --civic-danger: #b3261e;
+        --civic-viz-1: #2a78d6;
+        --civic-viz-2: #eb6834;
+        --civic-viz-3: #1baf7a;
+        --civic-viz-4: #eda100;
+        --civic-viz-5: #e87ba4;
+        --civic-viz-6: #008300;
+        --civic-viz-7: #4a3aa7;
+        --civic-viz-8: #e34948;
+        --civic-viz-seq-1: #cde2fb;
+        --civic-viz-seq-7: #184f95;
+        --civic-space-1: 0.25rem;
+        --civic-space-2: 0.5rem;
+        --civic-space-3: 0.75rem;
+        --civic-space-4: 1rem;
+        --civic-space-6: 1.5rem;
+        --civic-space-8: 2rem;
+        --civic-radius: 6px;
+        --civic-control-height: 44px;
+        --civic-font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font-family: var(--civic-font-sans);
+        color: var(--civic-text);
+        background: var(--civic-bg);
+        font-size: 16px;
+        line-height: 1.45;
+      }
+      body {
+        margin: 0;
+      }
+      a {
+        color: var(--civic-accent);
+      }
+      h1 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin: 0 0 var(--civic-space-2);
+      }
+      h2 {
+        font-size: 1.25rem;
+        margin: 0 0 var(--civic-space-1);
+      }
+      h3 {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .fam {
+        background: var(--civic-text);
+        color: #fff;
+        display: flex;
+        gap: var(--civic-space-4);
+        align-items: center;
+        padding: 0 var(--civic-space-4);
+        min-height: var(--civic-control-height);
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .fam a {
+        color: #fff;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+      }
+      .fam .tool {
+        font-weight: 600;
+      }
+      .fam .sp {
+        flex: 1;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        border-radius: 999px;
+        padding: 0.15em 0.7em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+      }
+      .b-live {
+        background: #e3f3e8;
+        color: var(--civic-success);
+        border-color: var(--civic-success);
+      }
+      .b-demo {
+        background: #fff4cc;
+        color: #5a4300;
+        border-color: var(--civic-warning);
+      }
+      .tabs {
+        display: flex;
+        gap: var(--civic-space-1);
+        overflow-x: auto;
+        background: var(--civic-surface);
+        border-bottom: 1px solid var(--civic-line);
+        padding: 0 var(--civic-space-4);
+        scrollbar-width: thin;
+      }
+      .tabs a {
+        white-space: nowrap;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+        padding: 0 var(--civic-space-3);
+        color: var(--civic-text);
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+      }
+      .tabs a[aria-current] {
+        border-color: var(--civic-accent);
+        font-weight: 600;
+        color: var(--civic-accent);
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--civic-space-6) var(--civic-space-4) var(--civic-space-8);
+      }
+      .lead {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-2);
+        font-size: 1.05rem;
+      }
+      .prov {
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-6);
+      }
+      .prov b {
+        color: var(--civic-text);
+        font-weight: 600;
+      }
+      .grid {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: var(--civic-space-6);
+      }
+      .tile {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+      }
+      .tile .l {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .tile .v {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
+      }
+      .tile .d {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .d.bad {
+        color: var(--civic-danger);
+      }
+      .d.good {
+        color: var(--civic-success);
+      }
+      .frame {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-6);
+      }
+      .frame .q {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-3);
+        font-size: 0.95rem;
+      }
+      .frame .src {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+        margin-top: var(--civic-space-3);
+        display: flex;
+        gap: var(--civic-space-4);
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .frame .hd {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--civic-space-3);
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: var(--civic-control-height);
+        min-width: var(--civic-control-height);
+        padding: 0 var(--civic-space-4);
+        border: 1px solid var(--civic-border);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+        color: var(--civic-text);
+        font: inherit;
+        cursor: pointer;
+      }
+      .btn.p {
+        background: var(--civic-accent);
+        border-color: var(--civic-accent);
+        color: #fff;
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--civic-viz-1);
+        outline-offset: 2px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9rem;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.45em 0.6em;
+        border-bottom: 1px solid var(--civic-line);
+      }
+      td.n,
+      th.n {
+        text-align: right;
+      }
+      caption {
+        text-align: left;
+        font-weight: 600;
+        padding: 0.4em 0;
+      }
+      details > summary {
+        cursor: pointer;
+        min-height: var(--civic-control-height);
+        display: flex;
+        align-items: center;
+        color: var(--civic-accent);
+        font-weight: 600;
+      }
+      .two {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: 1fr 1fr;
+      }
+      .multi {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .state {
+        border: 1px dashed var(--civic-border);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-4);
+      }
+      .skel {
+        background: linear-gradient(90deg, #e6ebea, #f4f6f6, #e6ebea);
+        height: 1em;
+        border-radius: 4px;
+        margin: 0.4em 0;
+      }
+      .skel.h {
+        height: 180px;
+      }
+      .msg {
+        display: flex;
+        gap: var(--civic-space-3);
+        align-items: center;
+        flex-wrap: wrap;
+        border-left: 4px solid;
+        padding: var(--civic-space-3);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+      }
+      .msg.err {
+        border-color: var(--civic-danger);
+      }
+      .msg.info {
+        border-color: var(--civic-viz-1);
+      }
+      .msg.warn {
+        border-color: var(--civic-warning);
+      }
+      .bar {
+        height: 10px;
+        background: var(--civic-line);
+        border-radius: 5px;
+        overflow: hidden;
+        width: 220px;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        background: var(--civic-viz-1);
+        width: 40%;
+      }
+      footer {
+        border-top: 1px solid var(--civic-line);
+        background: var(--civic-surface);
+        padding: var(--civic-space-6) var(--civic-space-4);
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+      }
+      footer nav {
+        display: flex;
+        gap: var(--civic-space-6);
+        flex-wrap: wrap;
+      }
+      footer a {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .dev {
+        background: #fff;
+        border: 2px solid var(--civic-viz-7);
+        color: var(--civic-viz-7);
+        font-size: 0.8rem;
+        padding: 0.3em 0.6em;
+        margin: 0;
+        position: sticky;
+        top: 0;
+        z-index: 9;
+      }
+      svg text {
+        font-family: var(--civic-font-sans);
+      }
+      @media (max-width: 640px) {
+        .grid,
+        .two,
+        .multi {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 1.4rem;
+        }
+        main {
+          padding: var(--civic-space-4) var(--civic-space-4)
+            var(--civic-space-8);
+        }
+        .fam .lang {
+          order: 3;
+        }
+        .hide-m {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .skel {
+          animation: sh 1.4s linear infinite;
+          background-size: 200% 100%;
+        }
+        @keyframes sh {
+          to {
+            background-position: -200% 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="dev">
+      Machetă țintă (docs/design) · desktop 1440 și mobil 390 prin media query ·
+      texte în română scrise de agent: needs human review
+    </p>
+    <a href="#continut" class="btn" style="position: absolute; left: -999px"
+      >Sari la conținut</a
+    >
+    <header class="fam" role="banner">
+      <a href="https://projects.cristian-nichifor.com/">← Proiecte civice</a
+      ><span class="tool">Bugetul României</span
+      ><span class="badge b-demo">Date demo</span><span class="sp"></span>
+      <nav class="lang" aria-label="Limbă">
+        <a href="/ro/" aria-current="true"><b>RO</b></a
+        >&nbsp;·&nbsp;<a href="/">EN</a>
+      </nav>
+    </header>
+    <nav class="tabs" aria-label="Secțiuni">
+      <a href="/ro/felia-ta/" aria-current="page">Felia ta</a
+      ><a href="/ro/bilantul-national/">Bilanțul național</a
+      ><a href="/ro/unde-se-duc/">Unde se duc banii</a
+      ><a href="/ro/companii-de-stat/">Companii de stat</a
+      ><a href="/ro/economie/">Economie</a><a href="/ro/societate/">Societate</a
+      ><a href="/ro/energie/">Energie</a
+      ><a href="/ro/piata-muncii/">Piața muncii</a
+      ><a href="/ro/justitie/">Justiție</a>
+    </nav>
+    <main id="continut">
+      <h1>Felia ta din buget</h1>
+      <p class="lead">
+        Câți bani din costul muncii tale ajung la stat, câți îți rămân și ce
+        cumpără 1 leu din taxele tale.
+      </p>
+      <p class="prov">
+        <b>Date:</b> Open Budget 2026 (openbudget.ro), cote fiscale 2026 ·
+        estimare, nu cifră oficială · <a href="/ro/despre/">metodă</a>
+      </p>
+
+      <section class="frame" aria-labelledby="h-sal">
+        <div class="hd">
+          <div>
+            <h2 id="h-sal">Salariul tău brut pe lună</h2>
+            <p class="q">
+              Modificați suma; graficul și tabelul se actualizează. Implicit:
+              salariul mediu brut estimat.
+            </p>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            gap: var(--civic-space-3);
+            align-items: center;
+            flex-wrap: wrap;
+          "
+        >
+          <label for="brut" style="font-weight: 600">Brut (lei)</label>
+          <input
+            id="brut"
+            type="number"
+            value="9427"
+            min="1"
+            max="50000"
+            step="1"
+            style="
+              min-height: var(--civic-control-height);
+              font: inherit;
+              padding: 0 0.6em;
+              border: 1px solid var(--civic-border);
+              border-radius: var(--civic-radius);
+              width: 9em;
+            "
+          />
+          <input
+            type="range"
+            min="1"
+            max="50000"
+            value="9427"
+            aria-label="Salariu brut, lei"
+            style="
+              flex: 1;
+              min-width: 160px;
+              min-height: var(--civic-control-height);
+            "
+          />
+          <button class="btn">Salariul mediu</button>
+        </div>
+      </section>
+
+      <div class="grid">
+        <div class="tile">
+          <div class="l">Cost total angajator</div>
+          <div class="v">9.639,11 lei</div>
+          <div class="d">brut + CAM 2,25 %</div>
+        </div>
+        <div class="tile">
+          <div class="l">Îți rămân (net)</div>
+          <div class="v">5.514,80 lei</div>
+          <div class="d good">57,2 % din cost</div>
+        </div>
+        <div class="tile">
+          <div class="l">Ajung la stat</div>
+          <div class="v">4.842,13 lei</div>
+          <div class="d">50,2 % din cost, inclusiv TVA estimat</div>
+        </div>
+        <div class="tile">
+          <div class="l">Din care TVA estimat</div>
+          <div class="v">717,82 lei</div>
+          <div class="d">pe 75 % din net cheltuit, cotă 21 %</div>
+        </div>
+      </div>
+
+      <section class="frame" aria-labelledby="h-wf">
+        <div class="hd">
+          <div>
+            <h2 id="h-wf">De la costul muncii la salariul net</h2>
+            <p class="q">
+              Fiecare treaptă arată o contribuție sau un impozit; valorile sunt
+              scrise pe bară, nu doar în legendă.
+            </p>
+          </div>
+          <button class="btn">Descarcă CSV</button>
+        </div>
+        <svg
+          viewBox="0 0 960 300"
+          role="img"
+          aria-labelledby="wf-t"
+          style="width: 100%; height: auto"
+        >
+          <title id="wf-t">
+            Cascadă: cost angajator 9.639 lei, minus contribuții și impozite,
+            net 5.515 lei
+          </title>
+          <line x1="60" y1="260" x2="940" y2="260" stroke="#718588" />
+          <text x="60" y="280" font-size="12" fill="#475d60">0 lei</text>
+          <text x="60" y="30" font-size="12" fill="#475d60">lei / lună</text>
+          <rect x="80" y="30" width="110" height="230" fill="#2a78d6" />
+          <text
+            x="135"
+            y="22"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            9.639,11
+          </text>
+          <text x="135" y="290" text-anchor="middle" font-size="12">
+            Cost angajator
+          </text>
+          <rect x="215" y="30" width="110" height="5" fill="#eb6834" />
+          <text
+            x="270"
+            y="22"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            −212,11
+          </text>
+          <text x="270" y="290" text-anchor="middle" font-size="12">
+            CAM 2,25 %
+          </text>
+          <rect x="350" y="35" width="110" height="56" fill="#eb6834" />
+          <text
+            x="405"
+            y="27"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            −2.356,75
+          </text>
+          <text x="405" y="290" text-anchor="middle" font-size="12">
+            CAS 25 %
+          </text>
+          <rect x="485" y="91" width="110" height="23" fill="#eb6834" />
+          <text
+            x="540"
+            y="83"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            −942,70
+          </text>
+          <text x="540" y="290" text-anchor="middle" font-size="12">
+            CASS 10 %
+          </text>
+          <rect x="620" y="114" width="110" height="15" fill="#eb6834" />
+          <text
+            x="675"
+            y="106"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            −612,76
+          </text>
+          <text x="675" y="290" text-anchor="middle" font-size="12">
+            Impozit 10 %
+          </text>
+          <rect x="755" y="129" width="110" height="131" fill="#1baf7a" />
+          <text
+            x="810"
+            y="121"
+            text-anchor="middle"
+            font-size="13"
+            font-weight="600"
+          >
+            5.514,80
+          </text>
+          <text x="810" y="290" text-anchor="middle" font-size="12">Net</text>
+        </svg>
+        <details>
+          <summary>Afișează ca tabel</summary>
+          <table>
+            <caption>
+              Defalcarea salariului brut de 9.427 lei (estimare)
+            </caption>
+            <thead>
+              <tr>
+                <th>Treaptă</th>
+                <th class="n">lei / lună</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cost angajator</td>
+                <td class="n">9.639,11</td>
+              </tr>
+              <tr>
+                <td>Contribuția angajatorului (CAM 2,25 %)</td>
+                <td class="n">−212,11</td>
+              </tr>
+              <tr>
+                <td>CAS 25 %</td>
+                <td class="n">−2.356,75</td>
+              </tr>
+              <tr>
+                <td>CASS 10 %</td>
+                <td class="n">−942,70</td>
+              </tr>
+              <tr>
+                <td>Impozit pe venit 10 %</td>
+                <td class="n">−612,76</td>
+              </tr>
+              <tr>
+                <td>TVA estimat (separat, din consum)</td>
+                <td class="n">−717,82</td>
+              </tr>
+              <tr>
+                <th>Net</th>
+                <th class="n">5.514,80</th>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+        <div class="src">
+          Date: cote fiscale 2026 · metoda Open Budget · estimare ·
+          <a href="/ro/despre/">metodă</a>
+        </div>
+      </section>
+
+      <section class="frame" aria-labelledby="h-leu">
+        <div class="hd">
+          <div>
+            <h2 id="h-leu">Ce cumpără 1 leu din taxele tale</h2>
+            <p class="q">
+              Cei 4.842,13 lei pe lună care ajung la stat, împărțiți pro rata
+              după destinațiile bugetului 2026. Taxele nu sunt alocate pe
+              destinații: este un leu mediu, nu leul tău.
+            </p>
+          </div>
+          <span class="badge b-demo">Date demo</span>
+        </div>
+        <div class="two">
+          <svg
+            viewBox="0 0 440 120"
+            role="img"
+            aria-label="Bandă de 1 leu împărțită pe destinații"
+            style="width: 100%; height: auto"
+          >
+            <rect x="0" y="20" width="110" height="60" fill="#2a78d6" />
+            <text
+              x="55"
+              y="55"
+              text-anchor="middle"
+              fill="#fff"
+              font-size="12"
+              font-weight="600"
+            >
+              25 bani
+            </text>
+            <rect x="110" y="20" width="75" height="60" fill="#eb6834" />
+            <text
+              x="147"
+              y="55"
+              text-anchor="middle"
+              fill="#fff"
+              font-size="12"
+              font-weight="600"
+            >
+              17
+            </text>
+            <rect x="185" y="20" width="57" height="60" fill="#1baf7a" />
+            <text
+              x="213"
+              y="55"
+              text-anchor="middle"
+              fill="#142323"
+              font-size="12"
+              font-weight="600"
+            >
+              13
+            </text>
+            <rect x="242" y="20" width="56" height="60" fill="#eda100" />
+            <text
+              x="270"
+              y="55"
+              text-anchor="middle"
+              fill="#142323"
+              font-size="12"
+              font-weight="600"
+            >
+              13
+            </text>
+            <rect x="298" y="20" width="42" height="60" fill="#e87ba4" />
+            <text
+              x="319"
+              y="55"
+              text-anchor="middle"
+              fill="#142323"
+              font-size="12"
+              font-weight="600"
+            >
+              10
+            </text>
+            <rect x="340" y="20" width="20" height="60" fill="#4a3aa7" />
+            <text
+              x="350"
+              y="55"
+              text-anchor="middle"
+              fill="#fff"
+              font-size="11"
+            >
+              4
+            </text>
+            <rect x="360" y="20" width="80" height="60" fill="#718588" />
+            <text
+              x="400"
+              y="55"
+              text-anchor="middle"
+              fill="#fff"
+              font-size="12"
+              font-weight="600"
+            >
+              18
+            </text>
+            <text x="0" y="100" font-size="12" fill="#475d60">
+              Un leu = 100 de bani; eticheta fiecărui segment apare și în tabel
+            </text>
+          </svg>
+          <table>
+            <caption>
+              Destinația unui leu din contribuția ta (estimare)
+            </caption>
+            <thead>
+              <tr>
+                <th>Destinație</th>
+                <th class="n">bani / leu</th>
+                <th class="n">lei / lună</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pensii</td>
+                <td class="n">25</td>
+                <td class="n">1.219,65</td>
+              </tr>
+              <tr>
+                <td>Proiecte pe fonduri externe</td>
+                <td class="n">17</td>
+                <td class="n">822,26</td>
+              </tr>
+              <tr>
+                <td>Asistență socială</td>
+                <td class="n">13</td>
+                <td class="n">635,59</td>
+              </tr>
+              <tr>
+                <td>Salarii</td>
+                <td class="n">13</td>
+                <td class="n">616,48</td>
+              </tr>
+              <tr>
+                <td>Datorii și angajamente</td>
+                <td class="n">10</td>
+                <td class="n">463,38</td>
+              </tr>
+              <tr>
+                <td>Investiții</td>
+                <td class="n">4</td>
+                <td class="n">201,19</td>
+              </tr>
+              <tr>
+                <td>Alte cheltuieli</td>
+                <td class="n">18</td>
+                <td class="n">883,58</td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th class="n">100</th>
+                <th class="n">4.842,13</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="src">
+          Date: Open Budget 2026 · destinații la 14 octombrie 2026 ·
+          <a href="/ro/despre/">metodă</a> ·
+          <button class="btn" style="min-height: 32px">Descarcă CSV</button>
+        </div>
+      </section>
+
+      <h2>Stări</h2>
+      <div class="state">
+        <h3>Se încarcă, peste 2 s</h3>
+        <div class="msg info" role="status">
+          <span>Se încarcă destinațiile bugetului de la MFP…</span
+          ><span class="bar"><i></i></span>
+        </div>
+        <div class="skel h"></div>
+      </div>
+      <div class="state">
+        <h3>Gol</h3>
+        <div class="msg info">
+          <span
+            >Nu există destinații pentru 2027. Afișăm ultimul an cu date:
+            2026.</span
+          ><button class="btn">Vezi 2026</button>
+        </div>
+      </div>
+      <div class="state">
+        <h3>Eroare</h3>
+        <div class="msg err" role="alert">
+          <span
+            >Destinațiile bugetului nu au putut fi încărcate. Calculul
+            salariului de mai sus rămâne valabil.</span
+          ><button class="btn p">Reîncercați</button>
+        </div>
+      </div>
+      <div class="state">
+        <h3>Date demo</h3>
+        <p style="margin: 0">
+          Când API-ul nu răspunde, bara de familie arată
+          <span class="badge b-demo">Date demo</span> și fiecare grafic poartă
+          aceeași insignă; valorile demo nu înlocuiesc niciodată tacit datele
+          live.
+        </p>
+      </div>
+    </main>
+    <footer role="contentinfo">
+      <nav aria-label="Subsol">
+        <a href="/ro/despre/">Metodologie și surse</a
+        ><a href="/ro/despre/#confidentialitate"
+          >Confidențialitate: fără cookie-uri, fără analytics</a
+        ><a href="https://data.gov.ro">Sursa datelor</a
+        ><a
+          href="https://github.com/CristianNichifor/romania-budget-dashboard/issues"
+          >Contact</a
+        >
+      </nav>
+      <p>
+        Proiect educațional independent. Cifrele estimate sunt marcate
+        „estimare” și nu sunt cifre oficiale.
+      </p>
+    </footer>
+  </body>
+</html>

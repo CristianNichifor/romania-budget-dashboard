@@ -180,6 +180,25 @@ unless noted.
   `e2e/sankey.spec.ts` (drill-down renders on `/ro/bilantul-national/`).
   Romanian/English summary copy needs human review.
 
+### E6 · Treemap and cartogram label legibility · `done`
+
+- Given a treemap or cartogram tile, then its label wraps on spaces onto up
+  to two lines when the tile is tall enough, is cut with an ellipsis only
+  when words remain, and is dropped (tooltip keeps the name) when fewer than
+  four characters would fit, so no "Pe…" stubs appear. The amount line shows
+  whenever it fits under the label, on county tiles too.
+- Tests: `tests/tileLabel.test.ts` (`wrapLabel`, `tileLayout`); `e2e/smoke.spec.ts`
+  still renders both charts.
+
+### E7 · Staged loading for slow responses (UXG-B8) · `done`
+
+- Given a section or route still loading after 2 s, then the placeholder
+  stops being a silent skeleton and shows "Serverul răspunde greu — mai
+  așteptăm câteva secunde." in a polite live region (`role="status"`); before
+  2 s the skeleton stays `aria-hidden`. Copy (ro/en) needs human review.
+- Test: `tests/SkeletonCard.test.tsx` (fake timers: silent at 1.9 s, announced
+  at 2 s, timer cleared on unmount).
+
 ## Theme F — UX guidelines (fleet round 2, uxg-c)
 
 ### F1 · Written UX/UI guideline · `done`
@@ -198,3 +217,17 @@ unless noted.
 - D11 · Stale repository variables `VITE_API_BASE_URL` (dead host) and
   `CLOUDFLARE_ACCOUNT_ID` — `needs-human`.
 - D12 · Analytics / uptime choice — `needs-human`.
+
+### F2 · Target-state screen designs · `done` (docs), implementation `todo`
+
+- Given `docs/design/README.md` and `docs/design/screens/01…05`, then the
+  five screens (Felia ta, Unde se duc banii, Bilanțul național, Economie,
+  Despre) exist as self-contained HTML mockups with desktop and 390 px
+  layouts, civic-ui token values, real repo data or "—" placeholders, and
+  loading / empty / error / demo states; the README maps each screen to its
+  user task, guideline sections, before screenshot and acceptance criteria
+  F2.1–F2.12.
+- Test: review. Mockup screenshots are not included (no browser in the fleet
+  run); the Romanian copy is agent-written: **needs human review**.
+- Implementation items F2.1–F2.12 are listed in the README with the test each
+  one should get; they are `todo` for implementation sessions.
