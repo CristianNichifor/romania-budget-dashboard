@@ -169,6 +169,27 @@ unless noted.
   `e2e/leu-bridge.spec.ts`. Romanian copy (`leuBridge.*`) and the English
   translation are agent-written: **needs human review**.
 
+### E5 · Sankey readability · `done`
+
+- Given the money-flow sankey, then only the largest eight destinations get
+  their own flow, each node labelled with its name and amount; the smaller
+  destinations are grouped into "Alte destinații", whose node and a
+  details block under the chart open a list of what it contains, with amounts.
+  Flows too thin to carry an inline amount get none (the node label has it).
+- Tests: `tests/sankey.test.ts` (ranking, grouping, balance, default of eight),
+  `e2e/sankey.spec.ts` (drill-down renders on `/ro/bilantul-national/`).
+  Romanian/English summary copy needs human review.
+
+### E6 · Treemap and cartogram label legibility · `done`
+
+- Given a treemap or cartogram tile, then its label wraps on spaces onto up
+  to two lines when the tile is tall enough, is cut with an ellipsis only
+  when words remain, and is dropped (tooltip keeps the name) when fewer than
+  four characters would fit, so no "Pe…" stubs appear. The amount line shows
+  whenever it fits under the label, on county tiles too.
+- Tests: `tests/tileLabel.test.ts` (`wrapLabel`, `tileLayout`); `e2e/smoke.spec.ts`
+  still renders both charts.
+
 ## Theme F — UX guidelines (fleet round 2, uxg-c)
 
 ### F1 · Written UX/UI guideline · `done`
@@ -187,3 +208,17 @@ unless noted.
 - D11 · Stale repository variables `VITE_API_BASE_URL` (dead host) and
   `CLOUDFLARE_ACCOUNT_ID` — `needs-human`.
 - D12 · Analytics / uptime choice — `needs-human`.
+
+### F2 · Target-state screen designs · `done` (docs), implementation `todo`
+
+- Given `docs/design/README.md` and `docs/design/screens/01…05`, then the
+  five screens (Felia ta, Unde se duc banii, Bilanțul național, Economie,
+  Despre) exist as self-contained HTML mockups with desktop and 390 px
+  layouts, civic-ui token values, real repo data or "—" placeholders, and
+  loading / empty / error / demo states; the README maps each screen to its
+  user task, guideline sections, before screenshot and acceptance criteria
+  F2.1–F2.12.
+- Test: review. Mockup screenshots are not included (no browser in the fleet
+  run); the Romanian copy is agent-written: **needs human review**.
+- Implementation items F2.1–F2.12 are listed in the README with the test each
+  one should get; they are `todo` for implementation sessions.

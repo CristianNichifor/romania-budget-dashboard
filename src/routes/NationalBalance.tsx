@@ -24,6 +24,7 @@ import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { YearSelector } from "../components/shared/YearSelector";
 import {
+  MISSING,
   formatMilliardeLei,
   formatPercent,
   formatSignedPercent,
@@ -260,7 +261,7 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.executedDeficit"])}
               value={
                 comparisonForYear.executed === null
-                  ? "—"
+                  ? MISSING
                   : formatMilliardeLei(
                       deficitMagnitude(comparisonForYear.executed.deficit)
                     )
@@ -271,7 +272,7 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.delta"])}
               value={
                 comparisonOverrun === null
-                  ? "—"
+                  ? MISSING
                   : formatMilliardeLei(comparisonOverrun)
               }
             />
@@ -280,7 +281,7 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.executedGdp"])}
               value={
                 comparisonForYear.executed === null
-                  ? "—"
+                  ? MISSING
                   : formatPercent(comparisonForYear.executed.deficitPercentGdp)
               }
             />

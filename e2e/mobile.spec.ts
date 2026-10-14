@@ -48,3 +48,30 @@ test("the tab bar scrolls on its own and shows the active tab", async ({
 
   await expect(active).toBeInViewport({ ratio: 0.95 });
 });
+
+// F2.10: tabs, buttons and selects are at least 44 px tall on a phone.
+async function minHeight(page: Page, selector: string): Promise<number> {
+  return page
+    .locator(selector)
+    .evaluateAll((elements) =>
+      Math.min(
+        ...elements
+          .filter((element) => (element as HTMLElement).offsetParent !== null)
+          .map((element) => element.getBoundingClientRect().height)
+      )
+    );
+}
+
+test("header controls, tabs and the metric select are 44 px targets", async ({
+  page,
+}) => {
+  await page.goto("/ro/bilantul-national/");
+  await expect(page.locator("h2").first()).toBeVisible();
+  expect(
+    await minHeight(page, "header a, header button")
+  ).toBeGreaterThanOrEqual(44);
+  expect(
+    await minHeight(page, 'nav[aria-label="Navigare principală"] a')
+  ).toBeGreaterThanOrEqual(44);
+  expect(await minHeight(page, "select#ins-metric")).toBeGreaterThanOrEqual(44);
+});

@@ -11,9 +11,17 @@ export interface SankeyLinkInput {
   value: number;
 }
 
+export interface GroupedDestination {
+  id: string;
+  name: string;
+  amount: string;
+}
+
 export interface BudgetSankeyData {
   nodes: SankeyNodeInput[];
   links: SankeyLinkInput[];
+  /** Destinations folded into the rest node, largest first (for drill-down). */
+  grouped: GroupedDestination[];
 }
 
 export const SANKEY_REVENUE_NODE_ID = "venituri";
@@ -27,14 +35,20 @@ export interface BudgetSankeyInputs {
   expenditure: string;
   deficit: string;
   destinations: { id: string; name: string; amount: string }[];
+  /** How many destinations keep their own flow; the others join the rest. */
+  maxDestinations?: number;
 }
+
+export const SANKEY_DEFAULT_MAX_DESTINATIONS = 8;
 
 /**
  * Builds the sankey flow from API-provided totals: revenue + deficit
  * (borrowing) flow into the consolidated budget, which flows out to the
  * spending destinations. The "rest" node absorbs the part of expenditure
  * not covered by the listed destinations, so in-flow equals out-flow.
- * Pure function — numbers only at the display boundary.
+ * Only the largest `maxDestinations` flows are drawn and labelled; smaller
+ * ones are grouped into the rest node and returned in `grouped` so the UI
+ * can offer a drill-down. Pure function — numbers only at the display boundary.
  */
 export function buildBudgetSankey(
   inputs: BudgetSankeyInputs
@@ -45,9 +59,17 @@ export function buildBudgetSankey(
 
   // A rest bucket in the list (the BFF sends one) joins the computed rest,
   // so the flow has a single "other destinations" node.
-  const destinations = inputs.destinations.filter(
-    (destination) => destination.id !== SANKEY_REST_NODE_ID
-  );
+  const maxDestinations =
+    inputs.maxDestinations ?? SANKEY_DEFAULT_MAX_DESTINATIONS;
+  const ranked = inputs.destinations
+    .filter(
+      (destination) =>
+        destination.id !== SANKEY_REST_NODE_ID &&
+        new Decimal(destination.amount).gt(0)
+    )
+    .sort((a, b) => new Decimal(b.amount).comparedTo(a.amount));
+  const destinations = ranked.slice(0, maxDestinations);
+  const grouped = ranked.slice(maxDestinations);
   const destinationsTotal = destinations.reduce(
     (sum, destination) => sum.plus(destination.amount),
     new Decimal(0)
@@ -107,5 +129,5 @@ export function buildBudgetSankey(
       : []),
   ];
 
-  return { nodes, links };
+  return { nodes, links, grouped };
 }
