@@ -30,7 +30,7 @@ export function LocaleSwitcher() {
           lang={locale}
           aria-current={i18n.locale === locale ? "true" : undefined}
           className={cn(
-            "px-2 py-1 text-xs font-medium",
+            "inline-flex min-h-6 items-center px-2 py-1 text-xs font-medium",
             i18n.locale === locale
               ? "bg-budget-blue text-white"
               : "bg-white text-slate-600 hover:bg-slate-50"
