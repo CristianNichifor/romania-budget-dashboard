@@ -23,8 +23,17 @@ import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { YearSelector } from "../components/shared/YearSelector";
-import { formatMilliardeLei, formatSignedPercent } from "../lib/format";
-import { findComparisonPoint, toDeficitSeries } from "../lib/adoptedComparison";
+import {
+  formatMilliardeLei,
+  formatPercent,
+  formatSignedPercent,
+} from "../lib/format";
+import {
+  deficitMagnitude,
+  deficitOverrun,
+  findComparisonPoint,
+  toDeficitSeries,
+} from "../lib/adoptedComparison";
 import { computeTrendInsight, joinBudgetWithIns } from "../lib/trendJoin";
 import { useBudgetYearStore } from "../store/useBudgetYearStore";
 import { DemoBadge } from "../components/shared/DemoBadge";
@@ -101,6 +110,9 @@ export function NationalBalance() {
         : null,
     [comparison, year]
   );
+
+  const comparisonOverrun =
+    comparisonForYear === null ? null : deficitOverrun(comparisonForYear);
 
   const trendData = useMemo(() => {
     if (budgetTrend === undefined || insMetric === undefined) {
@@ -234,7 +246,9 @@ export function NationalBalance() {
             <KpiCard
               accent="slate"
               label={i18n._(m["comparison.kpi.adoptedDeficit"])}
-              value={formatMilliardeLei(comparisonForYear.adopted.deficit)}
+              value={formatMilliardeLei(
+                deficitMagnitude(comparisonForYear.adopted.deficit)
+              )}
             />
             <KpiCard
               accent="red"
@@ -242,16 +256,18 @@ export function NationalBalance() {
               value={
                 comparisonForYear.executed === null
                   ? "—"
-                  : formatMilliardeLei(comparisonForYear.executed.deficit)
+                  : formatMilliardeLei(
+                      deficitMagnitude(comparisonForYear.executed.deficit)
+                    )
               }
             />
             <KpiCard
               accent="amber"
               label={i18n._(m["comparison.kpi.delta"])}
               value={
-                comparisonForYear.deficitDelta === null
+                comparisonOverrun === null
                   ? "—"
-                  : formatMilliardeLei(comparisonForYear.deficitDelta)
+                  : formatMilliardeLei(comparisonOverrun)
               }
             />
             <KpiCard
@@ -260,7 +276,7 @@ export function NationalBalance() {
               value={
                 comparisonForYear.executed === null
                   ? "—"
-                  : `${comparisonForYear.executed.deficitPercentGdp}%`
+                  : formatPercent(comparisonForYear.executed.deficitPercentGdp)
               }
             />
           </div>
