@@ -67,6 +67,7 @@ function CountyCell(props: CellProps) {
       </rect>
       {width > 58 && height > 34 && (
         <text
+          stroke="none"
           x={x + 6}
           y={y + 16}
           fontSize={11}
@@ -78,15 +79,20 @@ function CountyCell(props: CellProps) {
       )}
       {width > 58 && height > 52 && (
         <text
+          stroke="none"
           x={x + 6}
           y={y + 32}
           fontSize={10}
           fill={tileTextColors(fill).amount}
         >
-          {i18n._({
-            ...m["soe.county.lossShare"],
-            values: { lossPercent: formatPercent(lossPercent) },
-          })}
+          {fitLabel(
+            i18n._({
+              ...m["soe.county.lossShare"],
+              values: { lossPercent: formatPercent(lossPercent) },
+            }),
+            width,
+            10
+          )}
         </text>
       )}
     </g>

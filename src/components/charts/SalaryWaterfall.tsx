@@ -92,7 +92,7 @@ export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
-          margin={{ top: 24, right: 8, left: 8, bottom: 0 }}
+          margin={{ top: 24, right: 8, left: 32, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis
@@ -100,7 +100,7 @@ export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
             interval={0}
             angle={-30}
             textAnchor="end"
-            height={96}
+            height={110}
             tick={{ fontSize: 11, fill: "#475569" }}
             tickFormatter={(id: string) => i18n._(lookupMessage(id))}
           />

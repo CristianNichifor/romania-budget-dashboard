@@ -75,6 +75,7 @@ function TreemapCell(props: TreemapCellProps) {
       {width > 70 && height > 40 && (
         <>
           <text
+            stroke="none"
             x={x + 8}
             y={y + 18}
             fontSize={12}
@@ -83,7 +84,13 @@ function TreemapCell(props: TreemapCellProps) {
           >
             {fitLabel(name ?? "", width, 12)}
           </text>
-          <text x={x + 8} y={y + 34} fontSize={10} fill={amountFill}>
+          <text
+            stroke="none"
+            x={x + 8}
+            y={y + 34}
+            fontSize={10}
+            fill={amountFill}
+          >
             {amount !== undefined ? formatMilliardeLei(amount) : ""}
           </text>
         </>

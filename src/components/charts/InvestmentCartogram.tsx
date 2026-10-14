@@ -51,6 +51,7 @@ function CartogramCell(props: CartogramCellProps) {
       </rect>
       {width > 58 && height > 32 && (
         <text
+          stroke="none"
           x={x + 6}
           y={y + 16}
           fontSize={11}
