@@ -115,7 +115,7 @@ export function CitizenSlice() {
               <Slider.Track className="relative h-1.5 grow rounded-full bg-slate-200">
                 <Slider.Range className="absolute h-full rounded-full bg-budget-blue" />
               </Slider.Track>
-              <Slider.Thumb className="block size-5 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
+              <Slider.Thumb className="block size-6 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
             </Slider.Root>
             <span className="w-28 text-right text-lg font-bold tabular-nums">
               {formatLei(gross)}

@@ -95,7 +95,7 @@ export function DrilldownModal({
             <Dialog.Close asChild>
               <button
                 type="button"
-                className="rounded-md border border-slate-200 px-2 py-1 text-slate-500 hover:bg-slate-50"
+                className="inline-flex min-h-6 min-w-6 items-center justify-center rounded-md border border-slate-200 px-2 py-1 text-slate-500 hover:bg-slate-50"
                 aria-label={i18n._(m["drilldown.close"])}
               >
                 ✕
