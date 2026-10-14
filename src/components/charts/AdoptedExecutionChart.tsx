@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { useLingui } from "@lingui/react";
 import type { AdoptedExecutionChartPoint } from "../../lib/adoptedComparison";
+import { formatMilliarde } from "../../lib/format";
 import { m } from "../../messages";
 
 interface AdoptedExecutionChartProps {
@@ -42,11 +43,11 @@ function DeficitTooltip({
       {datum !== undefined && (
         <>
           <p className="tabular-nums text-slate-600">
-            {adoptedLabel}: {datum.adoptedDeficitMld} mld. lei
+            {adoptedLabel}: {formatMilliarde(datum.adoptedDeficitMld)}
           </p>
           {datum.executedDeficitMld !== null && (
             <p className="tabular-nums text-slate-600">
-              {executedLabel}: {datum.executedDeficitMld} mld. lei
+              {executedLabel}: {formatMilliarde(datum.executedDeficitMld)}
             </p>
           )}
         </>
@@ -71,7 +72,7 @@ export function AdoptedExecutionChart({ data }: AdoptedExecutionChartProps) {
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
           <XAxis dataKey="year" />
           <YAxis
-            tickFormatter={(value: number) => `${value} mld.`}
+            tickFormatter={(value: number) => formatMilliarde(value)}
             width={70}
           />
           <Tooltip
