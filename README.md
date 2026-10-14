@@ -8,7 +8,7 @@ Tablou de bord cetățenesc pentru bugetul consolidat al României (central, soc
 
 ## Tab-uri
 
-Engleza la rădăcină, româna sub `/ro/` cu slug-uri traduse (`src/lib/routeTable.ts`); limba vine din cale.
+Româna sub `/ro/` cu slug-uri traduse, engleza la căi fără prefix (`src/lib/routeTable.ts`); limba vine din cale. Rădăcina `/` și `x-default` duc la versiunea română (`DEFAULT_LOCALE`).
 
 | Tab                                                                       | Vizualizări                                                                                                                               | Date                                                         |
 | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |

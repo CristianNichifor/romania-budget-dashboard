@@ -7,6 +7,7 @@
  */
 import {
   CONTENT_PAGES,
+  DEFAULT_LOCALE,
   PAGES,
   SITE_URL,
   absoluteUrl,
@@ -170,7 +171,7 @@ export function headFor(pathname: string): PageHead {
     alternates: {
       en: absoluteUrl(en),
       ro: absoluteUrl(ro),
-      xDefault: absoluteUrl(en),
+      xDefault: absoluteUrl(DEFAULT_LOCALE === "ro" ? ro : en),
     },
   };
 }
@@ -249,7 +250,7 @@ export function sitemapXml(): string {
         `    <loc>${absoluteUrl(path)}</loc>`,
         `    <xhtml:link rel="alternate" hreflang="en" href="${absoluteUrl(page.en)}" />`,
         `    <xhtml:link rel="alternate" hreflang="ro" href="${absoluteUrl(page.ro)}" />`,
-        `    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl(page.en)}" />`,
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl(page[DEFAULT_LOCALE])}" />`,
         "  </url>",
       ].join("\n")
     )

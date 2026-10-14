@@ -10,7 +10,7 @@ import {
 
 describe("routeTable", () => {
   it("reads the locale from the path", () => {
-    expect(localeFromPath("/")).toBe("en");
+    expect(localeFromPath("/")).toBe("ro");
     expect(localeFromPath("/your-share/")).toBe("en");
     expect(localeFromPath("/ro/")).toBe("ro");
     expect(localeFromPath("/ro")).toBe("ro");

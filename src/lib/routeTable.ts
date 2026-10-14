@@ -7,7 +7,8 @@
 
 export const LOCALES = ["en", "ro"] as const;
 export type Locale = (typeof LOCALES)[number];
-export const DEFAULT_LOCALE: Locale = "en";
+/** The root `/` and x-default serve Romanian; English keeps its own paths. */
+export const DEFAULT_LOCALE: Locale = "ro";
 
 export const SITE_URL = "https://budget.cristian-nichifor.com";
 
@@ -40,6 +41,9 @@ function withTrailingSlash(pathname: string): string {
 }
 
 export function localeFromPath(pathname: string): Locale {
+  if (withTrailingSlash(pathname) === "/") {
+    return DEFAULT_LOCALE;
+  }
   return withTrailingSlash(pathname).startsWith("/ro/") ? "ro" : "en";
 }
 

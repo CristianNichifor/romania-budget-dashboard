@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { activateLocale } from "./i18n-core";
 import {
+  DEFAULT_LOCALE,
   homeTarget,
   localeFromPath,
   PAGES,
@@ -58,7 +59,9 @@ function pageRoutes(locale: Locale) {
           getParentRoute: () => rootRoute,
           path: page[locale],
           beforeLoad: () => {
-            throw redirect({ to: homeTarget(locale) });
+            throw redirect({
+              to: homeTarget(page[locale] === "/" ? DEFAULT_LOCALE : locale),
+            });
           },
         })
       : createRoute({
