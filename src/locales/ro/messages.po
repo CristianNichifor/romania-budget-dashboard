@@ -22,6 +22,7 @@ msgstr ""
 #: src/messages.ts:1168
 #: src/messages.ts:1164
 #: src/messages.ts:1189
+#: src/messages.ts:1164
 msgid "soe.kpi.centralLocal"
 msgstr "{central} centrale · {local} locale"
 
@@ -29,6 +30,7 @@ msgstr "{central} centrale · {local} locale"
 #: src/messages.ts:1176
 #: src/messages.ts:1172
 #: src/messages.ts:1197
+#: src/messages.ts:1172
 msgid "soe.county.summary"
 msgstr "{companies} companii · {onLoss} pe pierdere ({lossPercent})"
 
@@ -36,6 +38,7 @@ msgstr "{companies} companii · {onLoss} pe pierdere ({lossPercent})"
 #: src/messages.ts:1172
 #: src/messages.ts:1168
 #: src/messages.ts:1193
+#: src/messages.ts:1168
 msgid "soe.onLoss"
 msgstr "{count} pe pierdere"
 
@@ -43,6 +46,7 @@ msgstr "{count} pe pierdere"
 #: src/messages.ts:1180
 #: src/messages.ts:1176
 #: src/messages.ts:1201
+#: src/messages.ts:1176
 msgid "soe.county.lossShare"
 msgstr "{lossPercent} pe pierdere"
 
@@ -73,6 +77,7 @@ msgstr "%"
 #: src/messages.ts:1184
 #: src/messages.ts:1180
 #: src/messages.ts:1205
+#: src/messages.ts:1180
 msgid "economy.percentGdp"
 msgstr "% PIB"
 
@@ -80,6 +85,7 @@ msgstr "% PIB"
 #: src/messages.ts:1192
 #: src/messages.ts:1188
 #: src/messages.ts:1213
+#: src/messages.ts:1188
 msgid "soe.scatter.offScale"
 msgstr "▲ {count} companii cu marja în afara intervalului ±100% sunt fixate pe margine; valoarea reală apare la hover."
 
@@ -149,6 +155,7 @@ msgstr "Balanța contului curent cu restul lumii, trimestrial, în miliarde de e
 #: src/messages.ts:1216
 #: src/messages.ts:1212
 #: src/messages.ts:1237
+#: src/messages.ts:1212
 msgid "leuBridge.bani"
 msgstr "bani"
 
@@ -197,6 +204,7 @@ msgstr "Bugetul adoptat acoperă bugetul de stat și fondurile BASS, BSAN, BSOM 
 #: src/messages.ts:1109
 #: src/messages.ts:1105
 #: src/messages.ts:1130
+#: src/messages.ts:1105
 msgid "about.source.mfp"
 msgstr "Bugetul adoptat și comparația adoptat–executat"
 
@@ -232,6 +240,7 @@ msgstr "Calculul salarial urmează modelul Open Budget 2026: CAS 25% și CASS 10
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1033
+#: src/messages.ts:1037
 msgid "soe.company.capital"
 msgstr "Capitaluri proprii"
 
@@ -287,6 +296,7 @@ msgstr "Câți bani din costul muncii tale ajung la stat și câți îți rămâ
 #: src/messages.ts:1197
 #: src/messages.ts:1193
 #: src/messages.ts:1218
+#: src/messages.ts:1193
 msgid "leuBridge.title"
 msgstr "Ce cumpără 1 leu din taxele tale"
 
@@ -300,6 +310,7 @@ msgstr "Ce intră în „Alte destinații”: {count} destinații mai mici"
 #: src/messages.ts:1201
 #: src/messages.ts:1197
 #: src/messages.ts:1222
+#: src/messages.ts:1197
 msgid "leuBridge.description"
 msgstr "Cei {amount} pe lună care ajung la stat, împărțiți după destinațiile bugetului."
 
@@ -358,6 +369,7 @@ msgstr "Cifra de afaceri"
 #: src/messages.ts:1156
 #: src/messages.ts:1152
 #: src/messages.ts:1177
+#: src/messages.ts:1152
 msgid "about.code.title"
 msgstr "Cod sursă"
 
@@ -365,6 +377,7 @@ msgstr "Cod sursă"
 #: src/messages.ts:1160
 #: src/messages.ts:1156
 #: src/messages.ts:1181
+#: src/messages.ts:1156
 msgid "about.code.description"
 msgstr "Codul este deschis, sub licența MIT:"
 
@@ -401,6 +414,7 @@ msgstr "companiidestat.ro"
 #: src/messages.ts:1113
 #: src/messages.ts:1109
 #: src/messages.ts:1134
+#: src/messages.ts:1109
 msgid "about.source.soe"
 msgstr "Companiile de stat"
 
@@ -438,6 +452,7 @@ msgstr "Conducere"
 #: src/messages.ts:1142
 #: src/messages.ts:1138
 #: src/messages.ts:1163
+#: src/messages.ts:1138
 msgid "about.privacy.title"
 msgstr "Confidențialitate"
 
@@ -505,6 +520,7 @@ msgstr "Cursul EUR/RON"
 #: src/messages.ts:1105
 #: src/messages.ts:1101
 #: src/messages.ts:1126
+#: src/messages.ts:1101
 msgid "about.source.ecb"
 msgstr "Cursul EUR/RON și dobânda la facilitatea de depozit"
 
@@ -544,6 +560,7 @@ msgstr "Date: {source}, {year}"
 #: src/messages.ts:1125
 #: src/messages.ts:1121
 #: src/messages.ts:1146
+#: src/messages.ts:1121
 msgid "about.source.openBudget"
 msgstr "Datele demo pentru 2026, folosite doar când site-ul rulează fără API"
 
@@ -693,6 +710,7 @@ msgstr "Despre"
 #: src/messages.ts:1164
 #: src/messages.ts:1160
 #: src/messages.ts:1185
+#: src/messages.ts:1160
 msgid "footer.about"
 msgstr "Despre"
 
@@ -706,6 +724,7 @@ msgstr "Destinația cheltuielilor"
 #: src/messages.ts:1207
 #: src/messages.ts:1203
 #: src/messages.ts:1228
+#: src/messages.ts:1203
 msgid "leuBridge.destination"
 msgstr "Destinație"
 
@@ -725,6 +744,7 @@ msgstr "Dimensiunea pătratului = cifra de afaceri; nuanța = ponderea companiil
 #: src/messages.ts:1211
 #: src/messages.ts:1207
 #: src/messages.ts:1232
+#: src/messages.ts:1207
 msgid "leuBridge.perLeu"
 msgstr "Din 1 leu"
 
@@ -742,6 +762,7 @@ msgstr "din consumul final brut"
 #: src/messages.ts:1212
 #: src/messages.ts:1208
 #: src/messages.ts:1233
+#: src/messages.ts:1208
 msgid "leuBridge.perMonth"
 msgstr "Din contribuția ta lunară"
 
@@ -804,6 +825,7 @@ msgstr "Energie regenerabilă"
 #: src/messages.ts:1206
 #: src/messages.ts:1202
 #: src/messages.ts:1227
+#: src/messages.ts:1202
 msgid "leuBridge.estimate"
 msgstr "Estimare"
 
@@ -829,6 +851,7 @@ msgstr "Estimare: programul de investiții publice 2026 nu are o sursă publică
 #: src/messages.ts:1217
 #: src/messages.ts:1213
 #: src/messages.ts:1238
+#: src/messages.ts:1213
 msgid "leuBridge.note"
 msgstr "Estimare: taxele nu sunt alocate pe destinații. Contribuția este împărțită proporțional cu cheltuielile bugetului consolidat, deci arată unde merge un leu mediu, nu leul tău anume."
 
@@ -841,6 +864,7 @@ msgstr "EUR/RON"
 #: src/messages.ts:1121
 #: src/messages.ts:1117
 #: src/messages.ts:1142
+#: src/messages.ts:1117
 msgid "about.source.transparenta"
 msgstr "Execuția bugetară"
 
@@ -899,6 +923,7 @@ msgstr "Feliuța ta"
 #: src/messages.ts:1095
 #: src/messages.ts:1091
 #: src/messages.ts:1116
+#: src/messages.ts:1091
 msgid "about.sources.description"
 msgstr "Fiecare grafic își arată sursa pe card. Datele sunt preluate prin API-ul proiectului din sursele de mai jos, în condițiile stabilite de fiecare sursă."
 
@@ -916,6 +941,12 @@ msgstr "Fluxul banilor publici"
 #. js-lingui-explicit-id
 #: src/messages.ts:757
 #: src/messages.ts:753
+#: src/messages.ts:770
+msgid "sankey.mobileList"
+msgstr "Fluxul banilor publici, ca listă"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:749
 msgid "sankey.description"
 msgstr "Fluxul banilor publici: surse de venit → buget consolidat → destinații. Deficitul apare ca sursă (împrumut)."
 
@@ -1012,6 +1043,7 @@ msgstr "Inflație, șomaj și cursul de schimb — indicatori lunari din surse e
 #: src/messages.ts:1100
 #: src/messages.ts:1096
 #: src/messages.ts:1121
+#: src/messages.ts:1096
 msgid "about.source.eurostat"
 msgstr "Inflație, șomaj, PIB, datorie, salarii, societate, energie, piața muncii, justiție"
 
@@ -1074,6 +1106,7 @@ msgstr "Licență"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1151
+#: src/messages.ts:1126
 msgid "about.licence"
 msgstr "Licență"
 
@@ -1221,6 +1254,7 @@ msgstr "Pachetele majoritare ale statului la Bursa de Valori București, cu evol
 #: src/messages.ts:1151
 #: src/messages.ts:1147
 #: src/messages.ts:1172
+#: src/messages.ts:1147
 msgid "about.privacy.hosting"
 msgstr "Paginile și API-ul sunt găzduite pe Cloudflare Workers. Ca orice furnizor de găzduire, Cloudflare primește cererile tale, inclusiv adresa IP, ca să livreze paginile."
 
@@ -1496,6 +1530,7 @@ msgstr "Regula „estimare”: orice valoare care nu vine direct dintr-o sursă,
 
 #. js-lingui-explicit-id
 #: src/messages.ts:872
+#: src/messages.ts:876
 msgid "error.reload"
 msgstr "Reîncarcă pagina sau încearcă din nou mai târziu."
 
@@ -1594,6 +1629,7 @@ msgstr "Serverul răspunde greu — mai așteptăm câteva secunde."
 #: src/messages.ts:1146
 #: src/messages.ts:1142
 #: src/messages.ts:1167
+#: src/messages.ts:1142
 msgid "about.privacy.tracking"
 msgstr "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți."
 
@@ -1688,6 +1724,7 @@ msgstr "Sumele sunt calculate fără virgulă mobilă (decimal.js) și rotunjite
 
 #. js-lingui-explicit-id
 #: src/messages.ts:778
+#: src/messages.ts:782
 msgid "treemap.description"
 msgstr "Suprafața fiecărui dreptunghi este proporțională cu suma alocată."
 
@@ -1713,6 +1750,7 @@ msgstr "Sursa de date e indisponibilă momentan."
 #: src/messages.ts:1134
 #: src/messages.ts:1130
 #: src/messages.ts:1155
+#: src/messages.ts:1130
 msgid "about.licence.none"
 msgstr "sursa nu declară o licență"
 
@@ -1738,6 +1776,7 @@ msgstr "Sursă: Buget consolidat"
 #: src/messages.ts:1188
 #: src/messages.ts:1184
 #: src/messages.ts:1209
+#: src/messages.ts:1184
 msgid "source.budgetYear"
 msgstr "Sursă: Buget consolidat {year}"
 
@@ -1768,6 +1807,7 @@ msgstr "Sursă: transparenta.eu"
 #: src/messages.ts:1091
 #: src/messages.ts:1087
 #: src/messages.ts:1112
+#: src/messages.ts:1087
 msgid "about.sources.title"
 msgstr "Surse de date și licențe"
 
@@ -1780,6 +1820,7 @@ msgstr "Tablou de bord cetățenesc — buget consolidat"
 #: src/messages.ts:1138
 #: src/messages.ts:1134
 #: src/messages.ts:1159
+#: src/messages.ts:1134
 msgid "about.licence.terms"
 msgstr "termenii sursei"
 
@@ -1807,6 +1848,7 @@ msgstr "Ținta BNR"
 #: src/messages.ts:1117
 #: src/messages.ts:1113
 #: src/messages.ts:1138
+#: src/messages.ts:1113
 msgid "about.source.bnr"
 msgstr "Ținta de inflație"
 

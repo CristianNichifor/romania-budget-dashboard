@@ -22,6 +22,7 @@ msgstr ""
 #: src/messages.ts:1168
 #: src/messages.ts:1164
 #: src/messages.ts:1189
+#: src/messages.ts:1164
 msgid "soe.kpi.centralLocal"
 msgstr "{central} central · {local} local"
 
@@ -29,6 +30,7 @@ msgstr "{central} central · {local} local"
 #: src/messages.ts:1176
 #: src/messages.ts:1172
 #: src/messages.ts:1197
+#: src/messages.ts:1172
 msgid "soe.county.summary"
 msgstr "{companies} companies · {onLoss} loss-making ({lossPercent})"
 
@@ -36,6 +38,7 @@ msgstr "{companies} companies · {onLoss} loss-making ({lossPercent})"
 #: src/messages.ts:1172
 #: src/messages.ts:1168
 #: src/messages.ts:1193
+#: src/messages.ts:1168
 msgid "soe.onLoss"
 msgstr "{count} loss-making"
 
@@ -43,6 +46,7 @@ msgstr "{count} loss-making"
 #: src/messages.ts:1180
 #: src/messages.ts:1176
 #: src/messages.ts:1201
+#: src/messages.ts:1176
 msgid "soe.county.lossShare"
 msgstr "{lossPercent} loss-making"
 
@@ -73,6 +77,7 @@ msgstr "%"
 #: src/messages.ts:1184
 #: src/messages.ts:1180
 #: src/messages.ts:1205
+#: src/messages.ts:1180
 msgid "economy.percentGdp"
 msgstr "% of GDP"
 
@@ -80,6 +85,7 @@ msgstr "% of GDP"
 #: src/messages.ts:1192
 #: src/messages.ts:1188
 #: src/messages.ts:1213
+#: src/messages.ts:1188
 msgid "soe.scatter.offScale"
 msgstr "▲ {count} companies with a margin beyond ±100% are pinned to the edge; hover for the real value."
 
@@ -149,6 +155,7 @@ msgstr "Current account balance with the rest of the world, quarterly, in billio
 #: src/messages.ts:1216
 #: src/messages.ts:1212
 #: src/messages.ts:1237
+#: src/messages.ts:1212
 msgid "leuBridge.bani"
 msgstr "bani"
 
@@ -197,6 +204,7 @@ msgstr "The adopted budget covers the state budget and the BASS, BSAN, BSOM fund
 #: src/messages.ts:1109
 #: src/messages.ts:1105
 #: src/messages.ts:1130
+#: src/messages.ts:1105
 msgid "about.source.mfp"
 msgstr "The adopted budget and the adopted-versus-executed comparison"
 
@@ -232,6 +240,7 @@ msgstr "The salary calculation follows the Open Budget 2026 model: CAS 25% and C
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1033
+#: src/messages.ts:1037
 msgid "soe.company.capital"
 msgstr "Equity"
 
@@ -287,6 +296,7 @@ msgstr "How much of your labour cost goes to the state and how much you keep."
 #: src/messages.ts:1197
 #: src/messages.ts:1193
 #: src/messages.ts:1218
+#: src/messages.ts:1193
 msgid "leuBridge.title"
 msgstr "What 1 leu of your taxes buys"
 
@@ -300,6 +310,7 @@ msgstr "What is in “Other destinations”: {count} smaller destinations"
 #: src/messages.ts:1201
 #: src/messages.ts:1197
 #: src/messages.ts:1222
+#: src/messages.ts:1197
 msgid "leuBridge.description"
 msgstr "The {amount} a month that reaches the state, split by where the budget goes."
 
@@ -358,6 +369,7 @@ msgstr "Turnover"
 #: src/messages.ts:1156
 #: src/messages.ts:1152
 #: src/messages.ts:1177
+#: src/messages.ts:1152
 msgid "about.code.title"
 msgstr "Source code"
 
@@ -365,6 +377,7 @@ msgstr "Source code"
 #: src/messages.ts:1160
 #: src/messages.ts:1156
 #: src/messages.ts:1181
+#: src/messages.ts:1156
 msgid "about.code.description"
 msgstr "The code is open source under the MIT licence:"
 
@@ -401,6 +414,7 @@ msgstr "companiidestat.ro"
 #: src/messages.ts:1113
 #: src/messages.ts:1109
 #: src/messages.ts:1134
+#: src/messages.ts:1109
 msgid "about.source.soe"
 msgstr "State-owned companies"
 
@@ -438,6 +452,7 @@ msgstr "Management"
 #: src/messages.ts:1142
 #: src/messages.ts:1138
 #: src/messages.ts:1163
+#: src/messages.ts:1138
 msgid "about.privacy.title"
 msgstr "Privacy"
 
@@ -505,6 +520,7 @@ msgstr "EUR/RON exchange rate"
 #: src/messages.ts:1105
 #: src/messages.ts:1101
 #: src/messages.ts:1126
+#: src/messages.ts:1101
 msgid "about.source.ecb"
 msgstr "The EUR/RON rate and the deposit facility rate"
 
@@ -544,6 +560,7 @@ msgstr "Data: {source}, {year}"
 #: src/messages.ts:1125
 #: src/messages.ts:1121
 #: src/messages.ts:1146
+#: src/messages.ts:1121
 msgid "about.source.openBudget"
 msgstr "The 2026 demo data, used only when the site runs without the API"
 
@@ -693,6 +710,7 @@ msgstr "About"
 #: src/messages.ts:1164
 #: src/messages.ts:1160
 #: src/messages.ts:1185
+#: src/messages.ts:1160
 msgid "footer.about"
 msgstr "About"
 
@@ -706,6 +724,7 @@ msgstr "Spending destinations"
 #: src/messages.ts:1207
 #: src/messages.ts:1203
 #: src/messages.ts:1228
+#: src/messages.ts:1203
 msgid "leuBridge.destination"
 msgstr "Destination"
 
@@ -725,6 +744,7 @@ msgstr "Square size = turnover; shade = share of loss-making companies."
 #: src/messages.ts:1211
 #: src/messages.ts:1207
 #: src/messages.ts:1232
+#: src/messages.ts:1207
 msgid "leuBridge.perLeu"
 msgstr "Out of 1 leu"
 
@@ -742,6 +762,7 @@ msgstr "of gross final consumption"
 #: src/messages.ts:1212
 #: src/messages.ts:1208
 #: src/messages.ts:1233
+#: src/messages.ts:1208
 msgid "leuBridge.perMonth"
 msgstr "Out of your monthly contribution"
 
@@ -804,6 +825,7 @@ msgstr "Renewable energy"
 #: src/messages.ts:1206
 #: src/messages.ts:1202
 #: src/messages.ts:1227
+#: src/messages.ts:1202
 msgid "leuBridge.estimate"
 msgstr "Estimate"
 
@@ -829,6 +851,7 @@ msgstr "Estimate: the 2026 public investment programme has no structured public 
 #: src/messages.ts:1217
 #: src/messages.ts:1213
 #: src/messages.ts:1238
+#: src/messages.ts:1213
 msgid "leuBridge.note"
 msgstr "Estimate: taxes are not earmarked. Your contribution is split in proportion to consolidated budget spending, so this shows where an average leu goes, not your leu in particular."
 
@@ -841,6 +864,7 @@ msgstr "EUR/RON"
 #: src/messages.ts:1121
 #: src/messages.ts:1117
 #: src/messages.ts:1142
+#: src/messages.ts:1117
 msgid "about.source.transparenta"
 msgstr "Budget execution"
 
@@ -899,6 +923,7 @@ msgstr "Your slice"
 #: src/messages.ts:1095
 #: src/messages.ts:1091
 #: src/messages.ts:1116
+#: src/messages.ts:1091
 msgid "about.sources.description"
 msgstr "Every chart shows its source on its card. The project's API takes the data from the sources below, under the terms each source sets."
 
@@ -916,6 +941,12 @@ msgstr "Public money flow"
 #. js-lingui-explicit-id
 #: src/messages.ts:757
 #: src/messages.ts:753
+#: src/messages.ts:770
+msgid "sankey.mobileList"
+msgstr "Public money flow, as a list"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:749
 msgid "sankey.description"
 msgstr "Public money flow: revenue sources → consolidated budget → destinations. The deficit appears as a source (borrowing)."
 
@@ -1012,6 +1043,7 @@ msgstr "Inflation, unemployment and the exchange rate — monthly indicators fro
 #: src/messages.ts:1100
 #: src/messages.ts:1096
 #: src/messages.ts:1121
+#: src/messages.ts:1096
 msgid "about.source.eurostat"
 msgstr "Inflation, unemployment, GDP, debt, wages, society, energy, labour market, justice"
 
@@ -1074,6 +1106,7 @@ msgstr "Licence"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1151
+#: src/messages.ts:1126
 msgid "about.licence"
 msgstr "Licence"
 
@@ -1221,6 +1254,7 @@ msgstr "Majority state stakes on the Bucharest Stock Exchange, with the share pr
 #: src/messages.ts:1151
 #: src/messages.ts:1147
 #: src/messages.ts:1172
+#: src/messages.ts:1147
 msgid "about.privacy.hosting"
 msgstr "The pages and the API are hosted on Cloudflare Workers. Like any hosting provider, Cloudflare receives your requests, including your IP address, to deliver the pages."
 
@@ -1496,6 +1530,7 @@ msgstr "The “estimate” rule: any value that does not come straight from a so
 
 #. js-lingui-explicit-id
 #: src/messages.ts:872
+#: src/messages.ts:876
 msgid "error.reload"
 msgstr "Reload the page or try again later."
 
@@ -1594,6 +1629,7 @@ msgstr "The server is slow to respond — waiting a few more seconds."
 #: src/messages.ts:1146
 #: src/messages.ts:1142
 #: src/messages.ts:1167
+#: src/messages.ts:1142
 msgid "about.privacy.tracking"
 msgstr "The site does not use cookies, runs no analytics and does not track visitors. It stores nothing in your browser and loads nothing from third parties."
 
@@ -1688,6 +1724,7 @@ msgstr "Amounts are computed without floating point (decimal.js) and rounded onl
 
 #. js-lingui-explicit-id
 #: src/messages.ts:778
+#: src/messages.ts:782
 msgid "treemap.description"
 msgstr "Each rectangle's area is proportional to the allocated amount."
 
@@ -1713,6 +1750,7 @@ msgstr "Data source is temporarily unavailable."
 #: src/messages.ts:1134
 #: src/messages.ts:1130
 #: src/messages.ts:1155
+#: src/messages.ts:1130
 msgid "about.licence.none"
 msgstr "the source states no licence"
 
@@ -1738,6 +1776,7 @@ msgstr "Source: Consolidated budget"
 #: src/messages.ts:1188
 #: src/messages.ts:1184
 #: src/messages.ts:1209
+#: src/messages.ts:1184
 msgid "source.budgetYear"
 msgstr "Source: Consolidated budget {year}"
 
@@ -1768,6 +1807,7 @@ msgstr "Source: transparenta.eu"
 #: src/messages.ts:1091
 #: src/messages.ts:1087
 #: src/messages.ts:1112
+#: src/messages.ts:1087
 msgid "about.sources.title"
 msgstr "Data sources and licences"
 
@@ -1780,6 +1820,7 @@ msgstr "Citizen dashboard — consolidated budget"
 #: src/messages.ts:1138
 #: src/messages.ts:1134
 #: src/messages.ts:1159
+#: src/messages.ts:1134
 msgid "about.licence.terms"
 msgstr "the source's terms"
 
@@ -1807,6 +1848,7 @@ msgstr "NBR target"
 #: src/messages.ts:1117
 #: src/messages.ts:1113
 #: src/messages.ts:1138
+#: src/messages.ts:1113
 msgid "about.source.bnr"
 msgstr "The inflation target"
 

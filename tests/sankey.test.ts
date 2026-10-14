@@ -155,3 +155,46 @@ describe("buildBudgetSankey grouping", () => {
     expect(grouped).toHaveLength(4);
   });
 });
+
+describe("buildBudgetSankey minimum share (F2.7)", () => {
+  const base: BudgetSankeyInputs = {
+    revenue: "900",
+    expenditure: "1000",
+    deficit: "100",
+    destinations: [
+      { id: "big", name: "Mare", amount: "500" },
+      { id: "mid", name: "Medie", amount: "300" },
+      { id: "small", name: "Mică", amount: "20" },
+    ],
+  };
+
+  it("groups flows under 3 % of expenditure even when the count allows them", () => {
+    const { nodes, grouped } = buildBudgetSankey(base);
+    expect(nodes.map((node) => node.id)).not.toContain("small");
+    expect(grouped.map((destination) => destination.id)).toEqual(["small"]);
+  });
+
+  it("keeps a flow exactly at the threshold", () => {
+    const { grouped } = buildBudgetSankey({
+      ...base,
+      destinations: [
+        ...base.destinations,
+        { id: "edge", name: "Prag", amount: "30" },
+      ],
+    });
+    expect(grouped.map((destination) => destination.id)).toEqual(["small"]);
+  });
+
+  it("can be disabled with minShare 0", () => {
+    const { grouped } = buildBudgetSankey({ ...base, minShare: 0 });
+    expect(grouped).toEqual([]);
+  });
+
+  it("still balances the budget node after grouping", () => {
+    const { links } = buildBudgetSankey(base);
+    const out = links
+      .filter((link) => link.source === SANKEY_BUDGET_NODE_ID)
+      .reduce((sum, link) => sum.plus(link.value), new Decimal(0));
+    expect(out.toNumber()).toBe(1000);
+  });
+});
