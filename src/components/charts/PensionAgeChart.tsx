@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { formatMilliarde, formatNumber } from "../../lib/format";
 import type { PensionAgePoint } from "../../lib/macro";
 
 interface PensionAgeChartProps {
@@ -48,13 +49,15 @@ function PensionAgeTooltip({
             {pensionsLabel}:{" "}
             {datum.pensiiMilliarde === null
               ? "—"
-              : `${datum.pensiiMilliarde.toLocaleString("ro-RO")} mld. lei`}
+              : formatMilliarde(datum.pensiiMilliarde)}
           </p>
           <p className="tabular-nums text-slate-600">
             {dependencyLabel}:{" "}
             {datum.oldAgeDependency === null
               ? "—"
-              : datum.oldAgeDependency.toLocaleString("ro-RO")}
+              : formatNumber(datum.oldAgeDependency, {
+                  maximumFractionDigits: 1,
+                })}
           </p>
         </>
       )}

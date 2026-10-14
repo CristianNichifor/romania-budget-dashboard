@@ -19,6 +19,7 @@ import { SourceBadge } from "../components/shared/SourceBadge";
 import { joinPhysicianDensity, joinSpending } from "../lib/society";
 import { DemoBadge } from "../components/shared/DemoBadge";
 import { QueryError } from "../components/shared/SectionError";
+import { formatNumber } from "../lib/format";
 import { m } from "../messages";
 
 const DEFAULT_SOCIETY_METRIC = "infant-mortality";
@@ -137,7 +138,9 @@ export function Societate() {
               accent="slate"
               label={i18n._(m["society.kpi.population"])}
               value={
-                latestPopulation?.population.toLocaleString("ro-RO") ?? "—"
+                latestPopulation === undefined
+                  ? "—"
+                  : formatNumber(latestPopulation.population)
               }
               sub={`${latestPopulation?.year ?? ""} · Eurostat`}
             />
@@ -148,8 +151,8 @@ export function Societate() {
                 populationChange === null
                   ? "—"
                   : populationChange > 0
-                    ? `+${populationChange.toLocaleString("ro-RO")}`
-                    : populationChange.toLocaleString("ro-RO")
+                    ? `+${formatNumber(populationChange)}`
+                    : formatNumber(populationChange)
               }
               sub={i18n._(m["society.kpi.populationChangeSub"])}
             />
@@ -291,7 +294,9 @@ export function Societate() {
               value={
                 latestPhysicianDensity === undefined
                   ? "—"
-                  : latestPhysicianDensity.per100k.toLocaleString("ro-RO")
+                  : formatNumber(latestPhysicianDensity.per100k, {
+                      maximumFractionDigits: 1,
+                    })
               }
               sub={`${latestPhysicianDensity?.year ?? ""} · la 100.000 locuitori`}
             />
@@ -304,7 +309,9 @@ export function Societate() {
               }))}
               color="#0d9488"
               ariaLabel={i18n._(m["society.health.physicians"])}
-              valueFormatter={(value) => value.toLocaleString("ro-RO")}
+              valueFormatter={(value) =>
+                formatNumber(value, { maximumFractionDigits: 1 })
+              }
               heightClass="h-56"
             />
           </div>

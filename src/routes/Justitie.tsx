@@ -6,11 +6,8 @@ import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { QueryError } from "../components/shared/SectionError";
+import { formatNumber } from "../lib/format";
 import { m } from "../messages";
-
-const countFormatter = new Intl.NumberFormat("ro-RO", {
-  maximumFractionDigits: 0,
-});
 
 export function Justitie() {
   const { i18n } = useLingui();
@@ -81,19 +78,19 @@ export function Justitie() {
               <KpiCard
                 accent="red"
                 label={i18n._(m["justice.kpi.homicides"])}
-                value={countFormatter.format(latestHomicides.count)}
+                value={formatNumber(latestHomicides.count)}
                 sub={latestHomicides.year}
               />
               <KpiCard
                 accent="slate"
                 label={i18n._(m["justice.kpi.prison"])}
-                value={countFormatter.format(latestPrison.prisoners)}
+                value={formatNumber(latestPrison.prisoners)}
                 sub={latestPrison.year}
               />
               <KpiCard
                 accent="blue"
                 label={i18n._(m["justice.kpi.police"])}
-                value={countFormatter.format(latestPolice.officers)}
+                value={formatNumber(latestPolice.officers)}
                 sub={latestPolice.year}
               />
             </div>
@@ -116,7 +113,7 @@ export function Justitie() {
                 data={homicideData}
                 color="#dc2626"
                 ariaLabel={i18n._(m["justice.homicides.title"])}
-                valueFormatter={(value) => countFormatter.format(value)}
+                valueFormatter={(value) => formatNumber(value)}
                 exportFilename="justitie-omucideri.csv"
               />
             </div>
@@ -136,7 +133,7 @@ export function Justitie() {
                 data={prisonData}
                 color="#475569"
                 ariaLabel={i18n._(m["justice.prison.title"])}
-                valueFormatter={(value) => countFormatter.format(value)}
+                valueFormatter={(value) => formatNumber(value)}
                 exportFilename="justitie-penitenciar.csv"
               />
             </div>
@@ -156,7 +153,7 @@ export function Justitie() {
                 data={policeData}
                 color="#2563eb"
                 ariaLabel={i18n._(m["justice.police.title"])}
-                valueFormatter={(value) => countFormatter.format(value)}
+                valueFormatter={(value) => formatNumber(value)}
                 exportFilename="justitie-politisti.csv"
               />
             </div>

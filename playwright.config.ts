@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 4173;
+/** Override with E2E_PORT so parallel checkouts never share a dev server. */
+const PORT = Number(process.env.E2E_PORT ?? 4173);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 // A second dev server in remote mode, pointed at a BFF host that only exists
 // through `page.route`, so error states are tested without a backend.
