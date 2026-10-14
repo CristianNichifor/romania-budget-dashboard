@@ -19,6 +19,7 @@ import { formatLei, formatPercent } from "../lib/format";
 import { estimateAverageNetSalary } from "../lib/averageSalary";
 import { buildSalaryWaterfallRows } from "../lib/waterfall";
 import { useSalaryStore } from "../store/useSalaryStore";
+import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 export function CitizenSlice() {
@@ -26,30 +27,35 @@ export function CitizenSlice() {
   const gross = useSalaryStore((state) => state.gross);
   const setGross = useSalaryStore((state) => state.setGross);
 
-  const { data: breakdown } = useQuery({
+  const breakdownQuery = useQuery({
     queryKey: ["salary", gross],
     queryFn: () => fetchSalaryBreakdown(gross),
   });
+  const { data: breakdown } = breakdownQuery;
 
-  const { data: realWage } = useQuery({
+  const realWageQuery = useQuery({
     queryKey: ["real-wage"],
     queryFn: fetchRealWage,
   });
+  const { data: realWage } = realWageQuery;
 
-  const { data: wageContext } = useQuery({
+  const wageContextQuery = useQuery({
     queryKey: ["wage-context"],
     queryFn: fetchWageContext,
   });
+  const { data: wageContext } = wageContextQuery;
 
-  const { data: wageMonthly } = useQuery({
+  const wageMonthlyQuery = useQuery({
     queryKey: ["wage-monthly"],
     queryFn: fetchWageMonthly,
   });
+  const { data: wageMonthly } = wageMonthlyQuery;
 
-  const { data: fx } = useQuery({
+  const fxQuery = useQuery({
     queryKey: ["fx"],
     queryFn: fetchFx,
   });
+  const { data: fx } = fxQuery;
 
   const estimatedAverageNet = estimateAverageNetSalary(
     wageContext?.sesAnchors ?? [],
@@ -154,6 +160,7 @@ export function CitizenSlice() {
             </div>
           </>
         )}
+        <QueryError query={breakdownQuery} />
         {(breakdown === null || breakdown === undefined) && (
           <>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -200,6 +207,7 @@ export function CitizenSlice() {
             )}
           </div>
         )}
+        <QueryError query={realWageQuery} />
         {(realWage === null || realWage === undefined) && (
           <SkeletonCard className="h-64" />
         )}
@@ -282,6 +290,10 @@ export function CitizenSlice() {
           )}
         </section>
       )}
+      <QueryError
+        query={wageContextQuery}
+        title={i18n._(m["wageContext.title"])}
+      />
 
       <section className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
         <Wallet className="size-5 shrink-0" aria-hidden="true" />

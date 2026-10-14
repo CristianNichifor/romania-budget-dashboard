@@ -1030,6 +1030,20 @@ export const m = {
     message: "Sursa de date e indisponibilă momentan.",
   }),
   "soe.source": msg({ id: "soe.source", message: "companiidestat.ro" }),
+  "section.error": msg({
+    id: "section.error",
+    message: "Datele nu au putut fi încărcate.",
+  }),
+  "section.retry": msg({ id: "section.retry", message: "Reîncearcă" }),
+  "section.demo": msg({ id: "section.demo", message: "date demo" }),
+  "section.emptyYear": msg({
+    id: "section.emptyYear",
+    message: "Nu există date demo pentru anul {year}.",
+  }),
+  "balance.kpi.partialYear": msg({
+    id: "balance.kpi.partialYear",
+    message: "An parțial — execuție până la zi",
+  }),
 } satisfies Record<string, MessageDescriptor>;
 
 export type MessageId = keyof typeof m;

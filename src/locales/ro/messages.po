@@ -54,6 +54,11 @@ msgid "sankey.node.rest"
 msgstr "Alte destinații"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1043
+msgid "balance.kpi.partialYear"
+msgstr "An parțial — execuție până la zi"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:1011
 msgid "soe.company.employees"
 msgstr "Angajați"
@@ -324,6 +329,11 @@ msgid "soe.kpi.updated"
 msgstr "Date {year} · actualizat {date} · {companies} companii cu date"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1038
+msgid "section.demo"
+msgstr "date demo"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:18
 msgid "dataMode.fallback"
 msgstr "Date demo — API indisponibil"
@@ -337,6 +347,11 @@ msgstr "Date live — API public"
 #: src/messages.ts:22
 msgid "dataMode.partial"
 msgstr "Date parțial demo"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1033
+msgid "section.error"
+msgstr "Datele nu au putut fi încărcate."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:422
@@ -809,6 +824,11 @@ msgid "drilldown.error"
 msgstr "Nu am putut încărca instituțiile — încearcă din nou."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1039
+msgid "section.emptyYear"
+msgstr "Nu există date demo pentru anul {year}."
+
+#. js-lingui-explicit-id
 #: src/messages.ts:294
 msgid "justice.prison.description"
 msgstr "Numărul persoanelor deținute efectiv în penitenciare, la sfârșitul anului (Eurostat)."
@@ -1092,6 +1112,11 @@ msgstr "Referință UE (Maastricht): 3% din PIB"
 #: src/messages.ts:854
 msgid "error.reload"
 msgstr "Reîncarcă pagina sau încearcă din nou mai târziu."
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1037
+msgid "section.retry"
+msgstr "Reîncearcă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:550

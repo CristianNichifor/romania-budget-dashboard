@@ -5,15 +5,17 @@ import { MacroTrendChart } from "../components/charts/MacroTrendChart";
 import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
+import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 export function Energie() {
   const { i18n } = useLingui();
 
-  const { data: energy, isPending } = useQuery({
+  const energyQuery = useQuery({
     queryKey: ["energy-context"],
     queryFn: fetchEnergyContext,
   });
+  const { data: energy, isPending } = energyQuery;
 
   const latestElectricity = energy?.electricity.at(-1);
   const latestRenewables = energy?.renewables.at(-1);
@@ -157,6 +159,7 @@ export function Energie() {
           </section>
         </div>
       )}
+      <QueryError query={energyQuery} />
 
       {energy === null && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">

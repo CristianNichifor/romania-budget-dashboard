@@ -54,6 +54,11 @@ msgid "sankey.node.rest"
 msgstr "Other destinations"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1043
+msgid "balance.kpi.partialYear"
+msgstr "Partial year — execution to date"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:1011
 msgid "soe.company.employees"
 msgstr "Employees"
@@ -324,6 +329,11 @@ msgid "soe.kpi.updated"
 msgstr "{year} data · updated {date} · {companies} companies with data"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1038
+msgid "section.demo"
+msgstr "demo data"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:18
 msgid "dataMode.fallback"
 msgstr "Demo data — API unavailable"
@@ -337,6 +347,11 @@ msgstr "Live data — public API"
 #: src/messages.ts:22
 msgid "dataMode.partial"
 msgstr "Partially demo data"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1033
+msgid "section.error"
+msgstr "The data could not be loaded."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:422
@@ -809,6 +824,11 @@ msgid "drilldown.error"
 msgstr "Could not load institutions — try again."
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1039
+msgid "section.emptyYear"
+msgstr "No demo data for {year}."
+
+#. js-lingui-explicit-id
 #: src/messages.ts:294
 msgid "justice.prison.description"
 msgstr "Number of people actually held in prison at year-end (Eurostat)."
@@ -1092,6 +1112,11 @@ msgstr "EU reference (Maastricht): 3% of GDP"
 #: src/messages.ts:854
 msgid "error.reload"
 msgstr "Reload the page or try again later."
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1037
+msgid "section.retry"
+msgstr "Retry"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:550

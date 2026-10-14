@@ -5,6 +5,7 @@ import { MacroTrendChart } from "../components/charts/MacroTrendChart";
 import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
+import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 const countFormatter = new Intl.NumberFormat("ro-RO", {
@@ -14,10 +15,11 @@ const countFormatter = new Intl.NumberFormat("ro-RO", {
 export function Justitie() {
   const { i18n } = useLingui();
 
-  const { data: justice, isPending } = useQuery({
+  const justiceQuery = useQuery({
     queryKey: ["justice-context"],
     queryFn: fetchJusticeContext,
   });
+  const { data: justice, isPending } = justiceQuery;
 
   const latestHomicides = justice?.homicides.at(-1);
   const latestPrison = justice?.prison.at(-1);
@@ -161,6 +163,7 @@ export function Justitie() {
           </section>
         </div>
       )}
+      <QueryError query={justiceQuery} />
 
       {justice === null && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
