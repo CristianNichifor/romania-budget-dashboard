@@ -19,37 +19,37 @@ msgstr ""
 #~ msgstr "Static demo data — API integration in phase P2"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1160
+#: src/messages.ts:1168
 msgid "soe.kpi.centralLocal"
 msgstr "{central} central · {local} local"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1168
+#: src/messages.ts:1176
 msgid "soe.county.summary"
 msgstr "{companies} companies · {onLoss} loss-making ({lossPercent})"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1164
+#: src/messages.ts:1172
 msgid "soe.onLoss"
 msgstr "{count} loss-making"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1172
+#: src/messages.ts:1180
 msgid "soe.county.lossShare"
 msgstr "{lossPercent} loss-making"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:838
+#: src/messages.ts:846
 msgid "drilldown.share"
 msgstr "{sharePercent} of total"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:853
+#: src/messages.ts:861
 msgid "investments.shareOfTotal"
 msgstr "{sharePercent} of total"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:564
+#: src/messages.ts:572
 msgid "salary.perMonth"
 msgstr "/ month"
 
@@ -59,47 +59,47 @@ msgid "economy.percent"
 msgstr "%"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1176
+#: src/messages.ts:1184
 msgid "economy.percentGdp"
 msgstr "% of GDP"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1184
+#: src/messages.ts:1192
 msgid "soe.scatter.offScale"
 msgstr "▲ {count} companies with a margin beyond ±100% are pinned to the edge; hover for the real value."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:651
+#: src/messages.ts:659
 msgid "wageContext.anchorSub"
 msgstr "€ per year · employees"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:727
+#: src/messages.ts:735
 msgid "comparison.legend.adopted"
 msgstr "Adopted (budget law)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:766
+#: src/messages.ts:774
 msgid "sankey.node.rest"
 msgstr "Other destinations"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1061
+#: src/messages.ts:1069
 msgid "balance.kpi.partialYear"
 msgstr "Partial year — execution to date"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1029
+#: src/messages.ts:1037
 msgid "soe.company.employees"
 msgstr "Employees"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:677
+#: src/messages.ts:685
 msgid "year.label"
 msgstr "Year"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:678
+#: src/messages.ts:686
 msgid "year.groupLabel"
 msgstr "Budget year"
 
@@ -119,47 +119,52 @@ msgid "economy.currentAccount.description"
 msgstr "Current account balance with the rest of the world, quarterly, in billions of euro (Eurostat, BPM6). Red bars = external deficit."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1208
+#: src/messages.ts:1216
 msgid "leuBridge.bani"
 msgstr "bani"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1016
+#: src/messages.ts:1024
 msgid "soe.company.mfin"
 msgstr "Ministry of Finance balance sheet 2024"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:550
+#: src/messages.ts:558
 msgid "nav.nationalBalance"
 msgstr "National balance"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:809
+#: src/messages.ts:817
 msgid "drilldown.breadcrumb.root"
 msgstr "National balance"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:702
+#: src/messages.ts:710
 msgid "comparison.title"
 msgstr "Adopted budget vs. execution"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:762
+#: src/messages.ts:770
 msgid "sankey.node.budget"
 msgstr "Consolidated budget"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:735
+#: src/messages.ts:545
+msgid "provenance.budget"
+msgstr "Consolidated budget (Open Budget)"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:743
 msgid "comparison.scopeNote"
 msgstr "The adopted budget covers the state budget and the BASS, BSAN, BSOM funds (MFP, data.gov.ro); execution covers the same principal credit authorizing officers (transparenta.eu). Both include intra-budgetary transfers."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1101
+#: src/messages.ts:1109
 msgid "about.source.mfp"
 msgstr "The adopted budget and the adopted-versus-executed comparison"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:672
+#: src/messages.ts:680
 msgid "balance.description"
 msgstr "Consolidated budget by year: revenue, expenditure and deficit, following the Open Budget model."
 
@@ -169,87 +174,87 @@ msgid "app.title"
 msgstr "Romania's Budget"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1069
+#: src/messages.ts:1077
 msgid "about.intro"
 msgstr "Romania's Budget is a citizen dashboard, an independent educational project that shows the consolidated budget and economic and social indicators from official public sources."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:565
+#: src/messages.ts:573
 msgid "salary.rateNote"
 msgstr "Illustrative calculation with the 2026 budget tax rates — not tax advice."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1033
+#: src/messages.ts:1041
 msgid "soe.company.capital"
 msgstr "Equity"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:595
+#: src/messages.ts:603
 msgid "salary.entry.cas"
 msgstr "CAS — pensions (25%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:599
+#: src/messages.ts:607
 msgid "salary.entry.cass"
 msgstr "CASS — health (10%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:621
+#: src/messages.ts:629
 msgid "realWage.nominal"
 msgstr "Nominal gross earnings"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:647
+#: src/messages.ts:655
 msgid "wageContext.anchor"
 msgstr "Mean gross annual earnings ({year})"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:625
+#: src/messages.ts:633
 msgid "realWage.real"
 msgstr "Real earnings (constant prices)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:616
+#: src/messages.ts:624
 msgid "realWage.description"
 msgstr "Estimated mean gross monthly earnings (Eurostat), nominal and adjusted for HICP inflation. When the red line grows slower than the blue one, purchasing power falls."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:706
+#: src/messages.ts:714
 msgid "comparison.description"
 msgstr "The deficit the budget law promised (MFP) versus what was actually executed (transparenta.eu). The deficit is directly comparable — transfers between funds cancel out."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:555
+#: src/messages.ts:563
 msgid "salary.description"
 msgstr "How much of your labour cost goes to the state and how much you keep."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1189
+#: src/messages.ts:1197
 msgid "leuBridge.title"
 msgstr "What 1 leu of your taxes buys"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:770
+#: src/messages.ts:778
 msgid "sankey.rest.summary"
 msgstr "What is in “Other destinations”: {count} smaller destinations"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1193
+#: src/messages.ts:1201
 msgid "leuBridge.description"
 msgstr "The {amount} a month that reaches the state, split by where the budget goes."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:871
+#: src/messages.ts:879
 msgid "error.title"
 msgstr "Something went wrong"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:689
+#: src/messages.ts:697
 msgid "balance.kpi.expenditure"
 msgstr "Expenditure"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:792
+#: src/messages.ts:800
 msgid "context.budgetLabel"
 msgstr "Health spending"
 
@@ -269,27 +274,27 @@ msgid "economy.pensions.description"
 msgstr "Pensions spending (budget execution, bn lei) against the old-age dependency ratio: 65+ per 100 people aged 15–64."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:787
+#: src/messages.ts:795
 msgid "context.description"
 msgstr "Public health spending (bars, bn EUR, Eurostat COFOG) alongside a social indicator (line) — money allocated vs. the measurable outcome."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:904
+#: src/messages.ts:912
 msgid "soe.kpi.revenue"
 msgstr "Turnover"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1020
+#: src/messages.ts:1028
 msgid "soe.company.ca"
 msgstr "Turnover"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1148
+#: src/messages.ts:1156
 msgid "about.code.title"
 msgstr "Source code"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1152
+#: src/messages.ts:1160
 msgid "about.code.description"
 msgstr "The code is open source under the MIT licence:"
 
@@ -299,57 +304,57 @@ msgid "economy.trade.title"
 msgstr "International trade"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:546
+#: src/messages.ts:554
 msgid "nav.companies"
 msgstr "State companies"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:900
+#: src/messages.ts:908
 msgid "soe.kpi.companies"
 msgstr "State-owned companies"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:985
+#: src/messages.ts:993
 msgid "soe.listed.title"
 msgstr "State companies listed on the BVB"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1050
+#: src/messages.ts:1058
 msgid "soe.source"
 msgstr "companiidestat.ro"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1105
+#: src/messages.ts:1113
 msgid "about.source.soe"
 msgstr "State-owned companies"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:891
+#: src/messages.ts:899
 msgid "soe.title"
 msgstr "Romania's state-owned companies"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:959
+#: src/messages.ts:967
 msgid "soe.counties.title"
 msgstr "State companies by county"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:946
+#: src/messages.ts:954
 msgid "soe.sectors.title"
 msgstr "Loss-making companies, by sector"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:740
+#: src/messages.ts:748
 msgid "comparison.unavailable"
 msgstr "The adopted vs. execution comparison is unavailable — the data source did not respond."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1012
+#: src/messages.ts:1020
 msgid "soe.company.management"
 msgstr "Management"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1134
+#: src/messages.ts:1142
 msgid "about.privacy.title"
 msgstr "Privacy"
 
@@ -359,17 +364,17 @@ msgid "economy.kpi.currentAccount"
 msgstr "Current account"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:629
+#: src/messages.ts:637
 msgid "wageContext.title"
 msgstr "Wage context"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:783
+#: src/messages.ts:791
 msgid "context.title"
 msgstr "Social context"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:591
+#: src/messages.ts:599
 msgid "salary.entry.employerContribution"
 msgstr "Employer contribution (CAM 2.25%)"
 
@@ -379,7 +384,7 @@ msgid "economy.currentAccount.title"
 msgstr "Current account"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:587
+#: src/messages.ts:595
 msgid "salary.entry.gross"
 msgstr "Total employer cost"
 
@@ -404,17 +409,17 @@ msgid "economy.fx.title"
 msgstr "EUR/RON exchange rate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1097
+#: src/messages.ts:1105
 msgid "about.source.ecb"
 msgstr "The EUR/RON rate and the deposit facility rate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:916
+#: src/messages.ts:924
 msgid "soe.kpi.updated"
 msgstr "{year} data · updated {date} · {companies} companies with data"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1056
+#: src/messages.ts:1064
 msgid "section.demo"
 msgstr "demo data"
 
@@ -434,12 +439,17 @@ msgid "dataMode.partial"
 msgstr "Partially demo data"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1117
+#: src/messages.ts:541
+msgid "provenance.line"
+msgstr "Data: {source}, {year}"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1125
 msgid "about.source.openBudget"
 msgstr "The 2026 demo data, used only when the site runs without the API"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1051
+#: src/messages.ts:1059
 msgid "section.error"
 msgstr "The data could not be loaded."
 
@@ -459,22 +469,22 @@ msgid "economy.kpi.debt"
 msgstr "Public debt"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:745
+#: src/messages.ts:753
 msgid "sankey.title"
 msgstr "Where the money comes from and goes"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:693
+#: src/messages.ts:701
 msgid "balance.kpi.deficit"
 msgstr "Deficit"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:694
+#: src/messages.ts:702
 msgid "balance.kpi.deficitGdp"
 msgstr "Deficit (% GDP)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:758
+#: src/messages.ts:766
 msgid "sankey.node.deficit"
 msgstr "Deficit (borrowing)"
 
@@ -484,7 +494,7 @@ msgid "gauge.ariaLabel"
 msgstr "Deficit {valuePercent} of GDP"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:711
+#: src/messages.ts:719
 msgid "comparison.kpi.adoptedDeficit"
 msgstr "Adopted deficit"
 
@@ -494,7 +504,7 @@ msgid "economy.kpi.deficit"
 msgstr "Budget deficit"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:715
+#: src/messages.ts:723
 msgid "comparison.kpi.executedDeficit"
 msgstr "Executed deficit"
 
@@ -509,7 +519,7 @@ msgid "economy.deficit.title"
 msgstr "Quarterly budget deficit"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:870
+#: src/messages.ts:878
 msgid "source.demo"
 msgstr "Demo"
 
@@ -519,7 +529,7 @@ msgid "society.demographics.title"
 msgstr "Demographics"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:719
+#: src/messages.ts:727
 msgid "comparison.kpi.delta"
 msgstr "Overrun vs. law"
 
@@ -554,47 +564,47 @@ msgid "sankey.openDestination"
 msgstr "Open destination {destination}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:942
+#: src/messages.ts:950
 msgid "soe.scatter.open"
 msgstr "Open {company}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1079
+#: src/messages.ts:1087
 msgid "about.contactLink"
 msgstr "open an issue on GitHub"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1065
+#: src/messages.ts:1073
 msgid "about.title"
 msgstr "About"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1156
+#: src/messages.ts:1164
 msgid "footer.about"
 msgstr "About"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:774
+#: src/messages.ts:782
 msgid "treemap.title"
 msgstr "Spending destinations"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1199
+#: src/messages.ts:1207
 msgid "leuBridge.destination"
 msgstr "Destination"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:813
+#: src/messages.ts:821
 msgid "drilldown.breadcrumb.destinations"
 msgstr "Destinations"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:963
+#: src/messages.ts:971
 msgid "soe.counties.description"
 msgstr "Square size = turnover; shade = share of loss-making companies."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1203
+#: src/messages.ts:1211
 msgid "leuBridge.perLeu"
 msgstr "Out of 1 leu"
 
@@ -609,7 +619,7 @@ msgid "energy.renewablesLegend"
 msgstr "of gross final consumption"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1204
+#: src/messages.ts:1212
 msgid "leuBridge.perMonth"
 msgstr "Out of your monthly contribution"
 
@@ -669,27 +679,27 @@ msgid "energy.kpi.renewables"
 msgstr "Renewable energy"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1198
+#: src/messages.ts:1206
 msgid "leuBridge.estimate"
 msgstr "Estimate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:583
+#: src/messages.ts:591
 msgid "salary.estimateLoading"
 msgstr "Estimating average salary…"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:659
+#: src/messages.ts:667
 msgid "wageContext.monthlyDescription"
 msgstr "Estimate: the mean gross annual earnings (Structure of Earnings Survey, Eurostat) adjusted with the labour cost index (LCI). Compare with your gross salary above."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:865
+#: src/messages.ts:873
 msgid "investments.estimatedNote"
 msgstr "Estimate: the 2026 public investment programme has no structured public county-level source; amounts are approximate."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1209
+#: src/messages.ts:1217
 msgid "leuBridge.note"
 msgstr "Estimate: taxes are not earmarked. Your contribution is split in proportion to consolidated budget spending, so this shows where an average leu goes, not your leu in particular."
 
@@ -699,22 +709,22 @@ msgid "economy.kpi.fx"
 msgstr "EUR/RON"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1113
+#: src/messages.ts:1121
 msgid "about.source.transparenta"
 msgstr "Budget execution"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:731
+#: src/messages.ts:739
 msgid "comparison.legend.executed"
 msgstr "Execution"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:723
+#: src/messages.ts:731
 msgid "comparison.kpi.executedGdp"
 msgstr "Execution % GDP"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:680
+#: src/messages.ts:688
 msgid "year.inProgressCaption"
 msgstr "Execution in progress — amounts grow as monthly reports come in."
 
@@ -729,17 +739,17 @@ msgid "economy.trade.description"
 msgstr "Exports and imports of goods and services, % of GDP (Eurostat), with the derived balance."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:834
+#: src/messages.ts:842
 msgid "drilldown.empty"
 msgstr "No institutions listed for this destination."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:804
+#: src/messages.ts:812
 msgid "context.insight"
 msgstr "Compared to 2021, the health budget changed by {budgetChange}; the “{insLabel}” indicator: {insChange}."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:579
+#: src/messages.ts:587
 msgid "salary.vsAverage"
 msgstr "vs. average net salary (estimated)"
 
@@ -749,12 +759,12 @@ msgid "nav.citizenSlice"
 msgstr "Your slice"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1087
+#: src/messages.ts:1095
 msgid "about.sources.description"
 msgstr "Every chart shows its source on its card. The project's API takes the data from the sources below, under the terms each source sets."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:924
+#: src/messages.ts:932
 msgid "soe.scatter.description"
 msgstr "Each dot is a state company: 2024 net margin (horizontal) vs. the highest monthly salary in management (vertical). Click a dot for the company sheet."
 
@@ -764,12 +774,12 @@ msgid "sankey.ariaLabel"
 msgstr "Public money flow"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:749
+#: src/messages.ts:757
 msgid "sankey.description"
 msgstr "Public money flow: revenue sources → consolidated budget → destinations. The deficit appears as a source (borrowing)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:571
+#: src/messages.ts:579
 msgid "salary.stateShareStat"
 msgstr "The state takes"
 
@@ -784,32 +794,32 @@ msgid "economy.trade.imports"
 msgstr "Imports"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:603
+#: src/messages.ts:611
 msgid "salary.entry.incomeTax"
 msgstr "Income tax (10%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:679
+#: src/messages.ts:687
 msgid "year.inProgress"
 msgstr "in progress"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:843
+#: src/messages.ts:851
 msgid "drilldown.close"
 msgstr "Close"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1041
+#: src/messages.ts:1049
 msgid "soe.company.close"
 msgstr "Close"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:800
+#: src/messages.ts:808
 msgid "context.metricLabel"
 msgstr "Tracked indicator"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:895
+#: src/messages.ts:903
 msgid "soe.description"
 msgstr "Financial indicators, salaries and subsidies for state-owned companies — public data, 2019–2024."
 
@@ -824,7 +834,7 @@ msgid "economy.gdpPerCapita.indexLegend"
 msgstr "EU27 = 100 index"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:638
+#: src/messages.ts:646
 msgid "wageContext.lciTitle"
 msgstr "Labour cost index"
 
@@ -844,7 +854,7 @@ msgid "economy.description"
 msgstr "Inflation, unemployment and the exchange rate — monthly indicators from official European sources."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1092
+#: src/messages.ts:1100
 msgid "about.source.eurostat"
 msgstr "Inflation, unemployment, GDP, debt, wages, society, energy, labour market, justice"
 
@@ -854,27 +864,27 @@ msgid "justice.homicides.description"
 msgstr "Recorded intentional homicide offences (ICCS 0101), annual count (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:633
+#: src/messages.ts:641
 msgid "wageContext.description"
 msgstr "INS does not publish the monthly average wage as a clean data series; we use the labour cost index as the trend and the mean gross annual earnings from the Structure of Earnings Survey (every 4 years)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:821
+#: src/messages.ts:829
 msgid "drilldown.description"
 msgstr "Institutions funded from this destination, with each one's share of the total."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:844
+#: src/messages.ts:852
 msgid "investments.title"
 msgstr "Public investments by county"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:570
+#: src/messages.ts:578
 msgid "salary.netStat"
 msgstr "You keep"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1007
+#: src/messages.ts:1015
 msgid "soe.company.county"
 msgstr "County"
 
@@ -894,7 +904,7 @@ msgid "economy.lei"
 msgstr "RON"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1122
+#: src/messages.ts:1130
 msgid "about.licence"
 msgstr "Licence"
 
@@ -919,22 +929,22 @@ msgid "economy.debt.maastricht"
 msgstr "Maastricht 60%"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:861
+#: src/messages.ts:869
 msgid "investments.legendMax"
 msgstr "more"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:857
+#: src/messages.ts:865
 msgid "investments.legendMin"
 msgstr "less"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:929
+#: src/messages.ts:937
 msgid "soe.scatter.x"
 msgstr "Net margin (%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1008
+#: src/messages.ts:1016
 msgid "soe.company.marginHistory"
 msgstr "Net margin by year (%)"
 
@@ -954,7 +964,7 @@ msgid "society.demographics.netMigration"
 msgstr "Net migration (per 1 000)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:796
+#: src/messages.ts:804
 msgid "context.budgetUnit"
 msgstr "billion EUR"
 
@@ -974,17 +984,17 @@ msgid "nav.label"
 msgstr "Main navigation"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:611
+#: src/messages.ts:619
 msgid "salary.entry.net"
 msgstr "Net salary"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:830
+#: src/messages.ts:838
 msgid "drilldown.error"
 msgstr "Could not load institutions — try again."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1057
+#: src/messages.ts:1065
 msgid "section.emptyYear"
 msgstr "No demo data for {year}."
 
@@ -1019,12 +1029,12 @@ msgid "justice.description"
 msgstr "Intentional homicides, prison population and police headcount (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:989
+#: src/messages.ts:997
 msgid "soe.listed.description"
 msgstr "Majority state stakes on the Bucharest Stock Exchange, with the share price evolution."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1143
+#: src/messages.ts:1151
 msgid "about.privacy.hosting"
 msgstr "The pages and the API are hosted on Cloudflare Workers. Like any hosting provider, Cloudflare receives your requests, including your IP address, to deliver the pages."
 
@@ -1039,7 +1049,7 @@ msgid "society.education.description"
 msgstr "Early school leaving and tertiary educational attainment, % of the population aged 18–24 and 25–34 respectively (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:968
+#: src/messages.ts:976
 msgid "soe.counties.lossPct"
 msgstr "on loss"
 
@@ -1104,12 +1114,12 @@ msgid "economy.gdpPerCapita.ppsLegend"
 msgstr "GDP/capita (PPS)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1025
+#: src/messages.ts:1033
 msgid "soe.company.loss"
 msgstr "Net loss"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:912
+#: src/messages.ts:920
 msgid "soe.kpi.losses"
 msgstr "Net losses"
 
@@ -1119,7 +1129,7 @@ msgid "justice.kpi.police"
 msgstr "Police officers"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:950
+#: src/messages.ts:958
 msgid "soe.sectors.description"
 msgstr "Share of loss-making companies in each economic sector, 2019–2024."
 
@@ -1134,7 +1144,7 @@ msgid "energy.renewables.title"
 msgstr "Renewable energy share"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:955
+#: src/messages.ts:963
 msgid "soe.sectors.y"
 msgstr "Share on loss (%)"
 
@@ -1174,12 +1184,12 @@ msgid "society.kpi.population"
 msgstr "Resident population"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:575
+#: src/messages.ts:583
 msgid "salary.effectiveRate"
 msgstr "Effective fiscal burden"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:934
+#: src/messages.ts:942
 msgid "soe.scatter.breakEven"
 msgstr "Break-even"
 
@@ -1204,22 +1214,22 @@ msgid "energy.electricity.description"
 msgstr "Average household electricity price, 2,500–5,000 kWh/year band, all taxes included (Eurostat, half-yearly)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:908
+#: src/messages.ts:916
 msgid "soe.kpi.profit"
 msgstr "Net profit"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1021
+#: src/messages.ts:1029
 msgid "soe.company.profit"
 msgstr "Net profit"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:994
+#: src/messages.ts:1002
 msgid "soe.listed.profit"
 msgstr "Consolidated net profit"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:848
+#: src/messages.ts:856
 msgid "investments.description"
 msgstr "The 2026 investments program, by county. Cartogram: area = allocated amount, color = intensity relative to other counties."
 
@@ -1229,7 +1239,7 @@ msgid "app.footer"
 msgstr "Educational project — data comes from official public sources; each chart's source is shown on its card."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1074
+#: src/messages.ts:1082
 msgid "about.operator"
 msgstr "The project is run by Cristian Nichifor. For questions, corrections or wrong data:"
 
@@ -1274,47 +1284,47 @@ msgid "labour.youth.description"
 msgstr "Unemployment rate for people under 25, seasonally adjusted, % of the labour force (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:698
+#: src/messages.ts:706
 msgid "balance.debtGauge.reference"
 msgstr "EU reference (Maastricht): 3% of GDP"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:872
+#: src/messages.ts:880
 msgid "error.reload"
 msgstr "Reload the page or try again later."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1055
+#: src/messages.ts:1063
 msgid "section.retry"
 msgstr "Retry"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:560
+#: src/messages.ts:568
 msgid "salary.grossLabel"
 msgstr "Gross salary (RON/month)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:930
+#: src/messages.ts:938
 msgid "soe.scatter.y"
 msgstr "Highest salary (RON/month)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:938
+#: src/messages.ts:946
 msgid "soe.scatter.minWage"
 msgstr "Gross minimum wage"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:920
+#: src/messages.ts:928
 msgid "soe.scatter.title"
 msgstr "Salary vs. performance"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:655
+#: src/messages.ts:663
 msgid "wageContext.monthlyTitle"
 msgstr "Average gross monthly wage (estimate)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:612
+#: src/messages.ts:620
 msgid "realWage.title"
 msgstr "Real vs. nominal wage"
 
@@ -1334,12 +1344,12 @@ msgid "a11y.skipToContent"
 msgstr "Skip to content"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1042
+#: src/messages.ts:1050
 msgid "soe.company.loading"
 msgstr "Loading company sheet…"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:826
+#: src/messages.ts:834
 msgid "drilldown.loading"
 msgstr "Loading institutions…"
 
@@ -1349,12 +1359,12 @@ msgid "app.loading"
 msgstr "Loading…"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1006
+#: src/messages.ts:1014
 msgid "soe.company.sector"
 msgstr "Sector"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:664
+#: src/messages.ts:672
 msgid "wageContext.estimatedNote"
 msgstr "Estimated series — not the official average wage published by INS."
 
@@ -1364,12 +1374,12 @@ msgid "app.loadingSlow"
 msgstr "The server is slow to respond — waiting a few more seconds."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1138
+#: src/messages.ts:1146
 msgid "about.privacy.tracking"
 msgstr "The site does not use cookies, runs no analytics and does not track visitors. It stores nothing in your browser and loads nothing from third parties."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:554
+#: src/messages.ts:562
 msgid "salary.title"
 msgstr "Your fiscal situation"
 
@@ -1404,17 +1414,17 @@ msgid "labour.kpi.youth"
 msgstr "Youth unemployment (under 25)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:998
+#: src/messages.ts:1006
 msgid "soe.listed.state"
 msgstr "State: {percent}%"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1002
+#: src/messages.ts:1010
 msgid "soe.company.status"
 msgstr "Status"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:817
+#: src/messages.ts:825
 msgid "drilldown.title"
 msgstr "Institutional structure: {destination}"
 
@@ -1424,17 +1434,17 @@ msgid "society.education.tertiary"
 msgstr "Tertiary attainment (25–34)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1037
+#: src/messages.ts:1045
 msgid "soe.company.subsidy"
 msgstr "2025 subsidy"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:972
+#: src/messages.ts:980
 msgid "soe.subsidies.title"
 msgstr "Local subsidies"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:976
+#: src/messages.ts:984
 msgid "soe.subsidies.description"
 msgstr "Subsidies paid by city halls to state-owned companies — top operators by value."
 
@@ -1444,42 +1454,42 @@ msgid "currency.rateNote"
 msgstr "Amounts converted at the {year} ECB average rate: €1 = {rate} lei."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:778
+#: src/messages.ts:786
 msgid "treemap.description"
 msgstr "Each rectangle's area is proportional to the allocated amount."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:541
+#: src/messages.ts:549
 msgid "source.updatedAt"
 msgstr "Source updated {date}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1046
+#: src/messages.ts:1054
 msgid "soe.unavailable"
 msgstr "Data source is temporarily unavailable."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1126
+#: src/messages.ts:1134
 msgid "about.licence.none"
 msgstr "the source states no licence"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:545
+#: src/messages.ts:553
 msgid "source.ecb"
 msgstr "Source: ECB"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:877
+#: src/messages.ts:885
 msgid "source.bnr"
 msgstr "Source: BNR"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:886
+#: src/messages.ts:894
 msgid "source.budget"
 msgstr "Source: Consolidated budget"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1180
+#: src/messages.ts:1188
 msgid "source.budgetYear"
 msgstr "Source: Consolidated budget {year}"
 
@@ -1489,22 +1499,22 @@ msgid "source.eurostat"
 msgstr "Source: Eurostat"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:876
+#: src/messages.ts:884
 msgid "source.ins"
 msgstr "Source: INS Tempo"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:878
+#: src/messages.ts:886
 msgid "source.mfp"
 msgstr "Source: MFP via data.gov.ro"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:882
+#: src/messages.ts:890
 msgid "source.transparenta"
 msgstr "Source: transparenta.eu"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1083
+#: src/messages.ts:1091
 msgid "about.sources.title"
 msgstr "Data sources and licences"
 
@@ -1514,7 +1524,7 @@ msgid "app.subtitle"
 msgstr "Citizen dashboard — consolidated budget"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1130
+#: src/messages.ts:1138
 msgid "about.licence.terms"
 msgstr "the source's terms"
 
@@ -1539,17 +1549,17 @@ msgid "economy.inflation.targetLine"
 msgstr "NBR target"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1109
+#: src/messages.ts:1117
 msgid "about.source.bnr"
 msgstr "The inflation target"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:842
+#: src/messages.ts:850
 msgid "drilldown.total"
 msgstr "Total"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:981
+#: src/messages.ts:989
 msgid "soe.subsidies.total"
 msgstr "Total {year}: {total}"
 
@@ -1559,7 +1569,7 @@ msgid "economy.kpi.currentAccountSub"
 msgstr "quarterly"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:607
+#: src/messages.ts:615
 msgid "salary.entry.estimatedVat"
 msgstr "Estimated VAT (consumption)"
 
@@ -1574,7 +1584,7 @@ msgid "chart.csv.value"
 msgstr "Value"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:642
+#: src/messages.ts:650
 msgid "wageContext.lciDescription"
 msgstr "Annual change of the hourly labour cost in the economy, % versus the same quarter last year (Eurostat)."
 
@@ -1599,16 +1609,16 @@ msgid "society.demographics.description"
 msgstr "Median age of the population and annual net migration per 1 000 inhabitants (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:685
+#: src/messages.ts:693
 msgid "balance.kpi.revenue"
 msgstr "Revenue"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:754
+#: src/messages.ts:762
 msgid "sankey.node.revenue"
 msgstr "Revenue"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:668
+#: src/messages.ts:676
 msgid "balance.title"
 msgstr "Revenue and expenditure"
