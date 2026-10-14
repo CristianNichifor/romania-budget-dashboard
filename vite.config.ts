@@ -19,6 +19,21 @@ import {
 function staticHead(): Plugin {
   return {
     name: "static-head",
+    configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        const files: Record<string, [string, () => string]> = {
+          "/robots.txt": ["text/plain; charset=utf-8", robotsTxt],
+          "/sitemap.xml": ["application/xml; charset=utf-8", sitemapXml],
+        };
+        const file = files[request.url ?? ""];
+        if (file === undefined) {
+          next();
+          return;
+        }
+        response.setHeader("Content-Type", file[0]);
+        response.end(file[1]());
+      });
+    },
     transformIndexHtml(html, context) {
       const url = context.originalUrl ?? "/";
       return applyHead(

@@ -1,53 +1,68 @@
 import { useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
-import {
-  absoluteUrl,
-  counterpartPath,
-  localeFromPath,
-} from "../../lib/routeTable";
+import { headFor } from "../../lib/staticHead";
 
-function setLink(selector: string, attributes: Record<string, string>): void {
-  let link = document.head.querySelector<HTMLLinkElement>(selector);
-  if (link === null) {
-    link = document.createElement("link");
-    document.head.append(link);
+function setElement(
+  tag: "link" | "meta",
+  selector: string,
+  attributes: Record<string, string>
+): void {
+  let element = document.head.querySelector(selector);
+  if (element === null) {
+    element = document.createElement(tag);
+    document.head.append(element);
   }
   for (const [name, value] of Object.entries(attributes)) {
-    link.setAttribute(name, value);
+    element.setAttribute(name, value);
   }
 }
 
 /**
- * Keeps `<link rel="canonical">` and the en/ro/x-default alternates on the
- * current route's pair, on this host. `index.html` ships the root's set for
- * clients without JavaScript.
+ * Keeps the title, description, canonical and en/ro/x-default alternates on
+ * the current route after client-side navigation. The build writes the same
+ * head into each route's static HTML (`src/lib/staticHead.ts`).
  */
 export function DocumentLinks() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const locale = localeFromPath(pathname);
-    const en = absoluteUrl(counterpartPath(pathname, "en"));
-    const ro = absoluteUrl(counterpartPath(pathname, "ro"));
+    const head = headFor(pathname);
 
-    setLink('link[rel="canonical"]', {
-      rel: "canonical",
-      href: locale === "ro" ? ro : en,
+    document.title = head.title;
+    setElement("meta", 'meta[name="description"]', {
+      name: "description",
+      content: head.description,
     });
-    setLink('link[rel="alternate"][hreflang="en"]', {
+    setElement("meta", 'meta[property="og:title"]', {
+      property: "og:title",
+      content: head.title,
+    });
+    setElement("meta", 'meta[property="og:description"]', {
+      property: "og:description",
+      content: head.description,
+    });
+    setElement("meta", 'meta[property="og:url"]', {
+      property: "og:url",
+      content: head.canonical,
+    });
+    setElement("link", 'link[rel="canonical"]', {
+      rel: "canonical",
+      href: head.canonical,
+    });
+    setElement("link", 'link[rel="alternate"][hreflang="en"]', {
       rel: "alternate",
       hreflang: "en",
-      href: en,
+      href: head.alternates.en,
     });
-    setLink('link[rel="alternate"][hreflang="ro"]', {
+    setElement("link", 'link[rel="alternate"][hreflang="ro"]', {
       rel: "alternate",
       hreflang: "ro",
-      href: ro,
+      href: head.alternates.ro,
     });
-    setLink('link[rel="alternate"][hreflang="x-default"]', {
+    setElement("link", 'link[rel="alternate"][hreflang="x-default"]', {
       rel: "alternate",
       hreflang: "x-default",
-      href: en,
+      href: head.alternates.xDefault,
     });
   }, [pathname]);
 
