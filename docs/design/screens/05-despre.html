@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Despre — Bugetul României</title>
+    <style>
+      /* Token values copied from civic-ui src/foundations.css (light theme), 2026-10-14 */
+      :root {
+        --civic-bg: #f4f6f6;
+        --civic-surface: #ffffff;
+        --civic-text: #142323;
+        --civic-muted: #475d60;
+        --civic-border: #718588;
+        --civic-line: #d5dddc;
+        --civic-accent: #006b60;
+        --civic-success: #146c2e;
+        --civic-warning: #f2b300;
+        --civic-danger: #b3261e;
+        --civic-viz-1: #2a78d6;
+        --civic-viz-2: #eb6834;
+        --civic-viz-3: #1baf7a;
+        --civic-viz-4: #eda100;
+        --civic-viz-5: #e87ba4;
+        --civic-viz-6: #008300;
+        --civic-viz-7: #4a3aa7;
+        --civic-viz-8: #e34948;
+        --civic-viz-seq-1: #cde2fb;
+        --civic-viz-seq-7: #184f95;
+        --civic-space-1: 0.25rem;
+        --civic-space-2: 0.5rem;
+        --civic-space-3: 0.75rem;
+        --civic-space-4: 1rem;
+        --civic-space-6: 1.5rem;
+        --civic-space-8: 2rem;
+        --civic-radius: 6px;
+        --civic-control-height: 44px;
+        --civic-font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font-family: var(--civic-font-sans);
+        color: var(--civic-text);
+        background: var(--civic-bg);
+        font-size: 16px;
+        line-height: 1.45;
+      }
+      body {
+        margin: 0;
+      }
+      a {
+        color: var(--civic-accent);
+      }
+      h1 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin: 0 0 var(--civic-space-2);
+      }
+      h2 {
+        font-size: 1.25rem;
+        margin: 0 0 var(--civic-space-1);
+      }
+      h3 {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .fam {
+        background: var(--civic-text);
+        color: #fff;
+        display: flex;
+        gap: var(--civic-space-4);
+        align-items: center;
+        padding: 0 var(--civic-space-4);
+        min-height: var(--civic-control-height);
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .fam a {
+        color: #fff;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+      }
+      .fam .tool {
+        font-weight: 600;
+      }
+      .fam .sp {
+        flex: 1;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        border-radius: 999px;
+        padding: 0.15em 0.7em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+      }
+      .b-live {
+        background: #e3f3e8;
+        color: var(--civic-success);
+        border-color: var(--civic-success);
+      }
+      .b-demo {
+        background: #fff4cc;
+        color: #5a4300;
+        border-color: var(--civic-warning);
+      }
+      .tabs {
+        display: flex;
+        gap: var(--civic-space-1);
+        overflow-x: auto;
+        background: var(--civic-surface);
+        border-bottom: 1px solid var(--civic-line);
+        padding: 0 var(--civic-space-4);
+        scrollbar-width: thin;
+      }
+      .tabs a {
+        white-space: nowrap;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+        padding: 0 var(--civic-space-3);
+        color: var(--civic-text);
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+      }
+      .tabs a[aria-current] {
+        border-color: var(--civic-accent);
+        font-weight: 600;
+        color: var(--civic-accent);
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--civic-space-6) var(--civic-space-4) var(--civic-space-8);
+      }
+      .lead {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-2);
+        font-size: 1.05rem;
+      }
+      .prov {
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-6);
+      }
+      .prov b {
+        color: var(--civic-text);
+        font-weight: 600;
+      }
+      .grid {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: var(--civic-space-6);
+      }
+      .tile {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+      }
+      .tile .l {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .tile .v {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
+      }
+      .tile .d {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .d.bad {
+        color: var(--civic-danger);
+      }
+      .d.good {
+        color: var(--civic-success);
+      }
+      .frame {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-6);
+      }
+      .frame .q {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-3);
+        font-size: 0.95rem;
+      }
+      .frame .src {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+        margin-top: var(--civic-space-3);
+        display: flex;
+        gap: var(--civic-space-4);
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .frame .hd {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--civic-space-3);
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: var(--civic-control-height);
+        min-width: var(--civic-control-height);
+        padding: 0 var(--civic-space-4);
+        border: 1px solid var(--civic-border);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+        color: var(--civic-text);
+        font: inherit;
+        cursor: pointer;
+      }
+      .btn.p {
+        background: var(--civic-accent);
+        border-color: var(--civic-accent);
+        color: #fff;
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--civic-viz-1);
+        outline-offset: 2px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9rem;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.45em 0.6em;
+        border-bottom: 1px solid var(--civic-line);
+      }
+      td.n,
+      th.n {
+        text-align: right;
+      }
+      caption {
+        text-align: left;
+        font-weight: 600;
+        padding: 0.4em 0;
+      }
+      details > summary {
+        cursor: pointer;
+        min-height: var(--civic-control-height);
+        display: flex;
+        align-items: center;
+        color: var(--civic-accent);
+        font-weight: 600;
+      }
+      .two {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: 1fr 1fr;
+      }
+      .multi {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .state {
+        border: 1px dashed var(--civic-border);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-4);
+      }
+      .skel {
+        background: linear-gradient(90deg, #e6ebea, #f4f6f6, #e6ebea);
+        height: 1em;
+        border-radius: 4px;
+        margin: 0.4em 0;
+      }
+      .skel.h {
+        height: 180px;
+      }
+      .msg {
+        display: flex;
+        gap: var(--civic-space-3);
+        align-items: center;
+        flex-wrap: wrap;
+        border-left: 4px solid;
+        padding: var(--civic-space-3);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+      }
+      .msg.err {
+        border-color: var(--civic-danger);
+      }
+      .msg.info {
+        border-color: var(--civic-viz-1);
+      }
+      .msg.warn {
+        border-color: var(--civic-warning);
+      }
+      .bar {
+        height: 10px;
+        background: var(--civic-line);
+        border-radius: 5px;
+        overflow: hidden;
+        width: 220px;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        background: var(--civic-viz-1);
+        width: 40%;
+      }
+      footer {
+        border-top: 1px solid var(--civic-line);
+        background: var(--civic-surface);
+        padding: var(--civic-space-6) var(--civic-space-4);
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+      }
+      footer nav {
+        display: flex;
+        gap: var(--civic-space-6);
+        flex-wrap: wrap;
+      }
+      footer a {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .dev {
+        background: #fff;
+        border: 2px solid var(--civic-viz-7);
+        color: var(--civic-viz-7);
+        font-size: 0.8rem;
+        padding: 0.3em 0.6em;
+        margin: 0;
+        position: sticky;
+        top: 0;
+        z-index: 9;
+      }
+      svg text {
+        font-family: var(--civic-font-sans);
+      }
+      @media (max-width: 640px) {
+        .grid,
+        .two,
+        .multi {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 1.4rem;
+        }
+        main {
+          padding: var(--civic-space-4) var(--civic-space-4)
+            var(--civic-space-8);
+        }
+        .fam .lang {
+          order: 3;
+        }
+        .hide-m {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .skel {
+          animation: sh 1.4s linear infinite;
+          background-size: 200% 100%;
+        }
+        @keyframes sh {
+          to {
+            background-position: -200% 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="dev">
+      Machetă țintă (docs/design) · desktop 1440 și mobil 390 prin media query ·
+      texte în română scrise de agent: needs human review
+    </p>
+    <a href="#continut" class="btn" style="position: absolute; left: -999px"
+      >Sari la conținut</a
+    >
+    <header class="fam" role="banner">
+      <a href="https://projects.cristian-nichifor.com/">← Proiecte civice</a
+      ><span class="tool">Bugetul României</span
+      ><span class="badge b-demo">Date demo</span><span class="sp"></span>
+      <nav class="lang" aria-label="Limbă">
+        <a href="/ro/" aria-current="true"><b>RO</b></a
+        >&nbsp;·&nbsp;<a href="/">EN</a>
+      </nav>
+    </header>
+    <nav class="tabs" aria-label="Secțiuni">
+      <a href="/ro/felia-ta/">Felia ta</a
+      ><a href="/ro/bilantul-national/">Bilanțul național</a
+      ><a href="/ro/unde-se-duc/">Unde se duc banii</a
+      ><a href="/ro/companii-de-stat/">Companii de stat</a
+      ><a href="/ro/economie/">Economie</a><a href="/ro/societate/">Societate</a
+      ><a href="/ro/energie/">Energie</a
+      ><a href="/ro/piata-muncii/">Piața muncii</a
+      ><a href="/ro/justitie/">Justiție</a>
+    </nav>
+    <main id="continut">
+      <h1>Despre proiect, metodă și surse</h1>
+      <p class="lead">
+        Bugetul României este un tablou de bord cetățenesc, un proiect
+        educațional independent care arată bugetul consolidat și indicatori
+        economici și sociali din surse publice oficiale.
+      </p>
+      <p class="prov">
+        <b>Date:</b> surse listate mai jos, fiecare cu licența ei · pagină
+        actualizată la 14 octombrie 2026
+      </p>
+
+      <nav aria-label="Cuprins" style="margin-bottom: var(--civic-space-6)">
+        <ul
+          style="
+            display: flex;
+            gap: var(--civic-space-4);
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+          "
+        >
+          <li><a href="#metoda" class="btn">Metodă</a></li>
+          <li><a href="#surse" class="btn">Surse și licențe</a></li>
+          <li>
+            <a href="#confidentialitate" class="btn">Confidențialitate</a>
+          </li>
+          <li><a href="#cod" class="btn">Cod și contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="frame" id="metoda" aria-labelledby="h-met">
+        <h2 id="h-met">Metodă</h2>
+        <ul style="margin: 0; padding-left: 1.3em">
+          <li>
+            <b>Felia ta</b> urmează modelul Open Budget 2026: CAS 25 %, CASS 10
+            %, impozit pe venit 10 % din baza după contribuții, contribuția
+            angajatorului 2,25 %, plus un TVA estimat pe 75 % din net cheltuit,
+            la cota de 21 %. Rezultatul este o <b>estimare</b>, nu o cifră
+            oficială.
+          </li>
+          <li>
+            <b>1 leu din taxele tale</b> împarte suma pro rata după destinațiile
+            bugetului adoptat. Taxele nu sunt alocate pe destinații: arată unde
+            se duce un leu mediu, nu leul tău.
+          </li>
+          <li>
+            <b>Banii nu se calculează cu zecimale binare</b>: toate sumele sunt
+            zecimale exacte și ajung în grafice doar la afișare.
+          </li>
+          <li>
+            <b>Ani parțiali</b> sunt marcați „execuție la <i>data</i>”; anii
+            fără date afișează „—”, nu zero.
+          </li>
+        </ul>
+      </section>
+
+      <section class="frame" id="surse" aria-labelledby="h-src">
+        <h2 id="h-src">Surse și licențe</h2>
+        <p class="q">
+          Fiecare grafic își arată sursa pe card. Datele sunt preluate prin
+          API-ul proiectului din sursele de mai jos, în condițiile stabilite de
+          fiecare sursă.
+        </p>
+        <table>
+          <caption>
+            Surse de date
+          </caption>
+          <thead>
+            <tr>
+              <th>Sursă</th>
+              <th>Folosită pentru</th>
+              <th>Licență</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="https://openbudget.ro/buget/2026/">Open Budget</a>
+              </td>
+              <td>buget consolidat 2026, destinații, cote fiscale</td>
+              <td>condițiile sursei</td>
+            </tr>
+            <tr>
+              <td><a href="https://data.gov.ro">MFP / data.gov.ro</a></td>
+              <td>execuție bugetară, investiții pe județe</td>
+              <td>
+                <a
+                  href="https://data.gov.ro/base/images/logoinst/OGL-ROU-1.0.pdf"
+                  >OGL-ROU-1.0</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><a href="https://ec.europa.eu/eurostat">Eurostat</a></td>
+              <td>inflație, șomaj, PIB, datorie, COFOG</td>
+              <td>
+                <a
+                  href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice"
+                  >CC BY 4.0</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><a href="https://data.ecb.europa.eu">BCE / ECB</a></td>
+              <td>curs EUR/RON</td>
+              <td>
+                <a
+                  href="https://www.ecb.europa.eu/stats/ecb_statistics/governance_and_quality_framework/html/usage_policy.en.html"
+                  >politica de utilizare BCE</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><a href="https://www.bnr.ro">BNR</a></td>
+              <td>dobânda de politică monetară, ținta de inflație</td>
+              <td>
+                <a href="https://www.bnr.ro/2281-termeni-si-conditii"
+                  >termenii sursei</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><a href="https://companiidestat.ro">companiidestat.ro</a></td>
+              <td>companii de stat</td>
+              <td><a href="https://companiidestat.ro/date/">CC BY 4.0</a></td>
+            </tr>
+            <tr>
+              <td><a href="https://transparenta.eu">transparenta.eu</a></td>
+              <td>indicatori INS (serii sociale)</td>
+              <td>condițiile sursei</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="frame" id="confidentialitate" aria-labelledby="h-pr">
+        <h2 id="h-pr">Confidențialitate</h2>
+        <p>
+          Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește
+          vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse
+          de la terți.
+        </p>
+        <p style="margin: 0">
+          Paginile și API-ul sunt găzduite pe Cloudflare Workers. Ca orice
+          furnizor de găzduire, Cloudflare primește cererile tale, inclusiv
+          adresa IP, ca să livreze paginile.
+        </p>
+      </section>
+
+      <section class="frame" id="cod" aria-labelledby="h-cod">
+        <h2 id="h-cod">Cod și contact</h2>
+        <p>
+          Codul este deschis, sub licența MIT:
+          <a href="https://github.com/CristianNichifor/romania-budget-dashboard"
+            >github.com/CristianNichifor/romania-budget-dashboard</a
+          >.
+        </p>
+        <p style="margin: 0">
+          Proiectul este realizat de Cristian Nichifor. Pentru întrebări,
+          corecturi sau date greșite:
+          <a
+            href="https://github.com/CristianNichifor/romania-budget-dashboard/issues"
+            class="btn"
+            >Semnalați o problemă</a
+          >
+        </p>
+      </section>
+
+      <h2>Stări</h2>
+      <div class="state">
+        <h3>Pagină statică</h3>
+        <p style="margin: 0">
+          Pagina nu încarcă date de la API, deci nu are stări de încărcare sau
+          eroare. Insigna din bara de familie reflectă totuși modul de date al
+          aplicației (Date live / Date demo).
+        </p>
+      </div>
+    </main>
+    <footer role="contentinfo">
+      <nav aria-label="Subsol">
+        <a href="/ro/despre/">Metodologie și surse</a
+        ><a href="/ro/despre/#confidentialitate"
+          >Confidențialitate: fără cookie-uri, fără analytics</a
+        ><a href="https://data.gov.ro">Sursa datelor</a
+        ><a
+          href="https://github.com/CristianNichifor/romania-budget-dashboard/issues"
+          >Contact</a
+        >
+      </nav>
+      <p>
+        Proiect educațional independent. Cifrele estimate sunt marcate
+        „estimare” și nu sunt cifre oficiale.
+      </p>
+    </footer>
+  </body>
+</html>
