@@ -39,6 +39,7 @@ import { useBudgetYearStore } from "../store/useBudgetYearStore";
 import { DemoBadge } from "../components/shared/DemoBadge";
 import { EmptyState } from "../components/shared/EmptyState";
 import { QueryError, SectionError } from "../components/shared/SectionError";
+import { expandRest } from "../lib/expandRest";
 import { isPartialYear } from "../lib/partialYear";
 import { m } from "../messages";
 
@@ -64,6 +65,7 @@ export function NationalBalance() {
   const destinationsQuery = useQuery({
     queryKey: ["destinations", year],
     queryFn: () => fetchDestinations(String(year)),
+    select: expandRest,
     enabled: year !== null,
   });
   const { data: destinations } = destinationsQuery;
