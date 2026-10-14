@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Unde se duc banii — Bugetul României</title>
+    <style>
+      /* Token values copied from civic-ui src/foundations.css (light theme), 2026-10-14 */
+      :root {
+        --civic-bg: #f4f6f6;
+        --civic-surface: #ffffff;
+        --civic-text: #142323;
+        --civic-muted: #475d60;
+        --civic-border: #718588;
+        --civic-line: #d5dddc;
+        --civic-accent: #006b60;
+        --civic-success: #146c2e;
+        --civic-warning: #f2b300;
+        --civic-danger: #b3261e;
+        --civic-viz-1: #2a78d6;
+        --civic-viz-2: #eb6834;
+        --civic-viz-3: #1baf7a;
+        --civic-viz-4: #eda100;
+        --civic-viz-5: #e87ba4;
+        --civic-viz-6: #008300;
+        --civic-viz-7: #4a3aa7;
+        --civic-viz-8: #e34948;
+        --civic-viz-seq-1: #cde2fb;
+        --civic-viz-seq-7: #184f95;
+        --civic-space-1: 0.25rem;
+        --civic-space-2: 0.5rem;
+        --civic-space-3: 0.75rem;
+        --civic-space-4: 1rem;
+        --civic-space-6: 1.5rem;
+        --civic-space-8: 2rem;
+        --civic-radius: 6px;
+        --civic-control-height: 44px;
+        --civic-font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font-family: var(--civic-font-sans);
+        color: var(--civic-text);
+        background: var(--civic-bg);
+        font-size: 16px;
+        line-height: 1.45;
+      }
+      body {
+        margin: 0;
+      }
+      a {
+        color: var(--civic-accent);
+      }
+      h1 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin: 0 0 var(--civic-space-2);
+      }
+      h2 {
+        font-size: 1.25rem;
+        margin: 0 0 var(--civic-space-1);
+      }
+      h3 {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .fam {
+        background: var(--civic-text);
+        color: #fff;
+        display: flex;
+        gap: var(--civic-space-4);
+        align-items: center;
+        padding: 0 var(--civic-space-4);
+        min-height: var(--civic-control-height);
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .fam a {
+        color: #fff;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+      }
+      .fam .tool {
+        font-weight: 600;
+      }
+      .fam .sp {
+        flex: 1;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        border-radius: 999px;
+        padding: 0.15em 0.7em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+      }
+      .b-live {
+        background: #e3f3e8;
+        color: var(--civic-success);
+        border-color: var(--civic-success);
+      }
+      .b-demo {
+        background: #fff4cc;
+        color: #5a4300;
+        border-color: var(--civic-warning);
+      }
+      .tabs {
+        display: flex;
+        gap: var(--civic-space-1);
+        overflow-x: auto;
+        background: var(--civic-surface);
+        border-bottom: 1px solid var(--civic-line);
+        padding: 0 var(--civic-space-4);
+        scrollbar-width: thin;
+      }
+      .tabs a {
+        white-space: nowrap;
+        min-height: var(--civic-control-height);
+        display: inline-flex;
+        align-items: center;
+        padding: 0 var(--civic-space-3);
+        color: var(--civic-text);
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+      }
+      .tabs a[aria-current] {
+        border-color: var(--civic-accent);
+        font-weight: 600;
+        color: var(--civic-accent);
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--civic-space-6) var(--civic-space-4) var(--civic-space-8);
+      }
+      .lead {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-2);
+        font-size: 1.05rem;
+      }
+      .prov {
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-6);
+      }
+      .prov b {
+        color: var(--civic-text);
+        font-weight: 600;
+      }
+      .grid {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: var(--civic-space-6);
+      }
+      .tile {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+      }
+      .tile .l {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .tile .v {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
+      }
+      .tile .d {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+      }
+      .d.bad {
+        color: var(--civic-danger);
+      }
+      .d.good {
+        color: var(--civic-success);
+      }
+      .frame {
+        background: var(--civic-surface);
+        border: 1px solid var(--civic-line);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-6);
+      }
+      .frame .q {
+        color: var(--civic-muted);
+        margin: 0 0 var(--civic-space-3);
+        font-size: 0.95rem;
+      }
+      .frame .src {
+        font-size: 0.85rem;
+        color: var(--civic-muted);
+        margin-top: var(--civic-space-3);
+        display: flex;
+        gap: var(--civic-space-4);
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .frame .hd {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--civic-space-3);
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: var(--civic-control-height);
+        min-width: var(--civic-control-height);
+        padding: 0 var(--civic-space-4);
+        border: 1px solid var(--civic-border);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+        color: var(--civic-text);
+        font: inherit;
+        cursor: pointer;
+      }
+      .btn.p {
+        background: var(--civic-accent);
+        border-color: var(--civic-accent);
+        color: #fff;
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--civic-viz-1);
+        outline-offset: 2px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9rem;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.45em 0.6em;
+        border-bottom: 1px solid var(--civic-line);
+      }
+      td.n,
+      th.n {
+        text-align: right;
+      }
+      caption {
+        text-align: left;
+        font-weight: 600;
+        padding: 0.4em 0;
+      }
+      details > summary {
+        cursor: pointer;
+        min-height: var(--civic-control-height);
+        display: flex;
+        align-items: center;
+        color: var(--civic-accent);
+        font-weight: 600;
+      }
+      .two {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: 1fr 1fr;
+      }
+      .multi {
+        display: grid;
+        gap: var(--civic-space-4);
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .state {
+        border: 1px dashed var(--civic-border);
+        border-radius: var(--civic-radius);
+        padding: var(--civic-space-4);
+        margin-bottom: var(--civic-space-4);
+      }
+      .skel {
+        background: linear-gradient(90deg, #e6ebea, #f4f6f6, #e6ebea);
+        height: 1em;
+        border-radius: 4px;
+        margin: 0.4em 0;
+      }
+      .skel.h {
+        height: 180px;
+      }
+      .msg {
+        display: flex;
+        gap: var(--civic-space-3);
+        align-items: center;
+        flex-wrap: wrap;
+        border-left: 4px solid;
+        padding: var(--civic-space-3);
+        border-radius: var(--civic-radius);
+        background: var(--civic-surface);
+      }
+      .msg.err {
+        border-color: var(--civic-danger);
+      }
+      .msg.info {
+        border-color: var(--civic-viz-1);
+      }
+      .msg.warn {
+        border-color: var(--civic-warning);
+      }
+      .bar {
+        height: 10px;
+        background: var(--civic-line);
+        border-radius: 5px;
+        overflow: hidden;
+        width: 220px;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        background: var(--civic-viz-1);
+        width: 40%;
+      }
+      footer {
+        border-top: 1px solid var(--civic-line);
+        background: var(--civic-surface);
+        padding: var(--civic-space-6) var(--civic-space-4);
+        font-size: 0.9rem;
+        color: var(--civic-muted);
+      }
+      footer nav {
+        display: flex;
+        gap: var(--civic-space-6);
+        flex-wrap: wrap;
+      }
+      footer a {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .dev {
+        background: #fff;
+        border: 2px solid var(--civic-viz-7);
+        color: var(--civic-viz-7);
+        font-size: 0.8rem;
+        padding: 0.3em 0.6em;
+        margin: 0;
+        position: sticky;
+        top: 0;
+        z-index: 9;
+      }
+      svg text {
+        font-family: var(--civic-font-sans);
+      }
+      @media (max-width: 640px) {
+        .grid,
+        .two,
+        .multi {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 1.4rem;
+        }
+        main {
+          padding: var(--civic-space-4) var(--civic-space-4)
+            var(--civic-space-8);
+        }
+        .fam .lang {
+          order: 3;
+        }
+        .hide-m {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .skel {
+          animation: sh 1.4s linear infinite;
+          background-size: 200% 100%;
+        }
+        @keyframes sh {
+          to {
+            background-position: -200% 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="dev">
+      Machetă țintă (docs/design) · desktop 1440 și mobil 390 prin media query ·
+      texte în română scrise de agent: needs human review
+    </p>
+    <a href="#continut" class="btn" style="position: absolute; left: -999px"
+      >Sari la conținut</a
+    >
+    <header class="fam" role="banner">
+      <a href="https://projects.cristian-nichifor.com/">← Proiecte civice</a
+      ><span class="tool">Bugetul României</span
+      ><span class="badge b-demo">Date demo</span><span class="sp"></span>
+      <nav class="lang" aria-label="Limbă">
+        <a href="/ro/" aria-current="true"><b>RO</b></a
+        >&nbsp;·&nbsp;<a href="/">EN</a>
+      </nav>
+    </header>
+    <nav class="tabs" aria-label="Secțiuni">
+      <a href="/ro/felia-ta/">Felia ta</a
+      ><a href="/ro/bilantul-national/">Bilanțul național</a
+      ><a href="/ro/unde-se-duc/" aria-current="page">Unde se duc banii</a
+      ><a href="/ro/companii-de-stat/">Companii de stat</a
+      ><a href="/ro/economie/">Economie</a><a href="/ro/societate/">Societate</a
+      ><a href="/ro/energie/">Energie</a
+      ><a href="/ro/piata-muncii/">Piața muncii</a
+      ><a href="/ro/justitie/">Justiție</a>
+    </nav>
+    <main id="continut">
+      <h1>Unde se duc banii</h1>
+      <p class="lead">
+        Destinațiile bugetului consolidat 2026, de la cele mai mari la cele mai
+        mici, și fluxul de la venituri la cheltuieli.
+      </p>
+      <p class="prov">
+        <b>Date:</b> Open Budget 2026 (openbudget.ro), buget adoptat ·
+        <a href="/ro/despre/">metodă</a>
+      </p>
+
+      <div class="grid">
+        <div class="tile">
+          <div class="l">Cheltuieli totale 2026</div>
+          <div class="v">864,7 mld. lei</div>
+          <div class="d">buget adoptat</div>
+        </div>
+        <div class="tile">
+          <div class="l">Cea mai mare destinație</div>
+          <div class="v">Pensii</div>
+          <div class="d">217,8 mld. lei · 25,2 %</div>
+        </div>
+        <div class="tile">
+          <div class="l">Primele 6 destinații</div>
+          <div class="v">81,8 %</div>
+          <div class="d">restul: 157,7 mld. lei</div>
+        </div>
+        <div class="tile">
+          <div class="l">Investiții</div>
+          <div class="v">35,9 mld. lei</div>
+          <div class="d">4,2 % din cheltuieli</div>
+        </div>
+      </div>
+
+      <section class="frame" aria-labelledby="h-tm">
+        <div class="hd">
+          <div>
+            <h2 id="h-tm">Destinația cheltuielilor</h2>
+            <p class="q">
+              Suprafața fiecărui dreptunghi este proporțională cu suma.
+              Etichetele apar doar unde încap; restul destinațiilor sunt în
+              tabel și în lista de sub grafic.
+            </p>
+          </div>
+          <div style="display: flex; gap: var(--civic-space-2)">
+            <button class="btn" aria-pressed="true">Hartă</button
+            ><button class="btn" aria-pressed="false">Tabel</button
+            ><button class="btn">Descarcă CSV</button>
+          </div>
+        </div>
+        <svg
+          viewBox="0 0 960 420"
+          role="img"
+          aria-label="Treemap: Pensii 25,2 %, Proiecte pe fonduri externe 17,0 %, Alte cheltuieli 18,2 %, Asistență socială 13,1 %, Salarii 12,7 %, Datorii 9,6 %, Investiții 4,2 %"
+          style="width: 100%; height: auto"
+        >
+          <rect x="0" y="0" width="300" height="420" fill="#2a78d6" />
+          <text x="16" y="34" fill="#fff" font-size="18" font-weight="600">
+            Pensii
+          </text>
+          <text x="16" y="58" fill="#fff" font-size="14">
+            217,8 mld. lei · 25,2 %
+          </text>
+          <rect x="302" y="0" width="226" height="420" fill="#eb6834" />
+          <text x="318" y="34" fill="#fff" font-size="16" font-weight="600">
+            Proiecte pe fonduri
+          </text>
+          <text x="318" y="54" fill="#fff" font-size="16" font-weight="600">
+            externe
+          </text>
+          <text x="318" y="78" fill="#fff" font-size="14">
+            146,8 mld. lei · 17,0 %
+          </text>
+          <rect x="530" y="0" width="430" height="196" fill="#718588" />
+          <text x="546" y="34" fill="#fff" font-size="16" font-weight="600">
+            Alte cheltuieli
+          </text>
+          <text x="546" y="58" fill="#fff" font-size="14">
+            157,7 mld. lei · 18,2 %
+          </text>
+          <rect x="530" y="198" width="215" height="222" fill="#1baf7a" />
+          <text x="546" y="232" fill="#142323" font-size="16" font-weight="600">
+            Asistență socială
+          </text>
+          <text x="546" y="256" fill="#142323" font-size="14">
+            113,5 mld. lei · 13,1 %
+          </text>
+          <rect x="747" y="198" width="213" height="130" fill="#eda100" />
+          <text x="763" y="232" fill="#142323" font-size="16" font-weight="600">
+            Salarii
+          </text>
+          <text x="763" y="256" fill="#142323" font-size="14">
+            110,1 mld. lei · 12,7 %
+          </text>
+          <rect x="747" y="330" width="150" height="90" fill="#e87ba4" />
+          <text x="763" y="360" fill="#142323" font-size="14" font-weight="600">
+            Datorii
+          </text>
+          <text x="763" y="380" fill="#142323" font-size="13">
+            82,8 mld. · 9,6 %
+          </text>
+          <rect x="899" y="330" width="61" height="90" fill="#4a3aa7" />
+          <text x="929" y="380" fill="#fff" font-size="12" text-anchor="middle">
+            4,2 %
+          </text>
+        </svg>
+        <ol
+          style="
+            columns: 2;
+            font-size: 0.9rem;
+            margin: var(--civic-space-3) 0 0;
+            padding-left: 1.4em;
+          "
+        >
+          <li>Pensii — 217,8 mld. lei (25,2 %)</li>
+          <li>Proiecte pe fonduri externe — 146,8 mld. lei (17,0 %)</li>
+          <li>Asistență socială — 113,5 mld. lei (13,1 %)</li>
+          <li>Salarii — 110,1 mld. lei (12,7 %)</li>
+          <li>Datorii și angajamente — 82,8 mld. lei (9,6 %)</li>
+          <li>Investiții — 35,9 mld. lei (4,2 %)</li>
+          <li>Alte cheltuieli — 157,7 mld. lei (18,2 %)</li>
+        </ol>
+        <details>
+          <summary>Afișează ca tabel</summary>
+          <table>
+            <caption>
+              Destinațiile bugetului consolidat 2026
+            </caption>
+            <thead>
+              <tr>
+                <th>Destinație</th>
+                <th class="n">mld. lei</th>
+                <th class="n">% din total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pensii</td>
+                <td class="n">217,8</td>
+                <td class="n">25,2</td>
+              </tr>
+              <tr>
+                <td>Proiecte pe fonduri externe</td>
+                <td class="n">146,8</td>
+                <td class="n">17,0</td>
+              </tr>
+              <tr>
+                <td>Asistență socială</td>
+                <td class="n">113,5</td>
+                <td class="n">13,1</td>
+              </tr>
+              <tr>
+                <td>Salarii</td>
+                <td class="n">110,1</td>
+                <td class="n">12,7</td>
+              </tr>
+              <tr>
+                <td>Datorii și angajamente</td>
+                <td class="n">82,8</td>
+                <td class="n">9,6</td>
+              </tr>
+              <tr>
+                <td>Investiții</td>
+                <td class="n">35,9</td>
+                <td class="n">4,2</td>
+              </tr>
+              <tr>
+                <td>Alte cheltuieli</td>
+                <td class="n">157,7</td>
+                <td class="n">18,2</td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th class="n">864,7</th>
+                <th class="n">100</th>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+        <div class="src">
+          Date: Open Budget 2026 · <span class="badge b-demo">Date demo</span> ·
+          Apăsați un dreptunghi (sau Enter pe el) pentru subdestinații, de ex.
+          Pensii → contributive 154,8 · speciale 18,7 · minime 18,7 · de urmaș
+          1,9 mld. lei
+        </div>
+      </section>
+
+      <section class="frame" aria-labelledby="h-sk">
+        <div class="hd">
+          <div>
+            <h2 id="h-sk">De unde vin banii și unde se duc</h2>
+            <p class="q">
+              Fluxul banilor publici: surse de venit → buget consolidat →
+              destinații. Deficitul apare ca sursă (împrumut). Fluxurile sub 3 %
+              sunt grupate în „Altele”; primele 6 destinații au etichetă cu
+              valoare.
+            </p>
+          </div>
+          <button class="btn">Descarcă CSV</button>
+        </div>
+        <svg
+          viewBox="0 0 960 360"
+          role="img"
+          aria-label="Sankey: cinci surse de venit și deficitul intră în bugetul consolidat; ies șapte destinații"
+          style="width: 100%; height: auto"
+        >
+          <g font-size="13">
+            <text x="0" y="16" fill="#475d60">Surse (estimare)</text>
+            <text x="960" y="16" fill="#475d60" text-anchor="end">
+              Destinații
+            </text>
+          </g>
+          <rect x="200" y="30" width="18" height="320" fill="#142323" />
+          <text
+            x="190"
+            y="195"
+            text-anchor="end"
+            font-size="13"
+            font-weight="600"
+            fill="#142323"
+          >
+            Buget consolidat 864,7 mld.
+          </text>
+          <g font-size="12" fill="#142323">
+            <rect x="0" y="30" width="14" height="72" fill="#2a78d6" />
+            <text x="20" y="70">Contribuții sociale 195,0</text>
+            <rect x="0" y="106" width="14" height="59" fill="#eb6834" />
+            <text x="20" y="140">TVA 160,0</text>
+            <rect x="0" y="169" width="14" height="55" fill="#1baf7a" />
+            <text x="20" y="200">Fonduri europene 150,0</text>
+            <rect x="0" y="228" width="14" height="44" fill="#eda100" />
+            <text x="20" y="254">Impozit venit și profit 120,0</text>
+            <rect x="0" y="276" width="14" height="39" fill="#e87ba4" />
+            <text x="20" y="300">Accize și alte venituri 105,0</text>
+            <rect x="0" y="319" width="14" height="31" fill="#e34948" />
+            <text x="20" y="340">Deficit (împrumut) 135,7</text>
+          </g>
+          <g font-size="12" fill="#142323">
+            <rect x="946" y="30" width="14" height="80" fill="#2a78d6" />
+            <text x="940" y="74" text-anchor="end">Pensii 217,8</text>
+            <rect x="946" y="114" width="14" height="54" fill="#eb6834" />
+            <text x="940" y="145" text-anchor="end">
+              Proiecte pe fonduri externe 146,8
+            </text>
+            <rect x="946" y="172" width="14" height="42" fill="#1baf7a" />
+            <text x="940" y="197" text-anchor="end">
+              Asistență socială 113,5
+            </text>
+            <rect x="946" y="218" width="14" height="40" fill="#eda100" />
+            <text x="940" y="242" text-anchor="end">Salarii 110,1</text>
+            <rect x="946" y="262" width="14" height="30" fill="#e87ba4" />
+            <text x="940" y="281" text-anchor="end">
+              Datorii și angajamente 82,8
+            </text>
+            <rect x="946" y="296" width="14" height="13" fill="#4a3aa7" />
+            <text x="940" y="307" text-anchor="end">Investiții 35,9</text>
+            <rect x="946" y="313" width="14" height="37" fill="#718588" />
+            <text x="940" y="336" text-anchor="end">Altele 157,7</text>
+          </g>
+          <g
+            fill="none"
+            stroke="#718588"
+            stroke-opacity=".35"
+            stroke-width="18"
+          >
+            <path d="M14 66 C110 66 110 110 200 110" />
+            <path d="M14 135 C110 135 110 160 200 160" />
+            <path d="M14 196 C110 196 110 200 200 200" />
+            <path d="M14 250 C110 250 110 240 200 240" />
+            <path d="M14 295 C110 295 110 280 200 280" />
+            <path d="M14 334 C110 334 110 320 200 320" />
+            <path d="M218 70 C600 70 600 70 946 70" />
+            <path d="M218 140 C600 140 600 141 946 141" />
+            <path d="M218 195 C600 195 600 193 946 193" />
+            <path d="M218 238 C600 238 600 238 946 238" />
+            <path d="M218 277 C600 277 600 277 946 277" />
+            <path d="M218 303 C600 303 600 302 946 302" />
+            <path d="M218 332 C600 332 600 331 946 331" />
+          </g>
+          <text
+            x="480"
+            y="356"
+            text-anchor="middle"
+            font-size="12"
+            fill="#475d60"
+          >
+            mld. lei · veniturile pe surse sunt estimări ilustrative până la
+            datele de execuție
+          </text>
+        </svg>
+        <details>
+          <summary>Afișează ca tabel</summary>
+          <table>
+            <caption>
+              Fluxuri, mld. lei
+            </caption>
+            <thead>
+              <tr>
+                <th>De la</th>
+                <th>Către</th>
+                <th class="n">mld. lei</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Contribuții sociale</td>
+                <td>Buget consolidat</td>
+                <td class="n">195,0</td>
+              </tr>
+              <tr>
+                <td>TVA</td>
+                <td>Buget consolidat</td>
+                <td class="n">160,0</td>
+              </tr>
+              <tr>
+                <td>Fonduri europene</td>
+                <td>Buget consolidat</td>
+                <td class="n">150,0</td>
+              </tr>
+              <tr>
+                <td>Impozit venit și profit</td>
+                <td>Buget consolidat</td>
+                <td class="n">120,0</td>
+              </tr>
+              <tr>
+                <td>Accize și alte venituri</td>
+                <td>Buget consolidat</td>
+                <td class="n">105,0</td>
+              </tr>
+              <tr>
+                <td>Deficit (împrumut)</td>
+                <td>Buget consolidat</td>
+                <td class="n">135,7</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Pensii</td>
+                <td class="n">217,8</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Proiecte pe fonduri externe</td>
+                <td class="n">146,8</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Asistență socială</td>
+                <td class="n">113,5</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Salarii</td>
+                <td class="n">110,1</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Datorii și angajamente</td>
+                <td class="n">82,8</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Investiții</td>
+                <td class="n">35,9</td>
+              </tr>
+              <tr>
+                <td>Buget consolidat</td>
+                <td>Altele</td>
+                <td class="n">157,7</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+        <div class="src">
+          Date: Open Budget 2026 · <span class="badge b-demo">Date demo</span> ·
+          pe mobil, diagrama devine lista ordonată de mai sus (nu se micșorează
+          sub 390 px)
+        </div>
+      </section>
+
+      <h2>Stări</h2>
+      <div class="state">
+        <h3>Se încarcă, peste 2 s</h3>
+        <div class="msg info" role="status">
+          <span>Se încarcă destinațiile de la MFP…</span
+          ><span class="bar"><i></i></span>
+        </div>
+        <div class="skel h"></div>
+      </div>
+      <div class="state">
+        <h3>Gol</h3>
+        <div class="msg info">
+          <span
+            >Nu există destinații pentru anul ales. Alegeți 2026, ultimul an cu
+            date.</span
+          ><button class="btn">Vezi 2026</button>
+        </div>
+      </div>
+      <div class="state">
+        <h3>Eroare pe o singură secțiune</h3>
+        <div class="msg err" role="alert">
+          <span
+            >Fluxul venituri → destinații nu a putut fi încărcat. Harta
+            destinațiilor de mai sus rămâne afișată.</span
+          ><button class="btn p">Reîncercați</button>
+        </div>
+      </div>
+    </main>
+    <footer role="contentinfo">
+      <nav aria-label="Subsol">
+        <a href="/ro/despre/">Metodologie și surse</a
+        ><a href="/ro/despre/#confidentialitate"
+          >Confidențialitate: fără cookie-uri, fără analytics</a
+        ><a href="https://data.gov.ro">Sursa datelor</a
+        ><a
+          href="https://github.com/CristianNichifor/romania-budget-dashboard/issues"
+          >Contact</a
+        >
+      </nav>
+      <p>
+        Proiect educațional independent. Cifrele estimate sunt marcate
+        „estimare” și nu sunt cifre oficiale.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -763,6 +763,10 @@ export const m = {
     id: "sankey.node.rest",
     message: "Alte destinații",
   }),
+  "sankey.rest.summary": msg({
+    id: "sankey.rest.summary",
+    message: "Ce intră în „Alte destinații”: {count} destinații mai mici",
+  }),
   "treemap.title": msg({
     id: "treemap.title",
     message: "Destinația cheltuielilor",

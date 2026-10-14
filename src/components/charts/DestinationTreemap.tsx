@@ -5,7 +5,7 @@ import {
   INTENSITY_COLORS,
   pickIntensityIndex,
 } from "../../lib/investmentColor";
-import { fitLabel, tileTextColors } from "../../lib/tileLabel";
+import { tileLayout, tileTextColors, wrapLabel } from "../../lib/tileLabel";
 
 interface DestinationTreemapProps {
   destinations: BudgetDestination[];
@@ -18,6 +18,8 @@ interface DestinationTreemapProps {
  * rule applies to calculations, display values stay strings everywhere else.
  */
 type TreemapDatum = Omit<BudgetDestination, "amount"> & { amount: number };
+
+const LABEL_SIZE = 12;
 
 interface TreemapCellProps {
   x?: number;
@@ -49,6 +51,9 @@ function TreemapCell(props: TreemapCellProps) {
   const index = pickIntensityIndex(amount, minAmount, maxAmount);
   const fill = INTENSITY_COLORS[index] ?? INTENSITY_COLORS[0];
   const { label: labelFill, amount: amountFill } = tileTextColors(fill);
+  const layout = tileLayout(width, height, LABEL_SIZE);
+  const lines = wrapLabel(name ?? "", width, LABEL_SIZE, layout.lines);
+  const lineHeight = LABEL_SIZE * 1.3;
 
   return (
     <g>
@@ -72,28 +77,32 @@ function TreemapCell(props: TreemapCellProps) {
       >
         <title>{`${name ?? ""} — ${amount !== undefined ? formatMilliardeLei(amount) : ""}`}</title>
       </rect>
-      {width > 70 && height > 40 && (
-        <>
-          <text
-            stroke="none"
-            x={x + 8}
-            y={y + 18}
-            fontSize={12}
-            fill={labelFill}
-            fontWeight={600}
-          >
-            {fitLabel(name ?? "", width, 12)}
-          </text>
-          <text
-            stroke="none"
-            x={x + 8}
-            y={y + 34}
-            fontSize={10}
-            fill={amountFill}
-          >
-            {amount !== undefined ? formatMilliardeLei(amount) : ""}
-          </text>
-        </>
+      {lines.length > 0 && (
+        <text
+          stroke="none"
+          x={x + 8}
+          y={y + 8 + LABEL_SIZE}
+          fontSize={LABEL_SIZE}
+          fill={labelFill}
+          fontWeight={600}
+        >
+          {lines.map((line, index) => (
+            <tspan key={index} x={x + 8} dy={index === 0 ? 0 : lineHeight}>
+              {line}
+            </tspan>
+          ))}
+        </text>
+      )}
+      {lines.length > 0 && layout.showAmount && (
+        <text
+          stroke="none"
+          x={x + 8}
+          y={y + 8 + LABEL_SIZE + lines.length * lineHeight}
+          fontSize={LABEL_SIZE - 2}
+          fill={amountFill}
+        >
+          {formatMilliardeLei(amount)}
+        </text>
       )}
     </g>
   );

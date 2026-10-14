@@ -5,11 +5,21 @@ import { fetchBudgetYears, fetchDestinations } from "../../api/client";
 import { BUDGET_YEAR } from "../../data/budget2026";
 import { expandRest } from "../../lib/expandRest";
 import { formatNumber } from "../../lib/format";
-import { splitContribution } from "../../lib/taxSplit";
+import { baniOutOfLeu, splitContribution } from "../../lib/taxSplit";
 import { m } from "../../messages";
 import { QueryError } from "./SectionError";
 import { SkeletonCard } from "./SkeletonCard";
 import { SourceBadge } from "./SourceBadge";
+
+/** Dark enough for white text (WCAG AA at 12 px bold). */
+const BAND_COLOURS = [
+  "bg-blue-800",
+  "bg-teal-800",
+  "bg-indigo-700",
+  "bg-slate-700",
+  "bg-cyan-800",
+  "bg-violet-800",
+];
 
 /** The latest year that has destinations; the seed year when none does. */
 async function latestDestinations() {
@@ -41,6 +51,7 @@ export function LeuBridge({ contribution }: { contribution: Decimal }) {
     data === undefined
       ? []
       : splitContribution(contribution, expandRest(data.destinations));
+  const band = baniOutOfLeu(rows);
   const bani = (perLeu: Decimal) =>
     formatNumber(perLeu.mul(100), { maximumFractionDigits: 1 });
   const lei = (amount: Decimal) =>
@@ -73,6 +84,24 @@ export function LeuBridge({ contribution }: { contribution: Decimal }) {
 
       {rows.length > 0 && (
         <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          {/* One leu as a 100-bani band, the bani written on every segment. The
+              table below carries the same figures for screen readers. */}
+          <div
+            aria-hidden="true"
+            data-testid="leu-band"
+            className="mb-4 flex h-9 w-full overflow-hidden rounded-md text-xs font-semibold text-white"
+          >
+            {rows.map((row, index) => (
+              <span
+                key={row.id}
+                title={`${row.name}: ${String(band[index])} ${i18n._(m["leuBridge.bani"])}`}
+                className={`flex min-w-0 items-center justify-center border-r border-white/70 last:border-r-0 ${BAND_COLOURS[index % BAND_COLOURS.length] ?? ""}`}
+                style={{ width: `${String(band[index])}%` }}
+              >
+                {band[index]}
+              </span>
+            ))}
+          </div>
           <table className="w-full text-sm" data-testid="leu-bridge">
             <thead>
               <tr className="text-left text-xs text-slate-500">
