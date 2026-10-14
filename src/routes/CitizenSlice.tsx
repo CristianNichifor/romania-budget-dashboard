@@ -80,7 +80,7 @@ export function CitizenSlice() {
             </p>
           </div>
           <div className="flex gap-2">
-            <SourceBadge source="source.budget" />
+            <SourceBadge source="source.budgetYear" values={{ year: 2026 }} />
             <SourceBadge source="source.ins" />
             <SourceBadge source="source.bnr" />
           </div>

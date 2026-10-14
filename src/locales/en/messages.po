@@ -1406,7 +1406,12 @@ msgstr "Source: BNR"
 #. js-lingui-explicit-id
 #: src/messages.ts:868
 msgid "source.budget"
-msgstr "Source: Consolidated budget 2026"
+msgstr "Source: Consolidated budget"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1162
+msgid "source.budgetYear"
+msgstr "Source: Consolidated budget {year}"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:530

@@ -172,7 +172,10 @@ export function NationalBalance() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <YearSelector />
-            <SourceBadge source="source.budget" />
+            <SourceBadge
+              source="source.budgetYear"
+              values={{ year: year ?? "" }}
+            />
             <DemoBadge />
           </div>
         </div>

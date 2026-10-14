@@ -867,7 +867,7 @@ export const m = {
   }),
   "source.budget": msg({
     id: "source.budget",
-    message: "Sursă: Buget consolidat 2026",
+    message: "Sursă: Buget consolidat",
   }),
   // ── Companii de stat ──────────────────────────────────────────────────
   "soe.title": msg({
@@ -1158,6 +1158,10 @@ export const m = {
   "economy.percentGdp": msg({
     id: "economy.percentGdp",
     message: "% PIB",
+  }),
+  "source.budgetYear": msg({
+    id: "source.budgetYear",
+    message: "Sursă: Buget consolidat {year}",
   }),
 } satisfies Record<string, MessageDescriptor>;
 
