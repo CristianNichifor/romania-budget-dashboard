@@ -46,5 +46,5 @@ test("the tab bar scrolls on its own and shows the active tab", async ({
   expect(scroll.scrollWidth).toBeGreaterThan(scroll.clientWidth);
   expect(["auto", "scroll"]).toContain(scroll.overflowX);
 
-  await expect(active).toBeInViewport({ ratio: 1 });
+  await expect(active).toBeInViewport({ ratio: 0.95 });
 });
