@@ -43,7 +43,12 @@ export function buildBudgetSankey(
   const revenue = new Decimal(inputs.revenue);
   const deficit = new Decimal(inputs.deficit);
 
-  const destinationsTotal = inputs.destinations.reduce(
+  // A rest bucket in the list (the BFF sends one) joins the computed rest,
+  // so the flow has a single "other destinations" node.
+  const destinations = inputs.destinations.filter(
+    (destination) => destination.id !== SANKEY_REST_NODE_ID
+  );
+  const destinationsTotal = destinations.reduce(
     (sum, destination) => sum.plus(destination.amount),
     new Decimal(0)
   );
@@ -57,7 +62,7 @@ export function buildBudgetSankey(
       ? [{ id: SANKEY_DEFICIT_NODE_ID, name: "Deficit (împrumut)" }]
       : []),
     { id: SANKEY_BUDGET_NODE_ID, name: "Buget consolidat" },
-    ...inputs.destinations
+    ...destinations
       .filter((destination) => new Decimal(destination.amount).gt(0))
       .map((destination) => ({ id: destination.id, name: destination.name })),
     ...(rest.gt(0)
@@ -84,7 +89,7 @@ export function buildBudgetSankey(
           },
         ]
       : []),
-    ...inputs.destinations
+    ...destinations
       .filter((destination) => new Decimal(destination.amount).gt(0))
       .map((destination) => ({
         source: SANKEY_BUDGET_NODE_ID,
