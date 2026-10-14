@@ -6,7 +6,7 @@ marked "needs human review".
 
 ## Theme A — honest data states
 
-### D1 · Errors reach React Query · `todo`
+### D1 · Errors reach React Query · `done`
 
 - Given the dashboard runs against the BFF (`VITE_DATA_MODE` ≠ `static`),
   when a request fails (network, HTTP status, invalid payload, timeout),
@@ -18,23 +18,27 @@ marked "needs human review".
   retry button; pressing retry re-runs the query.
 - Given a section renders bundled seed data, then it shows a "date demo" /
   "demo data" badge.
+- The salary breakdown and the year list are computed, not demo data: on a
+  failed request they fall back to the local calculation / year range.
 - Tests: `tests/api-error.test.ts`, `tests/SectionError.test.tsx`,
-  `e2e/section-error.spec.ts` (`page.route` answers 500).
+  `e2e/section-error.spec.ts` (Playwright project `remote`, `page.route`
+  answers 500), `e2e/smoke.spec.ts` (demo badge).
 
-### D2 · Seed only for its own year · `todo`
+### D2 · Seed only for its own year · `done`
 
 - Given static mode, when the summary, destinations or institutions are asked
   for a year other than the seed year (2026), then the client returns an empty
   result (`null` / `[]`) and the UI shows an empty state, not the 2026 seed.
+  The static year selector offers only the seed year.
 - Test: `tests/api-error.test.ts` ("seed year").
 
-### D6 · Realistic timeout · `todo`
+### D6 · Realistic timeout · `done`
 
 - Given a BFF request, then it is aborted after 8000 ms (the comparison after
   30 000 ms), and the abort surfaces as an `ApiError` of kind `timeout`.
 - Test: `tests/api-error.test.ts` (fake timers).
 
-### D7 · Partial-year marker · `todo`
+### D7 · Partial-year marker · `done`
 
 - Given a summary response with `partial: true`, or without `partial` for the
   current calendar year, then the national-balance KPIs show a "partial year"
