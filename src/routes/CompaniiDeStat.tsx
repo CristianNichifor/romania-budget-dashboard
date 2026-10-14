@@ -101,7 +101,13 @@ export function CompaniiDeStat() {
                 accent="blue"
                 label={i18n._(m["soe.kpi.companies"])}
                 value={summary.stats.totalCompanies.toLocaleString("ro-RO")}
-                sub={`${summary.stats.central} centrale · ${summary.stats.local} locale`}
+                sub={i18n._({
+                  ...m["soe.kpi.centralLocal"],
+                  values: {
+                    central: summary.stats.central,
+                    local: summary.stats.local,
+                  },
+                })}
               />
               <KpiCard
                 accent="slate"
@@ -129,7 +135,10 @@ export function CompaniiDeStat() {
                 },
               })}
               {" · "}
-              {summary.stats.companiesOnLoss} pe pierdere
+              {i18n._({
+                ...m["soe.onLoss"],
+                values: { count: summary.stats.companiesOnLoss },
+              })}
             </p>
           </>
         )}

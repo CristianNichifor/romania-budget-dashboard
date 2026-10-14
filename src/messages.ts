@@ -962,7 +962,7 @@ export const m = {
   }),
   "soe.subsidies.total": msg({
     id: "soe.subsidies.total",
-    message: "Total {year}: {total} lei",
+    message: "Total {year}: {total}",
   }),
   "soe.listed.title": msg({
     id: "soe.listed.title",
@@ -1138,6 +1138,26 @@ export const m = {
   "footer.about": msg({
     id: "footer.about",
     message: "Despre",
+  }),
+  "soe.kpi.centralLocal": msg({
+    id: "soe.kpi.centralLocal",
+    message: "{central} centrale · {local} locale",
+  }),
+  "soe.onLoss": msg({
+    id: "soe.onLoss",
+    message: "{count} pe pierdere",
+  }),
+  "soe.county.summary": msg({
+    id: "soe.county.summary",
+    message: "{companies} companii · {onLoss} pe pierdere ({lossPercent})",
+  }),
+  "soe.county.lossShare": msg({
+    id: "soe.county.lossShare",
+    message: "{lossPercent} pe pierdere",
+  }),
+  "economy.percentGdp": msg({
+    id: "economy.percentGdp",
+    message: "% PIB",
   }),
 } satisfies Record<string, MessageDescriptor>;
 

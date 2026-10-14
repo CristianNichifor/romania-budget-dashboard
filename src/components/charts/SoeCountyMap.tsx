@@ -1,3 +1,4 @@
+import { i18n } from "@lingui/core";
 import { useLingui } from "@lingui/react";
 import { useMemo } from "react";
 import { Tooltip, Treemap, ResponsiveContainer } from "recharts";
@@ -53,7 +54,14 @@ function CountyCell(props: CellProps) {
     <g>
       <rect x={x} y={y} width={width} height={height} fill={fill} rx={4}>
         <title>
-          {`${name ?? ""} — ${companies} companii, ${onLoss} pe pierdere (${formatPercent(lossPercent)}) · ${formatMilliardeLei(amount)}`}
+          {`${name ?? ""} — ${i18n._({
+            ...m["soe.county.summary"],
+            values: {
+              companies,
+              onLoss,
+              lossPercent: formatPercent(lossPercent),
+            },
+          })} · ${formatMilliardeLei(amount)}`}
         </title>
       </rect>
       {width > 58 && height > 34 && (
@@ -78,7 +86,10 @@ function CountyCell(props: CellProps) {
             fill === "#2563eb" || fill === "#60a5fa" ? "#dbeafe" : "#1d4ed8"
           }
         >
-          {formatPercent(lossPercent)} pe pierdere
+          {i18n._({
+            ...m["soe.county.lossShare"],
+            values: { lossPercent: formatPercent(lossPercent) },
+          })}
         </text>
       )}
     </g>
@@ -105,8 +116,14 @@ function CountyTooltip({
     <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
       <p className="font-semibold">{county.name}</p>
       <p className="tabular-nums text-slate-600">
-        {county.companies} companii · {county.onLoss} pe pierdere (
-        {formatPercent(county.lossPercent)})
+        {i18n._({
+          ...m["soe.county.summary"],
+          values: {
+            companies: county.companies,
+            onLoss: county.onLoss,
+            lossPercent: formatPercent(county.lossPercent),
+          },
+        })}
       </p>
       <p className="tabular-nums text-slate-600">
         {formatMilliardeLei(county.amount)}

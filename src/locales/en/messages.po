@@ -19,6 +19,26 @@ msgstr ""
 #~ msgstr "Static demo data — API integration in phase P2"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1142
+msgid "soe.kpi.centralLocal"
+msgstr "{central} central · {local} local"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1150
+msgid "soe.county.summary"
+msgstr "{companies} companies · {onLoss} loss-making ({lossPercent})"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1146
+msgid "soe.onLoss"
+msgstr "{count} loss-making"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1154
+msgid "soe.county.lossShare"
+msgstr "{lossPercent} loss-making"
+
+#. js-lingui-explicit-id
 #: src/messages.ts:820
 msgid "drilldown.share"
 msgstr "{sharePercent} of total"
@@ -37,6 +57,11 @@ msgstr "/ month"
 #: src/messages.ts:364
 msgid "economy.percent"
 msgstr "%"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:1158
+msgid "economy.percentGdp"
+msgstr "% of GDP"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:641
@@ -119,7 +144,7 @@ msgid "comparison.scopeNote"
 msgstr "The adopted budget covers the state budget and the BASS, BSAN, BSOM funds (MFP, data.gov.ro); execution covers the same principal credit authorizing officers (transparenta.eu). Both include intra-budgetary transfers."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1079
+#: src/messages.ts:1083
 msgid "about.source.mfp"
 msgstr "The adopted budget and the adopted-versus-executed comparison"
 
@@ -234,12 +259,12 @@ msgid "soe.company.ca"
 msgstr "Turnover"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1123
+#: src/messages.ts:1130
 msgid "about.code.title"
 msgstr "Source code"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1127
+#: src/messages.ts:1134
 msgid "about.code.description"
 msgstr "The code is open source under the MIT licence:"
 
@@ -269,7 +294,7 @@ msgid "soe.source"
 msgstr "companiidestat.ro"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1083
+#: src/messages.ts:1087
 msgid "about.source.soe"
 msgstr "State-owned companies"
 
@@ -299,7 +324,7 @@ msgid "soe.company.management"
 msgstr "Management"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1111
+#: src/messages.ts:1116
 msgid "about.privacy.title"
 msgstr "Privacy"
 
@@ -354,7 +379,7 @@ msgid "economy.fx.title"
 msgstr "EUR/RON exchange rate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1075
+#: src/messages.ts:1079
 msgid "about.source.ecb"
 msgstr "The EUR/RON rate and the deposit facility rate"
 
@@ -384,7 +409,7 @@ msgid "dataMode.partial"
 msgstr "Partially demo data"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1095
+#: src/messages.ts:1099
 msgid "about.source.openBudget"
 msgstr "The 2026 demo data, used only when the site runs without the API"
 
@@ -509,7 +534,7 @@ msgid "soe.scatter.open"
 msgstr "Open {company}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1059
+#: src/messages.ts:1061
 msgid "about.contactLink"
 msgstr "open an issue on GitHub"
 
@@ -519,7 +544,7 @@ msgid "about.title"
 msgstr "About"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1131
+#: src/messages.ts:1138
 msgid "footer.about"
 msgstr "About"
 
@@ -624,7 +649,7 @@ msgid "economy.kpi.fx"
 msgstr "EUR/RON"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1091
+#: src/messages.ts:1095
 msgid "about.source.transparenta"
 msgstr "Budget execution"
 
@@ -674,7 +699,7 @@ msgid "nav.citizenSlice"
 msgstr "Your slice"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1067
+#: src/messages.ts:1069
 msgid "about.sources.description"
 msgstr "Every chart shows its source on its card. The project's API takes the data from the sources below, under the terms each source sets."
 
@@ -769,7 +794,7 @@ msgid "economy.description"
 msgstr "Inflation, unemployment and the exchange rate — monthly indicators from official European sources."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1071
+#: src/messages.ts:1074
 msgid "about.source.eurostat"
 msgstr "Inflation, unemployment, GDP, debt, wages, society, energy, labour market, justice"
 
@@ -819,7 +844,7 @@ msgid "economy.lei"
 msgstr "RON"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1099
+#: src/messages.ts:1104
 msgid "about.licence"
 msgstr "Licence"
 
@@ -939,7 +964,7 @@ msgid "soe.listed.description"
 msgstr "Majority state stakes on the Bucharest Stock Exchange, with the share price evolution."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1119
+#: src/messages.ts:1125
 msgid "about.privacy.hosting"
 msgstr "The pages and the API are hosted on Cloudflare Workers. Like any hosting provider, Cloudflare receives your requests, including your IP address, to deliver the pages."
 
@@ -1144,7 +1169,7 @@ msgid "app.footer"
 msgstr "Educational project — data comes from official public sources; each chart's source is shown on its card."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1055
+#: src/messages.ts:1056
 msgid "about.operator"
 msgstr "The project is run by Cristian Nichifor. For questions, corrections or wrong data:"
 
@@ -1274,7 +1299,7 @@ msgid "wageContext.estimatedNote"
 msgstr "Estimated series — not the official average wage published by INS."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1115
+#: src/messages.ts:1120
 msgid "about.privacy.tracking"
 msgstr "The site does not use cookies, runs no analytics and does not track visitors. It stores nothing in your browser and loads nothing from third parties."
 
@@ -1364,7 +1389,7 @@ msgid "soe.unavailable"
 msgstr "Data source is temporarily unavailable."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1103
+#: src/messages.ts:1108
 msgid "about.licence.none"
 msgstr "the source states no licence"
 
@@ -1404,7 +1429,7 @@ msgid "source.transparenta"
 msgstr "Source: transparenta.eu"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1063
+#: src/messages.ts:1065
 msgid "about.sources.title"
 msgstr "Data sources and licences"
 
@@ -1414,7 +1439,7 @@ msgid "app.subtitle"
 msgstr "Citizen dashboard — consolidated budget"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1107
+#: src/messages.ts:1112
 msgid "about.licence.terms"
 msgstr "the source's terms"
 
@@ -1439,7 +1464,7 @@ msgid "economy.inflation.targetLine"
 msgstr "NBR target"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:1087
+#: src/messages.ts:1091
 msgid "about.source.bnr"
 msgstr "The inflation target"
 
@@ -1451,7 +1476,7 @@ msgstr "Total"
 #. js-lingui-explicit-id
 #: src/messages.ts:963
 msgid "soe.subsidies.total"
-msgstr "Total {year}: {total} lei"
+msgstr "Total {year}: {total}"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:526

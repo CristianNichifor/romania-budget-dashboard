@@ -309,19 +309,19 @@ export function Economie() {
                 accent="red"
                 label={i18n._(m["economy.kpi.debt"])}
                 value={formatPercent(latestDebt.percentGdp)}
-                sub={`% PIB · ${latestDebt.year}`}
+                sub={`${i18n._(m["economy.percentGdp"])} · ${latestDebt.year}`}
               />
               <KpiCard
                 accent="amber"
                 label={i18n._(m["economy.kpi.trade"])}
                 value={formatSignedPercent(latestTrade.balancePctGdp)}
-                sub={`% PIB · ${latestTrade.year}`}
+                sub={`${i18n._(m["economy.percentGdp"])} · ${latestTrade.year}`}
               />
               <KpiCard
                 accent="red"
                 label={i18n._(m["economy.kpi.deficit"])}
                 value={formatSignedPercent(latestDeficit.percentGdp)}
-                sub={`% PIB · ${latestDeficit.quarter}`}
+                sub={`${i18n._(m["economy.percentGdp"])} · ${latestDeficit.quarter}`}
               />
               <KpiCard
                 accent="blue"
