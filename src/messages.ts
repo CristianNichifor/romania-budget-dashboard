@@ -1092,6 +1092,35 @@ export const m = {
     id: "about.contactLink",
     message: "deschide un issue pe GitHub",
   }),
+  "about.contents": msg({ id: "about.contents", message: "Cuprins" }),
+  "about.method.title": msg({ id: "about.method.title", message: "Metodă" }),
+  "about.method.salary": msg({
+    id: "about.method.salary",
+    message:
+      "Calculul salarial urmează modelul Open Budget 2026: CAS 25% și CASS 10% din brut, impozit pe venit 10% din (brut − CAS − CASS), contribuția angajatorului (CAM) 2,25% din brut și o estimare a TVA plătite din consum (21% aplicat la 75% din venitul net).",
+  }),
+  "about.method.estimate": msg({
+    id: "about.method.estimate",
+    message:
+      "Regula „estimare”: orice valoare care nu vine direct dintr-o sursă, ci dintr-o formulă sau o presupunere (cota de consum, cursul valutar), este marcată „estimare” acolo unde apare.",
+  }),
+  "about.method.money": msg({
+    id: "about.method.money",
+    message:
+      "Sumele sunt calculate fără virgulă mobilă (decimal.js) și rotunjite doar la afișare.",
+  }),
+  "about.sources.col.source": msg({
+    id: "about.sources.col.source",
+    message: "Sursă",
+  }),
+  "about.sources.col.use": msg({
+    id: "about.sources.col.use",
+    message: "Folosită pentru",
+  }),
+  "about.sources.col.licence": msg({
+    id: "about.sources.col.licence",
+    message: "Licență",
+  }),
   "about.sources.title": msg({
     id: "about.sources.title",
     message: "Surse de date și licențe",
