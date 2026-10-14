@@ -198,3 +198,17 @@ unless noted.
 - D11 · Stale repository variables `VITE_API_BASE_URL` (dead host) and
   `CLOUDFLARE_ACCOUNT_ID` — `needs-human`.
 - D12 · Analytics / uptime choice — `needs-human`.
+
+### F2 · Target-state screen designs · `done` (docs), implementation `todo`
+
+- Given `docs/design/README.md` and `docs/design/screens/01…05`, then the
+  five screens (Felia ta, Unde se duc banii, Bilanțul național, Economie,
+  Despre) exist as self-contained HTML mockups with desktop and 390 px
+  layouts, civic-ui token values, real repo data or "—" placeholders, and
+  loading / empty / error / demo states; the README maps each screen to its
+  user task, guideline sections, before screenshot and acceptance criteria
+  F2.1–F2.12.
+- Test: review. Mockup screenshots are not included (no browser in the fleet
+  run); the Romanian copy is agent-written: **needs human review**.
+- Implementation items F2.1–F2.12 are listed in the README with the test each
+  one should get; they are `todo` for implementation sessions.
