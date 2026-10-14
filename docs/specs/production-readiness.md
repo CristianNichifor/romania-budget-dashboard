@@ -136,7 +136,7 @@ unless noted.
   `activateLocale`), `e2e/locale-format.spec.ts` (`bn lei` on
   `/national-balance/`, `mld. lei` on `/ro/bilantul-national/`).
 
-### E2 · Social context as small multiples · `todo`
+### E2 · Social context as small multiples · `done`
 
 - Given the National balance tab, then the "Context social" section (health
   spending against the chosen INS indicator) renders two charts, one per series,
@@ -144,7 +144,7 @@ unless noted.
   (The Society tab's spending chart already shares one % of GDP axis.)
 - Tests: component test (two panels, two axis labels), e2e on the tab.
 
-### E3 · lei/€ toggle shared across tabs · `todo`
+### E3 · lei/€ toggle shared across tabs · `done`
 
 - Given `?currency=eur` in the URL, then the wage charts on Your-share (salary
   waterfall, real wage) show €; with lei (the default, no param) they show lei.
