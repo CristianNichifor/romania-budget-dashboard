@@ -280,9 +280,39 @@ export function BudgetSankey({
     </svg>
   );
 
+  const listNodes = graph.nodes.filter(
+    (node): node is SankeyNodeD & { value: number } =>
+      typeof node.value === "number" && node.value > 0
+  );
+
   return (
     <div>
-      {svg}
+      {/* Under 640 px the flow is read as an ordered list (design F2.7). */}
+      <div className="hidden sm:block">{svg}</div>
+      <ol
+        className="space-y-1 text-sm sm:hidden"
+        aria-label={i18n._(m["sankey.mobileList"])}
+        data-testid="sankey-mobile-list"
+      >
+        {listNodes.map((node) => (
+          <li
+            key={node.id}
+            className="flex justify-between gap-4 border-b border-slate-100 py-1"
+          >
+            <span className="flex items-center gap-2">
+              <span
+                aria-hidden="true"
+                className="inline-block size-2.5 rounded-sm"
+                style={{ backgroundColor: nodeColor(node.id) }}
+              />
+              {labelFor(node)}
+            </span>
+            <span className="tabular-nums text-slate-600">
+              {formatMilliardeLei(node.value)}
+            </span>
+          </li>
+        ))}
+      </ol>
       {grouped.length > 0 && (
         <details
           className="mt-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm"

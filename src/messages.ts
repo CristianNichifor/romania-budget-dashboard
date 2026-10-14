@@ -763,6 +763,10 @@ export const m = {
     id: "sankey.node.rest",
     message: "Alte destinații",
   }),
+  "sankey.mobileList": msg({
+    id: "sankey.mobileList",
+    message: "Fluxul banilor publici, ca listă",
+  }),
   "sankey.rest.summary": msg({
     id: "sankey.rest.summary",
     message: "Ce intră în „Alte destinații”: {count} destinații mai mici",
