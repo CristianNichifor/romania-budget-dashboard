@@ -4,6 +4,7 @@ import { useDataModeStore } from "../store/useDataModeStore";
 import {
   BUDGET_DESTINATIONS,
   BUDGET_SUMMARY,
+  BUDGET_YEAR,
   HEALTH_BUDGET_TREND,
   type BudgetDestination,
   type YearAmount,
@@ -13,39 +14,104 @@ import { calculateSalaryBreakdown, type SalaryBreakdown } from "../lib/salary";
 
 /**
  * Typed API client.
- * P2: calls the BFF (romania-budget-dashboard-bff); falls back to local demo
- * data when the BFF is unreachable, so the demo always renders.
+ * Remote mode calls the BFF (romania-budget-dashboard-bff) and rejects with an
+ * `ApiError` when it cannot answer, so React Query shows an error state with a
+ * retry. Static mode (`VITE_DATA_MODE=static`) makes no requests and serves the
+ * bundled demo seeds, which the UI labels as demo data.
  * Monetary amounts cross this boundary as STRINGS, per the no-floats rule.
  */
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000";
-const REQUEST_TIMEOUT_MS = 2500;
+export const REQUEST_TIMEOUT_MS = 8000;
 
+/**
+ * The comparison joins adopted totals (CKAN anexa XML, cold-cache latency)
+ * with per-year execution summaries — allow a generous timeout.
+ */
+export const COMPARISON_TIMEOUT_MS = 30000;
+
+export type ApiErrorKind = "network" | "http" | "timeout" | "invalid";
+
+export class ApiError extends Error {
+  readonly kind: ApiErrorKind;
+  readonly path: string;
+  readonly status: number | undefined;
+
+  constructor(
+    kind: ApiErrorKind,
+    path: string,
+    options: { status?: number; cause?: unknown } = {}
+  ) {
+    super(
+      `[api] ${kind}${options.status === undefined ? "" : ` ${options.status}`} for ${path}`,
+      { cause: options.cause }
+    );
+    this.name = "ApiError";
+    this.kind = kind;
+    this.path = path;
+    this.status = options.status;
+  }
+}
+
+/** True when the build serves bundled demo data and never calls the BFF. */
+export function isStaticMode(): boolean {
+  return import.meta.env.VITE_DATA_MODE === "static";
+}
+
+function classify(error: unknown, path: string): ApiError {
+  if (error instanceof ApiError) {
+    return error;
+  }
+  if (error instanceof DOMException && error.name === "TimeoutError") {
+    return new ApiError("timeout", path, { cause: error });
+  }
+  if (error instanceof SyntaxError || error instanceof z.ZodError) {
+    return new ApiError("invalid", path, { cause: error });
+  }
+  return new ApiError("network", path, { cause: error });
+}
+
+/**
+ * Remote: the parsed payload, or a rejected `ApiError`.
+ * Static: `null` without touching the network — callers decide on a seed.
+ */
 async function request<T>(
   path: string,
   schema: z.ZodType<T>,
   timeoutMs: number = REQUEST_TIMEOUT_MS
 ): Promise<T | null> {
-  if (import.meta.env.VITE_DATA_MODE === "static") {
+  if (isStaticMode()) {
     useDataModeStore.getState().reportRequest(false);
     return null;
   }
+  const controller = new AbortController();
+  const timer = setTimeout(() => {
+    controller.abort(new DOMException("Request timed out", "TimeoutError"));
+  }, timeoutMs);
   try {
     const response = await fetch(`${API_BASE_URL}${path}`, {
-      signal: AbortSignal.timeout(timeoutMs),
+      signal: controller.signal,
     });
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      throw new ApiError("http", path, { status: response.status });
     }
     const result = schema.parse(await response.json());
     useDataModeStore.getState().reportRequest(true);
     return result;
   } catch (error) {
-    console.warn(`[api] BFF unreachable for ${path}, using local data`, error);
+    const apiError = classify(error, path);
+    console.warn(apiError.message, error);
     useDataModeStore.getState().reportRequest(false);
-    return null;
+    throw apiError;
+  } finally {
+    clearTimeout(timer);
   }
+}
+
+/** The seed only describes its own year; any other year has no demo data. */
+function isSeedYear(year: string): boolean {
+  return year === String(BUDGET_YEAR);
 }
 
 export const budgetSummarySchema = z.object({
@@ -54,6 +120,8 @@ export const budgetSummarySchema = z.object({
   expenditure: z.string(),
   deficit: z.string(),
   deficitPercentGdp: z.string(),
+  /** Additive BFF flag: execution for this year is still incomplete. */
+  partial: z.boolean().optional(),
 });
 
 export type BudgetSummary = z.infer<typeof budgetSummarySchema>;
@@ -109,7 +177,9 @@ function toSalaryBreakdown(response: SalaryResponse): SalaryBreakdown {
   };
 }
 
-export async function fetchBudgetSummary(year: string): Promise<BudgetSummary> {
+export async function fetchBudgetSummary(
+  year: string
+): Promise<BudgetSummary | null> {
   const remote = await request(
     `/api/budget/summary?year=${encodeURIComponent(year)}`,
     budgetSummarySchema
@@ -117,7 +187,7 @@ export async function fetchBudgetSummary(year: string): Promise<BudgetSummary> {
   if (remote !== null) {
     return remote;
   }
-  return budgetSummarySchema.parse(BUDGET_SUMMARY);
+  return isSeedYear(year) ? budgetSummarySchema.parse(BUDGET_SUMMARY) : null;
 }
 
 export async function fetchDestinations(
@@ -130,7 +200,9 @@ export async function fetchDestinations(
   if (remote !== null) {
     return remote;
   }
-  return z.array(budgetDestinationSchema).parse(BUDGET_DESTINATIONS);
+  return isSeedYear(year)
+    ? z.array(budgetDestinationSchema).parse(BUDGET_DESTINATIONS)
+    : [];
 }
 
 export const institutionsResponseSchema = z.object({
@@ -152,9 +224,9 @@ export async function fetchInstitutions(
   if (remote !== null) {
     return remote;
   }
-  const destination = BUDGET_DESTINATIONS.find(
-    (entry) => entry.id === category
-  );
+  const destination = isSeedYear(year)
+    ? BUDGET_DESTINATIONS.find((entry) => entry.id === category)
+    : undefined;
   return {
     category,
     total: destination?.amount ?? "0",
@@ -179,8 +251,18 @@ export function localBudgetYears(): number[] {
   return years;
 }
 
+/**
+ * The year list is not data, only a range: when the BFF cannot answer, the
+ * local range keeps the selector usable and each section reports its own error.
+ */
 export async function fetchBudgetYears(): Promise<number[]> {
-  const remote = await request("/api/budget/years", budgetYearsSchema);
+  if (isStaticMode()) {
+    // Only the seed year has demo data to show.
+    return [BUDGET_YEAR];
+  }
+  const remote = await request("/api/budget/years", budgetYearsSchema).catch(
+    () => null
+  );
   if (remote !== null) {
     return remote.years;
   }
@@ -211,10 +293,12 @@ export async function fetchCountyInvestments(): Promise<InvestmentsByCounty | nu
 export async function fetchSalaryBreakdown(
   gross: number
 ): Promise<SalaryBreakdown | null> {
+  // The breakdown is the same pure calculation the BFF runs, not demo data,
+  // so a failed request falls back to computing it locally.
   const remote = await request(
     `/api/salary/calculate?gross=${gross}`,
     salaryResponseSchema
-  );
+  ).catch(() => null);
   if (remote !== null) {
     return toSalaryBreakdown(remote);
   }
@@ -325,12 +409,6 @@ export async function fetchBudgetTrend(metric: string): Promise<BudgetTrend> {
 }
 
 // ── Buget adoptat vs. execuție (MFP via data.gov.ro, prin BFF) ────────
-
-/**
- * The comparison joins adopted totals (CKAN anexa XML, cold-cache latency)
- * with per-year execution summaries — allow a generous timeout.
- */
-const COMPARISON_TIMEOUT_MS = 30000;
 
 export const budgetComparisonSchema = z.object({
   points: z.array(
