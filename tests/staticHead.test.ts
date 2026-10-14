@@ -9,10 +9,8 @@ import {
   staticPages,
 } from "../src/lib/staticHead";
 
-const indexHtml = readFileSync(
-  new URL("../index.html", import.meta.url),
-  "utf8"
-);
+// Vitest runs from the repository root.
+const indexHtml = readFileSync("index.html", "utf8");
 const pages = staticPages(indexHtml);
 
 function pageHtml(fileName: string): string {
@@ -106,9 +104,7 @@ describe("static head per route", () => {
   });
 
   it("ships a 1200x630 PNG for og:image", () => {
-    const png = readFileSync(
-      new URL(`../public${OG_IMAGE.path}`, import.meta.url)
-    );
+    const png = readFileSync(`public${OG_IMAGE.path}`);
     expect(png.subarray(1, 4).toString("ascii")).toBe("PNG");
     expect(png.readUInt32BE(16)).toBe(OG_IMAGE.width);
     expect(png.readUInt32BE(20)).toBe(OG_IMAGE.height);
