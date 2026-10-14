@@ -158,6 +158,17 @@ unless noted.
   (Decimal, last row absorbs rounding). Romanian copy needs human review.
 - Tests: unit test for the pure split; e2e checks the section and its label.
 
+## Theme F — UX guidelines (fleet round 2, uxg-c)
+
+### F1 · Written UX/UI guideline · `done`
+
+- Given `docs/ux-guidelines.md`, then it states users and top tasks, page
+  anatomy, content, data-viz, state, mobile/accessibility rules, the status
+  vocabulary, a conformance checklist mapped to existing tests, and a
+  deviations backlog (UXG-B1…B9). It refines civic-ui `docs/ux-guidelines.md`.
+- Test: review; the checklist rows point at existing tests. Backlog items
+  are `todo`.
+
 ## Maintainer-only
 
 - D10 · Gate deploy on CI — `needs-human`: a `verify` job inside
