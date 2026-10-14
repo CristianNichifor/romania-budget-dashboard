@@ -29,14 +29,14 @@ export function TabNavigation() {
           key={tab.key}
           to={tab[locale]}
           search={true}
-          className="shrink-0 text-sm font-medium whitespace-nowrap"
+          className="inline-flex shrink-0 text-sm font-medium whitespace-nowrap"
           activeProps={{ "aria-current": "page" }}
           inactiveProps={{ className: "text-slate-500" }}
         >
           {({ isActive }) => (
             <span
               className={cn(
-                "inline-block border-b-2 px-3 py-3 transition-colors",
+                "inline-flex min-h-11 items-center border-b-2 px-3 py-3 transition-colors",
                 isActive
                   ? "border-budget-blue text-budget-blue"
                   : "border-transparent text-slate-500 hover:text-slate-800"
