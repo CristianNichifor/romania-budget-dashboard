@@ -38,7 +38,7 @@ export function CsvDownloadButton({
       onClick={() => triggerCsvDownload(filename, toCsv(headers, rows))}
       aria-label={label}
       title={label}
-      className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-800 focus-visible:outline-2 focus-visible:outline-budget-blue"
+      className="inline-flex min-h-6 items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-800 focus-visible:outline-2 focus-visible:outline-budget-blue"
     >
       <Download className="size-3.5" aria-hidden="true" />
       CSV

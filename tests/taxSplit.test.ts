@@ -1,7 +1,7 @@
 import { Decimal } from "decimal.js";
 import { describe, expect, it } from "vitest";
 import { BUDGET_DESTINATIONS } from "../src/data/budget2026";
-import { splitContribution } from "../src/lib/taxSplit";
+import { baniOutOfLeu, splitContribution } from "../src/lib/taxSplit";
 
 const dest = (id: string, amount: string) => ({
   id,
@@ -59,5 +59,30 @@ describe("splitContribution", () => {
   it("returns nothing without a contribution or destinations", () => {
     expect(splitContribution(new Decimal(0), [dest("a", "1")])).toEqual([]);
     expect(splitContribution(new Decimal(10), [])).toEqual([]);
+  });
+});
+
+describe("baniOutOfLeu", () => {
+  it("writes whole bani per destination that sum to exactly 100", () => {
+    const rows = splitContribution(new Decimal(100), [
+      dest("a", "1"),
+      dest("b", "1"),
+      dest("c", "1"),
+    ]);
+    expect(baniOutOfLeu(rows)).toEqual([34, 33, 33]);
+  });
+
+  it("sums to 100 for the seed destinations and keeps the order", () => {
+    const rows = splitContribution(new Decimal(1234), BUDGET_DESTINATIONS);
+    const bani = baniOutOfLeu(rows);
+    expect(bani.reduce((a, b) => a + b, 0)).toBe(100);
+    expect(bani).toHaveLength(rows.length);
+    expect(bani.every((value) => Number.isInteger(value) && value >= 0)).toBe(
+      true
+    );
+  });
+
+  it("is empty for no rows", () => {
+    expect(baniOutOfLeu([])).toEqual([]);
   });
 });

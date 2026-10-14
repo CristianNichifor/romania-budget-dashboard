@@ -13,7 +13,7 @@ import {
   YAxis,
 } from "recharts";
 import { fetchSoeCompany } from "../../api/client";
-import { formatLei, formatNumber } from "../../lib/format";
+import { MISSING, formatLei, formatNumber } from "../../lib/format";
 import { SourceBadge } from "./SourceBadge";
 import { m } from "../../messages";
 
@@ -189,7 +189,7 @@ export function SoeCompanyModal({ cui, onClose }: SoeCompanyModalProps) {
                       ? formatLei(
                           new Decimal(data.subsidy2025MiiLei).times(1000)
                         )
-                      : "—"}
+                      : MISSING}
                   </p>
                 </div>
               </div>
