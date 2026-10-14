@@ -1,25 +1,30 @@
 import { expect, test } from "@playwright/test";
 
-test("the sankey groups small flows behind a drill-down", async ({ page }) => {
-  await page.goto("/ro/bilantul-national/");
-  const details = page.getByTestId("sankey-rest-details");
-  await expect(details).toBeVisible();
-  await expect(details.locator("summary")).toContainText("Alte destinații");
-  await details.locator("summary").click();
-  await expect(details.locator("li").first()).toBeVisible();
-  await expect(details.locator("li").first()).toContainText(/mld\. lei/);
-});
+const SANKEY_NAME = "Fluxul banilor publici";
 
-test("sankey destination nodes carry their amount in the label", async ({
+test("the sankey draws at most eight destination flows and groups the rest", async ({
   page,
 }) => {
   await page.goto("/ro/bilantul-national/");
-  const sankey = page.getByRole("img", { name: "Fluxul banilor publici" });
+  const sankey = page.getByRole("img", { name: SANKEY_NAME });
   await expect(sankey).toBeVisible();
-  await expect(
-    sankey
-      .locator("text")
-      .filter({ hasText: /·.*mld\. lei/ })
-      .first()
-  ).toBeVisible();
+
+  // Node labels carry "· <amount>"; sources and the budget node do not.
+  const labelled = sankey.locator("text").filter({ hasText: /·.*mld\. lei/ });
+  const count = await labelled.count();
+  expect(count).toBeGreaterThan(0);
+  expect(count).toBeLessThanOrEqual(9); // eight destinations + the rest node
+
+  // The drill-down exists exactly when flows were grouped (live data has a
+  // rest bucket; the bundled seed lists six destinations and none).
+  const details = page.getByTestId("sankey-rest-details");
+  if ((await details.count()) > 0) {
+    await expect(details.locator("summary")).toContainText("Alte destinații");
+    await details.locator("summary").click();
+    await expect(details.locator("li").first()).toContainText(/mld\. lei/);
+  } else {
+    await expect(
+      sankey.locator("text", { hasText: "Alte destinații" })
+    ).toHaveCount(0);
+  }
 });
