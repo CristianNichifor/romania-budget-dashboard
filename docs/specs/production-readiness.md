@@ -243,7 +243,6 @@ unless noted.
 - Left for UXG-B1: adopting civic-ui `SiteShell` / `FamilyBar` / `SiteFooter`
   instead of the app's own header and footer.
 
-
 ### F2.6 · Treemap list view and keyboard drill-down (U6) · `done`
 
 - Given the destinations treemap, then a "Hartă" / "Tabel" toggle
@@ -254,7 +253,6 @@ unless noted.
   swap. Ties keep the source order.
 - Tests: `tests/destinationList.test.ts` (ranking with `Decimal`, ties),
   `tests/DestinationTreemap.test.tsx` (toggle, list content, drill-down).
-
 
 ### F2.8 · Empty years point to the year with data (part) · `done`
 
