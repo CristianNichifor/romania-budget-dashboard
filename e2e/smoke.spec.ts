@@ -39,6 +39,22 @@ test("salary tab renders the waterfall and KPIs from static data", async ({
   await expect(page.locator("svg.recharts-surface").first()).toBeVisible();
 });
 
+test("the salary waterfall labels every bar with its category and value", async ({
+  page,
+}) => {
+  await page.goto("/ro/felia-ta/");
+  const chart = page.getByTestId("salary-waterfall");
+  for (const label of [
+    "CAS — pensii (25%)",
+    "Impozit pe venit (10%)",
+    "Net salariat",
+  ]) {
+    await expect(chart.locator("svg").getByText(label)).toBeVisible();
+  }
+  await expect(chart.locator(".recharts-label-list text")).toHaveCount(7);
+  await expect(page.getByText(/lei \/ lună/)).toHaveCount(1);
+});
+
 test("locale switcher links to the English counterpart route", async ({
   page,
 }) => {
