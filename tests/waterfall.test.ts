@@ -17,7 +17,7 @@ describe("buildSalaryWaterfallRows", () => {
     expect(rows[0]?.end).toBeCloseTo(breakdown.employerCost.toNumber(), 6);
 
     const last = rows.at(-1);
-    expect(last?.kind).toBe("total");
+    expect(last?.kind).toBe("net");
     expect(last?.end).toBeCloseTo(breakdown.net.toNumber(), 6);
   });
 
@@ -51,5 +51,17 @@ describe("buildSalaryWaterfallRows", () => {
     for (const row of deductions) {
       expect(row.amount).toBeLessThan(0);
     }
+  });
+
+  it("marks only the opening total and the closing net as non-deductions", () => {
+    const breakdown = calculateSalaryBreakdown(9427);
+    expect(breakdown).not.toBeNull();
+    if (breakdown === null) {
+      return;
+    }
+    const rows = buildSalaryWaterfallRows(breakdown);
+    expect(rows.filter((row) => row.kind === "total")).toHaveLength(1);
+    expect(rows.filter((row) => row.kind === "net")).toHaveLength(1);
+    expect(rows.at(-1)?.kind).toBe("net");
   });
 });
