@@ -146,3 +146,17 @@ test("the about page names sources, licences and the no-tracking policy", async 
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page.getByText("does not use cookies")).toBeVisible();
 });
+
+test("the first banner link on every tab goes back to the hub", async ({
+  page,
+}) => {
+  for (const path of TABS) {
+    await page.goto(path);
+    const banner = page.getByRole("banner");
+    await expect(banner).toContainText("Bugetul României");
+    await expect(banner.getByRole("link").first()).toHaveAttribute(
+      "href",
+      "https://projects.cristian-nichifor.com/"
+    );
+  }
+});

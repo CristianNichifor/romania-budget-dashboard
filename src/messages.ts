@@ -7,6 +7,7 @@ import { msg } from "@lingui/core/macro";
  */
 export const m = {
   "app.title": msg({ id: "app.title", message: "Bugetul României" }),
+  "hub.back": msg({ id: "hub.back", message: "Proiecte civice" }),
   "app.subtitle": msg({
     id: "app.subtitle",
     message: "Tablou de bord cetățenesc — buget consolidat",

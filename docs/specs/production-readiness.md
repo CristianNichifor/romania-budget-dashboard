@@ -222,3 +222,14 @@ unless noted.
   run); the Romanian copy is agent-written: **needs human review**.
 - Implementation items F2.1–F2.12 are listed in the README with the test each
   one should get; they are `todo` for implementation sessions.
+
+### F2.1 · Family bar back link to the hub (UXG-B1, part) · `done`
+
+- Given any route, then the first link inside the `banner` landmark is
+  "← Proiecte civice" / "← Civic projects" pointing at the hub root
+  `https://projects.cristian-nichifor.com/` (civic-ui naming registry), and the
+  banner text includes "Bugetul României". The link is a 44 px target.
+- Tests: `tests/HubLink.test.tsx` (href, label per locale, target height);
+  `e2e/smoke.spec.ts` (first banner link on every tab).
+- Left for UXG-B1: adopting civic-ui `SiteShell` / `FamilyBar` / `SiteFooter`
+  instead of the app's own header and footer.
