@@ -24,6 +24,7 @@ import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { YearSelector } from "../components/shared/YearSelector";
 import {
+  MISSING,
   formatMilliardeLei,
   formatPercent,
   formatSignedPercent,
@@ -209,11 +210,11 @@ export function NationalBalance() {
               sub={partialMarker}
             />
             <div className="rounded-xl border border-red-200 bg-red-50 p-4 shadow-sm">
-              <p className="text-sm font-medium text-slate-500">
+              <p className="text-sm font-medium text-slate-600">
                 {i18n._(m["balance.kpi.deficitGdp"])}
               </p>
               <DebtGauge valuePercent={deficitPercent} />
-              <p className="mt-1 text-center text-xs text-slate-500">
+              <p className="mt-1 text-center text-xs text-slate-600">
                 {i18n._(m["balance.debtGauge.reference"])}
               </p>
             </div>
@@ -260,7 +261,7 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.executedDeficit"])}
               value={
                 comparisonForYear.executed === null
-                  ? "—"
+                  ? MISSING
                   : formatMilliardeLei(
                       deficitMagnitude(comparisonForYear.executed.deficit)
                     )
@@ -271,7 +272,7 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.delta"])}
               value={
                 comparisonOverrun === null
-                  ? "—"
+                  ? MISSING
                   : formatMilliardeLei(comparisonOverrun)
               }
             />
@@ -280,7 +281,7 @@ export function NationalBalance() {
               label={i18n._(m["comparison.kpi.executedGdp"])}
               value={
                 comparisonForYear.executed === null
-                  ? "—"
+                  ? MISSING
                   : formatPercent(comparisonForYear.executed.deficitPercentGdp)
               }
             />

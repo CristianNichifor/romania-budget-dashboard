@@ -115,3 +115,26 @@ export function formatSignedPercent(
   });
   return number >= 0 ? `+${formatted}%` : `−${formatted}%`;
 }
+
+/**
+ * What the UI shows for a value it does not have: an em dash, never 0 and
+ * never an empty cell, so a missing year cannot be read as a real zero.
+ */
+export const MISSING = "—";
+
+/**
+ * `formatter(value)` when the value is usable, `MISSING` otherwise. Unusable:
+ * `null`, `undefined`, an empty string, or a number that is not finite.
+ */
+export function formatOrMissing<T>(
+  value: T | null | undefined,
+  formatter: (value: T) => string
+): string {
+  if (value === null || value === undefined || value === "") {
+    return MISSING;
+  }
+  if (typeof value === "number" && !Number.isFinite(value)) {
+    return MISSING;
+  }
+  return formatter(value);
+}

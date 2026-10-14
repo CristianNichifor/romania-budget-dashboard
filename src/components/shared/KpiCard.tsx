@@ -20,10 +20,10 @@ export function KpiCard({ label, value, sub, accent = "slate" }: KpiCardProps) {
     <div
       className={cn("rounded-xl border p-4 shadow-sm", accentStyles[accent])}
     >
-      <p className="text-sm font-medium text-slate-500">{label}</p>
+      <p className="text-sm font-medium text-slate-700">{label}</p>
       <p className="mt-1 text-2xl font-bold tabular-nums">{value}</p>
       {sub !== undefined && (
-        <p className="mt-1 text-xs text-slate-500">{sub}</p>
+        <p className="mt-1 text-xs text-slate-700">{sub}</p>
       )}
     </div>
   );
