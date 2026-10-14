@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildBudgetSankey,
   SANKEY_BUDGET_NODE_ID,
+  SANKEY_REST_NODE_ID,
   type BudgetSankeyInputs,
 } from "../src/lib/sankey";
 
@@ -62,6 +63,22 @@ describe("buildBudgetSankey", () => {
     });
 
     expect(nodes.find((node) => node.id === "rest")).toBeUndefined();
+  });
+
+  it("merges a listed rest bucket into the single rest node", () => {
+    const { nodes, links } = buildBudgetSankey({
+      ...inputs,
+      destinations: [
+        ...inputs.destinations,
+        { id: SANKEY_REST_NODE_ID, name: "Alte destinații", amount: "150" },
+      ],
+    });
+    expect(
+      nodes.filter((node) => node.id === SANKEY_REST_NODE_ID)
+    ).toHaveLength(1);
+    expect(
+      links.find((link) => link.target === SANKEY_REST_NODE_ID)?.value
+    ).toBe(200);
   });
 
   it("omits the deficit node on a surplus", () => {
