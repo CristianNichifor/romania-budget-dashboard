@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { useLingui } from "@lingui/react";
 import { shortQuarter } from "../../lib/macro";
+import { ChartTable } from "../shared/ChartTable";
 import { CsvDownloadButton } from "../shared/CsvDownloadButton";
 import { m } from "../../messages";
 
@@ -117,6 +118,11 @@ export function MacroTrendChart({
           </LineChart>
         </ResponsiveContainer>
       </div>
+      <ChartTable
+        caption={ariaLabel}
+        headers={[i18n._(m["chart.csv.period"]), i18n._(m["chart.csv.value"])]}
+        rows={data.map((point) => [point.label, valueFormatter(point.value)])}
+      />
     </div>
   );
 }

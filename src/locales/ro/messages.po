@@ -20,131 +20,158 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1168
+#: src/messages.ts:1164
 msgid "soe.kpi.centralLocal"
 msgstr "{central} centrale · {local} locale"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1176
+#: src/messages.ts:1172
 msgid "soe.county.summary"
 msgstr "{companies} companii · {onLoss} pe pierdere ({lossPercent})"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1172
+#: src/messages.ts:1168
 msgid "soe.onLoss"
 msgstr "{count} pe pierdere"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1180
+#: src/messages.ts:1176
 msgid "soe.county.lossShare"
 msgstr "{lossPercent} pe pierdere"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:846
+#: src/messages.ts:842
 msgid "drilldown.share"
 msgstr "{sharePercent} din total"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:861
+#: src/messages.ts:857
 msgid "investments.shareOfTotal"
 msgstr "{sharePercent} din total"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:572
+#: src/messages.ts:568
 msgid "salary.perMonth"
 msgstr "/ lună"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:374
+#: src/messages.ts:378
 msgid "economy.percent"
 msgstr "%"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1184
+#: src/messages.ts:1180
 msgid "economy.percentGdp"
 msgstr "% PIB"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1192
+#: src/messages.ts:1188
 msgid "soe.scatter.offScale"
 msgstr "▲ {count} companii cu marja în afara intervalului ±100% sunt fixate pe margine; valoarea reală apare la hover."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:659
+#: src/messages.ts:655
 msgid "wageContext.anchorSub"
 msgstr "€ pe an · angajați"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:735
+#: src/messages.ts:731
 msgid "comparison.legend.adopted"
 msgstr "Adoptat (legea bugetului)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:774
+#: src/messages.ts:70
+msgid "chart.showTable"
+msgstr "Afișează ca tabel"
+
+#. js-lingui-explicit-id
+#: src/messages.ts:770
 msgid "sankey.node.rest"
 msgstr "Alte destinații"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1069
+#: src/messages.ts:1065
 msgid "balance.kpi.partialYear"
 msgstr "An parțial — execuție până la zi"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1037
+#: src/messages.ts:1033
 msgid "soe.company.employees"
 msgstr "Angajați"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:685
+#: src/messages.ts:681
 msgid "year.label"
 msgstr "Anul"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:686
+#: src/messages.ts:682
 msgid "year.groupLabel"
 msgstr "Anul bugetar"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:458
+#: src/messages.ts:462
 msgid "economy.trade.balance"
 msgstr "Balanța"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:389
+#: src/messages.ts:393
 msgid "economy.kpi.trade"
 msgstr "Balanța comercială"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:513
+#: src/messages.ts:517
 msgid "economy.currentAccount.description"
 msgstr "Balanța contului curent cu restul lumii, trimestrial, în miliarde de euro (Eurostat, BPM6). Barele roșii = deficit extern."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1216
+#: src/messages.ts:1212
 msgid "leuBridge.bani"
 msgstr "bani"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1024
+#: src/messages.ts:1020
 msgid "soe.company.mfin"
 msgstr "Bilanț MFin 2024"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:558
+#: src/messages.ts:554
 msgid "nav.nationalBalance"
 msgstr "Bilanțul național"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:817
+#: src/messages.ts:813
 msgid "drilldown.breadcrumb.root"
 msgstr "Bilanțul național"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:710
+#: src/messages.ts:706
 msgid "comparison.title"
 msgstr "Buget adoptat vs. execuție"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:770
+#: src/messages.ts:766
 msgid "sankey.node.budget"
 msgstr "Buget consolidat"
 
@@ -155,16 +182,19 @@ msgstr "Buget consolidat (Open Budget)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:743
+#: src/messages.ts:739
 msgid "comparison.scopeNote"
 msgstr "Bugetul adoptat acoperă bugetul de stat și fondurile BASS, BSAN, BSOM (MFP, data.gov.ro); execuția acoperă aceiași ordonatori principali (transparenta.eu). Ambele includ transferurile intra-bugetare."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1109
+#: src/messages.ts:1105
 msgid "about.source.mfp"
 msgstr "Bugetul adoptat și comparația adoptat–executat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:680
+#: src/messages.ts:676
 msgid "balance.description"
 msgstr "Bugetul consolidat pe ani: venituri, cheltuieli și deficit, pe modelul Open Budget."
 
@@ -175,251 +205,291 @@ msgstr "Bugetul României"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1077
+#: src/messages.ts:1073
 msgid "about.intro"
 msgstr "Bugetul României este un tablou de bord cetățenesc, un proiect educațional independent care arată bugetul consolidat și indicatori economici și sociali din surse publice oficiale."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:573
+#: src/messages.ts:569
 msgid "salary.rateNote"
 msgstr "Calcul ilustrativ cu ratele fiscale ale bugetului 2026 — nu este consultanță fiscală."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1041
+#: src/messages.ts:1037
 msgid "soe.company.capital"
 msgstr "Capitaluri proprii"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:603
+#: src/messages.ts:599
 msgid "salary.entry.cas"
 msgstr "CAS — pensii (25%)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:607
+#: src/messages.ts:603
 msgid "salary.entry.cass"
 msgstr "CASS — sănătate (10%)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:629
+#: src/messages.ts:625
 msgid "realWage.nominal"
 msgstr "Salariu net nominal"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:655
+#: src/messages.ts:651
 msgid "wageContext.anchor"
 msgstr "Câștig mediu anual brut ({year})"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:633
+#: src/messages.ts:629
 msgid "realWage.real"
 msgstr "Salariu real (ajustat la inflație)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:624
+#: src/messages.ts:620
 msgid "realWage.description"
 msgstr "Salariul net nominal (INS) ajustat cu inflația (BNR). Când linia roșie scade sub cea albastră, puterea de cumpărare crește mai încet decât salariul."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:714
+#: src/messages.ts:710
 msgid "comparison.description"
 msgstr "Cât deficit a promis legea bugetului (MFP) și cât s-a executat în realitate (transparenta.eu). Deficitul este comparabil direct — transferurile între fonduri se anulează."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:563
+#: src/messages.ts:559
 msgid "salary.description"
 msgstr "Câți bani din costul muncii tale ajung la stat și câți îți rămân."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1197
+#: src/messages.ts:1193
 msgid "leuBridge.title"
 msgstr "Ce cumpără 1 leu din taxele tale"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:778
+#: src/messages.ts:774
 msgid "sankey.rest.summary"
 msgstr "Ce intră în „Alte destinații”: {count} destinații mai mici"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1201
+#: src/messages.ts:1197
 msgid "leuBridge.description"
 msgstr "Cei {amount} pe lună care ajung la stat, împărțiți după destinațiile bugetului."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:879
+#: src/messages.ts:875
 msgid "error.title"
 msgstr "Ceva nu a mers bine"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:697
+#: src/messages.ts:693
 msgid "balance.kpi.expenditure"
 msgstr "Cheltuieli"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:800
+#: src/messages.ts:796
 msgid "context.budgetLabel"
 msgstr "Cheltuieli cu sănătatea"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:102
+#: src/messages.ts:106
 msgid "society.spending.title"
 msgstr "Cheltuieli publice: sănătate vs. educație"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:106
+#: src/messages.ts:110
 msgid "society.spending.description"
 msgstr "Cheltuielile administrației publice cu sănătatea (COFOG GF07) și educația (GF09), % din PIB (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:466
+#: src/messages.ts:470
 msgid "economy.pensions.description"
 msgstr "Cheltuielile cu pensiile (execuție bugetară, mld. lei) față de raportul de dependență a vârstnicilor: 65+ la 100 de persoane 15–64."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:795
+#: src/messages.ts:791
 msgid "context.description"
 msgstr "Bugetul sănătății (bare, mld. lei) alături de un indicator social (linie): banii alocați vs. rezultatul măsurabil."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:912
+#: src/messages.ts:908
 msgid "soe.kpi.revenue"
 msgstr "Cifra de afaceri"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1028
+#: src/messages.ts:1024
 msgid "soe.company.ca"
 msgstr "Cifra de afaceri"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1156
+#: src/messages.ts:1152
 msgid "about.code.title"
 msgstr "Cod sursă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1160
+#: src/messages.ts:1156
 msgid "about.code.description"
 msgstr "Codul este deschis, sub licența MIT:"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:441
+#: src/messages.ts:445
 msgid "economy.trade.title"
 msgstr "Comerțul internațional"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:554
+#: src/messages.ts:550
 msgid "nav.companies"
 msgstr "Companii de stat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:908
+#: src/messages.ts:904
 msgid "soe.kpi.companies"
 msgstr "Companii de stat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:993
+#: src/messages.ts:989
 msgid "soe.listed.title"
 msgstr "Companii de stat listate la BVB"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1058
+#: src/messages.ts:1054
 msgid "soe.source"
 msgstr "companiidestat.ro"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1113
+#: src/messages.ts:1109
 msgid "about.source.soe"
 msgstr "Companiile de stat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:899
+#: src/messages.ts:895
 msgid "soe.title"
 msgstr "Companiile de stat ale României"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:967
+#: src/messages.ts:963
 msgid "soe.counties.title"
 msgstr "Companiile de stat pe județe"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:954
+#: src/messages.ts:950
 msgid "soe.sectors.title"
 msgstr "Companiile pe pierdere, pe sectoare"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:748
+#: src/messages.ts:744
 msgid "comparison.unavailable"
 msgstr "Comparația adoptat vs. execuție este indisponibilă — sursa de date nu a răspuns."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1020
+#: src/messages.ts:1016
 msgid "soe.company.management"
 msgstr "Conducere"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1142
+#: src/messages.ts:1138
 msgid "about.privacy.title"
 msgstr "Confidențialitate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:518
+#: src/messages.ts:522
 msgid "economy.kpi.currentAccount"
 msgstr "Cont curent"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:637
+#: src/messages.ts:633
 msgid "wageContext.title"
 msgstr "Context salarial"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:791
+#: src/messages.ts:787
 msgid "context.title"
 msgstr "Context din statisticile INS"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:599
+#: src/messages.ts:595
 msgid "salary.entry.employerContribution"
 msgstr "Contribuție angajator (CAM 2,25%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:509
+#: src/messages.ts:513
 msgid "economy.currentAccount.title"
 msgstr "Contul curent"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:595
+#: src/messages.ts:591
 msgid "salary.entry.gross"
 msgstr "Cost total angajator"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:376
+#: src/messages.ts:380
 msgid "economy.kpi.gdpGrowth"
 msgstr "Creștere PIB"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:393
+#: src/messages.ts:397
 msgid "economy.growth.title"
 msgstr "Creșterea economică"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:370
+#: src/messages.ts:374
 msgid "economy.fx.description"
 msgstr "Cursul de referință zilnic al Băncii Centrale Europene."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:366
+#: src/messages.ts:370
 msgid "economy.fx.title"
 msgstr "Cursul EUR/RON"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1105
+#: src/messages.ts:1101
 msgid "about.source.ecb"
 msgstr "Cursul EUR/RON și dobânda la facilitatea de depozit"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:924
+#: src/messages.ts:920
 msgid "soe.kpi.updated"
 msgstr "Date {year} · actualizat {date} · {companies} companii cu date"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1064
+#: src/messages.ts:1060
 msgid "section.demo"
 msgstr "date demo"
 
@@ -445,46 +515,52 @@ msgstr "Date: {source}, {year}"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1125
+#: src/messages.ts:1121
 msgid "about.source.openBudget"
 msgstr "Datele demo pentru 2026, folosite doar când site-ul rulează fără API"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1059
+#: src/messages.ts:1055
 msgid "section.error"
 msgstr "Datele nu au putut fi încărcate."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:432
+#: src/messages.ts:436
 msgid "economy.debt.description"
 msgstr "Datoria brută consolidată a administrației publice, % din PIB (Eurostat), cu pragul Maastricht de 60%."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:428
+#: src/messages.ts:432
 msgid "economy.debt.title"
 msgstr "Datoria publică"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:385
+#: src/messages.ts:389
 msgid "economy.kpi.debt"
 msgstr "Datorie publică"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:753
+#: src/messages.ts:749
 msgid "sankey.title"
 msgstr "De unde vin banii și unde se duc"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:701
+#: src/messages.ts:697
 msgid "balance.kpi.deficit"
 msgstr "Deficit"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:702
+#: src/messages.ts:698
 msgid "balance.kpi.deficitGdp"
 msgstr "Deficit (% PIB)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:766
+#: src/messages.ts:762
 msgid "sankey.node.deficit"
 msgstr "Deficit (împrumut)"
 
@@ -495,61 +571,65 @@ msgstr "Deficit {valuePercent} din PIB"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:719
+#: src/messages.ts:715
 msgid "comparison.kpi.adoptedDeficit"
 msgstr "Deficit adoptat"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:492
+#: src/messages.ts:496
 msgid "economy.kpi.deficit"
 msgstr "Deficit bugetar"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:723
+#: src/messages.ts:719
 msgid "comparison.kpi.executedDeficit"
 msgstr "Deficit executat"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:483
+#: src/messages.ts:487
 msgid "economy.deficit.description"
 msgstr "Deficitul (−)/excedentul (+) administrației publice, % din PIB (Eurostat, date GFS trimestriale), cu pragul Maastricht de −3%."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:479
+#: src/messages.ts:483
 msgid "economy.deficit.title"
 msgstr "Deficitul bugetar trimestrial"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:878
+#: src/messages.ts:874
 msgid "source.demo"
 msgstr "Demo"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:149
+#: src/messages.ts:153
 msgid "society.demographics.title"
 msgstr "Demografie"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:727
+#: src/messages.ts:723
 msgid "comparison.kpi.delta"
 msgstr "Depășire față de lege"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:183
+#: src/messages.ts:187
 msgid "energy.kpi.import"
 msgstr "Dependență de import"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:213
+#: src/messages.ts:217
 msgid "energy.import.title"
 msgstr "Dependența energetică de importuri"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:217
+#: src/messages.ts:221
 msgid "energy.import.description"
 msgstr "Dependența energetică totală de importuri (toate produsele), % din consumul brut (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:475
+#: src/messages.ts:479
 msgid "economy.pensions.dependencyLegend"
 msgstr "Dependența vârstnicilor"
 
@@ -565,81 +645,91 @@ msgstr "Deschide destinația {destination}"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:950
+#: src/messages.ts:946
 msgid "soe.scatter.open"
 msgstr "Deschide fișa {company}"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1087
+#: src/messages.ts:1083
 msgid "about.contactLink"
 msgstr "deschide un issue pe GitHub"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1073
+#: src/messages.ts:1069
 msgid "about.title"
 msgstr "Despre"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1164
+#: src/messages.ts:1160
 msgid "footer.about"
 msgstr "Despre"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:782
+#: src/messages.ts:778
 msgid "treemap.title"
 msgstr "Destinația cheltuielilor"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1207
+#: src/messages.ts:1203
 msgid "leuBridge.destination"
 msgstr "Destinație"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:821
+#: src/messages.ts:817
 msgid "drilldown.breadcrumb.destinations"
 msgstr "Destinații"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:971
+#: src/messages.ts:967
 msgid "soe.counties.description"
 msgstr "Dimensiunea pătratului = cifra de afaceri; nuanța = ponderea companiilor pe pierdere."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1211
+#: src/messages.ts:1207
 msgid "leuBridge.perLeu"
 msgstr "Din 1 leu"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:191
+#: src/messages.ts:195
 msgid "energy.importLegend"
 msgstr "din consum"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:187
+#: src/messages.ts:191
 msgid "energy.renewablesLegend"
 msgstr "din consumul final brut"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1212
+#: src/messages.ts:1208
 msgid "leuBridge.perMonth"
 msgstr "Din contribuția ta lunară"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:384
+#: src/messages.ts:388
 msgid "economy.kpi.eu27"
 msgstr "din media UE"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:523
+#: src/messages.ts:527
 msgid "economy.rates.title"
 msgstr "Dobânda BCE"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:532
+#: src/messages.ts:536
 msgid "economy.kpi.rates"
 msgstr "Dobânda BCE"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:326
+#: src/messages.ts:330
 msgid "economy.title"
 msgstr "Economia României în date"
 
@@ -649,22 +739,22 @@ msgid "nav.economy"
 msgstr "Economie"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:115
+#: src/messages.ts:119
 msgid "society.spending.education"
 msgstr "Educație"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:119
+#: src/messages.ts:123
 msgid "society.education.title"
 msgstr "Educație"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:309
+#: src/messages.ts:313
 msgid "justice.police.title"
 msgstr "Efectivul de polițiști"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:166
+#: src/messages.ts:170
 msgid "energy.title"
 msgstr "Energia în date"
 
@@ -674,82 +764,94 @@ msgid "nav.energy"
 msgstr "Energie"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:179
+#: src/messages.ts:183
 msgid "energy.kpi.renewables"
 msgstr "Energie regenerabilă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1206
+#: src/messages.ts:1202
 msgid "leuBridge.estimate"
 msgstr "Estimare"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:591
+#: src/messages.ts:587
 msgid "salary.estimateLoading"
 msgstr "Estimare salariu mediu…"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:667
+#: src/messages.ts:663
 msgid "wageContext.monthlyDescription"
 msgstr "Estimare: nivelul mediu anual brut (Ancheta structurală a câștigurilor, Eurostat) ajustat cu indicele costului muncii (LCI). Compară cu salariul tău brut din secțiunea de mai sus."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:873
+#: src/messages.ts:869
 msgid "investments.estimatedNote"
 msgstr "Estimare: programul de investiții publice 2026 nu are o sursă publică structurată la nivel de județ; sumele sunt aproximative."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1217
+#: src/messages.ts:1213
 msgid "leuBridge.note"
 msgstr "Estimare: taxele nu sunt alocate pe destinații. Contribuția este împărțită proporțional cu cheltuielile bugetului consolidat, deci arată unde merge un leu mediu, nu leul tău anume."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:344
+#: src/messages.ts:348
 msgid "economy.kpi.fx"
 msgstr "EUR/RON"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1121
+#: src/messages.ts:1117
 msgid "about.source.transparenta"
 msgstr "Execuția bugetară"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:739
+#: src/messages.ts:735
 msgid "comparison.legend.executed"
 msgstr "Execuție"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:731
+#: src/messages.ts:727
 msgid "comparison.kpi.executedGdp"
 msgstr "Execuție % PIB"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:688
+#: src/messages.ts:684
 msgid "year.inProgressCaption"
 msgstr "Execuție în curs — sumele cresc pe măsură ce rapoartele lunare intră."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:450
+#: src/messages.ts:454
 msgid "economy.trade.exports"
 msgstr "Exporturi"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:445
+#: src/messages.ts:449
 msgid "economy.trade.description"
 msgstr "Exporturile și importurile de bunuri și servicii, % din PIB (Eurostat), cu balanța derivată."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:842
+#: src/messages.ts:838
 msgid "drilldown.empty"
 msgstr "Fără instituții listate pentru această destinație."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:812
+#: src/messages.ts:808
 msgid "context.insight"
 msgstr "Față de 2021, bugetul sănătății s-a modificat cu {budgetChange}; indicatorul „{insLabel}”: {insChange}."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:587
+#: src/messages.ts:583
 msgid "salary.vsAverage"
 msgstr "față de salariul mediu net (INS)"
 
@@ -760,11 +862,13 @@ msgstr "Feliuța ta"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1095
+#: src/messages.ts:1091
 msgid "about.sources.description"
 msgstr "Fiecare grafic își arată sursa pe card. Datele sunt preluate prin API-ul proiectului din sursele de mai jos, în condițiile stabilite de fiecare sursă."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:932
+#: src/messages.ts:928
 msgid "soe.scatter.description"
 msgstr "Fiecare punct este o companie de stat: marja netă 2024 (orizontală) față de salariul maxim lunar din conducere (verticală). Clic pe un punct pentru fișa companiei."
 
@@ -775,121 +879,136 @@ msgstr "Fluxul banilor publici"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:757
+#: src/messages.ts:753
 msgid "sankey.description"
 msgstr "Fluxul banilor publici: surse de venit → buget consolidat → destinații. Deficitul apare ca sursă (împrumut)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:579
+#: src/messages.ts:575
 msgid "salary.stateShareStat"
 msgstr "Ia statul"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:462
+#: src/messages.ts:466
 msgid "economy.pensions.title"
 msgstr "Îmbătrânirea populației și pensiile"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:454
+#: src/messages.ts:458
 msgid "economy.trade.imports"
 msgstr "Importuri"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:611
+#: src/messages.ts:607
 msgid "salary.entry.incomeTax"
 msgstr "Impozit pe venit (10%)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:687
+#: src/messages.ts:683
 msgid "year.inProgress"
 msgstr "în curs"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:851
+#: src/messages.ts:847
 msgid "drilldown.close"
 msgstr "Închide"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1049
+#: src/messages.ts:1045
 msgid "soe.company.close"
 msgstr "Închide"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:808
+#: src/messages.ts:804
 msgid "context.metricLabel"
 msgstr "Indicator urmărit"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:903
+#: src/messages.ts:899
 msgid "soe.description"
 msgstr "Indicatori financiari, salarii și subvenții pentru companiile de stat — date publice, 2019–2024."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:317
+#: src/messages.ts:321
 msgid "society.ins.title"
 msgstr "Indicatori sociali (INS)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:415
+#: src/messages.ts:419
 msgid "economy.gdpPerCapita.indexLegend"
 msgstr "Indice UE27=100"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:646
+#: src/messages.ts:642
 msgid "wageContext.lciTitle"
 msgstr "Indicele costului muncii"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:345
+#: src/messages.ts:349
 msgid "economy.inflation.title"
 msgstr "Inflația anuală (IAPC)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:335
+#: src/messages.ts:339
 msgid "economy.kpi.inflation"
 msgstr "Inflație anuală"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:330
+#: src/messages.ts:334
 msgid "economy.description"
 msgstr "Inflație, șomaj și cursul de schimb — indicatori lunari din surse europene oficiale."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1100
+#: src/messages.ts:1096
 msgid "about.source.eurostat"
 msgstr "Inflație, șomaj, PIB, datorie, salarii, societate, energie, piața muncii, justiție"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:295
+#: src/messages.ts:299
 msgid "justice.homicides.description"
 msgstr "Infracțiuni de omucidere intenționată înregistrate (ICCS 0101), număr anual (Eurostat)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:641
+#: src/messages.ts:637
 msgid "wageContext.description"
 msgstr "INS nu publică salariul mediu lunar ca serie de date curată; folosim indicele costului muncii ca tendință și câștigul mediu anual brut din Ancheta structurală (o dată la 4 ani)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:829
+#: src/messages.ts:825
 msgid "drilldown.description"
 msgstr "Instituțiile finanțate din această destinație, cu ponderea fiecăreia în total."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:852
+#: src/messages.ts:848
 msgid "investments.title"
 msgstr "Investiții publice pe județe"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:578
+#: src/messages.ts:574
 msgid "salary.netStat"
 msgstr "Îți rămân"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1015
+#: src/messages.ts:1011
 msgid "soe.company.county"
 msgstr "Județ"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:270
+#: src/messages.ts:274
 msgid "justice.title"
 msgstr "Justiția în cifre"
 
@@ -899,12 +1018,13 @@ msgid "nav.justice"
 msgstr "Justiție"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:375
+#: src/messages.ts:379
 msgid "economy.lei"
 msgstr "lei"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1130
+#: src/messages.ts:1126
 msgid "about.licence"
 msgstr "Licență"
 
@@ -914,62 +1034,67 @@ msgid "lang.label"
 msgstr "Limbă"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:239
+#: src/messages.ts:243
 msgid "labour.kpi.vacancy"
 msgstr "Locuri de muncă vacante"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:488
+#: src/messages.ts:492
 msgid "economy.deficit.maastricht"
 msgstr "Maastricht −3%"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:437
+#: src/messages.ts:441
 msgid "economy.debt.maastricht"
 msgstr "Maastricht 60%"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:869
+#: src/messages.ts:865
 msgid "investments.legendMax"
 msgstr "mai mult"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:865
+#: src/messages.ts:861
 msgid "investments.legendMin"
 msgstr "mai puțin"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:937
+#: src/messages.ts:933
 msgid "soe.scatter.x"
 msgstr "Marja netă (%)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1016
+#: src/messages.ts:1012
 msgid "soe.company.marginHistory"
 msgstr "Marja netă pe ani (%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:145
+#: src/messages.ts:149
 msgid "society.health.physicians"
 msgstr "Medici la 100.000 locuitori"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:140
+#: src/messages.ts:144
 msgid "society.health.description"
 msgstr "Medici practicanți la 100.000 de locuitori — densitatea medicală în timp (Eurostat, calculat cu populația rezidentă)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:162
+#: src/messages.ts:166
 msgid "society.demographics.netMigration"
 msgstr "Migrație netă (la 1.000)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:804
+#: src/messages.ts:800
 msgid "context.budgetUnit"
 msgstr "miliarde EUR"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:522
+#: src/messages.ts:526
 msgid "economy.mldEur"
 msgstr "mld. €"
 
@@ -985,91 +1110,97 @@ msgstr "Navigare principală"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:619
+#: src/messages.ts:615
 msgid "salary.entry.net"
 msgstr "Net salariat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:838
+#: src/messages.ts:834
 msgid "drilldown.error"
 msgstr "Nu am putut încărca instituțiile — încearcă din nou."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1065
+#: src/messages.ts:1061
 msgid "section.emptyYear"
 msgstr "Nu există date demo pentru anul {year}."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:304
+#: src/messages.ts:308
 msgid "justice.prison.description"
 msgstr "Numărul persoanelor deținute efectiv în penitenciare, la sfârșitul anului (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:313
+#: src/messages.ts:317
 msgid "justice.police.description"
 msgstr "Numărul polițiștilor (ISCO 5412), număr anual (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:505
+#: src/messages.ts:509
 msgid "economy.kpi.employment"
 msgstr "Ocupare 20–64"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:279
+#: src/messages.ts:283
 msgid "justice.kpi.homicides"
 msgstr "Omucideri intenționate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:291
+#: src/messages.ts:295
 msgid "justice.homicides.title"
 msgstr "Omucideri intenționate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:274
+#: src/messages.ts:278
 msgid "justice.description"
 msgstr "Omuciderile intenționate, populația carcerală și efectivul de polițiști (Eurostat)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:997
+#: src/messages.ts:993
 msgid "soe.listed.description"
 msgstr "Pachetele majoritare ale statului la Bursa de Valori București, cu evoluția prețului acțiunii."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1151
+#: src/messages.ts:1147
 msgid "about.privacy.hosting"
 msgstr "Paginile și API-ul sunt găzduite pe Cloudflare Workers. Ca orice furnizor de găzduire, Cloudflare primește cererile tale, inclusiv adresa IP, ca să livreze paginile."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:128
+#: src/messages.ts:132
 msgid "society.education.earlyLeavers"
 msgstr "Părăsire timpurie a școlii"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:123
+#: src/messages.ts:127
 msgid "society.education.description"
 msgstr "Părăsirea timpurie a școlii și absolvenții de studii terțiare, % din populația 18–24, respectiv 25–34 de ani (Eurostat)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:976
+#: src/messages.ts:972
 msgid "soe.counties.lossPct"
 msgstr "pe pierdere"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:471
+#: src/messages.ts:475
 msgid "economy.pensions.pensionsLegend"
 msgstr "Pensii (mld. lei)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:70
+#: src/messages.ts:74
 msgid "chart.csv.period"
 msgstr "Perioadă"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:89
+#: src/messages.ts:93
 msgid "society.kpi.populationChangeSub"
 msgstr "persoane"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:283
+#: src/messages.ts:287
 msgid "justice.kpi.prison"
 msgstr "Persoane în penitenciar"
 
@@ -1079,157 +1210,167 @@ msgid "nav.labour"
 msgstr "Piața muncii"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:222
+#: src/messages.ts:226
 msgid "labour.title"
 msgstr "Piața muncii"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:380
+#: src/messages.ts:384
 msgid "economy.kpi.gdpPerCapita"
 msgstr "PIB pe locuitor"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:402
+#: src/messages.ts:406
 msgid "economy.gdpPerCapita.title"
 msgstr "PIB pe locuitor"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:406
+#: src/messages.ts:410
 msgid "economy.gdpPerCapita.description"
 msgstr "PIB pe locuitor la paritatea puterii de cumpărare (PPS) și indicele față de media UE (UE27 = 100)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:423
+#: src/messages.ts:427
 msgid "economy.gdpRegions.description"
 msgstr "PIB pe locuitor la paritatea puterii de cumpărare, indice față de media UE (UE27 = 100), pe cele 8 regiuni de dezvoltare (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:419
+#: src/messages.ts:423
 msgid "economy.gdpRegions.title"
 msgstr "PIB pe locuitor pe regiuni"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:411
+#: src/messages.ts:415
 msgid "economy.gdpPerCapita.ppsLegend"
 msgstr "PIB/loc (PPS)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1033
+#: src/messages.ts:1029
 msgid "soe.company.loss"
 msgstr "Pierdere netă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:920
+#: src/messages.ts:916
 msgid "soe.kpi.losses"
 msgstr "Pierderi nete"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:287
+#: src/messages.ts:291
 msgid "justice.kpi.police"
 msgstr "Polițiști"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:958
+#: src/messages.ts:954
 msgid "soe.sectors.description"
 msgstr "Ponderea companiilor pe pierdere în fiecare sector economic, 2019–2024."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:208
+#: src/messages.ts:212
 msgid "energy.renewables.description"
 msgstr "Ponderea energiei din surse regenerabile în consumul final brut de energie, % (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:204
+#: src/messages.ts:208
 msgid "energy.renewables.title"
 msgstr "Ponderea energiei regenerabile"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:963
+#: src/messages.ts:959
 msgid "soe.sectors.y"
 msgstr "Ponderea pe pierdere (%)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:500
+#: src/messages.ts:504
 msgid "economy.employment.description"
 msgstr "Ponderea populației 20–64 de ani angajate, ajustat sezonier (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:247
+#: src/messages.ts:251
 msgid "labour.neet.description"
 msgstr "Ponderea tinerilor de 15–29 de ani care nu sunt încadrați profesional și nu urmează niciun program educațional (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:300
+#: src/messages.ts:304
 msgid "justice.prison.title"
 msgstr "Populația carcerală"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:97
+#: src/messages.ts:101
 msgid "society.population.description"
 msgstr "Populația rezidentă totală, la 1 ianuarie a fiecărui an (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:93
+#: src/messages.ts:97
 msgid "society.population.title"
 msgstr "Populația României"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:76
+#: src/messages.ts:80
 msgid "society.description"
 msgstr "Populația, cheltuielile publice cu sănătatea și educația și indicatori sociali măsurabili."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:81
+#: src/messages.ts:85
 msgid "society.kpi.population"
 msgstr "Populație rezidentă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:583
+#: src/messages.ts:579
 msgid "salary.effectiveRate"
 msgstr "Povară fiscală efectivă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:942
+#: src/messages.ts:938
 msgid "soe.scatter.breakEven"
 msgstr "Pragul profitului"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:175
+#: src/messages.ts:179
 msgid "energy.kpi.electricity"
 msgstr "Preț electricitate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:195
+#: src/messages.ts:199
 msgid "energy.electricity.title"
 msgstr "Prețul energiei electrice (gospodării)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:170
+#: src/messages.ts:174
 msgid "energy.description"
 msgstr "Prețul energiei electrice pentru gospodării, ponderea energiei regenerabile și dependența de importuri (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:199
+#: src/messages.ts:203
 msgid "energy.electricity.description"
 msgstr "Prețul mediu al energiei electrice pentru gospodării, bandă 2.500–5.000 kWh/an, toate taxele incluse (Eurostat, semestrial)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:916
+#: src/messages.ts:912
 msgid "soe.kpi.profit"
 msgstr "Profit net"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1029
+#: src/messages.ts:1025
 msgid "soe.company.profit"
 msgstr "Profit net"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1002
+#: src/messages.ts:998
 msgid "soe.listed.profit"
 msgstr "Profit net consolidat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:856
+#: src/messages.ts:852
 msgid "investments.description"
 msgstr "Programul de investiții 2026, pe județe. Cartogramă: suprafața = suma alocată, culoarea = intensitatea față de celelalte județe."
 
@@ -1240,101 +1381,111 @@ msgstr "Proiect educațional — datele provin din surse publice oficiale; sursa
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1082
+#: src/messages.ts:1078
 msgid "about.operator"
 msgstr "Proiectul este realizat de Cristian Nichifor. Pentru întrebări, corecturi sau date greșite:"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:349
+#: src/messages.ts:353
 msgid "economy.inflation.description"
 msgstr "Rata anuală a inflației armonizate (Eurostat), cu ținta BNR marcată."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:496
+#: src/messages.ts:500
 msgid "economy.employment.title"
 msgstr "Rata de ocupare"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:527
+#: src/messages.ts:531
 msgid "economy.rates.description"
 msgstr "Rata dobânzii la facilitatea de depozit a Băncii Centrale Europene — reperul politicii monetare pentru RON."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:261
+#: src/messages.ts:265
 msgid "labour.vacancy.title"
 msgstr "Rata locurilor de muncă vacante"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:265
+#: src/messages.ts:269
 msgid "labour.vacancy.description"
 msgstr "Rata locurilor de muncă vacante în industrie, construcții și servicii (NACE B-S), ajustată sezonier (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:231
+#: src/messages.ts:235
 msgid "labour.kpi.neet"
 msgstr "Rata NEET (15–29 ani)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:358
+#: src/messages.ts:362
 msgid "economy.unemployment.title"
 msgstr "Rata șomajului"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:256
+#: src/messages.ts:260
 msgid "labour.youth.description"
 msgstr "Rata șomajului pentru persoanele sub 25 de ani, ajustată sezonier, % din forța de muncă (Eurostat)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:706
+#: src/messages.ts:702
 msgid "balance.debtGauge.reference"
 msgstr "Referință UE (Maastricht): 3% din PIB"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:880
+#: src/messages.ts:876
 msgid "error.reload"
 msgstr "Reîncarcă pagina sau încearcă din nou mai târziu."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1063
+#: src/messages.ts:1059
 msgid "section.retry"
 msgstr "Reîncearcă"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:568
+#: src/messages.ts:564
 msgid "salary.grossLabel"
 msgstr "Salariu brut (lei/lună)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:938
+#: src/messages.ts:934
 msgid "soe.scatter.y"
 msgstr "Salariu maxim (lei/lună)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:946
+#: src/messages.ts:942
 msgid "soe.scatter.minWage"
 msgstr "Salariu minim brut"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:928
+#: src/messages.ts:924
 msgid "soe.scatter.title"
 msgstr "Salariu vs. performanță"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:663
+#: src/messages.ts:659
 msgid "wageContext.monthlyTitle"
 msgstr "Salariul mediu brut lunar (estimare)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:620
+#: src/messages.ts:616
 msgid "realWage.title"
 msgstr "Salariul real vs. nominal"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:111
+#: src/messages.ts:115
 msgid "society.spending.health"
 msgstr "Sănătate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:136
+#: src/messages.ts:140
 msgid "society.health.title"
 msgstr "Sănătate"
 
@@ -1345,11 +1496,13 @@ msgstr "Sari la conținut"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1050
+#: src/messages.ts:1046
 msgid "soe.company.loading"
 msgstr "Se încarcă fișa companiei…"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:834
+#: src/messages.ts:830
 msgid "drilldown.loading"
 msgstr "Se încarcă instituțiile…"
 
@@ -1360,11 +1513,13 @@ msgstr "Se încarcă…"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1014
+#: src/messages.ts:1010
 msgid "soe.company.sector"
 msgstr "Sector"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:672
+#: src/messages.ts:668
 msgid "wageContext.estimatedNote"
 msgstr "Serie estimată — nu este salariul mediu oficial publicat de INS."
 
@@ -1375,11 +1530,13 @@ msgstr "Serverul răspunde greu — mai așteptăm câteva secunde."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1146
+#: src/messages.ts:1142
 msgid "about.privacy.tracking"
 msgstr "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:562
+#: src/messages.ts:558
 msgid "salary.title"
 msgstr "Situația ta fiscală"
 
@@ -1389,62 +1546,68 @@ msgid "nav.society"
 msgstr "Societate"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:72
+#: src/messages.ts:76
 msgid "society.title"
 msgstr "Societatea în cifre"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:340
+#: src/messages.ts:344
 msgid "economy.kpi.unemployment"
 msgstr "Șomaj (BIM)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:362
+#: src/messages.ts:366
 msgid "economy.unemployment.description"
 msgstr "Șomaj BIM (15–74 ani), ajustat sezonier, % din populația activă."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:252
+#: src/messages.ts:256
 msgid "labour.youth.title"
 msgstr "Șomajul tinerilor (sub 25 ani)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:235
+#: src/messages.ts:239
 msgid "labour.kpi.youth"
 msgstr "Șomajul tinerilor (sub 25)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1006
+#: src/messages.ts:1002
 msgid "soe.listed.state"
 msgstr "Stat: {percent}%"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1010
+#: src/messages.ts:1006
 msgid "soe.company.status"
 msgstr "Status"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:825
+#: src/messages.ts:821
 msgid "drilldown.title"
 msgstr "Structura instituțională: {destination}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:132
+#: src/messages.ts:136
 msgid "society.education.tertiary"
 msgstr "Studii terțiare (25–34 ani)"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1045
+#: src/messages.ts:1041
 msgid "soe.company.subsidy"
 msgstr "Subvenție 2025"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:980
+#: src/messages.ts:976
 msgid "soe.subsidies.title"
 msgstr "Subvenții locale"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:984
+#: src/messages.ts:980
 msgid "soe.subsidies.description"
 msgstr "Subvenții plătite de primării companiilor de stat — primii operatori ca valoare."
 
@@ -1455,66 +1618,78 @@ msgstr "Sume convertite la cursul mediu BCE din {year}: 1 € = {rate} lei."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:786
+#: src/messages.ts:782
 msgid "treemap.description"
 msgstr "Suprafața fiecărui dreptunghi este proporțională cu suma alocată."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:549
+#: src/messages.ts:545
 msgid "source.updatedAt"
 msgstr "Sursă actualizată la {date}"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1054
+#: src/messages.ts:1050
 msgid "soe.unavailable"
 msgstr "Sursa de date e indisponibilă momentan."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1134
+#: src/messages.ts:1130
 msgid "about.licence.none"
 msgstr "sursa nu declară o licență"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:553
+#: src/messages.ts:549
 msgid "source.ecb"
 msgstr "Sursă: BCE"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:885
+#: src/messages.ts:881
 msgid "source.bnr"
 msgstr "Sursă: BNR"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:894
+#: src/messages.ts:890
 msgid "source.budget"
 msgstr "Sursă: Buget consolidat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1188
+#: src/messages.ts:1184
 msgid "source.budgetYear"
 msgstr "Sursă: Buget consolidat {year}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:540
+#: src/messages.ts:544
 msgid "source.eurostat"
 msgstr "Sursă: Eurostat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:884
+#: src/messages.ts:880
 msgid "source.ins"
 msgstr "Sursă: INS Tempo"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:886
+#: src/messages.ts:882
 msgid "source.mfp"
 msgstr "Sursă: MFP via data.gov.ro"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:890
+#: src/messages.ts:886
 msgid "source.transparenta"
 msgstr "Sursă: transparenta.eu"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1091
+#: src/messages.ts:1087
 msgid "about.sources.title"
 msgstr "Surse de date și licențe"
 
@@ -1525,100 +1700,109 @@ msgstr "Tablou de bord cetățenesc — buget consolidat"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1138
+#: src/messages.ts:1134
 msgid "about.licence.terms"
 msgstr "termenii sursei"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:243
+#: src/messages.ts:247
 msgid "labour.neet.title"
 msgstr "Tineri NEET (15–29 ani)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:226
+#: src/messages.ts:230
 msgid "labour.description"
 msgstr "Tinerii care nu învață și nu lucrează (NEET), șomajul în rândul tinerilor și rata locurilor de muncă vacante (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:339
+#: src/messages.ts:343
 msgid "economy.kpi.target"
 msgstr "Ținta BNR"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:354
+#: src/messages.ts:358
 msgid "economy.inflation.targetLine"
 msgstr "Ținta BNR"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:1117
+#: src/messages.ts:1113
 msgid "about.source.bnr"
 msgstr "Ținta de inflație"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:850
+#: src/messages.ts:846
 msgid "drilldown.total"
 msgstr "Total"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:989
+#: src/messages.ts:985
 msgid "soe.subsidies.total"
 msgstr "Total {year}: {total}"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:536
+#: src/messages.ts:540
 msgid "economy.kpi.currentAccountSub"
 msgstr "trimestrial"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:615
+#: src/messages.ts:611
 msgid "salary.entry.estimatedVat"
 msgstr "TVA estimat (consum)"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:321
+#: src/messages.ts:325
 msgid "society.ins.description"
 msgstr "Un indicator social la alegere: mortalitate infantilă, pensii, paturi de spital."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:71
+#: src/messages.ts:75
 msgid "chart.csv.value"
 msgstr "Valoare"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:650
+#: src/messages.ts:646
 msgid "wageContext.lciDescription"
 msgstr "Variația anuală a costului orar al muncii în economie, % față de același trimestru al anului trecut (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:397
+#: src/messages.ts:401
 msgid "economy.growth.description"
 msgstr "Variația trimestrială a PIB-ului real, ajustată sezonier și calendaristic (Eurostat)."
 
 #. js-lingui-explicit-id
-#: src/messages.ts:85
+#: src/messages.ts:89
 msgid "society.kpi.populationChange"
 msgstr "Variație față de anul anterior"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:158
+#: src/messages.ts:162
 msgid "society.demographics.medianAge"
 msgstr "Vârsta mediană"
 
 #. js-lingui-explicit-id
-#: src/messages.ts:153
+#: src/messages.ts:157
 msgid "society.demographics.description"
 msgstr "Vârsta mediană a populației și migrația netă anuală la 1.000 de locuitori (Eurostat)."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:693
+#: src/messages.ts:689
 msgid "balance.kpi.revenue"
 msgstr "Venituri"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:762
+#: src/messages.ts:758
 msgid "sankey.node.revenue"
 msgstr "Venituri"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:676
+#: src/messages.ts:672
 msgid "balance.title"
 msgstr "Venituri și cheltuieli"

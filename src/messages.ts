@@ -67,6 +67,10 @@ export const m = {
     id: "chart.downloadCsv",
     message: "Descarcă CSV",
   }),
+  "chart.showTable": msg({
+    id: "chart.showTable",
+    message: "Afișează ca tabel",
+  }),
   "chart.csv.period": msg({ id: "chart.csv.period", message: "Perioadă" }),
   "chart.csv.value": msg({ id: "chart.csv.value", message: "Valoare" }),
   "society.title": msg({
