@@ -797,6 +797,16 @@ export const m = {
     message:
       "Suprafața fiecărui dreptunghi este proporțională cu suma alocată.",
   }),
+  "treemap.view.label": msg({
+    id: "treemap.view.label",
+    message: "Mod de afișare",
+  }),
+  "treemap.view.map": msg({ id: "treemap.view.map", message: "Hartă" }),
+  "treemap.view.table": msg({ id: "treemap.view.table", message: "Tabel" }),
+  "treemap.list.label": msg({
+    id: "treemap.list.label",
+    message: "Destinații, de la cea mai mare",
+  }),
   "context.title": msg({
     id: "context.title",
     message: "Context social",

@@ -160,3 +160,13 @@ test("the first banner link on every tab goes back to the hub", async ({
     );
   }
 });
+
+test("the destinations treemap switches to an ordered list", async ({
+  page,
+}) => {
+  await page.goto("/ro/bilantul-national/");
+  await page.getByRole("button", { name: "Tabel", exact: true }).click();
+  await expect(
+    page.getByRole("list", { name: "Destinații, de la cea mai mare" })
+  ).toBeVisible();
+});

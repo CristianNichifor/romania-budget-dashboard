@@ -242,3 +242,15 @@ unless noted.
   `e2e/smoke.spec.ts` (first banner link on every tab).
 - Left for UXG-B1: adopting civic-ui `SiteShell` / `FamilyBar` / `SiteFooter`
   instead of the app's own header and footer.
+
+
+### F2.6 · Treemap list view and keyboard drill-down (U6) · `done`
+
+- Given the destinations treemap, then a "Hartă" / "Tabel" toggle
+  (`aria-pressed`, 44 px) swaps it for an ordered list that names every
+  destination, largest first, with its amount and share of the total; each
+  item is a button that opens the same drill-down as clicking a tile, so the
+  breakdown is reachable by keyboard. Focus stays on the toggle when views
+  swap. Ties keep the source order.
+- Tests: `tests/destinationList.test.ts` (ranking with `Decimal`, ties),
+  `tests/DestinationTreemap.test.tsx` (toggle, list content, drill-down).
