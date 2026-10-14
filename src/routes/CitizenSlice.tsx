@@ -122,12 +122,10 @@ export function CitizenSlice() {
         {breakdown !== null && breakdown !== undefined && (
           <>
             <div className="grid gap-4 sm:grid-cols-3">
-              {" "}
               <KpiCard
                 accent="blue"
                 label={i18n._(m["salary.netStat"])}
-                value={formatLei(breakdown.net)}
-                sub={`${formatLei(breakdown.net)} ${i18n._(m["salary.perMonth"])}`}
+                value={`${formatLei(breakdown.net)} ${i18n._(m["salary.perMonth"])}`}
               />
               <KpiCard
                 accent="red"
