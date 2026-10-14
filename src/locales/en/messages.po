@@ -250,8 +250,8 @@ msgstr "Public spending: health vs. education"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:778
-msgid "context.budgetLegend"
-msgstr "Health spending (bn EUR)"
+msgid "context.budgetLabel"
+msgstr "Health spending"
 
 #. js-lingui-explicit-id
 #: src/messages.ts:96
@@ -1587,3 +1587,15 @@ msgstr "Revenue"
 #: src/messages.ts:658
 msgid "balance.title"
 msgstr "Revenue and expenditure"
+
+#. js-lingui-explicit-id
+msgid "context.budgetUnit"
+msgstr "billion EUR"
+
+#. js-lingui-explicit-id
+msgid "currency.label"
+msgstr "Currency"
+
+#. js-lingui-explicit-id
+msgid "currency.rateNote"
+msgstr "Amounts converted at the {year} ECB average rate: €1 = {rate} lei."

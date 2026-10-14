@@ -19,11 +19,14 @@ import { SourceBadge } from "../components/shared/SourceBadge";
 import { formatEur, formatLei, formatPercent } from "../lib/format";
 import { estimateAverageNetSalary } from "../lib/averageSalary";
 import { buildSalaryWaterfallRows } from "../lib/waterfall";
+import { useCurrency } from "../store/useCurrency";
+import { RateNote } from "../components/shared/RateNote";
 import { useSalaryStore } from "../store/useSalaryStore";
 import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 export function CitizenSlice() {
+  const [currency] = useCurrency();
   const { i18n } = useLingui();
   const gross = useSalaryStore((state) => state.gross);
   const setGross = useSalaryStore((state) => state.setGross);
@@ -155,7 +158,11 @@ export function CitizenSlice() {
             </div>
 
             <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-              <SalaryWaterfall rows={buildSalaryWaterfallRows(breakdown)} />
+              <SalaryWaterfall
+                rows={buildSalaryWaterfallRows(breakdown)}
+                currency={currency}
+              />
+              {currency === "eur" && <RateNote />}
             </div>
           </>
         )}
@@ -201,7 +208,8 @@ export function CitizenSlice() {
 
         {realWage !== null && realWage !== undefined && (
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <RealWageLine series={realWage.series} />
+            <RealWageLine series={realWage.series} currency={currency} />
+            {currency === "lei" && <RateNote />}
             {realWage.estimated && (
               <p className="mt-2 text-xs text-slate-400">
                 {i18n._(m["wageContext.estimatedNote"])}

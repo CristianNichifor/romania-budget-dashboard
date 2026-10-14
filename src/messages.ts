@@ -24,6 +24,12 @@ export const m = {
     message: "Date parțial demo",
   }),
   "lang.label": msg({ id: "lang.label", message: "Limbă" }),
+  "currency.label": msg({ id: "currency.label", message: "Monedă" }),
+  "currency.rateNote": msg({
+    id: "currency.rateNote",
+    message:
+      "Sume convertite la cursul mediu BCE din {year}: 1 € = {rate} lei.",
+  }),
   "a11y.skipToContent": msg({
     id: "a11y.skipToContent",
     message: "Sari la conținut",
@@ -775,9 +781,13 @@ export const m = {
     message:
       "Cheltuielile publice pentru sănătate (bare, mld. EUR, Eurostat COFOG) alături de un indicator social (linie) — banii alocați vs. rezultatul măsurabil.",
   }),
-  "context.budgetLegend": msg({
-    id: "context.budgetLegend",
-    message: "Cheltuieli sănătate (mld. EUR)",
+  "context.budgetLabel": msg({
+    id: "context.budgetLabel",
+    message: "Cheltuieli cu sănătatea",
+  }),
+  "context.budgetUnit": msg({
+    id: "context.budgetUnit",
+    message: "miliarde EUR",
   }),
   "context.metricLabel": msg({
     id: "context.metricLabel",

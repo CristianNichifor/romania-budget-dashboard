@@ -25,6 +25,7 @@ export function LocaleSwitcher() {
         <Link
           key={locale}
           to={counterpartPath(pathname, locale)}
+          search={true}
           hrefLang={locale}
           lang={locale}
           aria-current={i18n.locale === locale ? "true" : undefined}

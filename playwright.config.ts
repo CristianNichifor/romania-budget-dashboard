@@ -5,7 +5,7 @@ const PORT = Number(process.env.E2E_PORT ?? 4173);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 // A second dev server in remote mode, pointed at a BFF host that only exists
 // through `page.route`, so error states are tested without a backend.
-const REMOTE_PORT = 4174;
+const REMOTE_PORT = Number(process.env.E2E_REMOTE_PORT ?? 4174);
 const REMOTE_URL = `http://127.0.0.1:${REMOTE_PORT}`;
 
 /**
