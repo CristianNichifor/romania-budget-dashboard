@@ -190,6 +190,15 @@ unless noted.
 - Tests: `tests/tileLabel.test.ts` (`wrapLabel`, `tileLayout`); `e2e/smoke.spec.ts`
   still renders both charts.
 
+### E7 · Staged loading for slow responses (UXG-B8) · `done`
+
+- Given a section or route still loading after 2 s, then the placeholder
+  stops being a silent skeleton and shows "Serverul răspunde greu — mai
+  așteptăm câteva secunde." in a polite live region (`role="status"`); before
+  2 s the skeleton stays `aria-hidden`. Copy (ro/en) needs human review.
+- Test: `tests/SkeletonCard.test.tsx` (fake timers: silent at 1.9 s, announced
+  at 2 s, timer cleared on unmount).
+
 ## Theme F — UX guidelines (fleet round 2, uxg-c)
 
 ### F1 · Written UX/UI guideline · `done`
