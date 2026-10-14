@@ -3,6 +3,7 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  LabelList,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -87,11 +88,22 @@ export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
   const data = toChartData(rows);
 
   return (
-    <div className="h-72 w-full">
+    <div className="h-96 w-full" data-testid="salary-waterfall">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 8, right: 8, left: 8, bottom: 0 }}>
+        <BarChart
+          data={data}
+          margin={{ top: 24, right: 8, left: 32, bottom: 0 }}
+        >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" tick={false} />
+          <XAxis
+            dataKey="name"
+            interval={0}
+            angle={-30}
+            textAnchor="end"
+            height={110}
+            tick={{ fontSize: 11, fill: "#475569" }}
+            tickFormatter={(id: string) => i18n._(lookupMessage(id))}
+          />
           <YAxis
             tickFormatter={(value: number) => formatLei(value)}
             width={90}
@@ -116,7 +128,17 @@ export function SalaryWaterfall({ rows }: SalaryWaterfallProps) {
             stackId="waterfall"
             shape={(props) => <WaterfallBar {...props} />}
             isAnimationActive={false}
-          />
+          >
+            <LabelList
+              dataKey="value"
+              position="top"
+              fontSize={11}
+              fill="#334155"
+              formatter={(value: unknown) =>
+                typeof value === "number" ? formatLei(value) : ""
+              }
+            />
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

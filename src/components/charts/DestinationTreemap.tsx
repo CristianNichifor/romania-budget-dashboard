@@ -5,6 +5,7 @@ import {
   INTENSITY_COLORS,
   pickIntensityIndex,
 } from "../../lib/investmentColor";
+import { fitLabel, tileTextColors } from "../../lib/tileLabel";
 
 interface DestinationTreemapProps {
   destinations: BudgetDestination[];
@@ -31,9 +32,6 @@ interface TreemapCellProps {
   onSelect?: (destinationId: string) => void;
 }
 
-const DARK_TEXT = "#1e3a5f";
-const LIGHT_TEXT = "#ffffff";
-
 function TreemapCell(props: TreemapCellProps) {
   const {
     x = 0,
@@ -50,9 +48,7 @@ function TreemapCell(props: TreemapCellProps) {
 
   const index = pickIntensityIndex(amount, minAmount, maxAmount);
   const fill = INTENSITY_COLORS[index] ?? INTENSITY_COLORS[0];
-  // Light cells need dark text; dark cells need light text.
-  const labelFill = index <= 2 ? DARK_TEXT : LIGHT_TEXT;
-  const amountFill = index <= 2 ? "#1d4ed8" : "#dbeafe";
+  const { label: labelFill, amount: amountFill } = tileTextColors(fill);
 
   return (
     <g>
@@ -79,15 +75,22 @@ function TreemapCell(props: TreemapCellProps) {
       {width > 70 && height > 40 && (
         <>
           <text
+            stroke="none"
             x={x + 8}
             y={y + 18}
             fontSize={12}
             fill={labelFill}
             fontWeight={600}
           >
-            {name ?? ""}
+            {fitLabel(name ?? "", width, 12)}
           </text>
-          <text x={x + 8} y={y + 34} fontSize={10} fill={amountFill}>
+          <text
+            stroke="none"
+            x={x + 8}
+            y={y + 34}
+            fontSize={10}
+            fill={amountFill}
+          >
             {amount !== undefined ? formatMilliardeLei(amount) : ""}
           </text>
         </>

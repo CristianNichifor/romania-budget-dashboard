@@ -20,6 +20,7 @@ import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SoeCompanyModal } from "../components/shared/SoeCompanyModal";
 import { SourceBadge } from "../components/shared/SourceBadge";
 import { formatMilliardeLei } from "../lib/format";
+import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 function toLeiFromMld(mld: string): Decimal {
@@ -31,35 +32,41 @@ export function CompaniiDeStat() {
   const [selectedCui, setSelectedCui] = useState<string | null>(null);
   const [subsidyYear, setSubsidyYear] = useState("2024");
 
-  const { data: summary, isPending: summaryPending } = useQuery({
+  const summaryQuery = useQuery({
     queryKey: ["soe-summary"],
     queryFn: fetchSoeSummary,
   });
+  const { data: summary, isPending: summaryPending } = summaryQuery;
 
-  const { data: scatter } = useQuery({
+  const scatterQuery = useQuery({
     queryKey: ["soe-scatter"],
     queryFn: fetchSoeScatter,
   });
+  const { data: scatter } = scatterQuery;
 
-  const { data: trend } = useQuery({
+  const trendQuery = useQuery({
     queryKey: ["soe-sector-trend"],
     queryFn: fetchSoeSectorTrend,
   });
+  const { data: trend } = trendQuery;
 
-  const { data: byCounty } = useQuery({
+  const byCountyQuery = useQuery({
     queryKey: ["soe-by-county"],
     queryFn: fetchSoeByCounty,
   });
+  const { data: byCounty } = byCountyQuery;
 
-  const { data: subsidies } = useQuery({
+  const subsidiesQuery = useQuery({
     queryKey: ["soe-subsidies", subsidyYear],
     queryFn: () => fetchSoeSubsidies(subsidyYear),
   });
+  const { data: subsidies } = subsidiesQuery;
 
-  const { data: listed } = useQuery({
+  const listedQuery = useQuery({
     queryKey: ["soe-listed"],
     queryFn: fetchSoeListed,
   });
+  const { data: listed } = listedQuery;
 
   const minWage =
     summary?.payScale.find((row) => row.kind === "ref")?.value ?? null;
@@ -94,7 +101,13 @@ export function CompaniiDeStat() {
                 accent="blue"
                 label={i18n._(m["soe.kpi.companies"])}
                 value={summary.stats.totalCompanies.toLocaleString("ro-RO")}
-                sub={`${summary.stats.central} centrale · ${summary.stats.local} locale`}
+                sub={i18n._({
+                  ...m["soe.kpi.centralLocal"],
+                  values: {
+                    central: summary.stats.central,
+                    local: summary.stats.local,
+                  },
+                })}
               />
               <KpiCard
                 accent="slate"
@@ -122,10 +135,14 @@ export function CompaniiDeStat() {
                 },
               })}
               {" · "}
-              {summary.stats.companiesOnLoss} pe pierdere
+              {i18n._({
+                ...m["soe.onLoss"],
+                values: { count: summary.stats.companiesOnLoss },
+              })}
             </p>
           </>
         )}
+        <QueryError query={summaryQuery} />
 
         {unavailable && (
           <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
@@ -153,6 +170,7 @@ export function CompaniiDeStat() {
           </div>
         </section>
       )}
+      <QueryError query={scatterQuery} title={i18n._(m["soe.scatter.title"])} />
 
       {trend !== null && trend !== undefined && (
         <section className="space-y-4">
@@ -169,6 +187,7 @@ export function CompaniiDeStat() {
           </div>
         </section>
       )}
+      <QueryError query={trendQuery} title={i18n._(m["soe.sectors.title"])} />
 
       {byCounty !== null && byCounty !== undefined && (
         <section className="space-y-4">
@@ -185,6 +204,10 @@ export function CompaniiDeStat() {
           </div>
         </section>
       )}
+      <QueryError
+        query={byCountyQuery}
+        title={i18n._(m["soe.counties.title"])}
+      />
 
       {subsidies !== null && subsidies !== undefined && (
         <section className="space-y-4">
@@ -223,6 +246,10 @@ export function CompaniiDeStat() {
           </div>
         </section>
       )}
+      <QueryError
+        query={subsidiesQuery}
+        title={i18n._(m["soe.subsidies.title"])}
+      />
 
       {listed !== null && listed !== undefined && (
         <section className="space-y-4">
@@ -237,6 +264,7 @@ export function CompaniiDeStat() {
           <SoeListedCompanies listed={listed} />
         </section>
       )}
+      <QueryError query={listedQuery} title={i18n._(m["soe.listed.title"])} />
 
       {selectedCui !== null && (
         <SoeCompanyModal

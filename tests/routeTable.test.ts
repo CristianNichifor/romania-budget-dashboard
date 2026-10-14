@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   absoluteUrl,
+  CONTENT_PAGES,
   counterpartPath,
   localeFromPath,
   PAGES,
@@ -9,7 +10,7 @@ import {
 
 describe("routeTable", () => {
   it("reads the locale from the path", () => {
-    expect(localeFromPath("/")).toBe("en");
+    expect(localeFromPath("/")).toBe("ro");
     expect(localeFromPath("/your-share/")).toBe("en");
     expect(localeFromPath("/ro/")).toBe("ro");
     expect(localeFromPath("/ro")).toBe("ro");
@@ -37,6 +38,14 @@ describe("routeTable", () => {
       expect(page.en.endsWith("/")).toBe(true);
       expect(page.en.startsWith("/ro")).toBe(false);
     }
+  });
+
+  it("has an about page in both languages that is not a tab", () => {
+    const about = CONTENT_PAGES.find((page) => page.key === "about");
+    expect(about).toEqual({ key: "about", en: "/about/", ro: "/ro/despre/" });
+    expect(TAB_PAGES.map((page) => page.key as string)).not.toContain("about");
+    expect(counterpartPath("/about/", "ro")).toBe("/ro/despre/");
+    expect(counterpartPath("/ro/despre/", "en")).toBe("/about/");
   });
 
   it("builds absolute URLs with the trailing slash", () => {

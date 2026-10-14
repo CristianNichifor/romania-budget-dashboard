@@ -6,7 +6,7 @@ publishing and Cloudflare releases are maintainer operations.
 
 ## Local setup (no credentials)
 
-Use Node 24 (`.nvmrc`) and the pnpm version in `package.json` (`12.3.4`). Public npm
+Use Node 22 (`.nvmrc`, the version CI, deploy and the Docker image use) and the pnpm version in `package.json` (`12.3.4`). Public npm
 packages are sufficient; no private handbook, 1Password, Cloudflare login or API
 token is needed. If your personal npm config requires authentication, use
 `npm_config_userconfig=/dev/null pnpm install --frozen-lockfile`.
@@ -41,7 +41,9 @@ pnpm e2e
 `check` runs typecheck, ESLint, Vitest and Prettier (including `AGENTS.md`). CI also
 builds the Docker image. The stable `verify` check requires `check & build`,
 `e2e smoke` and `docker build` to succeed; failed, cancelled or skipped jobs fail
-the aggregate. Publish/deploy jobs are excluded. E2E forces static mode.
+the aggregate. Publish/deploy jobs are excluded. E2E runs a static-mode dev
+server, plus a remote-mode one whose BFF host exists only through `page.route`
+(error states), and a 375 px mobile project.
 Use `pnpm format` for formatting and run checks again before committing.
 
 ## API and source boundaries

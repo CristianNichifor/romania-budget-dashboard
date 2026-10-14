@@ -8,17 +8,18 @@ import {
 } from "@tanstack/react-router";
 import { activateLocale } from "./i18n-core";
 import {
+  DEFAULT_LOCALE,
   homeTarget,
   localeFromPath,
   PAGES,
+  type ContentPage,
   type Locale,
-  type TabPage,
 } from "./lib/routeTable";
 import { DefaultError } from "./routes/DefaultError";
 import { RootLayout } from "./routes/RootLayout";
 import { RoutePending } from "./routes/RoutePending";
 
-const COMPONENTS: Record<TabPage["key"], RouteComponent> = {
+const COMPONENTS: Record<ContentPage["key"], RouteComponent> = {
   citizenSlice: lazyRouteComponent(
     () => import("./routes/CitizenSlice"),
     "CitizenSlice"
@@ -39,6 +40,7 @@ const COMPONENTS: Record<TabPage["key"], RouteComponent> = {
     "PiataMuncii"
   ),
   justice: lazyRouteComponent(() => import("./routes/Justitie"), "Justitie"),
+  about: lazyRouteComponent(() => import("./routes/About"), "About"),
 };
 
 const rootRoute = createRootRoute({
@@ -57,7 +59,9 @@ function pageRoutes(locale: Locale) {
           getParentRoute: () => rootRoute,
           path: page[locale],
           beforeLoad: () => {
-            throw redirect({ to: homeTarget(locale) });
+            throw redirect({
+              to: homeTarget(page[locale] === "/" ? DEFAULT_LOCALE : locale),
+            });
           },
         })
       : createRoute({

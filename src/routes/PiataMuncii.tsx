@@ -5,15 +5,17 @@ import { MacroTrendChart } from "../components/charts/MacroTrendChart";
 import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
+import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
 export function PiataMuncii() {
   const { i18n } = useLingui();
 
-  const { data: labour, isPending } = useQuery({
+  const labourQuery = useQuery({
     queryKey: ["labour-context"],
     queryFn: fetchLabourContext,
   });
+  const { data: labour, isPending } = labourQuery;
 
   const latestNeet = labour?.neet.at(-1);
   const latestYouth = labour?.youthUnemployment.at(-1);
@@ -155,6 +157,7 @@ export function PiataMuncii() {
           </section>
         </div>
       )}
+      <QueryError query={labourQuery} />
 
       {labour === null && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">

@@ -5,6 +5,7 @@ import { Tooltip, Treemap, ResponsiveContainer } from "recharts";
 import type { CountyInvestment } from "../../api/client";
 import { formatMilliardeLei, formatPercent } from "../../lib/format";
 import { pickIntensityColor } from "../../lib/investmentColor";
+import { fitLabel, tileTextColors } from "../../lib/tileLabel";
 import { m } from "../../messages";
 
 interface InvestmentCartogramProps {
@@ -50,15 +51,14 @@ function CartogramCell(props: CartogramCellProps) {
       </rect>
       {width > 58 && height > 32 && (
         <text
+          stroke="none"
           x={x + 6}
           y={y + 16}
           fontSize={11}
-          fill={
-            fill === "#2563eb" || fill === "#60a5fa" ? "#ffffff" : "#1e3a5f"
-          }
+          fill={tileTextColors(fill).label}
           fontWeight={600}
         >
-          {county ?? ""}
+          {fitLabel(county ?? "", width, 11)}
         </text>
       )}
     </g>

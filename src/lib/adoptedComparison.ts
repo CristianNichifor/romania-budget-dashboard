@@ -44,3 +44,24 @@ export function findComparisonPoint(
 ): BudgetComparisonPoint | undefined {
   return points.find((point) => point.year === year);
 }
+
+/** A deficit as a positive amount, whichever sign convention fed it. */
+export function deficitMagnitude(deficit: string): Decimal {
+  return new Decimal(deficit).abs();
+}
+
+/**
+ * How far the executed deficit overshot the adopted one. The adopted side is
+ * revenue − expenditure (negative) and execution is expenditure − revenue
+ * (positive), so the BFF's `deficitDelta` (executed − adopted) adds the two
+ * instead of comparing them; compare magnitudes here. Negative when execution
+ * came in below plan; `null` without execution data.
+ */
+export function deficitOverrun(point: BudgetComparisonPoint): Decimal | null {
+  if (point.executed === null) {
+    return null;
+  }
+  return deficitMagnitude(point.executed.deficit).minus(
+    deficitMagnitude(point.adopted.deficit)
+  );
+}
