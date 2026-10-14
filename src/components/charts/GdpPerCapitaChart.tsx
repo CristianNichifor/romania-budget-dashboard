@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { formatNumber } from "../../lib/format";
 
 interface GdpPerCapitaChartProps {
   data: { year: string; pps: number; eu27Index: number }[];
@@ -40,9 +41,7 @@ export function GdpPerCapitaChart({
           <YAxis
             yAxisId="pps"
             tick={{ fontSize: 11 }}
-            tickFormatter={(value?: number) =>
-              (value ?? 0).toLocaleString("ro-RO")
-            }
+            tickFormatter={(value?: number) => formatNumber(value ?? 0)}
             width={64}
           />
           <YAxis
@@ -54,7 +53,7 @@ export function GdpPerCapitaChart({
           <Tooltip
             formatter={(value, name) => [
               name === "pps"
-                ? Number(value ?? 0).toLocaleString("ro-RO")
+                ? formatNumber(Number(value ?? 0))
                 : `${Number(value ?? 0).toFixed(0)}`,
             ]}
             contentStyle={{ fontSize: 12 }}

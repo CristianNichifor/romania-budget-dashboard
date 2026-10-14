@@ -10,18 +10,11 @@ import {
   YAxis,
 } from "recharts";
 import type { RealWageSeries } from "../../api/client";
+import { formatEur } from "../../lib/format";
 import { m } from "../../messages";
 
 interface RealWageLineProps {
   series: RealWageSeries["series"];
-}
-
-const eurFormatter = new Intl.NumberFormat("ro-RO", {
-  maximumFractionDigits: 0,
-});
-
-function formatEur(value: number): string {
-  return `${eurFormatter.format(value)} €`;
 }
 
 function RealWageTooltip({
@@ -61,7 +54,10 @@ export function RealWageLine({ series }: RealWageLineProps) {
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="quarter" />
-          <YAxis tickFormatter={formatEur} width={90} />
+          <YAxis
+            tickFormatter={(value: number) => formatEur(value)}
+            width={90}
+          />
           <Tooltip content={<RealWageTooltip />} />
           <Legend />
           <Line

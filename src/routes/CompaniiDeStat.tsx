@@ -19,7 +19,7 @@ import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SoeCompanyModal } from "../components/shared/SoeCompanyModal";
 import { SourceBadge } from "../components/shared/SourceBadge";
-import { formatMilliardeLei } from "../lib/format";
+import { formatMilliardeLei, formatNumber } from "../lib/format";
 import { QueryError } from "../components/shared/SectionError";
 import { m } from "../messages";
 
@@ -100,7 +100,7 @@ export function CompaniiDeStat() {
               <KpiCard
                 accent="blue"
                 label={i18n._(m["soe.kpi.companies"])}
-                value={summary.stats.totalCompanies.toLocaleString("ro-RO")}
+                value={formatNumber(summary.stats.totalCompanies)}
                 sub={i18n._({
                   ...m["soe.kpi.centralLocal"],
                   values: {

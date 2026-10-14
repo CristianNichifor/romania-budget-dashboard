@@ -13,7 +13,7 @@ import {
   YAxis,
 } from "recharts";
 import { fetchSoeCompany } from "../../api/client";
-import { formatLei } from "../../lib/format";
+import { formatLei, formatNumber } from "../../lib/format";
 import { SourceBadge } from "./SourceBadge";
 import { m } from "../../messages";
 
@@ -177,7 +177,7 @@ export function SoeCompanyModal({ cui, onClose }: SoeCompanyModalProps) {
                     {i18n._(m["soe.company.employees"])}
                   </p>
                   <p className="mt-1 text-sm font-semibold tabular-nums">
-                    {data.mfin.employees.toLocaleString("ro-RO")}
+                    {formatNumber(data.mfin.employees)}
                   </p>
                 </div>
                 <div className="rounded-lg border border-slate-200 p-3">

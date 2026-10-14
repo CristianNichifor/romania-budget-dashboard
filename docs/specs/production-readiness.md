@@ -121,6 +121,43 @@ unless noted.
 - U8 · The budget source badge names the selected year. Test:
   `tests/SourceBadge.test.tsx`.
 
+## Theme E — fleet round 2 (2026-10-14): numbers, charts, tax bridge
+
+### E1 · Locale-correct numbers · `done`
+
+- Given any number the UI shows, then it goes through `src/lib/format.ts`; no
+  component calls `toLocaleString`, `Intl.NumberFormat` or hard-codes `ro-RO`
+  (`grep -rn 'ro-RO\|toLocaleString' src` matches only the formatter).
+- Given an English path, then amounts format English (`217.8 bn lei`,
+  `9,427 lei`, `7.1%`); given `/ro/…`, Romanian (`217,8 mld. lei`, `9.427 lei`,
+  `7,1%`). The formatter reads the Lingui locale the router activated from the
+  path; callers may pass the locale explicitly. Closes the U3 `todo`.
+- Tests: `tests/format.test.ts` (both locales, explicit and via
+  `activateLocale`), `e2e/locale-format.spec.ts` (`bn lei` on
+  `/national-balance/`, `mld. lei` on `/ro/bilantul-national/`).
+
+### E2 · Social spending as small multiples · `todo`
+
+- Given the Society tab, then the spending section renders two charts, one per
+  series, each with its own labelled Y axis naming the unit; no dual axis.
+- Tests: component test (two surfaces, two axis labels), `e2e/smoke.spec.ts`.
+
+### E3 · lei/€ toggle shared across tabs · `todo`
+
+- Given `?currency=eur` in the URL, then wage charts on Your-share and Labour
+  market show €, converted with the bundled BNR annual average rate and
+  labelled as such; the toggle keeps path and other params; default is lei.
+- Tests: unit tests for the conversion and URL helpers; e2e toggles on
+  Your-share, navigates to Labour market, asserts the param and unit persist.
+
+### E4 · "What 1 leu of your tax buys" · `todo`
+
+- Given the user's monthly state contribution on Your-share, then a section
+  splits it pro rata by the latest budget year's destination shares (existing
+  data), labelled an estimate; the rows sum exactly to the contribution
+  (Decimal, last row absorbs rounding). Romanian copy needs human review.
+- Tests: unit test for the pure split; e2e checks the section and its label.
+
 ## Maintainer-only
 
 - D10 · Gate deploy on CI — `needs-human`: a `verify` job inside

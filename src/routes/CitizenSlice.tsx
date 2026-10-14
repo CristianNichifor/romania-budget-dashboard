@@ -15,7 +15,7 @@ import { SalaryWaterfall } from "../components/charts/SalaryWaterfall";
 import { KpiCard } from "../components/shared/KpiCard";
 import { SkeletonCard } from "../components/shared/SkeletonCard";
 import { SourceBadge } from "../components/shared/SourceBadge";
-import { formatLei, formatPercent } from "../lib/format";
+import { formatEur, formatLei, formatPercent } from "../lib/format";
 import { estimateAverageNetSalary } from "../lib/averageSalary";
 import { buildSalaryWaterfallRows } from "../lib/waterfall";
 import { useSalaryStore } from "../store/useSalaryStore";
@@ -236,7 +236,7 @@ export function CitizenSlice() {
                   ...m["wageContext.anchor"],
                   values: { year: anchor.year },
                 })}
-                value={`${anchor.meanGrossEur.toLocaleString("ro-RO")} €`}
+                value={formatEur(anchor.meanGrossEur)}
                 sub={i18n._(m["wageContext.anchorSub"])}
               />
             ))}
@@ -276,7 +276,7 @@ export function CitizenSlice() {
                 }))}
                 color="#7c3aed"
                 ariaLabel={i18n._(m["wageContext.monthlyTitle"])}
-                valueFormatter={(value) => `${value.toLocaleString("ro-RO")} €`}
+                valueFormatter={(value) => formatEur(value)}
                 heightClass="h-56"
               />
               {wageMonthly.estimated && (
