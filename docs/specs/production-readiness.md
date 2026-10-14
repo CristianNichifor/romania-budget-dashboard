@@ -169,6 +169,17 @@ unless noted.
   `e2e/leu-bridge.spec.ts`. Romanian copy (`leuBridge.*`) and the English
   translation are agent-written: **needs human review**.
 
+### E5 · Sankey readability · `done`
+
+- Given the money-flow sankey, then only the largest eight destinations get
+  their own flow, each node labelled with its name and amount; the smaller
+  destinations are grouped into "Alte destinații", whose node and a
+  details block under the chart open a list of what it contains, with amounts.
+  Flows too thin to carry an inline amount get none (the node label has it).
+- Tests: `tests/sankey.test.ts` (ranking, grouping, balance, default of eight),
+  `e2e/sankey.spec.ts` (drill-down renders on `/ro/bilantul-national/`).
+  Romanian/English summary copy needs human review.
+
 ## Theme F — UX guidelines (fleet round 2, uxg-c)
 
 ### F1 · Written UX/UI guideline · `done`

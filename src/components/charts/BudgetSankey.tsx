@@ -7,13 +7,14 @@ import {
   type SankeyNode,
 } from "d3-sankey";
 import { useLingui } from "@lingui/react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { BudgetSummary } from "../../api/client";
 import type { BudgetDestination } from "../../data/budget2026";
 import { formatMilliardeLei } from "../../lib/format";
 import { m } from "../../messages";
 import {
   buildBudgetSankey,
+  type GroupedDestination,
   SANKEY_BUDGET_NODE_ID,
   SANKEY_DEFICIT_NODE_ID,
   SANKEY_REST_NODE_ID,
@@ -35,6 +36,8 @@ type SankeyGraphD = SankeyGraph<SankeyNodeD, SankeyLinkD>;
 
 const WIDTH = 960;
 const HEIGHT = 480;
+/** Flows thinner than this get no inline amount; it would overlap its neighbours. */
+const MIN_LABELLED_LINK_WIDTH = 14;
 
 function nodeColor(id: string): string {
   if (id === SANKEY_REVENUE_NODE_ID) {
@@ -55,7 +58,7 @@ function nodeColor(id: string): string {
 function computeLayout(
   summary: BudgetSummary,
   destinations: BudgetDestination[]
-): SankeyGraphD {
+): { graph: SankeyGraphD; grouped: GroupedDestination[] } {
   const data = buildBudgetSankey({
     revenue: summary.revenue,
     expenditure: summary.expenditure,
@@ -73,10 +76,22 @@ function computeLayout(
       [WIDTH - 1, HEIGHT - 1],
     ]);
 
-  return generator({
-    nodes: data.nodes.map((node) => ({ ...node, value: 0 })),
-    links: data.links.map((link) => ({ ...link })),
-  });
+  return {
+    graph: generator({
+      nodes: data.nodes.map((node) => ({ ...node, value: 0 })),
+      links: data.links.map((link) => ({ ...link })),
+    }),
+    grouped: data.grouped,
+  };
+}
+
+function isDestinationNode(id: string): boolean {
+  return (
+    id !== SANKEY_REVENUE_NODE_ID &&
+    id !== SANKEY_DEFICIT_NODE_ID &&
+    id !== SANKEY_BUDGET_NODE_ID &&
+    id !== SANKEY_REST_NODE_ID
+  );
 }
 
 interface BudgetSankeyProps {
@@ -92,10 +107,11 @@ export function BudgetSankey({
   selectableIds,
   onSelect,
 }: BudgetSankeyProps) {
-  const graph = useMemo(
+  const { graph, grouped } = useMemo(
     () => computeLayout(summary, destinations),
     [summary, destinations]
   );
+  const [restOpen, setRestOpen] = useState(false);
   const linkPath = sankeyLinkHorizontal<SankeyNodeD, SankeyLinkD>();
 
   const { i18n } = useLingui();
@@ -115,7 +131,7 @@ export function BudgetSankey({
     }
   };
 
-  return (
+  const svg = (
     <svg
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       className="w-full"
@@ -156,15 +172,17 @@ export function BudgetSankey({
               strokeOpacity={0.38}
               strokeWidth={Math.max(2.5, link.width)}
             />
-            <text
-              x={middleX}
-              y={middleY}
-              textAnchor="middle"
-              fontSize={10}
-              fill="#475569"
-            >
-              {formatMilliardeLei(link.value)}
-            </text>
+            {link.width >= MIN_LABELLED_LINK_WIDTH && (
+              <text
+                x={middleX}
+                y={middleY}
+                textAnchor="middle"
+                fontSize={10}
+                fill="#475569"
+              >
+                {formatMilliardeLei(link.value)}
+              </text>
+            )}
           </g>
         );
       })}
@@ -181,7 +199,14 @@ export function BudgetSankey({
         const isLeftColumn = node.x0 < WIDTH / 2;
         const labelX = isLeftColumn ? node.x1 + 6 : node.x0 - 6;
         const labelAnchor = isLeftColumn ? "start" : "end";
-        const isClickable = selectableIds?.has(node.id) === true;
+        const isRest = node.id === SANKEY_REST_NODE_ID;
+        const isClickable =
+          selectableIds?.has(node.id) === true ||
+          (isRest && grouped.length > 0);
+        const amountLabel =
+          isDestinationNode(node.id) || isRest
+            ? formatMilliardeLei(node.value ?? 0)
+            : null;
 
         return (
           <g key={node.id}>
@@ -208,22 +233,31 @@ export function BudgetSankey({
                   : undefined
               }
               onClick={() => {
-                if (isClickable && onSelect !== undefined) {
+                if (isRest) {
+                  setRestOpen(true);
+                } else if (isClickable && onSelect !== undefined) {
                   onSelect(node.id);
                 }
               }}
               onKeyDown={(event) => {
                 if (
                   isClickable &&
-                  onSelect !== undefined &&
                   (event.key === "Enter" || event.key === " ")
                 ) {
                   event.preventDefault();
-                  onSelect(node.id);
+                  if (isRest) {
+                    setRestOpen(true);
+                  } else if (onSelect !== undefined) {
+                    onSelect(node.id);
+                  }
                 }
               }}
             >
-              <title>{labelFor(node)}</title>
+              <title>
+                {amountLabel === null
+                  ? labelFor(node)
+                  : `${labelFor(node)} — ${amountLabel}`}
+              </title>
             </rect>
             <text
               x={labelX}
@@ -234,10 +268,49 @@ export function BudgetSankey({
               fontWeight={600}
             >
               {labelFor(node)}
+              {amountLabel !== null && (
+                <tspan fill="#475569" fontWeight={400}>
+                  {` · ${amountLabel}`}
+                </tspan>
+              )}
             </text>
           </g>
         );
       })}
     </svg>
+  );
+
+  return (
+    <div>
+      {svg}
+      {grouped.length > 0 && (
+        <details
+          className="mt-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm"
+          open={restOpen}
+          onToggle={(event) => setRestOpen(event.currentTarget.open)}
+          data-testid="sankey-rest-details"
+        >
+          <summary className="cursor-pointer font-medium text-slate-700">
+            {i18n._({
+              ...m["sankey.rest.summary"],
+              values: { count: grouped.length },
+            })}
+          </summary>
+          <ul className="mt-2 divide-y divide-slate-200">
+            {grouped.map((destination) => (
+              <li
+                key={destination.id}
+                className="flex justify-between gap-4 py-1 text-slate-600"
+              >
+                <span>{destination.name}</span>
+                <span className="tabular-nums">
+                  {formatMilliardeLei(destination.amount)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </div>
   );
 }
