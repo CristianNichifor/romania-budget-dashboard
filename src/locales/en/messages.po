@@ -64,6 +64,11 @@ msgid "economy.percentGdp"
 msgstr "% of GDP"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1166
+msgid "soe.scatter.offScale"
+msgstr "▲ {count} companies with a margin beyond ±100% are pinned to the edge; hover for the real value."
+
+#. js-lingui-explicit-id
 #: src/messages.ts:641
 msgid "wageContext.anchorSub"
 msgstr "€ per year · employees"

@@ -64,6 +64,11 @@ msgid "economy.percentGdp"
 msgstr "% PIB"
 
 #. js-lingui-explicit-id
+#: src/messages.ts:1166
+msgid "soe.scatter.offScale"
+msgstr "▲ {count} companii cu marja în afara intervalului ±100% sunt fixate pe margine; valoarea reală apare la hover."
+
+#. js-lingui-explicit-id
 #: src/messages.ts:641
 msgid "wageContext.anchorSub"
 msgstr "€ pe an · angajați"

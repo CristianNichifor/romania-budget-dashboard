@@ -1163,6 +1163,11 @@ export const m = {
     id: "source.budgetYear",
     message: "Sursă: Buget consolidat {year}",
   }),
+  "soe.scatter.offScale": msg({
+    id: "soe.scatter.offScale",
+    message:
+      "▲ {count} companii cu marja în afara intervalului ±100% sunt fixate pe margine; valoarea reală apare la hover.",
+  }),
 } satisfies Record<string, MessageDescriptor>;
 
 export type MessageId = keyof typeof m;
