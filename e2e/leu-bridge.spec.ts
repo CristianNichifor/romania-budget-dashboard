@@ -24,3 +24,14 @@ test("the Romanian page labels it an estimate too", async ({ page }) => {
   });
   await expect(section.getByText("Estimare", { exact: true })).toBeVisible();
 });
+
+test("the leu band writes whole bani on every segment, 100 in all", async ({
+  page,
+}) => {
+  await page.goto("/your-share/");
+  const segments = page.getByTestId("leu-band").locator("span");
+  await expect(segments.first()).toHaveText(/^\d+$/);
+  const values = (await segments.allTextContents()).map(Number);
+  expect(values.length).toBeGreaterThan(3);
+  expect(values.reduce((a, b) => a + b, 0)).toBe(100);
+});

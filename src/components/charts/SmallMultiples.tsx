@@ -10,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { MISSING } from "../../lib/format";
 
 export interface SmallMultiplePanel {
   title: string;
@@ -55,7 +56,7 @@ export function SmallMultiples({
         const tooltip = (
           <Tooltip
             formatter={(value) => [
-              typeof value === "number" ? panel.format(value) : "—",
+              typeof value === "number" ? panel.format(value) : MISSING,
               panel.title,
             ]}
             contentStyle={{ fontSize: 12 }}
