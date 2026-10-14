@@ -66,9 +66,14 @@ test("locale switcher links to the English counterpart route", async ({
   await expect(page.getByText("Your fiscal situation")).toBeVisible();
 });
 
-test("the root serves English and /ro/ serves Romanian", async ({ page }) => {
+test("the root defaults to Romanian; English stays at its own paths", async ({
+  page,
+}) => {
   await page.goto("/");
-  await expect(page).toHaveURL(/\/your-share\/$/);
+  await expect(page).toHaveURL(/\/ro\/felia-ta\/$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "ro");
+
+  await page.goto("/your-share/");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 
   await page.goto("/ro/");
@@ -88,7 +93,7 @@ test("each route links its canonical and hreflang pair", async ({ page }) => {
   ).toHaveAttribute("href", `${origin}/energy/`);
   await expect(
     page.locator('link[rel="alternate"][hreflang="x-default"]')
-  ).toHaveAttribute("href", `${origin}/energy/`);
+  ).toHaveAttribute("href", `${origin}/ro/energie/`);
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
 });
 

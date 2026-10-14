@@ -52,7 +52,7 @@ describe("static head per route", () => {
         `<link rel="alternate" hreflang="ro" href="${SITE_URL}${page?.ro}" />`
       );
       expect(html).toContain(
-        `<link rel="alternate" hreflang="x-default" href="${SITE_URL}${page?.en}" />`
+        `<link rel="alternate" hreflang="x-default" href="${SITE_URL}${page?.ro}" />`
       );
       expect(html).toContain(`<title>${head.title}</title>`);
       expect(html).toContain(
@@ -96,7 +96,10 @@ describe("static head per route", () => {
   });
 
   it("points the home redirects at their first tab", () => {
-    expect(headFor("/").canonical).toBe(`${SITE_URL}/your-share/`);
+    // The root defaults to Romanian.
+    expect(headFor("/").canonical).toBe(`${SITE_URL}/ro/felia-ta/`);
+    expect(headFor("/").lang).toBe("ro");
+    expect(pageHtml("index.html")).toContain('<html lang="ro">');
     expect(headFor("/ro/").canonical).toBe(`${SITE_URL}/ro/felia-ta/`);
     expect(pageHtml("ro/index.html")).toContain('<html lang="ro">');
   });
@@ -140,6 +143,9 @@ describe("robots.txt and sitemap.xml", () => {
       );
       expect(sitemap).toContain(
         `<xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}${page.en}" />`
+      );
+      expect(sitemap).toContain(
+        `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${page.ro}" />`
       );
     }
     expect(sitemap.match(/<url>/g)).toHaveLength(CONTENT_PAGES.length * 2);
