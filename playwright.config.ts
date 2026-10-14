@@ -25,8 +25,13 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      testIgnore: /section-error\.spec\.ts/,
+      testIgnore: /(section-error|mobile)\.spec\.ts/,
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "mobile",
+      testMatch: /mobile\.spec\.ts/,
+      use: { ...devices["Pixel 7"], viewport: { width: 375, height: 812 } },
     },
     {
       name: "remote",
