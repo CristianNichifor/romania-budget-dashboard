@@ -218,9 +218,8 @@ export function CitizenSlice() {
           </div>
         )}
         <QueryError query={realWageQuery} />
-        {(realWage === null || realWage === undefined) && (
-          <SkeletonCard className="h-64" />
-        )}
+        {(realWage === null || realWage === undefined) &&
+          !realWageQuery.isError && <SkeletonCard className="h-64" />}
       </section>
 
       {wageContext !== null && wageContext !== undefined && (
