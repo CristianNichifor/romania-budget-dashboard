@@ -44,7 +44,7 @@ export function TradeBalanceChart({
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
           <XAxis dataKey="year" tick={{ fontSize: 11 }} />
-          <YAxis tick={{ fontSize: 11 }} unit="%" width={48} />
+          <YAxis tick={{ fontSize: 11 }} unit="%" width="auto" />
           <Tooltip
             formatter={(value) => [`${Number(value).toFixed(1)}%`]}
             contentStyle={{ fontSize: 12 }}

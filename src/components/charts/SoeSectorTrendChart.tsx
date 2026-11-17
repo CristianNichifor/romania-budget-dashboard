@@ -69,8 +69,9 @@ export function SoeSectorTrendChart({ trend }: SoeSectorTrendChartProps) {
               angle: -90,
               position: "insideLeft",
               fontSize: 11,
+              style: { textAnchor: "middle", fill: "#64748b" },
             }}
-            width={46}
+            width={58}
           />
           <Tooltip
             formatter={(value) => [`${String(value)}%`]}

@@ -36,7 +36,7 @@ export function GdpGrowthBars({ data, ariaLabel }: GdpGrowthBarsProps) {
             tickFormatter={shortQuarter}
             minTickGap={24}
           />
-          <YAxis tick={{ fontSize: 11 }} width={48} unit="%" />
+          <YAxis tick={{ fontSize: 11 }} width="auto" unit="%" />
           <Tooltip
             formatter={(value) => [`${Number(value).toFixed(1)}%`]}
             labelFormatter={(label) => String(label)}

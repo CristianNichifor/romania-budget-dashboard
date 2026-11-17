@@ -86,7 +86,7 @@ export function MacroTrendChart({
             <YAxis
               tick={{ fontSize: 11 }}
               tickFormatter={valueFormatter}
-              width={56}
+              width="auto"
               domain={["auto", "auto"]}
             />
             <Tooltip

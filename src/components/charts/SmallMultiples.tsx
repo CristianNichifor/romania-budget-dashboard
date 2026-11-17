@@ -49,7 +49,7 @@ export function SmallMultiples({
         const axis = (
           <YAxis
             tick={{ fontSize: 11 }}
-            width={64}
+            width="auto"
             tickFormatter={(value: number) => panel.format(value)}
           />
         );

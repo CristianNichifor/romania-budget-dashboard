@@ -82,13 +82,14 @@ export function RealWageLine({ series, currency = "eur" }: RealWageLineProps) {
           margin={{ top: 8, right: 8, left: 8, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="quarter" />
+          <XAxis dataKey="quarter" tick={{ fontSize: 11 }} />
           <YAxis
             tickFormatter={(value: number) => formatMoney(value, currency)}
-            width={90}
+            width="auto"
+            tick={{ fontSize: 11 }}
           />
           <Tooltip content={<RealWageTooltip currency={currency} />} />
-          <Legend />
+          <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line
             type="monotone"
             dataKey="nominalEur"

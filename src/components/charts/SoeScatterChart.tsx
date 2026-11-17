@@ -106,7 +106,7 @@ export function SoeScatterChart({
               name={i18n._(m["soe.scatter.y"])}
               tickFormatter={(value: number) => formatLei(value)}
               tick={{ fontSize: 11 }}
-              width={86}
+              width="auto"
             />
             <ReferenceLine
               x={0}

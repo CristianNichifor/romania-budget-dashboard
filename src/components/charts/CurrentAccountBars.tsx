@@ -40,7 +40,7 @@ export function CurrentAccountBars({
             tickFormatter={shortQuarter}
             minTickGap={24}
           />
-          <YAxis tick={{ fontSize: 11 }} width={56} unit=" mld." />
+          <YAxis tick={{ fontSize: 11 }} width="auto" unit=" mld." />
           <Tooltip
             formatter={(value) => [`${Number(value).toFixed(1)} mld. €`]}
             labelFormatter={(label) => String(label)}
