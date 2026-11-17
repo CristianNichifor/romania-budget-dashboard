@@ -76,6 +76,21 @@ test("header controls, tabs and the metric select are 44 px targets", async ({
   expect(await minHeight(page, "select#ins-metric")).toBeGreaterThanOrEqual(44);
 });
 
+test("the salary waterfall scroll region takes keyboard focus on a phone", async ({
+  page,
+}) => {
+  await page.goto("/ro/felia-ta/");
+  const region = page.getByRole("region", { name: /Cascada salariului/ });
+  await expect(region).toBeVisible();
+  await expect(region).toHaveAttribute("tabindex", "0");
+
+  await region.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect
+    .poll(() => region.evaluate((element) => element.scrollLeft))
+    .toBeGreaterThan(0);
+});
+
 // One-line pills: a badge that wraps inside its own border reads as two.
 async function lineCount(page: Page, selector: string): Promise<number> {
   return page.locator(selector).evaluateAll((elements) =>

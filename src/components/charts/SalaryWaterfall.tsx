@@ -13,7 +13,8 @@ import {
 import { convertAmount, type Currency } from "../../lib/currency";
 import { formatEur, formatLei } from "../../lib/format";
 import type { WaterfallRow } from "../../lib/waterfall";
-import { lookupMessage } from "../../messages";
+import { lookupMessage, m } from "../../messages";
+import { useHorizontalOverflow } from "../shared/useHorizontalOverflow";
 
 interface WaterfallChartDatum {
   name: string;
@@ -112,12 +113,19 @@ export function SalaryWaterfall({
   currency = "lei",
 }: SalaryWaterfallProps) {
   const data = toChartData(rows, currency);
+  const [scrollRef, scrolls] = useHorizontalOverflow<HTMLDivElement>();
 
   return (
+    // When the chart is wider than the screen, the scroll region takes
+    // keyboard focus so arrow keys can pan it (WCAG 2.1.1).
     <div
-      className="w-full overflow-x-auto"
+      ref={scrollRef}
+      className="w-full overflow-x-auto rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-budget-blue"
       data-testid="salary-waterfall"
       data-currency={currency}
+      role="region"
+      aria-label={i18n._(m["waterfall.ariaLabel"])}
+      tabIndex={scrolls ? 0 : undefined}
     >
       {/* Seven labelled bars need about 560px; a phone scrolls the chart
           sideways instead of piling the labels on top of each other. */}
@@ -125,7 +133,7 @@ export function SalaryWaterfall({
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
-            margin={{ top: 24, right: 8, left: 4, bottom: 0 }}
+            margin={{ top: 24, right: 8, left: 32, bottom: 0 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis
@@ -140,7 +148,7 @@ export function SalaryWaterfall({
             <YAxis
               tickFormatter={(value: number) => formatMoney(value, currency)}
               tick={{ fontSize: 12, fill: "#475569" }}
-              width={76}
+              width="auto"
             />
             <Tooltip
               content={(props) => (

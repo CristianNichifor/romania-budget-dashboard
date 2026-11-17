@@ -1022,6 +1022,10 @@ export const m = {
     id: "soe.listed.profit",
     message: "Profit net consolidat",
   }),
+  "waterfall.ariaLabel": msg({
+    id: "waterfall.ariaLabel",
+    message: "Cascada salariului: de la costul angajatorului la salariul net",
+  }),
   "soe.listed.state": msg({
     id: "soe.listed.state",
     message: "Stat: {percent}%",
