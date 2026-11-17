@@ -5,7 +5,7 @@ import {
   MISSING,
   formatLei,
   formatMilliarde,
-  formatPercent,
+  formatNumber,
 } from "../../lib/format";
 import { m } from "../../messages";
 
@@ -75,7 +75,11 @@ export function SoeListedCompanies({ listed }: SoeListedCompaniesProps) {
               <span className="rounded-md bg-budget-blue/10 px-2 py-0.5 text-xs font-semibold text-budget-blue">
                 {i18n._({
                   ...m["soe.listed.state"],
-                  values: { percent: formatPercent(company.statePercent) },
+                  values: {
+                    percent: formatNumber(company.statePercent, {
+                      maximumFractionDigits: 1,
+                    }),
+                  },
                 })}
               </span>
             </div>
