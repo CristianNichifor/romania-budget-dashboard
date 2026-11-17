@@ -211,7 +211,7 @@ export function Economie() {
               {i18n._(m["economy.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
             <SourceBadge source="source.ecb" />
             <SourceBadge source="source.bnr" />

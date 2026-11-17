@@ -71,7 +71,7 @@ export function LeuBridge({ contribution }: { contribution: Decimal }) {
             })}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <SourceBadge source="leuBridge.estimate" />
           {data !== undefined && (
             <SourceBadge

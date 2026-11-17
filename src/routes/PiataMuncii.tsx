@@ -45,7 +45,7 @@ export function PiataMuncii() {
               {i18n._(m["labour.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
           </div>
         </div>

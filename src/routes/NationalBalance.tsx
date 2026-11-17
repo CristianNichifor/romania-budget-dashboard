@@ -261,7 +261,7 @@ export function NationalBalance() {
               {i18n._(m["comparison.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.mfp" />
             <SourceBadge source="source.transparenta" />
           </div>
@@ -380,7 +380,7 @@ export function NationalBalance() {
               {i18n._(m["context.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
             <DemoBadge />
           </div>
@@ -450,7 +450,7 @@ export function NationalBalance() {
               {i18n._(m["investments.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.demo" />
           </div>
         </div>

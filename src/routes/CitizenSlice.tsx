@@ -83,7 +83,7 @@ export function CitizenSlice() {
               {i18n._(m["salary.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.budgetYear" values={{ year: 2026 }} />
             <SourceBadge source="source.ins" />
             <SourceBadge source="source.bnr" />
@@ -190,7 +190,7 @@ export function CitizenSlice() {
               {i18n._(m["realWage.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
           </div>
         </div>
@@ -233,7 +233,7 @@ export function CitizenSlice() {
                 {i18n._(m["wageContext.description"])}
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <SourceBadge source="source.eurostat" />
             </div>
           </div>
