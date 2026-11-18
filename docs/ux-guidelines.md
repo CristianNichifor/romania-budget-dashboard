@@ -94,6 +94,14 @@ Every tab (`src/lib/routeTable.ts`) follows the same order:
   traps and returns focus.
 - `prefers-reduced-motion`: no chart entry animations; `forced-colors`:
   borders and focus rings stay visible, chart series keep patterns/labels.
+- Themes: light and dark, both WCAG AA. The dark values live once in
+  `src/styles.css` as `light-dark()` palette variables, so components use the
+  ordinary utilities and no `dark:` variants. Use `bg-surface` for cards and
+  controls (not `bg-white`), `text-link` for blue text (`bg-budget-blue` is
+  the fill behind white text), and the `--chart-*` variables for chart
+  neutrals (grid, axis, tick text) instead of hex literals. The header switch
+  stores the choice in `localStorage`; without one the system preference
+  applies.
 
 ## 7. Status vocabulary
 
@@ -116,7 +124,8 @@ Use exactly: **Date live** / Live data, **Date demo** / Demo data,
 | Mobile 375 px, no body scroll       | `e2e/mobile.spec.ts`                                       |
 | Head, lang, hreflang per route      | `tests/staticHead.test.ts`, `e2e/head.spec.ts`             |
 | No dual axis                        | to add with E2 (component test)                            |
-| axe 0 serious, family bar, ș ț      | to add (UXG-B1/B2/B5 below)                                |
+| axe 0 serious, light and dark       | `e2e/a11y.spec.ts`                                         |
+| Theme choice and switch             | `tests/theme.test.ts`, `tests/ThemeToggle.test.tsx`        |
 
 ## 9. Known deviations backlog
 
