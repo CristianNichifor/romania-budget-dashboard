@@ -159,7 +159,12 @@ export function BudgetSankey({
         }
 
         const middleX = (source.x1 + target.x0) / 2;
-        const middleY = (source.y0 + target.y0 + link.width) / 2;
+        // d3-sankey puts link.y0/y1 at the flow's centre on each side; the
+        // node tops would stack every label of a node near the same height.
+        const middleY =
+          link.y0 !== undefined && link.y1 !== undefined
+            ? (link.y0 + link.y1) / 2
+            : (source.y0 + target.y0 + link.width) / 2;
         const sourceId =
           typeof source === "object" && "id" in source ? String(source.id) : "";
 
@@ -177,6 +182,7 @@ export function BudgetSankey({
                 x={middleX}
                 y={middleY}
                 textAnchor="middle"
+                dominantBaseline="central"
                 fontSize={10}
                 fill="var(--chart-text)"
               >
