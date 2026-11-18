@@ -135,7 +135,7 @@ export function BudgetSankey({
     <svg
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       className="w-full"
-      role="img"
+      role="group"
       aria-label={i18n._(m["sankey.ariaLabel"])}
     >
       {graph.links.map((link, index) => {

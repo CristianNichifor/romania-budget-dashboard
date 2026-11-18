@@ -6,7 +6,7 @@ test("the sankey draws at most eight destination flows and groups the rest", asy
   page,
 }) => {
   await page.goto("/ro/bilantul-national/");
-  const sankey = page.getByRole("img", { name: SANKEY_NAME });
+  const sankey = page.getByRole("group", { name: SANKEY_NAME });
   await expect(sankey).toBeVisible();
 
   // Node labels carry "· <amount>"; sources and the budget node do not.
