@@ -177,18 +177,20 @@ export function BudgetSankey({
               strokeOpacity={0.38}
               strokeWidth={Math.max(2.5, link.width)}
             />
-            {link.width >= MIN_LABELLED_LINK_WIDTH && (
-              <text
-                x={middleX}
-                y={middleY}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize={10}
-                fill="var(--chart-text)"
-              >
-                {formatMilliardeLei(link.value)}
-              </text>
-            )}
+            {/* Destination labels already carry their amount. */}
+            {link.width >= MIN_LABELLED_LINK_WIDTH &&
+              sourceId !== SANKEY_BUDGET_NODE_ID && (
+                <text
+                  x={middleX}
+                  y={middleY}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={10}
+                  fill="var(--chart-text)"
+                >
+                  {formatMilliardeLei(link.value)}
+                </text>
+              )}
           </g>
         );
       })}
