@@ -124,7 +124,7 @@ export function Societate() {
 
         {population?.sourceUpdated !== undefined &&
           population.sourceUpdated.length > 0 && (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               {i18n._({
                 ...m["source.updatedAt"],
                 values: { date: population.sourceUpdated },

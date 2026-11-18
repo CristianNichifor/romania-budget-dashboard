@@ -198,7 +198,7 @@ export function CitizenSlice() {
         {realWage !== null &&
           realWage !== undefined &&
           realWage.sourceUpdated.length > 0 && (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               {i18n._({
                 ...m["source.updatedAt"],
                 values: { date: realWage.sourceUpdated },
@@ -211,7 +211,7 @@ export function CitizenSlice() {
             <RealWageLine series={realWage.series} currency={currency} />
             {currency === "lei" && <RateNote />}
             {realWage.estimated && (
-              <p className="mt-2 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-slate-500">
                 {i18n._(m["wageContext.estimatedNote"])}
               </p>
             )}
@@ -291,7 +291,7 @@ export function CitizenSlice() {
                 heightClass="h-56"
               />
               {wageMonthly.estimated && (
-                <p className="mt-2 text-xs text-slate-400">
+                <p className="mt-2 text-xs text-slate-500">
                   {i18n._(m["wageContext.estimatedNote"])}
                 </p>
               )}

@@ -386,7 +386,7 @@ export function NationalBalance() {
           </div>
         </div>
         {budgetTrend !== undefined && budgetTrend.sourceUpdated.length > 0 && (
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             {i18n._({
               ...m["source.updatedAt"],
               values: { date: budgetTrend.sourceUpdated },
@@ -461,7 +461,7 @@ export function NationalBalance() {
               total={investments.total}
             />
             {investments.estimated && (
-              <p className="mt-2 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-slate-500">
                 {i18n._(m["investments.estimatedNote"])}
               </p>
             )}

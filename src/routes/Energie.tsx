@@ -54,7 +54,7 @@ export function Energie() {
 
         {energy?.sourceUpdated !== undefined &&
           energy.sourceUpdated.length > 0 && (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               {i18n._({
                 ...m["source.updatedAt"],
                 values: { date: energy.sourceUpdated },
