@@ -26,6 +26,7 @@ export const m = {
   }),
   "lang.label": msg({ id: "lang.label", message: "Limbă" }),
   "currency.label": msg({ id: "currency.label", message: "Monedă" }),
+  "theme.dark": msg({ id: "theme.dark", message: "Temă întunecată" }),
   "currency.rateNote": msg({
     id: "currency.rateNote",
     message:
@@ -1022,6 +1023,10 @@ export const m = {
     id: "soe.listed.profit",
     message: "Profit net consolidat",
   }),
+  "waterfall.ariaLabel": msg({
+    id: "waterfall.ariaLabel",
+    message: "Cascada salariului: de la costul angajatorului la salariul net",
+  }),
   "soe.listed.state": msg({
     id: "soe.listed.state",
     message: "Stat: {percent}%",
@@ -1199,7 +1204,7 @@ export const m = {
   "about.privacy.tracking": msg({
     id: "about.privacy.tracking",
     message:
-      "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți.",
+      "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. În browserul tău salvează un singur lucru, tema luminoasă sau întunecată, dacă o alegi; alegerea nu este trimisă nicăieri. Nu încarcă resurse de la terți.",
   }),
   "about.privacy.hosting": msg({
     id: "about.privacy.hosting",

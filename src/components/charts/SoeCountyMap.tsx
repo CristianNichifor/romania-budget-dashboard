@@ -116,7 +116,7 @@ function CountyTooltip({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{county.name}</p>
       <p className="tabular-nums text-slate-600">
         {i18n._({

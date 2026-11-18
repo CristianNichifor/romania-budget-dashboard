@@ -16,12 +16,12 @@ export function RootLayout() {
       <DocumentLinks />
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-budget-blue focus:shadow"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-surface focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-link focus:shadow"
       >
         {i18n._(m["a11y.skipToContent"])}
       </a>
       <Header />
-      <div className="border-b border-slate-200 bg-white">
+      <div className="border-b border-slate-200 bg-surface">
         <TabNavigation />
       </div>
       <main id="main-content" className="mx-auto max-w-6xl px-4 py-8">
@@ -32,7 +32,7 @@ export function RootLayout() {
         {ABOUT !== undefined && (
           <Link
             to={ABOUT[i18n.locale as Locale]}
-            className="font-medium text-budget-blue underline underline-offset-2"
+            className="font-medium text-link underline underline-offset-2"
           >
             {i18n._(m["footer.about"])}
           </Link>

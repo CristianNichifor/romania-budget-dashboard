@@ -34,7 +34,7 @@ export function DataModeBadge() {
     return (
       <span
         aria-hidden="true"
-        className="h-5 w-28 animate-pulse rounded-full bg-slate-100"
+        className="h-6 w-28 animate-pulse rounded-full bg-slate-100"
       />
     );
   }
@@ -44,7 +44,7 @@ export function DataModeBadge() {
   return (
     <span
       className={cn(
-        "inline-flex h-5 items-center rounded-full border px-2.5 text-xs font-medium",
+        "inline-flex h-6 items-center rounded-full border px-2.5 text-xs font-medium whitespace-nowrap",
         style.cls
       )}
     >

@@ -261,7 +261,7 @@ export function NationalBalance() {
               {i18n._(m["comparison.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.mfp" />
             <SourceBadge source="source.transparenta" />
           </div>
@@ -309,7 +309,7 @@ export function NationalBalance() {
         )}
 
         {comparisonSeries.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <AdoptedExecutionChart data={comparisonSeries} />
             <p className="mt-3 text-xs text-slate-500">
               {i18n._(m["comparison.scopeNote"])}
@@ -335,7 +335,7 @@ export function NationalBalance() {
           <DemoBadge />
         </div>
         {summary != null && destinations !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <BudgetSankey
               summary={summary}
               destinations={destinations}
@@ -360,7 +360,7 @@ export function NationalBalance() {
           <DemoBadge />
         </div>
         {destinations !== undefined && destinations.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <DestinationTreemap
               destinations={destinations}
               onSelect={setSelectedDestinationId}
@@ -380,13 +380,13 @@ export function NationalBalance() {
               {i18n._(m["context.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
             <DemoBadge />
           </div>
         </div>
         {budgetTrend !== undefined && budgetTrend.sourceUpdated.length > 0 && (
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             {i18n._({
               ...m["source.updatedAt"],
               values: { date: budgetTrend.sourceUpdated },
@@ -401,7 +401,7 @@ export function NationalBalance() {
           />
         )}
         {trendData !== null && insMetric !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SocialContextMultiples
               data={trendData}
               budgetLabel={i18n._(m["context.budgetLabel"])}
@@ -450,18 +450,18 @@ export function NationalBalance() {
               {i18n._(m["investments.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.demo" />
           </div>
         </div>
         {investments != null && investments.counties.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <InvestmentCartogram
               counties={investments.counties}
               total={investments.total}
             />
             {investments.estimated && (
-              <p className="mt-2 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-slate-500">
                 {i18n._(m["investments.estimatedNote"])}
               </p>
             )}

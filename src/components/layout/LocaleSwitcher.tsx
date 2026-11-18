@@ -33,7 +33,7 @@ export function LocaleSwitcher() {
             "inline-flex min-h-11 min-w-11 items-center justify-center px-3 text-xs font-medium",
             i18n.locale === locale
               ? "bg-budget-blue text-white"
-              : "bg-white text-slate-600 hover:bg-slate-50"
+              : "bg-surface text-slate-600 hover:bg-slate-50"
           )}
         >
           {LABELS[locale]}

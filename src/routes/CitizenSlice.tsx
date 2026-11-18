@@ -83,14 +83,14 @@ export function CitizenSlice() {
               {i18n._(m["salary.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.budgetYear" values={{ year: 2026 }} />
             <SourceBadge source="source.ins" />
             <SourceBadge source="source.bnr" />
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
           <label
             htmlFor="salary-slider"
             className="text-sm font-medium text-slate-700"
@@ -115,7 +115,10 @@ export function CitizenSlice() {
               <Slider.Track className="relative h-1.5 grow rounded-full bg-slate-200">
                 <Slider.Range className="absolute h-full rounded-full bg-budget-blue" />
               </Slider.Track>
-              <Slider.Thumb className="block size-6 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
+              <Slider.Thumb
+                aria-label={i18n._(m["salary.grossLabel"])}
+                className="block size-6 rounded-full border-2 border-budget-blue bg-surface shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue"
+              />
             </Slider.Root>
             <span className="w-28 text-right text-lg font-bold tabular-nums">
               {formatLei(gross)}
@@ -157,7 +160,7 @@ export function CitizenSlice() {
               />
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <SalaryWaterfall
                 rows={buildSalaryWaterfallRows(breakdown)}
                 currency={currency}
@@ -190,7 +193,7 @@ export function CitizenSlice() {
               {i18n._(m["realWage.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
           </div>
         </div>
@@ -198,7 +201,7 @@ export function CitizenSlice() {
         {realWage !== null &&
           realWage !== undefined &&
           realWage.sourceUpdated.length > 0 && (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               {i18n._({
                 ...m["source.updatedAt"],
                 values: { date: realWage.sourceUpdated },
@@ -207,20 +210,19 @@ export function CitizenSlice() {
           )}
 
         {realWage !== null && realWage !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <RealWageLine series={realWage.series} currency={currency} />
             {currency === "lei" && <RateNote />}
             {realWage.estimated && (
-              <p className="mt-2 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-slate-500">
                 {i18n._(m["wageContext.estimatedNote"])}
               </p>
             )}
           </div>
         )}
         <QueryError query={realWageQuery} />
-        {(realWage === null || realWage === undefined) && (
-          <SkeletonCard className="h-64" />
-        )}
+        {(realWage === null || realWage === undefined) &&
+          !realWageQuery.isError && <SkeletonCard className="h-64" />}
       </section>
 
       {wageContext !== null && wageContext !== undefined && (
@@ -234,7 +236,7 @@ export function CitizenSlice() {
                 {i18n._(m["wageContext.description"])}
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <SourceBadge source="source.eurostat" />
             </div>
           </div>
@@ -254,7 +256,7 @@ export function CitizenSlice() {
             ))}
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <h3 className="text-sm font-semibold text-slate-700">
               {i18n._(m["wageContext.lciTitle"])}
             </h3>
@@ -274,7 +276,7 @@ export function CitizenSlice() {
           </div>
 
           {wageMonthly !== null && wageMonthly !== undefined && (
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <h3 className="text-sm font-semibold text-slate-700">
                 {i18n._(m["wageContext.monthlyTitle"])}
               </h3>
@@ -286,13 +288,13 @@ export function CitizenSlice() {
                   label: point.quarter,
                   value: point.grossMonthlyEur,
                 }))}
-                color="#7c3aed"
+                color="var(--chart-violet)"
                 ariaLabel={i18n._(m["wageContext.monthlyTitle"])}
                 valueFormatter={(value) => formatEur(value)}
                 heightClass="h-56"
               />
               {wageMonthly.estimated && (
-                <p className="mt-2 text-xs text-slate-400">
+                <p className="mt-2 text-xs text-slate-500">
                   {i18n._(m["wageContext.estimatedNote"])}
                 </p>
               )}

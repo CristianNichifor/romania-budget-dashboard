@@ -5,6 +5,86 @@
   --color-budget-red: #dc2626;
   --color-budget-amber: #d97706;
   --color-budget-slate: #475569;
+  /* Card and control background; the page behind it is slate-50. */
+  --color-surface: #ffffff;
+  /* Blue as text. budget-blue stays the fill behind white text. */
+  --color-link: #2563eb;
+  --color-link-strong: #1e40af;
+}
+
+/* Chart neutrals, read by the SVG attributes in src/components/charts. */
+:root {
+  --chart-grid: #e2e8f0;
+  --chart-axis: #94a3b8;
+  --chart-text: #475569;
+  --chart-strong: #0f172a;
+  --chart-cursor: #f1f5f9;
+  --chart-neutral: #475569;
+  --chart-violet: #7c3aed;
+}
+
+/*
+ * Dark theme. Every colour utility reads a palette variable, so the dark
+ * values are set once here and no component carries a `dark:` variant. The
+ * neutral scale is mirrored (slate-900 text becomes near-white, slate-50
+ * becomes the page background); tints keep their role (amber-50 stays a
+ * quiet warning background, amber-800 the text on it). `data-theme` on
+ * <html> is the reader's explicit choice; without it the system preference
+ * applies. Browsers without light-dark() keep the light theme.
+ */
+@supports (color: light-dark(#000, #fff)) {
+  :root {
+    color-scheme: light dark;
+
+    --color-surface: light-dark(#ffffff, #121b2e);
+    --color-link: light-dark(#2563eb, #8ab4ff);
+    --color-link-strong: light-dark(#1e40af, #c7dcff);
+    --color-budget-red: light-dark(#dc2626, #f87171);
+    --color-budget-amber: light-dark(#d97706, #fbbf24);
+
+    --color-slate-50: light-dark(#f8fafc, #0a101d);
+    --color-slate-100: light-dark(#f1f5f9, #1b2640);
+    --color-slate-200: light-dark(#e2e8f0, #2a3651);
+    --color-slate-300: light-dark(#cbd5e1, #3d4c69);
+    --color-slate-500: light-dark(#64748b, #9aa8bd);
+    --color-slate-600: light-dark(#475569, #b6c2d3);
+    --color-slate-700: light-dark(#334155, #cbd5e1);
+    --color-slate-800: light-dark(#1e293b, #e2e8f0);
+    --color-slate-900: light-dark(#0f172a, #f1f5f9);
+
+    --color-amber-50: light-dark(#fffbeb, #2a1e08);
+    --color-amber-200: light-dark(#fde68a, #6b4a12);
+    --color-amber-700: light-dark(#b45309, #fbbf24);
+    --color-amber-800: light-dark(#92400e, #fcd34d);
+
+    --color-red-50: light-dark(#fef2f2, #2c1316);
+    --color-red-100: light-dark(#fee2e2, #3f171b);
+    --color-red-200: light-dark(#fecaca, #6e2126);
+    --color-red-300: light-dark(#fca5a5, #8f2a30);
+    --color-red-600: light-dark(#dc2626, #f87171);
+    --color-red-700: light-dark(#b91c1c, #fca5a5);
+    --color-red-800: light-dark(#991b1b, #fecaca);
+
+    --color-emerald-50: light-dark(#ecfdf5, #0a2a20);
+    --color-emerald-200: light-dark(#a7f3d0, #17603f);
+    --color-emerald-700: light-dark(#047857, #34d399);
+
+    --chart-grid: light-dark(#e2e8f0, #2a3651);
+    --chart-axis: light-dark(#94a3b8, #5f6f8a);
+    --chart-text: light-dark(#475569, #b6c2d3);
+    --chart-strong: light-dark(#0f172a, #f1f5f9);
+    --chart-cursor: light-dark(#f1f5f9, #1b2640);
+    --chart-neutral: light-dark(#475569, #a8b4c7);
+    --chart-violet: light-dark(#7c3aed, #a78bfa);
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
 }
 
 html {
@@ -13,4 +93,39 @@ html {
 
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+/* Recharts paints these from its own defaults (#666, #ccc, white). */
+.recharts-cartesian-axis-tick-value {
+  fill: var(--chart-text);
+}
+
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: var(--chart-axis);
+}
+
+.recharts-default-tooltip {
+  background-color: var(--color-surface) !important;
+  border-color: var(--chart-grid) !important;
+}
+
+.recharts-rectangle.recharts-tooltip-cursor {
+  fill: var(--chart-cursor);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High-contrast mode drops backgrounds, which carried the selected state. */
+@media (forced-colors: active) {
+  [aria-pressed="true"],
+  [aria-current="true"],
+  [aria-current="page"] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
 }

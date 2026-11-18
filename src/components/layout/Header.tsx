@@ -5,12 +5,13 @@ import { CurrencyToggle } from "./CurrencyToggle";
 import { DataModeBadge } from "./DataModeBadge";
 import { HubLink } from "./HubLink";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const { i18n } = useLingui();
 
   return (
-    <header className="border-b border-slate-200 bg-white">
+    <header className="border-b border-slate-200 bg-surface">
       <div className="mx-auto max-w-6xl px-4 pt-1">
         <HubLink />
       </div>
@@ -28,9 +29,10 @@ export function Header() {
             </p>
           </div>
         </div>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="flex w-full flex-wrap items-center gap-2 sm:ml-auto sm:w-auto">
           <CurrencyToggle />
           <LocaleSwitcher />
+          <ThemeToggle />
           <DataModeBadge />
         </div>
       </div>

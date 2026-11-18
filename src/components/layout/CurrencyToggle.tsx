@@ -30,7 +30,7 @@ export function CurrencyToggle() {
             "inline-flex min-h-11 min-w-11 items-center justify-center px-3 text-xs font-medium",
             currency === option.value
               ? "bg-budget-blue text-white"
-              : "bg-white text-slate-600 hover:bg-slate-50"
+              : "bg-surface text-slate-600 hover:bg-slate-50"
           )}
         >
           {option.label}

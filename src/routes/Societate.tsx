@@ -116,7 +116,7 @@ export function Societate() {
               {i18n._(m["society.description"])}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <SourceBadge source="source.eurostat" />
             <SourceBadge source="source.ins" />
           </div>
@@ -124,7 +124,7 @@ export function Societate() {
 
         {population?.sourceUpdated !== undefined &&
           population.sourceUpdated.length > 0 && (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               {i18n._({
                 ...m["source.updatedAt"],
                 values: { date: population.sourceUpdated },
@@ -170,10 +170,10 @@ export function Societate() {
               {i18n._(m["society.population.description"])}
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <MacroTrendChart
               data={populationData}
-              color="#475569"
+              color="var(--chart-neutral)"
               ariaLabel={i18n._(m["society.population.title"])}
               valueFormatter={(value) =>
                 `${(value / 1_000_000).toFixed(1)} mil.`
@@ -197,7 +197,7 @@ export function Societate() {
               {i18n._(m["society.spending.description"])}
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SocietySpendingChart
               data={spendingData}
               healthLabel={i18n._(m["society.spending.health"])}
@@ -245,7 +245,7 @@ export function Societate() {
             />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={education.earlyLeavers.map((point) => ({
                   label: point.year,
@@ -257,7 +257,7 @@ export function Societate() {
                 heightClass="h-56"
               />
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={education.tertiaryAttainment.map((point) => ({
                   label: point.year,
@@ -301,7 +301,7 @@ export function Societate() {
               sub={`${latestPhysicianDensity?.year ?? ""} · la 100.000 locuitori`}
             />
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <MacroTrendChart
               data={physicianDensity.map((point) => ({
                 label: point.year,
@@ -345,19 +345,19 @@ export function Societate() {
             />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={demographics.medianAge.map((point) => ({
                   label: point.year,
                   value: point.age,
                 }))}
-                color="#475569"
+                color="var(--chart-neutral)"
                 ariaLabel={i18n._(m["society.demographics.medianAge"])}
                 valueFormatter={(value) => `${value.toFixed(1)}`}
                 heightClass="h-56"
               />
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={demographics.netMigration.map((point) => ({
                   label: point.year,
@@ -396,7 +396,7 @@ export function Societate() {
           />
         )}
         {insMetric !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <MacroTrendChart
               data={insData}
               color="#0d9488"

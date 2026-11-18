@@ -33,20 +33,20 @@ export function CurrentAccountBars({
           margin={{ top: 12, right: 16, bottom: 4, left: 0 }}
           aria-label={ariaLabel}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
           <XAxis
             dataKey="quarter"
             tick={{ fontSize: 11 }}
             tickFormatter={shortQuarter}
             minTickGap={24}
           />
-          <YAxis tick={{ fontSize: 11 }} width={56} unit=" mld." />
+          <YAxis tick={{ fontSize: 11 }} width="auto" unit=" mld." />
           <Tooltip
             formatter={(value) => [`${Number(value).toFixed(1)} mld. €`]}
             labelFormatter={(label) => String(label)}
             contentStyle={{ fontSize: 12 }}
           />
-          <ReferenceLine y={0} stroke="#94a3b8" />
+          <ReferenceLine y={0} stroke="var(--chart-axis)" />
           <Bar dataKey="balanceMldEur" isAnimationActive={false}>
             {data.map((point) => (
               <Cell

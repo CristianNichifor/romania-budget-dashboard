@@ -38,7 +38,7 @@ function DeficitTooltip({
   }
   const datum = payload[0]?.payload;
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{label ?? ""}</p>
       {datum !== undefined && (
         <>
@@ -69,11 +69,12 @@ export function AdoptedExecutionChart({ data }: AdoptedExecutionChartProps) {
     <div className="h-72 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 8, right: 8, left: 8, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-          <XAxis dataKey="year" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+          <XAxis dataKey="year" tick={{ fontSize: 11 }} />
           <YAxis
             tickFormatter={(value: number) => formatMilliarde(value)}
-            width={70}
+            width="auto"
+            tick={{ fontSize: 11 }}
           />
           <Tooltip
             content={(props) => (
@@ -84,11 +85,20 @@ export function AdoptedExecutionChart({ data }: AdoptedExecutionChartProps) {
               />
             )}
           />
-          <Legend />
+          {/* The adopted bars are light grey; their legend text would be too faint
+              in the series colour, so legend text stays slate. */}
+          <Legend
+            wrapperStyle={{ fontSize: 12 }}
+            formatter={(value) => (
+              <span style={{ color: "var(--chart-text)" }}>
+                {String(value)}
+              </span>
+            )}
+          />
           <Bar
             dataKey="adoptedDeficitMld"
             name={adoptedLabel}
-            fill="#94a3b8"
+            fill="var(--chart-axis)"
             radius={[3, 3, 0, 0]}
             isAnimationActive={false}
           />

@@ -42,15 +42,15 @@ export function TradeBalanceChart({
           margin={{ top: 8, right: 8, left: 0, bottom: 4 }}
           aria-label={ariaLabel}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
           <XAxis dataKey="year" tick={{ fontSize: 11 }} />
-          <YAxis tick={{ fontSize: 11 }} unit="%" width={48} />
+          <YAxis tick={{ fontSize: 11 }} unit="%" width="auto" />
           <Tooltip
             formatter={(value) => [`${Number(value).toFixed(1)}%`]}
             contentStyle={{ fontSize: 12 }}
           />
           <Legend />
-          <ReferenceLine y={0} stroke="#94a3b8" />
+          <ReferenceLine y={0} stroke="var(--chart-axis)" />
           <Line
             type="monotone"
             dataKey="exportsPctGdp"
@@ -64,7 +64,7 @@ export function TradeBalanceChart({
             type="monotone"
             dataKey="importsPctGdp"
             name={importsLabel}
-            stroke="#64748b"
+            stroke="var(--chart-text)"
             strokeWidth={2}
             dot
             isAnimationActive={false}

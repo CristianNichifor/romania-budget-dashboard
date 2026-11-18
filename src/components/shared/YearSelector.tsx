@@ -42,7 +42,7 @@ export function YearSelector() {
       <div
         role="group"
         aria-label={i18n._(m["year.groupLabel"])}
-        className="flex flex-wrap rounded-lg border border-slate-200 bg-white p-1 shadow-sm"
+        className="flex flex-wrap rounded-lg border border-slate-200 bg-surface p-1 shadow-sm"
       >
         {(years ?? []).map((option) => {
           const selected = year === option;

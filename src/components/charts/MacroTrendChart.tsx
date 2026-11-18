@@ -76,7 +76,7 @@ export function MacroTrendChart({
             margin={{ top: 12, right: 16, bottom: 4, left: 0 }}
             aria-label={ariaLabel}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
             <XAxis
               dataKey="label"
               tick={{ fontSize: 11 }}
@@ -86,7 +86,7 @@ export function MacroTrendChart({
             <YAxis
               tick={{ fontSize: 11 }}
               tickFormatter={valueFormatter}
-              width={56}
+              width="auto"
               domain={["auto", "auto"]}
             />
             <Tooltip

@@ -11,7 +11,7 @@ export function HubLink() {
   return (
     <a
       href={HUB_URL}
-      className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-budget-blue underline-offset-2 hover:underline"
+      className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-link underline-offset-2 hover:underline"
     >
       <span aria-hidden="true">←</span>
       {i18n._(m["hub.back"])}

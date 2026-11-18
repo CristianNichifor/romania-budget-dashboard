@@ -107,7 +107,7 @@ function CartogramTooltip({ active, payload, total }: CartogramTooltipProps) {
   const share = new Decimal(county.amount).div(total).times(100);
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{county.county}</p>
       <p className="text-slate-500">{county.region}</p>
       <p className="tabular-nums text-slate-600">

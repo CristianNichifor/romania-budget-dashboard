@@ -161,7 +161,7 @@ export function CompaniiDeStat() {
               {i18n._(m["soe.scatter.description"])}
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SoeScatterChart
               scatter={scatter}
               minWage={minWage}
@@ -182,7 +182,7 @@ export function CompaniiDeStat() {
               {i18n._(m["soe.sectors.description"])}
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SoeSectorTrendChart trend={trend} />
           </div>
         </section>
@@ -199,7 +199,7 @@ export function CompaniiDeStat() {
               {i18n._(m["soe.counties.description"])}
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SoeCountyMap byCounty={byCounty} />
           </div>
         </section>
@@ -232,7 +232,7 @@ export function CompaniiDeStat() {
                   className={
                     subsidyYear === year
                       ? "bg-budget-blue px-3 py-1 text-xs font-medium text-white"
-                      : "bg-white px-3 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
+                      : "bg-surface px-3 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
                   }
                   onClick={() => setSubsidyYear(year)}
                 >
@@ -241,7 +241,7 @@ export function CompaniiDeStat() {
               ))}
             </div>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SoeSubsidyBars subsidies={subsidies} />
           </div>
         </section>

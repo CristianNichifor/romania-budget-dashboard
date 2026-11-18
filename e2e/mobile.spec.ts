@@ -75,3 +75,44 @@ test("header controls, tabs and the metric select are 44 px targets", async ({
   ).toBeGreaterThanOrEqual(44);
   expect(await minHeight(page, "select#ins-metric")).toBeGreaterThanOrEqual(44);
 });
+
+test("the salary waterfall scroll region takes keyboard focus on a phone", async ({
+  page,
+}) => {
+  await page.goto("/ro/felia-ta/");
+  const region = page.getByRole("region", { name: /Cascada salariului/ });
+  await expect(region).toBeVisible();
+  await expect(region).toHaveAttribute("tabindex", "0");
+
+  await region.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect
+    .poll(() => region.evaluate((element) => element.scrollLeft))
+    .toBeGreaterThan(0);
+});
+
+// One-line pills: a badge that wraps inside its own border reads as two.
+async function lineCount(page: Page, selector: string): Promise<number> {
+  return page.locator(selector).evaluateAll((elements) =>
+    Math.max(
+      ...elements.map((element) => {
+        const lineHeight = parseFloat(getComputedStyle(element).lineHeight);
+        return Math.round(
+          (element as HTMLElement).clientHeight / (lineHeight || 16)
+        );
+      })
+    )
+  );
+}
+
+test("the data-mode badge and source badges stay on one line", async ({
+  page,
+}) => {
+  await page.goto("/ro/economie/");
+  await expect(page.locator("h2").first()).toBeVisible();
+  const badge = page.locator("header span.rounded-full").last();
+  await expect(badge).toBeVisible();
+  const height = await badge.evaluate((element) => element.clientHeight);
+  expect(height).toBeLessThanOrEqual(26);
+  expect(await lineCount(page, "main span.rounded-full.bg-slate-100")).toBe(1);
+});

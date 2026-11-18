@@ -34,9 +34,9 @@ export function SocietySpendingChart({
           margin={{ top: 12, right: 16, bottom: 4, left: 0 }}
           aria-label={ariaLabel}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
           <XAxis dataKey="year" tick={{ fontSize: 11 }} minTickGap={24} />
-          <YAxis tick={{ fontSize: 11 }} width={48} unit="%" />
+          <YAxis tick={{ fontSize: 11 }} width="auto" unit="%" />
           <Tooltip
             formatter={(value, name) => [
               `${Number(value).toFixed(1)}%`,

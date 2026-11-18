@@ -21,11 +21,18 @@ export function SkeletonCard({ className }: SkeletonCardProps) {
       aria-hidden={slow ? undefined : "true"}
       role={slow ? "status" : undefined}
       className={cn(
-        "flex animate-pulse items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-4 text-center text-sm text-slate-500",
+        "relative flex items-center justify-center overflow-hidden rounded-xl border border-slate-200 px-4 text-center text-sm text-slate-600",
         className
       )}
     >
-      {slow ? i18n._(m["app.loadingSlow"]) : null}
+      {/* Only the fill pulses, so the message keeps its contrast. */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 animate-pulse bg-slate-100 motion-reduce:animate-none"
+      />
+      {slow ? (
+        <span className="relative">{i18n._(m["app.loadingSlow"])}</span>
+      ) : null}
     </div>
   );
 }

@@ -56,7 +56,7 @@ function RealWageTooltip({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{label ?? ""}</p>
       {payload.map((entry) => (
         <p key={entry.name} className="tabular-nums text-slate-600">
@@ -82,13 +82,14 @@ export function RealWageLine({ series, currency = "eur" }: RealWageLineProps) {
           margin={{ top: 8, right: 8, left: 8, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="quarter" />
+          <XAxis dataKey="quarter" tick={{ fontSize: 11 }} />
           <YAxis
             tickFormatter={(value: number) => formatMoney(value, currency)}
-            width={90}
+            width="auto"
+            tick={{ fontSize: 11 }}
           />
           <Tooltip content={<RealWageTooltip currency={currency} />} />
-          <Legend />
+          <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line
             type="monotone"
             dataKey="nominalEur"

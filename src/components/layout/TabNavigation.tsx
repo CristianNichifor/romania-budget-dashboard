@@ -38,7 +38,7 @@ export function TabNavigation() {
               className={cn(
                 "inline-flex min-h-11 items-center border-b-2 px-3 py-3 transition-colors",
                 isActive
-                  ? "border-budget-blue text-budget-blue"
+                  ? "border-budget-blue text-link"
                   : "border-transparent text-slate-500 hover:text-slate-800"
               )}
             >

@@ -44,7 +44,7 @@ function nodeColor(id: string): string {
     return "#0f766e";
   }
   if (id === SANKEY_BUDGET_NODE_ID) {
-    return "#475569";
+    return "var(--chart-neutral)";
   }
   if (id === SANKEY_DEFICIT_NODE_ID) {
     return "#dc2626";
@@ -135,7 +135,7 @@ export function BudgetSankey({
     <svg
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       className="w-full"
-      role="img"
+      role="group"
       aria-label={i18n._(m["sankey.ariaLabel"])}
     >
       {graph.links.map((link, index) => {
@@ -159,7 +159,12 @@ export function BudgetSankey({
         }
 
         const middleX = (source.x1 + target.x0) / 2;
-        const middleY = (source.y0 + target.y0 + link.width) / 2;
+        // d3-sankey puts link.y0/y1 at the flow's centre on each side; the
+        // node tops would stack every label of a node near the same height.
+        const middleY =
+          link.y0 !== undefined && link.y1 !== undefined
+            ? (link.y0 + link.y1) / 2
+            : (source.y0 + target.y0 + link.width) / 2;
         const sourceId =
           typeof source === "object" && "id" in source ? String(source.id) : "";
 
@@ -172,17 +177,20 @@ export function BudgetSankey({
               strokeOpacity={0.38}
               strokeWidth={Math.max(2.5, link.width)}
             />
-            {link.width >= MIN_LABELLED_LINK_WIDTH && (
-              <text
-                x={middleX}
-                y={middleY}
-                textAnchor="middle"
-                fontSize={10}
-                fill="#475569"
-              >
-                {formatMilliardeLei(link.value)}
-              </text>
-            )}
+            {/* Destination labels already carry their amount. */}
+            {link.width >= MIN_LABELLED_LINK_WIDTH &&
+              sourceId !== SANKEY_BUDGET_NODE_ID && (
+                <text
+                  x={middleX}
+                  y={middleY}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={10}
+                  fill="var(--chart-text)"
+                >
+                  {formatMilliardeLei(link.value)}
+                </text>
+              )}
           </g>
         );
       })}
@@ -264,12 +272,12 @@ export function BudgetSankey({
               y={node.y0 + (node.y1 - node.y0) / 2 + 3}
               textAnchor={labelAnchor}
               fontSize={11}
-              fill="#0f172a"
+              fill="var(--chart-strong)"
               fontWeight={600}
             >
               {labelFor(node)}
               {amountLabel !== null && (
-                <tspan fill="#475569" fontWeight={400}>
+                <tspan fill="var(--chart-text)" fontWeight={400}>
                   {` · ${amountLabel}`}
                 </tspan>
               )}
