@@ -1441,7 +1441,7 @@ msgstr "The server is slow to respond — waiting a few more seconds."
 #. js-lingui-explicit-id
 #: src/messages.ts:1204
 msgid "about.privacy.tracking"
-msgstr "The site does not use cookies, runs no analytics and does not track visitors. It stores nothing in your browser and loads nothing from third parties."
+msgstr "The site does not use cookies, runs no analytics and does not track visitors. It stores one thing in your browser, the light or dark theme, if you choose one; the choice is not sent anywhere. It loads nothing from third parties."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:568

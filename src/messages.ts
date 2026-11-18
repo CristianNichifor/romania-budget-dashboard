@@ -1204,7 +1204,7 @@ export const m = {
   "about.privacy.tracking": msg({
     id: "about.privacy.tracking",
     message:
-      "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți.",
+      "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. În browserul tău salvează un singur lucru, tema luminoasă sau întunecată, dacă o alegi; alegerea nu este trimisă nicăieri. Nu încarcă resurse de la terți.",
   }),
   "about.privacy.hosting": msg({
     id: "about.privacy.hosting",

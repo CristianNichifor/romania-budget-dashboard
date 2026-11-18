@@ -1441,7 +1441,7 @@ msgstr "Serverul răspunde greu — mai așteptăm câteva secunde."
 #. js-lingui-explicit-id
 #: src/messages.ts:1204
 msgid "about.privacy.tracking"
-msgstr "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. Nu salvează nimic în browserul tău și nu încarcă resurse de la terți."
+msgstr "Site-ul nu folosește cookie-uri, nu rulează analytics și nu urmărește vizitatorii. În browserul tău salvează un singur lucru, tema luminoasă sau întunecată, dacă o alegi; alegerea nu este trimisă nicăieri. Nu încarcă resurse de la terți."
 
 #. js-lingui-explicit-id
 #: src/messages.ts:568
