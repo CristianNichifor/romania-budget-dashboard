@@ -60,7 +60,8 @@ export function DebtGauge({
   maxPercent = 10,
 }: DebtGaugeProps) {
   const width = 220;
-  const height = 130;
+  // Room under the dial for the value, clear of the needle hub.
+  const height = 156;
   const radius = 90;
   const centerX = width / 2;
   const centerY = 118;
@@ -117,7 +118,7 @@ export function DebtGauge({
       <circle cx={centerX} cy={centerY} r={4} fill="var(--chart-strong)" />
       <text
         x={centerX}
-        y={height - 6}
+        y={height - 8}
         textAnchor="middle"
         fontSize={22}
         fontWeight={700}
@@ -129,7 +130,7 @@ export function DebtGauge({
         x={polar(centerX, centerY, radius - 12, referenceAngle).x}
         y={polar(centerX, centerY, radius - 12, referenceAngle).y - 6}
         textAnchor="middle"
-        fontSize={8}
+        fontSize={10}
         fill="var(--chart-text)"
       >
         {formatPercent(referencePercent)}
