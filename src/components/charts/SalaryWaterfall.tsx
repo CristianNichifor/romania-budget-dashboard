@@ -93,7 +93,7 @@ function WaterfallTooltip({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{labelId(datum.name)}</p>
       <p className="tabular-nums text-slate-600">
         {formatMoney(datum.value, currency)}
@@ -142,12 +142,12 @@ export function SalaryWaterfall({
               angle={-30}
               textAnchor="end"
               height={110}
-              tick={{ fontSize: 11, fill: "#475569" }}
+              tick={{ fontSize: 11, fill: "var(--chart-text)" }}
               tickFormatter={(id: string) => i18n._(lookupMessage(id))}
             />
             <YAxis
               tickFormatter={(value: number) => formatMoney(value, currency)}
-              tick={{ fontSize: 12, fill: "#475569" }}
+              tick={{ fontSize: 12, fill: "var(--chart-text)" }}
               width="auto"
             />
             <Tooltip
@@ -158,7 +158,7 @@ export function SalaryWaterfall({
                   currency={currency}
                 />
               )}
-              cursor={{ fill: "#f1f5f9" }}
+              cursor={{ fill: "var(--chart-cursor)" }}
             />
             <Bar
               dataKey="base"
@@ -176,7 +176,7 @@ export function SalaryWaterfall({
                 dataKey="value"
                 position="top"
                 fontSize={11}
-                fill="#334155"
+                fill="var(--chart-text)"
                 formatter={(value: unknown) =>
                   typeof value === "number" ? formatMoney(value, currency) : ""
                 }

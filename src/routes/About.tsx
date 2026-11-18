@@ -75,7 +75,7 @@ const SOURCES: Source[] = [
 ];
 
 const linkClass =
-  "font-medium text-budget-blue underline underline-offset-2 hover:text-blue-800";
+  "font-medium text-link underline underline-offset-2 hover:text-link-strong";
 
 /** In-page contents (design 05): section ids and their heading messages. */
 const CONTENTS = [
@@ -129,7 +129,7 @@ export function About() {
         <p className="text-sm text-slate-600">
           {i18n._(m["about.sources.description"])}
         </p>
-        <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+        <div className="overflow-x-auto rounded-xl border border-slate-200 bg-surface">
           <table className="w-full text-left text-sm">
             <caption className="sr-only">
               {i18n._(m["about.sources.title"])}

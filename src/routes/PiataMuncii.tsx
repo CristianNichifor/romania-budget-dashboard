@@ -105,7 +105,7 @@ export function PiataMuncii() {
                 {i18n._(m["labour.neet.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={neetData}
                 color="#dc2626"
@@ -125,7 +125,7 @@ export function PiataMuncii() {
                 {i18n._(m["labour.youth.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={youthData}
                 color="#d97706"
@@ -145,7 +145,7 @@ export function PiataMuncii() {
                 {i18n._(m["labour.vacancy.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={vacancyData}
                 color="#2563eb"

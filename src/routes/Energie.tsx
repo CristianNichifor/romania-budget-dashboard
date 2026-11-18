@@ -107,7 +107,7 @@ export function Energie() {
                 {i18n._(m["energy.electricity.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={electricityData}
                 color="#d97706"
@@ -127,7 +127,7 @@ export function Energie() {
                 {i18n._(m["energy.renewables.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={renewablesData}
                 color="#16a34a"
@@ -147,7 +147,7 @@ export function Energie() {
                 {i18n._(m["energy.import.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={importData}
                 color="#dc2626"

@@ -309,7 +309,7 @@ export function NationalBalance() {
         )}
 
         {comparisonSeries.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <AdoptedExecutionChart data={comparisonSeries} />
             <p className="mt-3 text-xs text-slate-500">
               {i18n._(m["comparison.scopeNote"])}
@@ -335,7 +335,7 @@ export function NationalBalance() {
           <DemoBadge />
         </div>
         {summary != null && destinations !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <BudgetSankey
               summary={summary}
               destinations={destinations}
@@ -360,7 +360,7 @@ export function NationalBalance() {
           <DemoBadge />
         </div>
         {destinations !== undefined && destinations.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <DestinationTreemap
               destinations={destinations}
               onSelect={setSelectedDestinationId}
@@ -401,7 +401,7 @@ export function NationalBalance() {
           />
         )}
         {trendData !== null && insMetric !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <SocialContextMultiples
               data={trendData}
               budgetLabel={i18n._(m["context.budgetLabel"])}
@@ -455,7 +455,7 @@ export function NationalBalance() {
           </div>
         </div>
         {investments != null && investments.counties.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <InvestmentCartogram
               counties={investments.counties}
               total={investments.total}

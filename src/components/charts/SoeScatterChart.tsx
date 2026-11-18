@@ -50,7 +50,7 @@ function ScatterTooltip({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{point.name}</p>
       <p className="tabular-nums text-slate-600">
         {formatPercent(point.marginPercent)} · {formatLei(point.maxSalary)}{" "}
@@ -89,7 +89,7 @@ export function SoeScatterChart({
             margin={{ top: 16, right: 16, bottom: 8, left: 8 }}
             aria-label={i18n._(m["soe.scatter.title"])}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
             <XAxis
               type="number"
               dataKey="plottedMargin"
@@ -110,13 +110,13 @@ export function SoeScatterChart({
             />
             <ReferenceLine
               x={0}
-              stroke="#64748b"
+              stroke="var(--chart-text)"
               strokeWidth={1.5}
               label={{
                 value: i18n._(m["soe.scatter.breakEven"]),
                 position: "insideTopRight",
                 fontSize: 11,
-                fill: "#64748b",
+                fill: "var(--chart-text)",
               }}
             />
             {minWage !== null && minWage > 0 && (
@@ -154,7 +154,7 @@ export function SoeScatterChart({
             ))}
             <Tooltip
               content={(props) => <ScatterTooltip {...props} />}
-              cursor={{ strokeDasharray: "3 3", stroke: "#94a3b8" }}
+              cursor={{ strokeDasharray: "3 3", stroke: "var(--chart-axis)" }}
             />
           </ScatterChart>
         </ResponsiveContainer>

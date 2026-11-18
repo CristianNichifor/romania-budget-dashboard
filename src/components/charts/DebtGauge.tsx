@@ -86,7 +86,7 @@ export function DebtGauge({
       <path
         d={describeArc(centerX, centerY, radius, 0, 180)}
         fill="none"
-        stroke="#e2e8f0"
+        stroke="var(--chart-grid)"
         strokeWidth={14}
         strokeLinecap="round"
       />
@@ -102,7 +102,7 @@ export function DebtGauge({
         y1={centerY}
         x2={start.x}
         y2={start.y}
-        stroke="#94a3b8"
+        stroke="var(--chart-axis)"
         strokeWidth={1}
         strokeDasharray="3 3"
       />
@@ -111,10 +111,10 @@ export function DebtGauge({
         y1={centerY}
         x2={needleEnd.x}
         y2={needleEnd.y}
-        stroke="#0f172a"
+        stroke="var(--chart-strong)"
         strokeWidth={2}
       />
-      <circle cx={centerX} cy={centerY} r={4} fill="#0f172a" />
+      <circle cx={centerX} cy={centerY} r={4} fill="var(--chart-strong)" />
       <text
         x={centerX}
         y={height - 6}
@@ -130,7 +130,7 @@ export function DebtGauge({
         y={polar(centerX, centerY, radius - 12, referenceAngle).y - 6}
         textAnchor="middle"
         fontSize={8}
-        fill="#64748b"
+        fill="var(--chart-text)"
       >
         {formatPercent(referencePercent)}
       </text>

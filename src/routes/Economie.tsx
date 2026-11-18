@@ -364,7 +364,7 @@ export function Economie() {
                 {i18n._(m["economy.inflation.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={inflationData}
                 color="#dc2626"
@@ -393,10 +393,10 @@ export function Economie() {
                 {i18n._(m["economy.unemployment.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={unemploymentData}
-                color="#475569"
+                color="var(--chart-neutral)"
                 ariaLabel={i18n._(m["economy.unemployment.title"])}
                 valueFormatter={(value) => `${value.toFixed(1)}%`}
               />
@@ -418,7 +418,7 @@ export function Economie() {
                 {i18n._(m["economy.fx.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={fxData}
                 color="#2563eb"
@@ -440,7 +440,7 @@ export function Economie() {
                 {i18n._(m["economy.growth.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <GdpGrowthBars
                 data={gdpGrowth.quarterly}
                 ariaLabel={i18n._(m["economy.growth.title"])}
@@ -463,7 +463,7 @@ export function Economie() {
                 {i18n._(m["economy.gdpPerCapita.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <GdpPerCapitaChart
                 data={gdpPerCapita.yearly}
                 ppsLabel={i18n._(m["economy.gdpPerCapita.ppsLegend"])}
@@ -488,7 +488,7 @@ export function Economie() {
                 {i18n._(m["economy.gdpRegions.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <RegionGdpBar
                 data={gdpRegions.regions}
                 ariaLabel={i18n._(m["economy.gdpRegions.title"])}
@@ -512,10 +512,10 @@ export function Economie() {
                 {i18n._(m["economy.debt.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={debtData}
-                color="#7c3aed"
+                color="var(--chart-violet)"
                 ariaLabel={i18n._(m["economy.debt.title"])}
                 valueFormatter={(value) => `${value.toFixed(1)}%`}
                 reference={{
@@ -538,7 +538,7 @@ export function Economie() {
                 {i18n._(m["economy.trade.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <TradeBalanceChart
                 data={trade.yearly}
                 exportsLabel={i18n._(m["economy.trade.exports"])}
@@ -564,7 +564,7 @@ export function Economie() {
                 {i18n._(m["economy.deficit.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={deficitData}
                 color="#dc2626"
@@ -593,7 +593,7 @@ export function Economie() {
                 {i18n._(m["economy.employment.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={employmentData}
                 color="#0ea5e9"
@@ -618,7 +618,7 @@ export function Economie() {
                 {i18n._(m["economy.currentAccount.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <CurrentAccountBars
                 data={currentAccountData}
                 ariaLabel={i18n._(m["economy.currentAccount.title"])}
@@ -641,10 +641,10 @@ export function Economie() {
                 {i18n._(m["economy.rates.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={ratesData}
-                color="#7c3aed"
+                color="var(--chart-violet)"
                 ariaLabel={i18n._(m["economy.rates.title"])}
                 valueFormatter={(value) => `${value.toFixed(2)}%`}
               />
@@ -671,7 +671,7 @@ export function Economie() {
                 {i18n._(m["economy.pensions.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <PensionAgeChart
                 data={pensionAgeData}
                 pensionsLabel={i18n._(m["economy.pensions.pensionsLegend"])}

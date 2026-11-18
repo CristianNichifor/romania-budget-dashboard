@@ -26,6 +26,7 @@ export const m = {
   }),
   "lang.label": msg({ id: "lang.label", message: "Limbă" }),
   "currency.label": msg({ id: "currency.label", message: "Monedă" }),
+  "theme.dark": msg({ id: "theme.dark", message: "Temă întunecată" }),
   "currency.rateNote": msg({
     id: "currency.rateNote",
     message:

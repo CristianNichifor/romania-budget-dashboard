@@ -44,7 +44,7 @@ function nodeColor(id: string): string {
     return "#0f766e";
   }
   if (id === SANKEY_BUDGET_NODE_ID) {
-    return "#475569";
+    return "var(--chart-neutral)";
   }
   if (id === SANKEY_DEFICIT_NODE_ID) {
     return "#dc2626";
@@ -178,7 +178,7 @@ export function BudgetSankey({
                 y={middleY}
                 textAnchor="middle"
                 fontSize={10}
-                fill="#475569"
+                fill="var(--chart-text)"
               >
                 {formatMilliardeLei(link.value)}
               </text>
@@ -264,12 +264,12 @@ export function BudgetSankey({
               y={node.y0 + (node.y1 - node.y0) / 2 + 3}
               textAnchor={labelAnchor}
               fontSize={11}
-              fill="#0f172a"
+              fill="var(--chart-strong)"
               fontWeight={600}
             >
               {labelFor(node)}
               {amountLabel !== null && (
-                <tspan fill="#475569" fontWeight={400}>
+                <tspan fill="var(--chart-text)" fontWeight={400}>
                   {` · ${amountLabel}`}
                 </tspan>
               )}

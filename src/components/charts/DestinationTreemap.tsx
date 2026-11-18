@@ -132,7 +132,7 @@ function TreemapTooltip({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs shadow-md">
+    <div className="rounded-lg border border-slate-200 bg-surface p-2 text-xs shadow-md">
       <p className="font-semibold">{destination.name}</p>
       <p className="tabular-nums text-slate-600">
         {formatMilliardeLei(destination.amount)}
@@ -253,7 +253,7 @@ export function DestinationTreemap({
               "inline-flex min-h-11 min-w-11 items-center justify-center px-3 text-xs font-medium",
               view === option.value
                 ? "bg-budget-blue text-white"
-                : "bg-white text-slate-600 hover:bg-slate-50"
+                : "bg-surface text-slate-600 hover:bg-slate-50"
             )}
           >
             {option.label}

@@ -74,8 +74,8 @@ export function SoeCompanyModal({ cui, onClose }: SoeCompanyModalProps) {
       }}
     >
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/50" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl bg-surface p-6 shadow-xl">
           <div className="flex items-start justify-between gap-4">
             <div>
               <Dialog.Title className="text-lg font-bold">
@@ -135,7 +135,10 @@ export function SoeCompanyModal({ cui, onClose }: SoeCompanyModalProps) {
                         data={marginSeries}
                         margin={{ top: 8, right: 8, bottom: 0, left: -18 }}
                       >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          stroke="var(--chart-grid)"
+                        />
                         <XAxis dataKey="year" tick={{ fontSize: 11 }} />
                         <YAxis
                           tick={{ fontSize: 11 }}

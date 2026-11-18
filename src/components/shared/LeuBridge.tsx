@@ -16,7 +16,7 @@ const BAND_COLOURS = [
   "bg-blue-800",
   "bg-teal-800",
   "bg-indigo-700",
-  "bg-slate-700",
+  "bg-[#334155]",
   "bg-cyan-800",
   "bg-violet-800",
 ];
@@ -83,7 +83,7 @@ export function LeuBridge({ contribution }: { contribution: Decimal }) {
       </div>
 
       {rows.length > 0 && (
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
           {/* One leu as a 100-bani band, the bani written on every segment. The
               table below carries the same figures for screen readers. */}
           <div

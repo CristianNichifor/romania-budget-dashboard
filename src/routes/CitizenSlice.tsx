@@ -90,7 +90,7 @@ export function CitizenSlice() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
           <label
             htmlFor="salary-slider"
             className="text-sm font-medium text-slate-700"
@@ -115,7 +115,7 @@ export function CitizenSlice() {
               <Slider.Track className="relative h-1.5 grow rounded-full bg-slate-200">
                 <Slider.Range className="absolute h-full rounded-full bg-budget-blue" />
               </Slider.Track>
-              <Slider.Thumb className="block size-6 rounded-full border-2 border-budget-blue bg-white shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
+              <Slider.Thumb className="block size-6 rounded-full border-2 border-budget-blue bg-surface shadow transition-colors focus-visible:outline-2 focus-visible:outline-budget-blue" />
             </Slider.Root>
             <span className="w-28 text-right text-lg font-bold tabular-nums">
               {formatLei(gross)}
@@ -157,7 +157,7 @@ export function CitizenSlice() {
               />
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <SalaryWaterfall
                 rows={buildSalaryWaterfallRows(breakdown)}
                 currency={currency}
@@ -207,7 +207,7 @@ export function CitizenSlice() {
           )}
 
         {realWage !== null && realWage !== undefined && (
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <RealWageLine series={realWage.series} currency={currency} />
             {currency === "lei" && <RateNote />}
             {realWage.estimated && (
@@ -253,7 +253,7 @@ export function CitizenSlice() {
             ))}
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
             <h3 className="text-sm font-semibold text-slate-700">
               {i18n._(m["wageContext.lciTitle"])}
             </h3>
@@ -273,7 +273,7 @@ export function CitizenSlice() {
           </div>
 
           {wageMonthly !== null && wageMonthly !== undefined && (
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <h3 className="text-sm font-semibold text-slate-700">
                 {i18n._(m["wageContext.monthlyTitle"])}
               </h3>
@@ -285,7 +285,7 @@ export function CitizenSlice() {
                   label: point.quarter,
                   value: point.grossMonthlyEur,
                 }))}
-                color="#7c3aed"
+                color="var(--chart-violet)"
                 ariaLabel={i18n._(m["wageContext.monthlyTitle"])}
                 valueFormatter={(value) => formatEur(value)}
                 heightClass="h-56"

@@ -22,8 +22,8 @@ const LINE_COLORS = [
   "#dc2626",
   "#0f766e",
   "#b45309",
-  "#7c3aed",
-  "#475569",
+  "var(--chart-violet)",
+  "var(--chart-neutral)",
 ];
 
 export function SoeSectorTrendChart({ trend }: SoeSectorTrendChartProps) {
@@ -55,7 +55,7 @@ export function SoeSectorTrendChart({ trend }: SoeSectorTrendChartProps) {
           margin={{ top: 12, right: 16, bottom: 8, left: 0 }}
           aria-label={i18n._(m["soe.sectors.title"])}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
           <XAxis
             dataKey="year"
             tick={{ fontSize: 11 }}
@@ -69,7 +69,7 @@ export function SoeSectorTrendChart({ trend }: SoeSectorTrendChartProps) {
               angle: -90,
               position: "insideLeft",
               fontSize: 11,
-              style: { textAnchor: "middle", fill: "#64748b" },
+              style: { textAnchor: "middle", fill: "var(--chart-text)" },
             }}
             width={58}
           />
@@ -85,7 +85,10 @@ export function SoeSectorTrendChart({ trend }: SoeSectorTrendChartProps) {
               type="monotone"
               dataKey={sector.key}
               name={sector.label}
-              stroke={LINE_COLORS[index % LINE_COLORS.length] ?? "#475569"}
+              stroke={
+                LINE_COLORS[index % LINE_COLORS.length] ??
+                "var(--chart-neutral)"
+              }
               strokeWidth={2}
               dot={{ r: 2.5 }}
               isAnimationActive={false}

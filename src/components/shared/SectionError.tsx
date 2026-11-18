@@ -25,7 +25,7 @@ export function SectionError({ title, onRetry }: SectionErrorProps) {
       <button
         type="button"
         onClick={onRetry}
-        className="inline-flex items-center gap-1.5 rounded-md border border-red-300 bg-white px-3 py-1.5 font-medium text-red-800 hover:bg-red-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+        className="inline-flex items-center gap-1.5 rounded-md border border-red-300 bg-surface px-3 py-1.5 font-medium text-red-800 hover:bg-red-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
       >
         <RotateCw aria-hidden="true" className="h-4 w-4" />
         {i18n._(m["section.retry"])}

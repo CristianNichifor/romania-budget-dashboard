@@ -62,12 +62,12 @@ export function DrilldownModal({
       }}
     >
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/50" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl bg-surface p-6 shadow-xl">
           <nav aria-label="breadcrumb" className="text-sm text-slate-500">
             <button
               type="button"
-              className="hover:text-blue-700 hover:underline"
+              className="hover:text-link-strong hover:underline"
               onClick={onBackToOverview}
             >
               {i18n._(m["drilldown.breadcrumb.root"])}

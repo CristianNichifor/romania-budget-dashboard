@@ -108,7 +108,7 @@ export function Justitie() {
                 {i18n._(m["justice.homicides.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={homicideData}
                 color="#dc2626"
@@ -128,10 +128,10 @@ export function Justitie() {
                 {i18n._(m["justice.prison.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={prisonData}
-                color="#475569"
+                color="var(--chart-neutral)"
                 ariaLabel={i18n._(m["justice.prison.title"])}
                 valueFormatter={(value) => formatNumber(value)}
                 exportFilename="justitie-penitenciar.csv"
@@ -148,7 +148,7 @@ export function Justitie() {
                 {i18n._(m["justice.police.description"])}
               </p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm">
               <MacroTrendChart
                 data={policeData}
                 color="#2563eb"

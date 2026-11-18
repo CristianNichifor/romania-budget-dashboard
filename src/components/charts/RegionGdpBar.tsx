@@ -32,7 +32,7 @@ export function RegionGdpBar({ data, ariaLabel }: RegionGdpBarProps) {
           margin={{ top: 12, right: 24, bottom: 4, left: 8 }}
           aria-label={ariaLabel}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
           <XAxis
             type="number"
             tick={{ fontSize: 11 }}

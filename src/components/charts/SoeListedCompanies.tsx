@@ -63,7 +63,7 @@ export function SoeListedCompanies({ listed }: SoeListedCompaniesProps) {
         return (
           <li
             key={company.ticker}
-            className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+            className="rounded-xl border border-slate-200 bg-surface p-4 shadow-sm"
           >
             <div className="flex items-start justify-between gap-2">
               <div>
@@ -72,7 +72,7 @@ export function SoeListedCompanies({ listed }: SoeListedCompaniesProps) {
                   {company.ticker} · {company.ministry}
                 </p>
               </div>
-              <span className="rounded-md bg-budget-blue/10 px-2 py-0.5 text-xs font-semibold text-budget-blue">
+              <span className="rounded-md bg-budget-blue/10 px-2 py-0.5 text-xs font-semibold text-link">
                 {i18n._({
                   ...m["soe.listed.state"],
                   values: {

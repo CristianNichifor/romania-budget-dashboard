@@ -69,7 +69,11 @@ export function SocialContextMultiples({
     value: unit,
     angle: -90,
     position: "insideLeft" as const,
-    style: { fontSize: 11, fill: "#64748b", textAnchor: "middle" as const },
+    style: {
+      fontSize: 11,
+      fill: "var(--chart-text)",
+      textAnchor: "middle" as const,
+    },
   });
 
   return (
